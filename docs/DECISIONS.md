@@ -94,11 +94,23 @@ scope for the prototype.
 
 Rejected: collecting a learner name to personalize output.
 
+## 2026-08-15 11:30: Engineer 2 ships four interface beats, no contract change
+
+Licence badge on the intake form, pipeline grouped by stage with counters and named failures, provenance on one knowledge component, rejected items in their own section, and a projector-scale refusal screen. Contracts stay at 0.1.0. Transfer strip waits for Engineer 1's frozen cases A, B and C.
+
+Rejected: adding a transfer strip against invented fixtures. That would fake the factory claim.
+
 ## 2026-08-15 11:30: Deterministic fallback stages sit beside the snapshot store
 
 Engineer 1 split: live ACARA fetch and the snapshot store stay in `server/compiler/sources/`. The complementary slice is the licence policy engine, the graph auditor's two-pass repair and abstain path, and a deterministic sequence planner plus item bank used when the model client abstains. The orchestrator calls those stages instead of replaying fixture artifacts, so MockModelClient still produces a full bundle and a rejected item still ships with a stated reason.
 
 Rejected: waiting for the xAI client before replacing fixture replay. The handoff says the deterministic half is the stage fallback and the part a judge can verify.
+
+## 2026-08-15 11:40: Transfer strip renders D-frozen and refusal only
+
+The strip swaps artifact panes from the two existing fixtures plus the live compile. A, B and C are visible and disabled until Engineer 1 drops schema-valid `case-a.json` files. No invented codes or accuracy numbers.
+
+Rejected: filling A, B and C with paraphrased demo copy so the strip looked finished.
 
 ## 2026-08-15 11:40: Engineer 1 split — snapshots stay on the other session, export lands here
 
@@ -113,3 +125,9 @@ Rejected: continuing on the same checkout as the snapshot work. Those files are 
 The compile handle already stored runs in process memory, so POST /api/compile plus GET /graph and GET /export were enough. The missing demo slice was a clickable graph and a cite-only-safe citations panel. Engineer 2's client directory was unowned, so this session took it. The export panel filters quotes again in the UI so a leaked cite-only body cannot reach the projector.
 
 Rejected: wiring XaiModelClient or waiting for official AC9 re-keying before the graph is clickable. The deterministic fallback already produces a full bundle a judge can click.
+
+## 2026-08-15 11:53: Merge keeps both client slices
+
+`engineer-2/interface` now includes Engineer 1's clickable graph and cite-only export panel. Transfer strip, coverage, refusal, and fixture fallback stay. Frozen transfer cards do not invent a graph: they clear `/graph` and `/export` because those runs are not in the server store.
+
+Rejected: dropping the graph panel to avoid touching Engineer 1's client files. Both demo beats need to ship.

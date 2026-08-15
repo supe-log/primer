@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import clsx from "clsx";
-import type { GateCheckStatus, GateVerdict } from "@contracts";
+import type { GateCheckStatus, GateVerdict, LicencePosture } from "@contracts";
 
 /**
  * Small shared presentation pieces. Engineer 2 owns this file. Keep it small:
@@ -21,11 +21,11 @@ export function Panel({
   testId?: string;
 }) {
   return (
-    <section className="card p-5" data-testid={testId}>
+    <section className="card min-w-0 p-5" data-testid={testId}>
       <header className="mb-4 flex items-start justify-between gap-4">
-        <div>
+        <div className="min-w-0">
           <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
-          {subtitle ? <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p> : null}
+          {subtitle ? <p className="mt-1 break-words text-sm text-muted-foreground">{subtitle}</p> : null}
         </div>
         {action}
       </header>
@@ -105,4 +105,37 @@ export function CheckStatus({ status }: { status: GateCheckStatus }) {
 
 export function Chip({ children }: { children: ReactNode }) {
   return <span className="chip">{children}</span>;
+}
+
+const POSTURE_STYLES: Record<LicencePosture, string> = {
+  redistributable: "border-success/40 bg-success/10 text-success",
+  cite_only: "border-warning/40 bg-warning/10 text-warning",
+  unknown: "border-error/40 bg-error/10 text-error",
+};
+
+const POSTURE_LABEL: Record<LicencePosture, string> = {
+  redistributable: "redistributable",
+  cite_only: "cite only",
+  unknown: "unknown licence",
+};
+
+export function LicenceBadge({
+  posture,
+  licenceId,
+}: {
+  posture: LicencePosture;
+  licenceId: string;
+}) {
+  return (
+    <span
+      className={clsx(
+        "inline-flex max-w-full flex-wrap items-center gap-1.5 break-words rounded-md border px-2 py-1 font-mono text-xs font-medium",
+        POSTURE_STYLES[posture],
+      )}
+      data-testid={`badge-licence-${posture}`}
+    >
+      <span className="uppercase">{POSTURE_LABEL[posture]}</span>
+      <span className="opacity-70">{licenceId}</span>
+    </span>
+  );
 }

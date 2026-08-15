@@ -1,10 +1,12 @@
 import {
   AgentEvent,
+  CompilationRequest,
   CompilationResult,
   type AgentEvent as AgentEventType,
   type CompilationRequest as CompilationRequestType,
   type CompilationResult as CompilationResultType,
 } from "@contracts";
+import { frozenDemoRequest } from "./cases";
 import { apiRequest, API_BASE } from "./queryClient";
 import { GraphView, PublicExportBundle, type GraphView as GraphViewType, type PublicExportBundle as PublicExportBundleType } from "./views";
 
@@ -22,9 +24,16 @@ export async function compile(
   return CompilationResult.parse(json);
 }
 
-export async function fetchDemoRequest(): Promise<CompilationRequestType> {
-  const response = await apiRequest("GET", "/api/demo-request");
-  return (await response.json()) as CompilationRequestType;
+export async function fetchDemoRequest(): Promise<{
+  request: CompilationRequestType;
+  fromFixture: boolean;
+}> {
+  try {
+    const response = await apiRequest("GET", "/api/demo-request");
+    return { request: CompilationRequest.parse(await response.json()), fromFixture: false };
+  } catch {
+    return { request: frozenDemoRequest, fromFixture: true };
+  }
 }
 
 export async function fetchEvents(runId: string): Promise<AgentEventType[]> {
