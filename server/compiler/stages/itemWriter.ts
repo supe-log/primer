@@ -142,7 +142,10 @@ function buildPrompt(input: {
       ? `Accessibility requests: ${request.learnerContext.accessibilityNeeds.join(", ")}`
       : `Accessibility requests: none`,
     ``,
-    `Write ${itemsPerComponent} item(s) for each knowledge component below.`,
+    // The count is stated as an arithmetic requirement rather than left implied.
+    // Asking for "one per component" and listing the components got a single item
+    // back for a seven-component graph, which then failed standards coverage.
+    `Write exactly ${assessable.length * itemsPerComponent} items: ${itemsPerComponent} for each of the ${assessable.length} knowledge components listed below, in this order. Every component must receive its own item, and no component may be skipped.`,
     componentBlock,
     ``,
     `Rules, all of which a deterministic validator checks after you:`,
@@ -191,8 +194,38 @@ export async function writeItemsWithModel(input: {
   const { request, graph, modelClient } = input;
   const itemsPerComponent = input.itemsPerComponent ?? 1;
   const modelName = modelClient.name === "xai" ? "grok-4.6" : "mock-deterministic";
-  const knownComponents = new Set(graph.knowledgeComponents.map((kc) => kc.knowledgeComponentId));
-  const knownMisconceptions = new Set(graph.misconceptions.map((m) => m.misconceptionId));
+
+  /**
+   * Resolves a reference the model wrote back to a declared id.
+   *
+   * Models shorten long prefixed ids: asked to echo
+   * `kc:au.year-7.mathematics.unit-rate` they return `unit-rate`. Discarding those
+   * items threw away four of six on a real run and then failed standards coverage,
+   * so the reference is matched on the full id or on its trailing slug.
+   *
+   * This is a lookup, not a leniency. The reference still has to name something the
+   * graph declares; anything else resolves to undefined and the item is discarded or
+   * the distractor left unlinked for the validator to reject.
+   */
+  function resolver(ids: readonly string[]): (reference: string) => string | undefined {
+    const index = new Map<string, string>();
+    for (const id of ids) {
+      index.set(id, id);
+      const slug = id.slice(id.indexOf(":") + 1);
+      const tail = slug.slice(slug.lastIndexOf(".") + 1);
+      // Only claim a bare slug when it is unambiguous across the graph.
+      for (const key of [slug, tail]) {
+        if (index.has(key) && index.get(key) !== id) continue;
+        index.set(key, id);
+      }
+    }
+    return (reference) => index.get(reference.trim());
+  }
+
+  const resolveComponent = resolver(
+    graph.knowledgeComponents.map((kc) => kc.knowledgeComponentId),
+  );
+  const resolveMisconception = resolver(graph.misconceptions.map((m) => m.misconceptionId));
 
   const abstained = (reason: string): ItemWriterOutcome => ({
     items: [],
@@ -249,8 +282,8 @@ export async function writeItemsWithModel(input: {
   const items: QuestionItemType[] = [];
 
   for (const proposed of response.value.items) {
-    const kcId = proposed.knowledgeComponentId;
-    if (!knownComponents.has(kcId)) {
+    const kcId = resolveComponent(proposed.knowledgeComponentId);
+    if (!kcId) {
       unparsable += 1;
       continue;
     }
@@ -272,10 +305,9 @@ export async function writeItemsWithModel(input: {
       // An incorrect option keeps its misconception only if the graph declares it.
       // A distractor pointing at an undeclared misconception fails the validator,
       // which is the correct outcome: the link is the artifact, not the label.
-      misconceptionId:
-        !option.correct && knownMisconceptions.has(option.misconceptionSlug)
-          ? option.misconceptionSlug
-          : undefined,
+      misconceptionId: option.correct
+        ? undefined
+        : resolveMisconception(option.misconceptionSlug),
     }));
 
     // correctOptionId is recomputed from the options rather than trusted. When the

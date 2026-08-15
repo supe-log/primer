@@ -182,3 +182,43 @@ matching. All 30 Year 7 content descriptions span-match.
 The compiler never sets status to published. Frozen transfer cards no longer write a fixture run id into the load box. Pipeline stage colour treats a later success as a pass so a mapper that abstains then falls back does not stay amber. Provenance hover hides cite-only spans.
 
 Rejected: waiting for cubic/greptile comments. Neither tool is reviewing this repo yet.
+
+## 2026-08-15 12:45: Frozen strip fixtures are compiled, never authored
+
+`npm run demo-fixtures` runs the real compiler and writes a file only if it parses against `CompilationResult`. That is
+the same rule the compiler follows, applied to the artifacts a judge sees when the network is hostile. Refusals run on
+`MockModelClient`, since a refusal never reaches a generative stage and the output stays byte-reproducible; successful
+compiles use whatever client the environment provides, so with a key the frozen cards show real generated items.
+
+The strip gained a Year 8 card and lost its placeholders. `client/src/fixtures/compilation-result.json` and
+`agent-events.json` shipped with the scaffold as hand-written samples citing `SAMPLE-Y7-N-01`, which put invented
+standards on the same strip as the honest cases; they are compiled now. Only the client copies changed. The canonical
+`fixtures/` at the repo root are pinned by five test files and were left alone.
+
+Case B, US K-2 foundational reading, is deliberately not written. No fetched source, no registered adapter, so the only
+honest artifact would be an invented one and the card stays disabled.
+
+Rejected: hand-editing a weak run into a better-looking fixture. When the Year 8 card came back with one item, the fix
+was in the pipeline, not in the JSON.
+
+## 2026-08-15 12:45: The item writer resolves short ids instead of discarding them
+
+A real Year 7 run wrote six items and kept two: four were discarded because the model returned `unit-rate` where the
+graph declared `kc:au.year-7.mathematics.unit-rate`. Models shorten long prefixed ids, and the mapper already handled
+that with slug resolution while the item writer did not. The writer now matches a reference on the full id or on its
+unambiguous trailing slug, for both component tags and distractor misconception links.
+
+This is a lookup, not a leniency. A reference that names nothing the graph declares still resolves to undefined, and the
+item is still discarded or the distractor still left unlinked for the validator to reject. The item count is also stated
+to the model as arithmetic — "write exactly N items, one for each of the N components" — because asking for one per
+component and listing them returned a single item for a seven-component graph, which then failed standards coverage.
+
+## 2026-08-15 12:45: The gate summary names what was compiled
+
+The summary was the hardcoded string "Prototype bundle built from sample standards", which stopped being true when the
+snapshot store landed. It now names the authority and the number of content descriptions and says they are traced to a
+content-hashed snapshot. `missingEvidence` no longer lists fetched content descriptions as missing, because they are
+computed from the manifest rather than asserted.
+
+The second half of the summary is unchanged and stays unchanged: describing provenance accurately is not the same as
+claiming the bundle works, and this run has earned the first and not the second.

@@ -13,15 +13,19 @@ import demoRequestJson from "../fixtures/demo-request.json";
 
 /**
  * Frozen cases the interface can render without the compiler. Copies live under
- * client/src/fixtures so Vite's client root can import them. A, B and C stay
- * disabled until Engineer 1 drops schema-valid files at case-a.json and friends.
+ * client/src/fixtures so Vite's client root can import them.
+ *
+ * Every case-*.json is produced by `npm run demo-fixtures`, which runs the real
+ * compiler and writes a file only if it parses against CompilationResult. A card
+ * whose fixture is absent stays disabled: the strip never shows a hand-authored
+ * bundle, which is the same rule the compiler itself follows.
  */
 export const frozenDraft: CompilationResultType = CompilationResult.parse(draftJson);
 export const frozenRefusal: CompilationResultType = CompilationResult.parse(refusalJson);
 export const frozenEvents: AgentEventType[] = AgentEvent.array().parse(eventsJson);
 export const frozenDemoRequest: CompilationRequestType = CompilationRequest.parse(demoRequestJson);
 
-export type TransferCaseId = "d-live" | "d-frozen" | "refusal" | "a" | "b" | "c";
+export type TransferCaseId = "d-live" | "d-frozen" | "refusal" | "au-y8" | "a" | "b" | "c";
 
 export interface TransferCase {
   id: TransferCaseId;
@@ -35,7 +39,7 @@ export interface TransferCase {
 
 const extraCases = import.meta.glob("../fixtures/case-*.json", { eager: true });
 
-function extraResult(id: "a" | "b" | "c"): CompilationResultType | undefined {
+function extraResult(id: "au-y8" | "a" | "b" | "c"): CompilationResultType | undefined {
   const match = Object.entries(extraCases).find(([path]) => path.includes(`case-${id}.json`));
   if (!match) {
     return undefined;
@@ -45,6 +49,7 @@ function extraResult(id: "a" | "b" | "c"): CompilationResultType | undefined {
 }
 
 export function transferCases(hasLiveResult: boolean): TransferCase[] {
+  const caseAuY8 = extraResult("au-y8");
   const caseA = extraResult("a");
   const caseB = extraResult("b");
   const caseC = extraResult("c");
@@ -75,26 +80,38 @@ export function transferCases(hasLiveResult: boolean): TransferCase[] {
       result: frozenRefusal,
     },
     {
+      // The real transfer: a second fetched ACARA level, compiled by the same
+      // engine against its own snapshot and its own AC9M8 codes.
+      id: "au-y8",
+      label: "Year 8",
+      jurisdiction: "Australia · Year 8 maths",
+      note: caseAuY8 ? "Second fetched level, compiled" : "Awaiting frozen fixture",
+      ready: Boolean(caseAuY8),
+      result: caseAuY8,
+    },
+    {
       id: "a",
       label: "A",
-      jurisdiction: "Texas writing",
-      note: caseA ? "Frozen transfer fixture" : "Awaiting frozen fixture",
+      jurisdiction: "Texas · Grade 5 RLA",
+      note: caseA ? "Refused, TEKS not fetched" : "Awaiting frozen fixture",
       ready: Boolean(caseA),
       result: caseA,
     },
     {
+      // No fetched source and no registered adapter, so there is nothing honest to
+      // freeze. The card stays disabled rather than showing an invented bundle.
       id: "b",
       label: "B",
       jurisdiction: "US K–2 reading",
-      note: caseB ? "Frozen transfer fixture" : "Awaiting frozen fixture",
+      note: caseB ? "Frozen transfer fixture" : "No source fetched",
       ready: Boolean(caseB),
       result: caseB,
     },
     {
       id: "c",
       label: "C",
-      jurisdiction: "Non-US, non-English",
-      note: caseC ? "Frozen transfer fixture" : "Awaiting frozen fixture",
+      jurisdiction: "India · Class 7, Hindi",
+      note: caseC ? "Refused, NCERT not fetched" : "Awaiting frozen fixture",
       ready: Boolean(caseC),
       result: caseC,
     },
