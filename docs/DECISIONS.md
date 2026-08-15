@@ -107,3 +107,9 @@ Claude Code (other Engineer 1 session) owns live ACARA snapshots, re-keying `fal
 This session owns the cite-only public export, the graph-node API, extra licence/auditor/planner tests, and merge-prep. Work happens on `engineer-1/cite-only-export` in a separate worktree branched from `5a85619`, so the unpushed snapshot commit on `engineer-1/deterministic-stages` is neither rewritten nor force-pushed.
 
 Rejected: continuing on the same checkout as the snapshot work. Those files are in flight.
+
+## 2026-08-15 11:45: Demo UI reads persisted /graph and /export, not the raw compile body
+
+The compile handle already stored runs in process memory, so POST /api/compile plus GET /graph and GET /export were enough. The missing demo slice was a clickable graph and a cite-only-safe citations panel. Engineer 2's client directory was unowned, so this session took it. The export panel filters quotes again in the UI so a leaked cite-only body cannot reach the projector.
+
+Rejected: wiring XaiModelClient or waiting for official AC9 re-keying before the graph is clickable. The deterministic fallback already produces a full bundle a judge can click.
