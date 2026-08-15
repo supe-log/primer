@@ -1,0 +1,37 @@
+client/src/components/CoursePlayer.tsx
+  s_4fb493c9762eef::t_b2d9ae4a1b2878 408-414
+  s_4fb493c9762eef::t_9408a3451dd690 70-82,84,90,93-100,102-115,117,122,125
+  s_4fb493c9762eef::t_96ee014c95f1a6 236
+  s_4fb493c9762eef::t_c0760f69c940d2 212
+  s_4fb493c9762eef::t_a9faf22052cd73 256
+  s_4fb493c9762eef::t_90c38e5346da9e 246
+  s_4fb493c9762eef::t_d56eae66be8e1e 153,155,160,164,170,176
+  s_4fb493c9762eef::t_92541f40a83bf9 195
+  s_4fb493c9762eef::t_373d6a70fb2eaa 269-274
+  s_4fb493c9762eef::t_cfd7cfe6f6c36a 16-18
+client/src/index.css
+  s_4fb493c9762eef::t_63b47e9cfbfc35 96,100-157
+  s_4fb493c9762eef::t_cdf7b402faef66 158
+client/index.html
+  s_4fb493c9762eef::t_41c2e05878376a 19
+docs/DECISIONS.md
+  s_4fb493c9762eef::t_be1f43e36eb774 317-325
+client/src/components/learnerPixels.tsx
+  s_4fb493c9762eef::t_8034d4db5d3caa 1-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "7091898d9fcad973cc0d1d43277375c9416a4b58",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
