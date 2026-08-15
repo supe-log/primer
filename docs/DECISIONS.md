@@ -342,6 +342,7 @@ Content check on the frozen artifacts: Year 7 has 3 lessons, 4 shipped items, 2 
 
 Rejected: practice-only beats, and inventing replacements for the two Year 7 rejects.
 
+<<<<<<< HEAD
 ## 2026-08-15 19:00: Missing snapshots collect inside compile
 
 A request for a location and stage with no hashed curriculum used to refuse immediately. `compile` now tries to collect first: a researcher may name an official HTTPS URL, code fetches and hashes the page, a licence table classifies posture, and only statements that appear verbatim in the body become standards. Known Australia Year 7/8 maths still compiles offline. Official exam emulation still refuses without collecting, because that would invent a blueprint.
@@ -349,3 +350,9 @@ A request for a location and stage with no hashed curriculum used to refuse imme
 Rejected: writing `snapshots/*.json` from the Vercel isolate. Collection is run-scoped. Promoting a good run into the committed store stays `npm run snapshot`.
 
 Rejected: letting the model set `mayRedistribute`. Unknown or unmatched licence quotes are cite-only.
+
+## 2026-08-15 19:12: Student type is Satoshi, not Pixelify
+
+Pixelify Sans stays off questions, answers, powers, and buttons. Exponents render as superscripts. Button labels are near-black on the Kenney tiles. Pixel type was a costume; Year 7–8 have to read 3⁴.
+
+Rejected: keeping pixel type on the math for brand consistency.
