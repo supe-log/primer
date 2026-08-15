@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Moon, Sun } from "lucide-react";
 import {
   SCHEMA_VERSION,
   type AgentEvent,
@@ -21,8 +20,8 @@ import { Logo } from "@/components/primitives";
 import { canOpenCourse } from "@/lib/courseWorkspace";
 
 /**
- * The single page. State lives here: request, result, events, theme. No storage APIs
- * are used anywhere in this app, by rule.
+ * The single page. State lives here: request, result, events. No storage APIs
+ * are used anywhere in this app, by rule. Light only — OS dark preference is ignored.
  */
 export default function Compile() {
   const [initialRequest, setInitialRequest] = useState<CompilationRequest | null>(null);
@@ -40,14 +39,7 @@ export default function Compile() {
   const [error, setError] = useState<string | null>(null);
   const [usedFixtureFallback, setUsedFixtureFallback] = useState(false);
   const [workspace, setWorkspace] = useState<"compiler" | "course">("compiler");
-  const [dark, setDark] = useState(
-    () => typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches,
-  );
   const unsubscribe = useRef<(() => void) | null>(null);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-  }, [dark]);
 
   useEffect(() => {
     fetchDemoRequest()
@@ -200,19 +192,10 @@ export default function Compile() {
             </div>
           ) : null}
           <span className="chip">contracts {SCHEMA_VERSION}</span>
-          <button
-            type="button"
-            onClick={() => setDark((current) => !current)}
-            className="rounded-md border border-border p-2 text-muted-foreground hover:text-foreground"
-            aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-            data-testid="button-theme"
-          >
-            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
         </div>
       </header>
     ),
-    [dark, result, workspace],
+    [result, workspace],
   );
 
   if (workspace === "course" && result && canOpenCourse(result)) {
