@@ -93,3 +93,15 @@ artifact. If there is no student data field, there is no student data breach, an
 scope for the prototype.
 
 Rejected: collecting a learner name to personalize output.
+
+## 2026-08-15 11:30: Engineer 2 ships four interface beats, no contract change
+
+Licence badge on the intake form, pipeline grouped by stage with counters and named failures, provenance on one knowledge component, rejected items in their own section, and a projector-scale refusal screen. Contracts stay at 0.1.0. Transfer strip waits for Engineer 1's frozen cases A, B and C.
+
+Rejected: adding a transfer strip against invented fixtures. That would fake the factory claim.
+
+## 2026-08-15 11:40: Transfer strip renders D-frozen and refusal only
+
+The strip swaps artifact panes from the two existing fixtures plus the live compile. A, B and C are visible and disabled until Engineer 1 drops schema-valid `case-a.json` files. No invented codes or accuracy numbers.
+
+Rejected: filling A, B and C with paraphrased demo copy so the strip looked finished.
