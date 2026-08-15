@@ -47,7 +47,10 @@ app.use((req, res, next) => {
   }
 
   const port = parseInt(process.env.PORT || "5000", 10);
-  httpServer.listen({ port, host: "0.0.0.0", reusePort: true }, () => {
-    log(`serving on port ${port}`);
+  const host = process.env.HOST || "127.0.0.1";
+  // reusePort + 0.0.0.0 is ENOTSUP on some Darwin/Node builds. Bind IPv4 loopback
+  // unless HOST is set, so `npm run dev` starts on a judge laptop.
+  httpServer.listen({ port, host }, () => {
+    log(`serving on ${host}:${port}`);
   });
 })();
