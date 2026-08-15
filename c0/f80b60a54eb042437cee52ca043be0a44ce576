@@ -1,0 +1,19 @@
+README.md
+  s_207d06870c4a11::t_bd4003ea9b9eba 46-48,50-56,58-59,61-62,64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "c0f80b60a54eb042437cee52ca043be0a44ce576",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
