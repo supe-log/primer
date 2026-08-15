@@ -430,12 +430,20 @@ describe("item writer", () => {
       graph,
       modelClient: stubClient(payload),
     });
-    const item = outcome.items[0]!;
-    expect(item.rejection?.checkId).toBe("check:item.distractor-misconception");
-    expect(item.rejection?.reason).toContain("Rejected rather than repaired");
     // The rejected item still ships. The rejections are the proof the gates ran.
-    expect(outcome.items).toHaveLength(1);
-    expect(outcome.counts.rejected).toBe(1);
+    for (const item of outcome.items) {
+      expect(item.rejection?.checkId).toBe("check:item.distractor-misconception");
+      expect(item.rejection?.reason).toContain("Rejected rather than repaired");
+    }
+    expect(outcome.counts.shipped).toBe(0);
+
+    // The component ended the first pass with no surviving item, so the bounded
+    // gap-filling pass ran. This stub answers identically every time, so the second
+    // attempt is rejected too — which is the honest outcome, and it stops at two.
+    expect(outcome.counts.passes).toBe(2);
+    expect(outcome.counts.componentsWithoutItem).toBe(1);
+    expect(outcome.items.every((item) => item.rejection)).toBe(true);
+    expect(new Set(outcome.items.map((item) => item.itemId)).size).toBe(outcome.items.length);
   });
 
   it("rejects a double-keyed item rather than picking a winner", async () => {
@@ -480,7 +488,7 @@ describe("item writer", () => {
       modelClient: new MockModelClient(),
     });
     expect(outcome.abstained).toBe(true);
-    expect(outcome.call.abstained).toBe(true);
+    expect(outcome.calls.every((call) => call.abstained)).toBe(true);
     expect(outcome.reason).toContain("deterministic bank");
   });
 });
