@@ -10,10 +10,19 @@ import { LicenceBadge, Panel } from "./primitives";
  * There is no student personal information field here and there must never be one.
  */
 
-const STANDARD_OPTIONS = [
-  { id: "std:acara.v9.y7.math.sample-01", label: "Sample 01, equivalent ratios" },
-  { id: "std:acara.v9.y7.math.sample-02", label: "Sample 02, rate problems" },
-  { id: "std:acara.v9.y7.math.sample-03", label: "Sample 03, proportional reasoning" },
+export const STANDARD_OPTIONS = [
+  {
+    id: "std:acara.v9.ac9m7n04",
+    label: "AC9M7N04 — equivalent representations of rational numbers",
+  },
+  {
+    id: "std:acara.v9.ac9m7n08",
+    label: "AC9M7N08 — recognise, represent and solve problems involving ratios",
+  },
+  {
+    id: "std:acara.v9.ac9m7m06",
+    label: "AC9M7M06 — mathematical modelling with ratios",
+  },
 ];
 
 export function IntakeForm({
@@ -166,8 +175,8 @@ export function IntakeForm({
             ))}
           </div>
           <p className="mt-2 text-xs text-muted-foreground">
-            These are prototype samples, not fetched content descriptions. Engineer 1 replaces them
-            with snapshotted codes.
+            Official ACARA V9 Year 7 codes from the hashed snapshot. The compiler reads them; it
+            does not author them.
           </p>
         </fieldset>
 

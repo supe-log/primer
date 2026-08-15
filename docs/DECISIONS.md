@@ -182,3 +182,9 @@ matching. All 30 Year 7 content descriptions span-match.
 The compiler never sets status to published. Frozen transfer cards no longer write a fixture run id into the load box. Pipeline stage colour treats a later success as a pass so a mapper that abstains then falls back does not stay amber. Provenance hover hides cite-only spans.
 
 Rejected: waiting for cubic/greptile comments. Neither tool is reviewing this repo yet.
+
+## 2026-08-15 12:35: Judge-path copy matches the live ACARA compile
+
+Walking live compile → node click → citations → D-frozen → Refusal showed the intake still listing SAMPLE-Y7 checkboxes, the gate still saying "sample standards", and the refusal card leaving the live pipeline events on screen. Intake now offers AC9M7N04/N08/M06, the gate summary names hashed snapshots when sources are fetched, and a transfer card without its own events clears the pipeline.
+
+Rejected: leaving the SAMPLE checkboxes because submit still sent the real ids. Judges read the form, not the request body.

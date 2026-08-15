@@ -118,9 +118,7 @@ export default function Compile() {
     }
     setSelectedCase(id);
     setResult(entry.result);
-    if (entry.events) {
-      setEvents(entry.events);
-    }
+    setEvents(entry.events ?? []);
     setStreaming(false);
     // Frozen fixtures are not in the server run store. Clear rather than invent a graph
     // or point Load at a run id the store has never seen.
