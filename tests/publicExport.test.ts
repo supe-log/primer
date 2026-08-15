@@ -81,6 +81,18 @@ describe("public export (AC-10)", () => {
     }
   });
 
+  it("does not cite a Year 8 snapshot on a Year 7 compile", async () => {
+    const compiler = createCompiler();
+    const result = await compiler.compile(demoRequest);
+    const exported = buildPublicExport(result);
+    const ids = exported.citations.map((citation) => citation.sourceId);
+    expect(ids).toContain("src:acara.v9.mathematics.year-7");
+    expect(ids).not.toContain("src:acara.v9.mathematics.year-8");
+    expect(exported.licence.redistributableSourceIds).not.toContain(
+      "src:acara.v9.mathematics.year-8",
+    );
+  });
+
   it("covers every requested standard on the live deterministic compile", async () => {
     const compiler = createCompiler();
     const result = await compiler.compile(demoRequest);
