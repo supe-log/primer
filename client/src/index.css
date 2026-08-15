@@ -37,22 +37,7 @@
 
   --font-sans: "Satoshi", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
-}
-
-.dark {
-  --background: 197 58% 7%;
-  --surface: 197 48% 10%;
-  --surface-alt: 197 40% 14%;
-  --border: 197 24% 24%;
-  --foreground: 24 67% 88%;
-  --muted-foreground: 24 18% 64%;
-  --primary: 23 73% 63%;
-  --primary-foreground: 197 100% 9%;
-  --accent: 45 89% 58%;
-  --accent-foreground: 197 100% 9%;
-  --success: 158 52% 56%;
-  --warning: 38 80% 60%;
-  --error: 355 70% 70%;
+  color-scheme: light;
 }
 
 @layer base {
