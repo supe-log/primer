@@ -16,7 +16,9 @@ import { GateVerdictPanel } from "@/components/GateVerdictPanel";
 import { TransferStrip } from "@/components/TransferStrip";
 import { KnowledgeGraph } from "@/components/KnowledgeGraph";
 import { ExportPanel } from "@/components/ExportPanel";
+import { CoursePlayer } from "@/components/CoursePlayer";
 import { Logo } from "@/components/primitives";
+import { canOpenCourse } from "@/lib/courseWorkspace";
 
 /**
  * The single page. State lives here: request, result, events, theme. No storage APIs
@@ -37,6 +39,7 @@ export default function Compile() {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [usedFixtureFallback, setUsedFixtureFallback] = useState(false);
+  const [workspace, setWorkspace] = useState<"compiler" | "course">("compiler");
   const [dark, setDark] = useState(
     () => typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches,
   );
@@ -82,6 +85,7 @@ export default function Compile() {
       setLiveResult(compiled);
       setResult(compiled);
       setLiveEvents([]);
+      setWorkspace(canOpenCourse(compiled) ? "course" : "compiler");
       await loadPresentation(compiled.runId);
       setStreaming(true);
       unsubscribe.current = streamEvents(
@@ -108,6 +112,7 @@ export default function Compile() {
       setResult(liveResult);
       setEvents(liveEvents);
       setStreaming(false);
+      setWorkspace(canOpenCourse(liveResult) ? "course" : "compiler");
       void loadPresentation(liveResult.runId);
       return;
     }
@@ -120,6 +125,7 @@ export default function Compile() {
     setResult(entry.result);
     setEvents(entry.events ?? []);
     setStreaming(false);
+    setWorkspace(canOpenCourse(entry.result) ? "course" : "compiler");
     // Frozen fixtures are not in the server run store. Clear rather than invent a graph
     // or point Load at a run id the store has never seen.
     setGraph(null);
@@ -157,6 +163,42 @@ export default function Compile() {
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-3">
+          {canOpenCourse(result) ? (
+            <div
+              className="flex rounded-md border border-border p-0.5"
+              role="tablist"
+              aria-label="Workspace"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={workspace === "course"}
+                className={`rounded px-3 py-1.5 text-sm font-medium ${
+                  workspace === "course"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                onClick={() => setWorkspace("course")}
+                data-testid="tab-course"
+              >
+                Course
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={workspace === "compiler"}
+                className={`rounded px-3 py-1.5 text-sm font-medium ${
+                  workspace === "compiler"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                onClick={() => setWorkspace("compiler")}
+                data-testid="tab-compiler"
+              >
+                Compiler
+              </button>
+            </div>
+          ) : null}
           <span className="chip">contracts {SCHEMA_VERSION}</span>
           <button
             type="button"
@@ -170,7 +212,7 @@ export default function Compile() {
         </div>
       </header>
     ),
-    [dark],
+    [dark, result, workspace],
   );
 
   return (
@@ -204,7 +246,17 @@ export default function Compile() {
         </div>
       ) : null}
 
-      <div className="grid min-w-0 gap-6 lg:grid-cols-2">
+      {workspace === "course" && result && canOpenCourse(result) ? (
+        <div className="mb-6">
+          <CoursePlayer result={result} />
+        </div>
+      ) : null}
+
+      <div
+        className={`grid min-w-0 gap-6 lg:grid-cols-2 ${
+          workspace === "course" ? "hidden" : ""
+        }`}
+      >
         <div className="min-w-0 space-y-6">
           {initialRequest ? (
             <IntakeForm initial={initialRequest} pending={pending} onSubmit={run} />
@@ -239,7 +291,7 @@ export default function Compile() {
         </div>
       </div>
 
-      <div className="mt-6 space-y-6">
+      <div className={`mt-6 space-y-6 ${workspace === "course" ? "hidden" : ""}`}>
         <div className="card flex flex-wrap items-end gap-3 p-4">
           <div className="min-w-0 flex-1 sm:min-w-[16rem]">
             <label className="label" htmlFor="run-id">
