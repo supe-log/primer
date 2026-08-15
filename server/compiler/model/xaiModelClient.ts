@@ -70,6 +70,8 @@ export type ReasoningEffort = "low" | "high";
 export type StructuredModelRequest<T> = ModelRequest<T> & {
   schema?: StructuredSchema;
   reasoningEffort?: ReasoningEffort;
+  /** Per-call timeout. Collection keeps this tight so a miss refuses before mapping. */
+  timeoutMs?: number;
 };
 
 function errorText(payload: XaiCompletion): string | undefined {
@@ -97,8 +99,9 @@ export class XaiModelClient implements ModelClient {
 
   async complete<T>(request: StructuredModelRequest<T>): Promise<ModelResponse<T>> {
     const startedAt = Date.now();
+    const timeoutMs = request.timeoutMs ?? this.timeoutMs;
     const abort = new AbortController();
-    const timer = setTimeout(() => abort.abort(), this.timeoutMs);
+    const timer = setTimeout(() => abort.abort(), timeoutMs);
 
     try {
       const body: Record<string, unknown> = {
@@ -203,7 +206,7 @@ export class XaiModelClient implements ModelClient {
         ok: false,
         abstained: true,
         reason: aborted
-          ? `xai call for role ${request.role} timed out after ${this.timeoutMs}ms`
+          ? `xai call for role ${request.role} timed out after ${timeoutMs}ms`
           : `xai call for role ${request.role} failed: ${message.slice(0, 200)}`,
       };
     } finally {
