@@ -54,6 +54,21 @@ export const IES_LICENCE: SourceLicence = {
 };
 
 /**
+ * Rosenshine's Principles of Instruction, as published by the American Federation
+ * of Teachers. Cite-only: a union magazine article is not ours to redistribute, and
+ * "not verified" is the honest posture rather than a guess in our favour.
+ */
+export const ROSENSHINE_LICENCE: SourceLicence = {
+  licenceId: "aft-american-educator-not-verified",
+  posture: "cite_only",
+  mayQuote: true,
+  mayRedistribute: false,
+  attributionText:
+    "Barak Rosenshine, Principles of Instruction, American Educator, American Federation of Teachers, Spring 2012. Redistribution rights not verified.",
+  excludedMaterial: ["the full article text and any figures"],
+};
+
+/**
  * Record types the endpoint returns. Only these four carry curriculum text worth
  * compiling; the rest of the taxonomy is navigation.
  */

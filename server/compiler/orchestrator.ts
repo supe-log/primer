@@ -5,6 +5,7 @@ import {
   type CompilationRequest,
   type CompilationResult as CompilationResultType,
   type GateCheck,
+  type ModelCallRecord,
   type RefusalReport,
   type RunManifest,
   type SourceManifest,
@@ -14,7 +15,8 @@ import { buildGateReport } from "./evidenceGate";
 import { evaluateLicenceGate } from "./licence/gate";
 import { MockModelClient, type ModelClient } from "./model/modelClient";
 import { buildFallbackBundle } from "./stages/fallbackBundle";
-import { sampleResult } from "./fixtureStore";
+import { allSnapshotsManifest, buildSourceManifest } from "./sources/catalogue";
+import type { ModelBundle } from "./stages/modelBundle";
 import {
   validateCoursePlan,
   validateCoverage,
@@ -94,7 +96,11 @@ function buildRunManifest(input: {
   sourceManifest: SourceManifest;
   abstainedRoles: string[];
   revisions: RunManifest["revisions"];
+  /** Calls the generative stages actually made, abstentions included. */
+  modelCalls?: ModelCallRecord[];
 }): RunManifest {
+  const recorded = input.modelCalls ?? [];
+  const recordedAgents = new Set(recorded.map((call) => call.agentId));
   return {
     schemaVersion: "0.1.0",
     runId: input.runId,
@@ -103,17 +109,28 @@ function buildRunManifest(input: {
     finishedAt: input.now().toISOString(),
     compilerVersion: COMPILER_VERSION,
     modelClient: input.modelClient.name,
-    modelCalls: input.abstainedRoles.map((role) => ({
-      agentId: role,
-      model: input.modelClient.name === "mock" ? "mock-deterministic" : "grok-4.6",
-      promptVersion: "none",
-      abstained: true,
-      latencyMs: 0,
-      inputTokens: 0,
-      outputTokens: 0,
-    })),
+    // Every call the run made, then the roles that never got as far as a call. Both
+    // belong in the record: a stage that abstained without calling is still a stage
+    // that produced no evidence, and the gate has to see that.
+    modelCalls: [
+      ...recorded,
+      ...input.abstainedRoles
+        .filter((role) => !recordedAgents.has(role))
+        .map((role) => ({
+          agentId: role,
+          model: input.modelClient.name === "mock" ? "mock-deterministic" : "grok-4.6",
+          promptVersion: "none",
+          abstained: true,
+          latencyMs: 0,
+          inputTokens: 0,
+          outputTokens: 0,
+        })),
+    ],
     sourceDigests: input.sourceManifest.sources.map((source) => source.contentSha256),
     revisions: input.revisions,
+    // Only the mock path is byte-identical on replay. A run that called a model is
+    // reproducible in its inputs and its digests, not in its artifacts, and saying
+    // otherwise would make the manifest a worse record than no manifest.
     replayable: input.modelClient.name === "mock",
   };
 }
@@ -157,16 +174,33 @@ export interface RunRecord {
  * can store both atomically. Pure with respect to its inputs: the same request and
  * the same deps produce the same bytes.
  */
+/**
+ * The run's source manifest, built from hashed snapshots rather than from a fixture.
+ * A request whose jurisdiction has no adapter still gets a manifest — of everything
+ * the compiler holds — because a refusal is a record of what was available, and
+ * observing is always allowed even when compiling is not.
+ */
+function manifestForRequest(request: CompilationRequest): SourceManifest {
+  const adapter = resolveAdapter(request.jurisdictionId);
+  return adapter ? buildSourceManifest(adapter.snapshotSourceIds) : allSnapshotsManifest();
+}
+
 export function runCompile(
   request: CompilationRequest,
   deps: OrchestratorDeps,
   sequence: number,
+  /**
+   * Artifacts from the generative stages, when they ran. Undefined means run the
+   * deterministic path, which is what happens with no key, on an abstention, and on
+   * every path the compiler is going to refuse before generating anything.
+   */
+  generated?: ModelBundle,
 ): RunRecord {
   const runId = nextRunId(request.requestId, sequence);
   const events: AgentEvent[] = [];
   const sink = createEventSink(runId, deps.now, events);
   const startedAt = deps.now().toISOString();
-  const sourceManifest = sampleResult.sourceManifest;
+  const sourceManifest = manifestForRequest(request);
 
   sink.emit({
     agentId: "agent:orchestrator",
@@ -310,9 +344,23 @@ export function runCompile(
     };
   }
 
-  // Deterministic construction path. The model client can replace the mapper and
-  // item writer later; this fallback is what MockModelClient and the stage path use.
-  const bundle = buildFallbackBundle({ request, adapter, sourceManifest });
+  // Artifacts from the generative stages when they ran, otherwise the deterministic
+  // construction path. Either way what arrives here is the same shape and faces the
+  // same validators, so nothing downstream knows or cares which produced it.
+  const bundle = generated ?? buildFallbackBundle({ request, adapter, sourceManifest });
+
+  // Replay the generative stages' narration into the event stream in order, so the
+  // pipeline panel shows the mapper, its repair passes and the item writer exactly
+  // where they happened rather than as a lump before the checks.
+  for (const note of generated?.notes ?? []) {
+    sink.emit({
+      agentId: note.agentId,
+      phase: note.phase,
+      message: note.message,
+      counts: note.counts,
+      attempt: note.attempt,
+    });
+  }
 
   if (bundle.refusal || !bundle.graph || !bundle.coursePlan) {
     sink.emit({
@@ -337,6 +385,7 @@ export function runCompile(
           startedAt,
           sourceManifest,
           abstainedRoles: ["curriculum-mapper"],
+          modelCalls: generated?.modelCalls,
           revisions: bundle.revisions,
         }),
         refusal: bundle.refusal ?? {
@@ -357,7 +406,9 @@ export function runCompile(
   sink.emit({
     agentId: "agent:curriculum-mapper",
     phase: "agent_succeeded",
-    message: `Emitted ${graph.knowledgeComponents.length} knowledge components and ${graph.prerequisiteEdges.length} prerequisite edges from the deterministic fallback map.`,
+    message: generated?.graphFromModel
+      ? `Graph accepted: ${graph.knowledgeComponents.length} knowledge components and ${graph.prerequisiteEdges.length} prerequisite edges, every standard read from the hashed snapshot.`
+      : `Emitted ${graph.knowledgeComponents.length} knowledge components and ${graph.prerequisiteEdges.length} prerequisite edges from the deterministic fallback map.`,
     counts: {
       nodes: graph.knowledgeComponents.length,
       edges: graph.prerequisiteEdges.length,
@@ -522,6 +573,7 @@ export function runCompile(
       startedAt,
       sourceManifest,
       abstainedRoles: ["learning-science-critic"],
+      modelCalls: generated?.modelCalls,
       revisions: [
         ...bundle.revisions,
         ...rejectedItems.map((item) => ({
