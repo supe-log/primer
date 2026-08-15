@@ -303,3 +303,14 @@ The demo URL is a Vite static output plus `api/index.ts` wrapping the same Expre
 Rejected: deploying the bundled `dist/index.cjs` as a long-running listen server. Vercel does not give us a persistent process, and the CDN should serve the client.
 
 The first production isolate failed with `ERR_MODULE_NOT_FOUND` for `server/app` because Vercel compiled `api/index.ts` without emitting the rest of the TypeScript graph. The function now loads an esbuild ESM bundle (`dist/function.js`) so path aliases and JSON snapshots are resolved at build time.
+
+## 2026-08-15 13:50: Learner chrome is one Kenney 16px pack, CC0 only
+
+When compile opens the kid phone, UI tiles come from Kenney Pixel UI Pack only: 16px 9-slice panels and buttons under
+`client/public/kenney/pixel-ui`. CC0, commercial use fine, no attribution required. A Kenney.nl credit is still shown
+because it costs nothing. The spritesheet was not vendored so crossed-swords and other combat icons never enter a
+Year 7–8 product. No 32px mix, no itch.io / CraftPix / OpenGameArt / game-icons.net in this pass — those stay a later
+sourcing order if we need a mascot, and game-icons.net would force a credits page (CC-BY).
+
+Rejected: mixing packs for personality on demo day. Grid and palette consistency matters more than variety, and
+CC-BY-NC / personal-use packs are unsafe if a school ever pays.
