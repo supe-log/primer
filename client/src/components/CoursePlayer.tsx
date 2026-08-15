@@ -13,7 +13,7 @@ import {
 } from "@/lib/courseWorkspace";
 import { KENNEY } from "@/lib/learnerArt";
 import { PixelBuddy, PixelBurst, PixelStar, PixelSun } from "@/components/learnerPixels";
-import { MathPicture } from "@/components/MathScene";
+import { MathPicture, prettyMath } from "@/components/MathScene";
 
 const LESSON_FACE = [KENNEY.yellow, KENNEY.blue, KENNEY.green] as const;
 
@@ -63,8 +63,8 @@ function HomeScreen({
         <PixelSun size={32} className="absolute right-0 top-0" />
         <PixelBuddy size={80} className="pixel-bob" />
         <div>
-          <p className="learner-pixel text-sm font-bold text-primary">Pip</p>
-          <h2 className="learner-pixel mt-0.5 text-3xl font-bold leading-none">Let’s play</h2>
+          <p className="text-sm font-bold text-primary">Pip</p>
+          <h2 className="mt-0.5 text-3xl font-bold leading-none">Let’s play</h2>
         </div>
       </div>
       <ol className="mt-8 flex-1 space-y-4">
@@ -83,13 +83,13 @@ function HomeScreen({
                   className="absolute inset-0 h-14 w-14"
                   style={{ imageRendering: "pixelated" }}
                 />
-                <span className="learner-pixel relative text-2xl font-bold">{entry.index + 1}</span>
+                <span className="relative text-2xl font-bold">{entry.index + 1}</span>
               </span>
               <span className="min-w-0 flex-1">
-                <span className="learner-pixel block text-xl font-bold">Lesson {entry.index + 1}</span>
-                <span className="mt-0.5 block text-sm text-muted-foreground">Look, then try</span>
+                <span className="block text-xl font-bold">Lesson {entry.index + 1}</span>
+                <span className="mt-0.5 block text-sm font-medium text-muted-foreground">Look, then try</span>
               </span>
-              <span className="learner-pixel text-lg font-bold text-primary">GO</span>
+              <span className="text-lg font-bold text-primary">GO</span>
             </button>
           </li>
         ))}
@@ -172,7 +172,7 @@ function BeatBody({
   if (beat.kind === "model" && beat.pictureStem) {
     return (
       <div>
-        <h3 className="learner-pixel text-2xl font-bold">Look</h3>
+        <h3 className="text-2xl font-bold">Look</h3>
         <MathPicture stem={beat.pictureStem} mode="look" />
       </div>
     );
@@ -186,7 +186,7 @@ function BeatBody({
     <div className="flex h-full flex-col items-center justify-center gap-4 pt-8 text-center">
       <PixelBuddy size={88} className="pixel-bob" />
       <PixelBurst />
-      <h3 className="learner-pixel text-3xl font-bold">Done</h3>
+      <h3 className="text-3xl font-bold">Done</h3>
     </div>
   );
 }
@@ -213,8 +213,8 @@ function PracticeItem({
   return (
     <div data-testid={`practice-item-${item.itemId}`}>
       <MathPicture stem={item.stem} mode="hint" />
-      <p className="mt-4 text-lg font-bold leading-snug" id={`${item.itemId}-stem`}>
-        {shortPrompt(item.stem)}
+      <p className="mt-4 text-xl font-bold leading-snug" id={`${item.itemId}-stem`}>
+        {prettyMath(shortPrompt(item.stem))}
       </p>
       <fieldset className="mt-4" aria-labelledby={`${item.itemId}-stem`}>
         <legend className="sr-only">Choose an answer</legend>
@@ -227,7 +227,7 @@ function PracticeItem({
               <label
                 key={option.optionId}
                 className={clsx(
-                  "px-slice flex min-h-14 cursor-pointer items-center gap-3 px-4 py-3 text-lg font-semibold",
+                  "px-slice flex min-h-14 cursor-pointer items-center gap-3 px-4 py-3 text-xl font-semibold text-[#14110d]",
                   showKey && "px-choice-yes",
                   showMiss && "px-choice-no",
                   isSelected && !grade && "px-choice-on",
@@ -244,8 +244,8 @@ function PracticeItem({
                   onChange={() => setSelected(option.optionId)}
                   data-testid={`practice-option-${item.itemId}-${option.optionId}`}
                 />
-                <span className="learner-pixel text-sm text-primary">{option.optionId}</span>
-                <span>{option.text}</span>
+                <span className="w-6 text-base font-bold text-primary">{option.optionId}</span>
+                <span className="learner-math">{prettyMath(option.text)}</span>
               </label>
             );
           })}
@@ -267,7 +267,7 @@ function PracticeItem({
       ) : null}
       {grade ? (
         <p
-          className="learner-pixel mt-4 text-center text-xl font-bold"
+          className="mt-4 text-center text-2xl font-bold"
           role="status"
           aria-live="polite"
           data-testid={`practice-feedback-${item.itemId}`}

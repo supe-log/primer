@@ -39,6 +39,8 @@ exam emulation to see the refusal.
 
 **https://primer-compiler-eight.vercel.app**
 
+Student app: **https://primer-compiler-eight.vercel.app/play**
+
 Public, no sign-in. The Vercel project `primer-compiler` is linked to this repository with `main` as its production
 branch, so every push to `main` redeploys. The client is a Vite static build and `/api/*` is one Express function, so
 compile, stream, graph and export share the in-memory run store within an isolate.
