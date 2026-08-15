@@ -341,3 +341,11 @@ Rejected: keeping the explicit-instruction beat list on the phone. That is the t
 Content check on the frozen artifacts: Year 7 has 3 lessons, 4 shipped items, 2 rejected (3/5% and the number line). Year 8 has 3 lessons, 5 shipped items, 0 rejected. The kid path is one Look screen (picture, numbers from the stem) then one Try screen per shipped item. Rejected items stay off the phone. `/play` exposes both years. We do not write extra questions to fill the rejected slots.
 
 Rejected: practice-only beats, and inventing replacements for the two Year 7 rejects.
+
+## 2026-08-15 19:00: Missing snapshots collect inside compile
+
+A request for a location and stage with no hashed curriculum used to refuse immediately. `compile` now tries to collect first: a researcher may name an official HTTPS URL, code fetches and hashes the page, a licence table classifies posture, and only statements that appear verbatim in the body become standards. Known Australia Year 7/8 maths still compiles offline. Official exam emulation still refuses without collecting, because that would invent a blueprint.
+
+Rejected: writing `snapshots/*.json` from the Vercel isolate. Collection is run-scoped. Promoting a good run into the committed store stays `npm run snapshot`.
+
+Rejected: letting the model set `mayRedistribute`. Unknown or unmatched licence quotes are cite-only.

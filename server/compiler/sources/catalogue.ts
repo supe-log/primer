@@ -13,6 +13,17 @@ import {
 } from "./acara";
 import { allSnapshots, findSnapshot, spanMatches } from "./snapshotStore";
 
+/** Standards collected during compile, keyed by the overlay snapshot they came from. */
+const COLLECTED = new Map<string, CurriculumCatalogue>();
+
+export function putCollectedCatalogue(catalogue: CurriculumCatalogue): void {
+  COLLECTED.set(catalogue.sourceId, catalogue);
+}
+
+export function clearCollectedCatalogues(): void {
+  COLLECTED.clear();
+}
+
 /**
  * The curriculum catalogue: standards derived from hashed snapshot bytes.
  *
@@ -63,7 +74,59 @@ function toStandardNode(record: AcaraRecord, sourceId: string): StandardNode {
  * in the store or carries no content descriptions, which the caller must treat as a
  * refusal rather than a reason to invent standards.
  */
+export function collectedStandardId(jurisdictionId: string, code: string): string {
+  const slug = `${jurisdictionId}.${code}`
+    .toLowerCase()
+    .replace(/[^a-z0-9._-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return `std:${slug.length > 0 ? slug : "unnamed"}`;
+}
+
+export interface CollectedStandard {
+  code: string;
+  statement: string;
+}
+
+/**
+ * Catalogue for a non-ACARA snapshot: standards the collector span-locked
+ * against fetched bytes. The statement is the authority's wording; the id is
+ * assigned here so the model cannot mint a colliding namespace.
+ */
+export function catalogueFromCollectedStandards(input: {
+  sourceId: string;
+  jurisdictionId: string;
+  standards: readonly CollectedStandard[];
+}): CurriculumCatalogue {
+  const standards: StandardNode[] = input.standards.map((entry) => ({
+    standardId: collectedStandardId(input.jurisdictionId, entry.code),
+    sourceCode: entry.code,
+    statement: entry.statement,
+    evidence: [
+      {
+        sourceId: input.sourceId,
+        quotedSpan: entry.statement,
+        locator: entry.code,
+        retrievalLanguage: "en",
+      },
+    ],
+  }));
+  const byId = new Map(standards.map((standard) => [standard.standardId, standard]));
+  return {
+    sourceId: input.sourceId,
+    standards,
+    achievementStandard: [],
+    elaborations: () => [],
+    resolve: (standardIds) =>
+      standardIds
+        .map((id) => byId.get(id))
+        .filter((standard): standard is StandardNode => standard !== undefined),
+  };
+}
+
 export function catalogueFromSnapshot(sourceId: string): CurriculumCatalogue | undefined {
+  const collected = COLLECTED.get(sourceId);
+  if (collected) return collected;
+
   const stored = findSnapshot(sourceId);
   if (!stored) return undefined;
 

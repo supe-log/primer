@@ -1,10 +1,15 @@
 import type { AgentEvent, CompilationRequest, CompilationResult } from "@contracts";
 import { resolveAdapter, type JurisdictionAdapter } from "./adapters/jurisdiction";
+import {
+  collectionFetchForTests,
+  ensureEvidence,
+  evidenceIsReady,
+} from "./collect/ensureEvidence";
 import { MockModelClient, type ModelClient } from "./model/modelClient";
 import { modelClientFromEnv } from "./model/xaiModelClient";
 import { defaultDeps, runCompile, COMPILER_VERSION } from "./orchestrator";
 import { buildSourceManifest } from "./sources/catalogue";
-import { buildModelBundle, type ModelBundle } from "./stages/modelBundle";
+import { buildModelBundle, type ModelBundle, type StageNote } from "./stages/modelBundle";
 
 function manifestFor(adapter: JurisdictionAdapter) {
   return buildSourceManifest(adapter.snapshotSourceIds);
@@ -50,6 +55,12 @@ export interface CompilerOptions {
   modelClient?: ModelClient;
   /** Defaults to a fixed clock so replays are byte-identical. */
   now?: () => Date;
+  /**
+   * Used only when a snapshot is missing and collection runs. Tests inject a fake
+   * so CI never touches the network. In Vitest the default throws; elsewhere it
+   * is global fetch.
+   */
+  fetchImpl?: typeof fetch;
 }
 
 export function createCompiler(options: CompilerOptions = {}): CompilerHandle {
@@ -60,6 +71,7 @@ export function createCompiler(options: CompilerOptions = {}): CompilerHandle {
     // the real stages on without any caller changing.
     modelClient: options.modelClient ?? modelClientFromEnv() ?? base.modelClient,
     now: options.now ?? base.now,
+    fetchImpl: options.fetchImpl ?? collectionFetchForTests(),
   };
   const runs = new Map<string, AgentEvent[]>();
   const results = new Map<string, CompilationResult>();
@@ -68,12 +80,13 @@ export function createCompiler(options: CompilerOptions = {}): CompilerHandle {
   return {
     async compile(request) {
       sequence += 1;
-      // The generative stages run here, ahead of the synchronous pipeline, so the
-      // orchestrator stays a pure function of its inputs and every artifact it
-      // receives — whoever produced it — goes through the same validators and gate.
-      const generated = await generateArtifacts(request, deps);
-      const record = runCompile(request, deps, sequence, generated);
-      runs.set(record.result.runId, record.events);
+      // Collection runs first so a missing snapshot is fetched and hashed before
+      // any mapper spends a token. Official exam emulation never collects.
+      const evidence = await ensureEvidence(request, deps);
+      const generated = evidence.ready ? await generateArtifacts(evidence.request, deps) : undefined;
+      const record = runCompile(evidence.request, deps, sequence, generated);
+      const events = spliceCollectionNotes(record.events, evidence.notes, deps.now);
+      runs.set(record.result.runId, events);
       results.set(record.result.runId, record.result);
       return record.result;
     },
@@ -103,6 +116,7 @@ async function generateArtifacts(
   if (request.assessmentTarget === "official_exam_emulation" && !adapter.blueprintAvailable(request)) {
     return undefined;
   }
+  if (!evidenceIsReady(request)) return undefined;
 
   return buildModelBundle({
     request,
@@ -110,6 +124,30 @@ async function generateArtifacts(
     sourceManifest: manifestFor(adapter),
     modelClient: deps.modelClient,
   });
+}
+
+function spliceCollectionNotes(
+  events: AgentEvent[],
+  notes: StageNote[],
+  now: () => Date,
+): AgentEvent[] {
+  if (notes.length === 0) return events;
+  const runId = events[0]?.runId;
+  if (!runId) return events;
+  const injected: AgentEvent[] = notes.map((entry) => ({
+    schemaVersion: "0.1.0",
+    runId,
+    seq: 0,
+    at: now().toISOString(),
+    agentId: entry.agentId,
+    phase: entry.phase,
+    message: entry.message,
+    counts: entry.counts ?? {},
+    attempt: entry.attempt ?? 1,
+  }));
+  const start = events[0];
+  const rest = events.slice(1);
+  return [start, ...injected, ...rest].map((event, seq) => ({ ...event, seq }));
 }
 
 export { MockModelClient, COMPILER_VERSION };
