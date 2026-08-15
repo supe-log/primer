@@ -1,0 +1,25 @@
+server/compiler/validators/index.ts
+  s_207d06870c4a11::t_019e7107f4c1e4 153-171,204-206
+tests/courseWorkspace.test.ts
+  s_207d06870c4a11::t_494f8e8fd5f828 83-87
+client/src/lib/courseWorkspace.ts
+  s_207d06870c4a11::t_5e7e897088673f 137-149,151
+tests/sequencePlanner.test.ts
+  s_207d06870c4a11::t_494f8e8fd5f828 23-28,30-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "6b337d2762085c9a0defe9197dd30537412e5650",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
