@@ -1,0 +1,46 @@
+client/src/index.css
+  s_4fb493c9762eef::t_30d7f71dc9a4d6 89-91,93-95,98-101,109-120
+  s_4fb493c9762eef::t_85bb2d07294374 243,248-249
+  s_4fb493c9762eef::t_0f9f919d6817eb 121
+client/src/components/MathScene.tsx
+  s_4fb493c9762eef::t_80ca2da482e9d5 253-256
+  s_4fb493c9762eef::t_99834fb0cb3e68 307
+  s_4fb493c9762eef::t_f7ccb62398a95a 136-137
+  s_4fb493c9762eef::t_00535123923b64 110
+  s_4fb493c9762eef::t_132e0e11e475ec 202,204
+  s_4fb493c9762eef::t_6239eaa49ac63f 331
+  s_4fb493c9762eef::t_1cc3630ecb5752 157
+  s_4fb493c9762eef::t_6374a2ea11f739 324
+  s_4fb493c9762eef::t_867ccc88430b2d 285-288,291-293
+  s_4fb493c9762eef::t_4cb7ff30942700 1,4-27
+  s_4fb493c9762eef::t_24f73e2efdc5a6 346-347
+  s_4fb493c9762eef::t_9c3412c2925595 28
+client/src/components/CoursePlayer.tsx
+  s_4fb493c9762eef::t_18a3554eb718f6 16
+  s_4fb493c9762eef::t_89778acbf53c34 86,89-90,92
+  s_4fb493c9762eef::t_59eb27c9fe8143 230
+  s_4fb493c9762eef::t_7b11c77de205be 270
+  s_4fb493c9762eef::t_fd15558c04dbde 189
+  s_4fb493c9762eef::t_2a8bb1a984fc01 66-67
+  s_4fb493c9762eef::t_8c0ccb5986cb2e 247-248
+  s_4fb493c9762eef::t_07aab74da41297 175
+  s_4fb493c9762eef::t_8ba000e1b3e71b 216-217
+docs/DECISIONS.md
+  s_4fb493c9762eef::t_246e766527d57e 344-349
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "066bde23a8995f22700aadee09898f2d6a737659",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
