@@ -7,6 +7,7 @@ import { citationRows, exportShowsCiteOnlyBody } from "../client/src/lib/exportV
 import { inspectNode, layerIndex, layoutGraph } from "../client/src/lib/graphLayout";
 import { GraphView, PublicExportBundle } from "../client/src/lib/views";
 import { STANDARD_OPTIONS } from "../client/src/components/IntakeForm";
+import { defaultStandardIdsForStage } from "../client/src/lib/stageCatalogue";
 import demoRequestJson from "../fixtures/demo-request.json";
 
 const demoRequest = CompilationRequest.parse(demoRequestJson);
@@ -17,6 +18,7 @@ describe("intake standards match the live demo request", () => {
   it("offers the official AC9 codes the compiler will compile", () => {
     const offered = STANDARD_OPTIONS.map((option) => option.id);
     expect(offered).toEqual(demoRequest.standardIds);
+    expect(offered).toEqual(defaultStandardIdsForStage("Year 7"));
     expect(offered.every((id) => id.includes("ac9m7"))).toBe(true);
   });
 });
