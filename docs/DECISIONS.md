@@ -222,3 +222,14 @@ computed from the manifest rather than asserted.
 
 The second half of the summary is unchanged and stays unchanged: describing provenance accurately is not the same as
 claiming the bundle works, and this run has earned the first and not the second.
+## 2026-08-15 12:35: Judge-path copy matches the live ACARA compile
+
+Walking live compile → node click → citations → D-frozen → Refusal showed the intake still listing SAMPLE-Y7 checkboxes, the gate still saying "sample standards", and the refusal card leaving the live pipeline events on screen. Intake now offers AC9M7N04/N08/M06, the gate summary names hashed snapshots when sources are fetched, and a transfer card without its own events clears the pipeline.
+
+Rejected: leaving the SAMPLE checkboxes because submit still sent the real ids. Judges read the form, not the request body.
+
+## 2026-08-15 12:40: Public export cites only sources the run used
+
+The snapshot store holds Year 7 and Year 8. A Year 7 compile was listing the Year 8 curriculum in the export and artifact source list. Citations now come from evidence on the graph, lessons and items. A refusal with no artifacts still exports the full manifest so observing stays allowed.
+
+Rejected: hiding Year 8 only in the client. The public export is the artifact that may leave the box.

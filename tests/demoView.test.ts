@@ -6,11 +6,20 @@ import { buildPublicExport } from "../server/compiler/export/publicBundle";
 import { citationRows, exportShowsCiteOnlyBody } from "../client/src/lib/exportView";
 import { inspectNode, layerIndex, layoutGraph } from "../client/src/lib/graphLayout";
 import { GraphView, PublicExportBundle } from "../client/src/lib/views";
+import { STANDARD_OPTIONS } from "../client/src/components/IntakeForm";
 import demoRequestJson from "../fixtures/demo-request.json";
 
 const demoRequest = CompilationRequest.parse(demoRequestJson);
 
 const IES_BODY = "PROTECTED IES INTERLEAVING PASSAGE THAT MUST NOT LEAVE THE BOX";
+
+describe("intake standards match the live demo request", () => {
+  it("offers the official AC9 codes the compiler will compile", () => {
+    const offered = STANDARD_OPTIONS.map((option) => option.id);
+    expect(offered).toEqual(demoRequest.standardIds);
+    expect(offered.every((id) => id.includes("ac9m7"))).toBe(true);
+  });
+});
 
 describe("demo graph inspect contract", () => {
   it("lays out a DAG left to right and inspects standard text for a clicked node", async () => {
