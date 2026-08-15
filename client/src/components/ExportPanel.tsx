@@ -10,9 +10,11 @@ import { Chip, Panel } from "./primitives";
 export function ExportPanel({
   exported,
   runId,
+  fromFixture = false,
 }: {
   exported: PublicExportBundle | null;
   runId?: string;
+  fromFixture?: boolean;
 }) {
   const rows = exported ? citationRows(exported) : [];
 
@@ -22,9 +24,11 @@ export function ExportPanel({
       subtitle={
         exported
           ? `${exported.citations.length} sources · ${exported.licence.citeOnlySourceIds.length} cite-only. Observing is always allowed.`
-          : runId
-            ? "No export recorded for this run."
-            : "Compile a course to load the public export."
+          : fromFixture
+            ? "Frozen transfer cases have no public export. Compile live to load citations."
+            : runId
+              ? "No export recorded for this run."
+              : "Compile a course to load the public export."
       }
       testId="panel-export"
     >

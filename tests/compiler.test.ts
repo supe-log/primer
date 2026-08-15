@@ -14,6 +14,7 @@ describe("the compiler seam", () => {
     expect(() => CompilationResult.parse(result)).not.toThrow();
     expect(result.schemaVersion).toBe(SCHEMA_VERSION);
     expect(result.status).toBe("draft");
+    expect(result.status).not.toBe("published");
     expect(result.gateReport.verdict).toBe("YELLOW");
     expect(result.gateReport.permission).toBe("prototype");
     expect(result.approvedByHuman).toBe(false);
