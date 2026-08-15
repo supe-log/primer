@@ -1,0 +1,23 @@
+docs/DECISIONS.md
+  s_4fb493c9762eef::t_d709034c4486a2 358-363
+vercel.json
+  s_4fb493c9762eef::t_2ef8661d3de3d6 7-9
+README.md
+  s_4fb493c9762eef::t_c5776e339afc8a 42-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "25cacd6943e3a3d4ce8d2e26f7cf989a4136b8fc",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
