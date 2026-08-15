@@ -3,6 +3,9 @@
 Turns an official curriculum into a sequenced course and a standards tagged question bank, and refuses to ship anything
 it cannot trace to a source, a prerequisite and a passing check.
 
+**Live: https://primer-compiler-eight.vercel.app** — public, no sign-in. See [Live](#live) for what the deployment does
+and does not run.
+
 > **Read [`ENGINEERING_HANDOFF.md`](./ENGINEERING_HANDOFF.md) first.** It is the single document that carries the problem,
 > the product requirements, the system design, the demo script, the ownership split and the timeline. You do not need the
 > 32,000 word research report to start building, though it is the evidence layer behind every claim.
@@ -32,15 +35,43 @@ touches the network and never depends on a model being reachable.
 Try both paths in the app: submit the prefilled form for a draft bundle, then switch the assessment target to official
 exam emulation to see the refusal.
 
-## Deploy (Vercel)
+## Live
 
-The client is a Vite static build. `/api/*` is one Express function so compile, stream, graph and export share the
-in-memory run store. Set `XAI_API_KEY` in the Vercel project if you want the live model path; without it the
-deterministic fallback still compiles.
+**https://primer-compiler-eight.vercel.app**
+
+Public, no sign-in. The Vercel project `primer-compiler` is linked to this repository with `main` as its production
+branch, so every push to `main` redeploys. The client is a Vite static build and `/api/*` is one Express function, so
+compile, stream, graph and export share the in-memory run store within an isolate.
+
+**The deployment runs without `XAI_API_KEY` on purpose.** A public URL means anyone can trigger a compile, and a keyed
+deployment would spend real tokens per visitor. Without the key `MockModelClient` abstains, the gate records the
+abstention rather than a pass, and the deterministic path still returns a complete bundle in milliseconds.
+
+What that changes, and what it does not:
+
+| | Live URL, no key | Local with `XAI_API_KEY` |
+|---|---|---|
+| Standards, codes, wording | fetched, hashed, verbatim | same |
+| Graph, sequence, gate report, provenance | real | same |
+| Refusals and collection plans | real | same |
+| Practice item stems | deterministic placeholders | real mathematics from `grok-4.6` |
+
+So the compiler's discipline is fully visible on the live URL and its item quality is not. The **D frozen** and
+**Year 8** cards on the transfer strip were compiled with the key and are bundled into the client, so they show real
+generated items without a model call. Open one of those to see what the item writer actually produces.
+
+To run the keyed path yourself:
+
+```bash
+cp .env.example .env     # then set XAI_API_KEY
+npm run dev
+```
+
+To point a Vercel project at your own fork:
 
 ```bash
 npx vercel link
-npx vercel env add XAI_API_KEY
+npx vercel env add XAI_API_KEY   # optional, see above
 npx vercel --prod
 ```
 
