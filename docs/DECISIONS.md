@@ -349,3 +349,9 @@ A request for a location and stage with no hashed curriculum used to refuse imme
 Rejected: writing `snapshots/*.json` from the Vercel isolate. Collection is run-scoped. Promoting a good run into the committed store stays `npm run snapshot`.
 
 Rejected: letting the model set `mayRedistribute`. Unknown or unmatched licence quotes are cite-only.
+
+## 2026-08-15 19:12: Student type is Satoshi, not Pixelify
+
+Pixelify Sans stays off questions, answers, powers, and buttons. Exponents render as superscripts. Button labels are near-black on the Kenney tiles. Pixel type was a costume; Year 7–8 have to read 3⁴.
+
+Rejected: keeping pixel type on the math for brand consistency.
