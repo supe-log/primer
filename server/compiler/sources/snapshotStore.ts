@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { SourceSnapshot, type SourceSnapshot as SourceSnapshotType } from "@contracts";
 import acaraMathematicsY7 from "../../../snapshots/acara-v9-mathematics-year-7.json";
+import acaraMathematicsY8 from "../../../snapshots/acara-v9-mathematics-year-8.json";
 import acaraTerms from "../../../snapshots/acara-v9-terms.json";
 import iesInterleaving from "../../../snapshots/ies-interleaving-rct.json";
 import iesOrganizing from "../../../snapshots/ies-organizing-instruction.json";
@@ -56,6 +57,7 @@ function loadStored(raw: unknown, label: string): StoredSnapshot {
 
 const STORE: readonly StoredSnapshot[] = [
   loadStored(acaraMathematicsY7, "acara-v9-mathematics-year-7"),
+  loadStored(acaraMathematicsY8, "acara-v9-mathematics-year-8"),
   loadStored(acaraTerms, "acara-v9-terms"),
   loadStored(iesInterleaving, "ies-interleaving-rct"),
   loadStored(iesOrganizing, "ies-organizing-instruction"),

@@ -18,6 +18,10 @@ const SOURCE_CHECK_IDS = new Set([
   "check:source.licence-known",
   "check:source.cite-only-no-redistribute",
   "check:source.unknown-blocks-redistribution",
+  // No fetched curriculum behind the requested standards is a source failure, not a
+  // quality one. It refuses at AMBER rather than shipping a YELLOW draft, because
+  // there is nothing to draft: the run never had a curriculum to compile.
+  "check:source.standards-fetched",
   "check:blueprint.present",
   "check:request.schema-valid",
 ]);

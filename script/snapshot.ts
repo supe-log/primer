@@ -174,6 +174,24 @@ async function main(): Promise<void> {
     retrievedAt,
   });
 
+  console.log("ACARA V9, Year 8 Mathematics…");
+  const year8 = await fetchAcaraSubject({ levelCode: "MATMATY8" });
+  const year8Descriptions = contentDescriptions(parseAcaraRecords(year8.bytes));
+  if (year8Descriptions.length === 0) {
+    throw new Error("ACARA returned no Year 8 content descriptions; refusing to write an empty snapshot");
+  }
+  console.log(`  ${year8Descriptions.length} content descriptions, ${year8.pageUrls.length} page(s)`);
+  await writeSnapshot({
+    slug: "acara-v9-mathematics-year-8",
+    sourceId: "src:acara.v9.mathematics.year-8",
+    title: "Australian Curriculum V9.0, Mathematics, Year 8: content descriptions, elaborations and achievement standard",
+    publisher: "Australian Curriculum, Assessment and Reporting Authority",
+    url: `${ACARA_ORIGIN}/f-10-curriculum/learning-areas/mathematics/year-8`,
+    bytes: year8.bytes,
+    licence: ACARA_LICENCE,
+    retrievedAt,
+  });
+
   console.log("ACARA copyright and terms of use…");
   const termsUrl = "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use";
   await writeSnapshot({
