@@ -64,12 +64,36 @@ const STORE: readonly StoredSnapshot[] = [
   loadStored(rosenshine, "rosenshine-principles"),
 ];
 
+/**
+ * Run-scoped snapshots collected during compile. Checked before the committed
+ * store so a just-fetched curriculum is visible to catalogue and evidence
+ * checks without writing `snapshots/*.json`.
+ */
+const OVERLAY = new Map<string, StoredSnapshot>();
+
+export function putOverlaySnapshot(stored: StoredSnapshot): void {
+  const digest = sha256(stored.body);
+  if (digest !== stored.snapshot.contentSha256) {
+    throw new Error(
+      `overlay snapshot ${stored.snapshot.sourceId} does not match its digest: ` +
+        `recorded ${stored.snapshot.contentSha256}, computed ${digest}`,
+    );
+  }
+  OVERLAY.set(stored.snapshot.sourceId, stored);
+}
+
+export function clearOverlaySnapshots(): void {
+  OVERLAY.clear();
+}
+
 export function allSnapshots(): readonly StoredSnapshot[] {
-  return STORE;
+  if (OVERLAY.size === 0) return STORE;
+  const committed = STORE.filter((entry) => !OVERLAY.has(entry.snapshot.sourceId));
+  return [...OVERLAY.values(), ...committed];
 }
 
 export function findSnapshot(sourceId: string): StoredSnapshot | undefined {
-  return STORE.find((stored) => stored.snapshot.sourceId === sourceId);
+  return OVERLAY.get(sourceId) ?? STORE.find((stored) => stored.snapshot.sourceId === sourceId);
 }
 
 /**
