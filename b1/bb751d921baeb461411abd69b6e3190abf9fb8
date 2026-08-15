@@ -1,0 +1,27 @@
+server/compiler/stages/fallbackBundle.ts
+  s_207d06870c4a11::t_0a43c194ed46df 14,56-58
+server/compiler/stages/sequencePlanner.ts
+  s_207d06870c4a11::t_8eb25759071de8 138-143
+server/compiler/stages/workedExamples.ts
+  s_207d06870c4a11::t_d8f33998b1b8b5 1-258
+tests/workedExamples.test.ts
+  s_207d06870c4a11::t_2f0183c13f0a1b 1-109
+server/compiler/stages/modelBundle.ts
+  s_207d06870c4a11::t_8eb25759071de8 16,187-190,193
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "b1bb751d921baeb461411abd69b6e3190abf9fb8",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
