@@ -215,6 +215,26 @@ export default function Compile() {
     [dark, result, workspace],
   );
 
+  if (workspace === "course" && result && canOpenCourse(result)) {
+    return (
+      <div className="flex min-h-screen flex-col bg-[hsl(28_16%_18%)]">
+        <div className="flex justify-end px-4 pt-3">
+          <button
+            type="button"
+            className="text-xs text-[hsl(40_20%_70%)] underline-offset-2 hover:underline"
+            onClick={() => setWorkspace("compiler")}
+            data-testid="tab-compiler"
+          >
+            Compiler
+          </button>
+        </div>
+        <div className="flex flex-1 items-center justify-center px-3 pb-6">
+          <CoursePlayer result={result} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <main className="mx-auto max-w-6xl overflow-x-hidden px-4 py-8 sm:px-5 sm:py-10">
       {header}
@@ -246,17 +266,7 @@ export default function Compile() {
         </div>
       ) : null}
 
-      {workspace === "course" && result && canOpenCourse(result) ? (
-        <div className="mb-6">
-          <CoursePlayer result={result} />
-        </div>
-      ) : null}
-
-      <div
-        className={`grid min-w-0 gap-6 lg:grid-cols-2 ${
-          workspace === "course" ? "hidden" : ""
-        }`}
-      >
+      <div className="grid min-w-0 gap-6 lg:grid-cols-2">
         <div className="min-w-0 space-y-6">
           {initialRequest ? (
             <IntakeForm initial={initialRequest} pending={pending} onSubmit={run} />
@@ -291,7 +301,7 @@ export default function Compile() {
         </div>
       </div>
 
-      <div className={`mt-6 space-y-6 ${workspace === "course" ? "hidden" : ""}`}>
+      <div className="mt-6 space-y-6">
         <div className="card flex flex-wrap items-end gap-3 p-4">
           <div className="min-w-0 flex-1 sm:min-w-[16rem]">
             <label className="label" htmlFor="run-id">
