@@ -323,3 +323,21 @@ stitch the Kenney 16px classroom. Personality instead comes from a 16px mascot w
 greens/yellows, Pixelify Sans on labels only, and a finish burst. Still no XP, no score, no swords.
 
 Rejected: dropping a GitHub pixel-art repo into the phone for demo-day fun.
+
+## 2026-08-15 14:05: Learner beats show the math, not the coach script
+
+Warmup and model screens draw a picture from the first shipped item stem (counters, share bar, fraction bar, mix, powers, tiles). Guided and practice put the same picture above the stem. Coach copy, factory retrieval prompts, and the four-step worked-example template stay off the kid phone. Numbers come from the stem only — no new questions, no new contract fields, no invented items. If a stem has nothing to draw, the player stays on short text.
+
+Rejected: generating extra Kenney chrome or writing new lesson copy. The complaint was wordy lessons, not missing UI tiles.
+
+## 2026-08-15 14:10: Student app is one picture, one question, three taps
+
+The kid path is home → item → done. Warmup, model, coach copy, standard codes, rationales, and Kenney credits stay off the phone. Course tab and `/play` are the full student app; the compiler is a back door. Stems are not rewritten — only the last sentence is shown, and the picture carries the setup.
+
+Rejected: keeping the explicit-instruction beat list on the phone. That is the teacher plan, not what a Year 7 student should read.
+
+## 2026-08-15 14:15: Every shipped item is look-then-try
+
+Content check on the frozen artifacts: Year 7 has 3 lessons, 4 shipped items, 2 rejected (3/5% and the number line). Year 8 has 3 lessons, 5 shipped items, 0 rejected. The kid path is one Look screen (picture, numbers from the stem) then one Try screen per shipped item. Rejected items stay off the phone. `/play` exposes both years. We do not write extra questions to fill the rejected slots.
+
+Rejected: practice-only beats, and inventing replacements for the two Year 7 rejects.
