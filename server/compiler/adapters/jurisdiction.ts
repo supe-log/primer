@@ -224,3 +224,11 @@ export function registerAdapter(adapter: JurisdictionAdapter): void {
 export function resolveAdapter(jurisdictionId: string): JurisdictionAdapter | undefined {
   return REGISTRY.get(jurisdictionId);
 }
+
+/** Restores the three stock adapters after a test registered an ephemeral one. */
+export function restoreStockAdapters(): void {
+  REGISTRY.clear();
+  REGISTRY.set(auAcaraAdapter.jurisdictionId, auAcaraAdapter);
+  REGISTRY.set(usTexasAdapter.jurisdictionId, usTexasAdapter);
+  REGISTRY.set(inNcertAdapter.jurisdictionId, inNcertAdapter);
+}

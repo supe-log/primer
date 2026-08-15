@@ -20,7 +20,8 @@ export type ModelRole =
   | "content_generator"
   | "item_writer"
   | "learning_science_critic"
-  | "standards_auditor";
+  | "standards_auditor"
+  | "standards_researcher";
 
 export interface ModelRequest<T> {
   role: ModelRole;

@@ -102,20 +102,37 @@
   --surface: 40 50% 96%;
   --surface-alt: 36 36% 90%;
   --border: 28 18% 42%;
-  --foreground: 24 28% 14%;
-  --muted-foreground: 24 14% 28%;
-  --primary: 142 48% 28%;
+  --foreground: 24 28% 10%;
+  --muted-foreground: 24 16% 22%;
+  --primary: 142 48% 22%;
   --primary-foreground: 48 80% 96%;
-  --success: 142 48% 28%;
-  --warning: 42 80% 38%;
-  --error: 8 62% 38%;
+  --success: 142 48% 22%;
+  --warning: 42 80% 32%;
+  --error: 8 62% 32%;
   --pixel: "Pixelify Sans", "Satoshi", ui-sans-serif, system-ui, sans-serif;
   color: hsl(var(--foreground));
+  font-family: "Satoshi", "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
 }
 
 .learner-pixel {
   font-family: var(--pixel);
   letter-spacing: 0.04em;
+}
+
+.learner-math {
+  font-family: "Satoshi", "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.learner-math sup {
+  font-size: 0.62em;
+  font-weight: 700;
+  line-height: 0;
 }
 
 .pixel-bob {
@@ -239,12 +256,13 @@
 
 @layer components {
   .learner-btn {
-    @apply px-slice px-btn min-h-12 w-full px-4 py-3 text-base font-semibold text-[hsl(24_28%_12%)]
+    @apply px-slice px-btn min-h-12 w-full px-4 py-3 text-lg font-bold text-[#14110d]
       disabled:opacity-50;
   }
 
   .learner-btn-quiet {
-    @apply px-slice px-btn-grey min-h-11 px-3 py-2 text-sm font-medium disabled:opacity-50;
+    @apply px-slice px-btn-grey min-h-11 px-3 py-2 text-base font-semibold text-[#14110d]
+      disabled:opacity-50;
   }
 }
 
