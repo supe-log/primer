@@ -27,13 +27,42 @@ npm run reliability     # ten scripted compiles, and cache the best run as the s
 
 No API key is needed. With no key set, the model client abstains, the gate records the abstention rather than a pass, and
 the deterministic path still produces a full bundle, which is also the stage fallback. Copy `.env.example` to `.env` and
-set `XAI_API_KEY` to switch the mapper and item writer to `grok-4.6`. No caller changes either way.
+set `XAI_API_KEY` to switch the mapper, item writer and standards researcher to `grok-4.6`. No caller changes either way.
 
-`snapshot` and `demo-fixtures` are run by a human ahead of a demo and their output is committed, so a compile never
-touches the network and never depends on a model being reachable.
+Known Australia Year 7/8 maths compiles from committed snapshots and does no network I/O. A request for a location and
+stage with no snapshot yet collects during `compile`: the model may name an official URL, then code fetches, hashes and
+licence-classifies it. Official exam emulation never collects. Promoting a good run into `snapshots/` stays
+`npm run snapshot`.
 
 Try both paths in the app: submit the prefilled form for a draft bundle, then switch the assessment target to official
 exam emulation to see the refusal.
+
+## How a compile works
+
+Agents propose. Code decides. The public seam is still two operations: `compile` and `observe`.
+
+```mermaid
+flowchart TD
+    req[CompilationRequest] --> known{Adapter and snapshot ready?}
+    known -->|yes| offline[Existing offline compile]
+    known -->|no| research[Model proposes official URL and licence quote]
+    research --> fetch[Code fetches HTTPS pages]
+    fetch --> hash[Hash body SHA-256]
+    hash --> licence[Code classifies licence from a table]
+    licence --> spans[Keep only standards whose statement is an exact span in the body]
+    spans -->|zero accepted| refuse[Refuse with missing evidence and collection plan]
+    spans -->|accepted| ephemeral[Ephemeral adapter plus overlay snapshot]
+    ephemeral --> compile[Existing map audit sequence items gate]
+    offline --> compile
+```
+
+If the snapshot is already hashed in the repo, the left path runs and grok only maps and writes items. If it is missing,
+the right path runs first: grok-4.6 may name an official HTTPS URL and a licence quote; code fetches the pages, hashes
+the body, classifies the licence from a table, and keeps only statements that appear verbatim. Zero accepted statements
+is a refusal with a collection plan, not a guessed curriculum. Australia maths years the official ACARA query can name
+skip the researcher and use that fetcher. Official exam emulation takes neither path: no blueprint collector, no tokens.
+
+Nothing auto-publishes. `approvedByHuman` is always false out of the compiler. Unknown licence is cite-only.
 
 ## Live
 
@@ -46,8 +75,8 @@ branch, so every push to `main` redeploys. The client is a Vite static build and
 compile, stream, graph and export share the in-memory run store within an isolate.
 
 **`XAI_API_KEY` is set, so the live URL runs the real model path.** Pressing Compile calls `grok-4.6` for the curriculum
-mapper and the item writer, which takes roughly 30 to 50 seconds and produces real mathematics rather than the
-deterministic bank's placeholders. Two things follow from that:
+mapper and the item writer, and, when the snapshot is missing, for a standards researcher. A ready Year 7 compile takes
+roughly 30 to 50 seconds. Two things follow from that:
 
 - **Compiles cost tokens, and the URL is public.** There is no rate limit in front of `/api/compile`. If that becomes a
   problem, remove the environment variable and redeploy: the compiler falls back to `MockModelClient`, the gate records
@@ -97,8 +126,9 @@ Full rules, communication protocol and integration checkpoints: `docs/PARALLEL_B
 Working today, verified by `npm run verify`.
 
 **Real sources, hashed.** Six sources are fetched by `npm run snapshot`, SHA-256 hashed and committed under
-`snapshots/`, so a compile does no network I/O and every digest in a run manifest is checkable against a file in this
-repository. The store recomputes each digest at start-up and fails the process if bytes and digest disagree.
+`snapshots/`. A ready compile (Australia Year 7/8 maths) does no network I/O, and every digest in a run manifest is
+checkable against a file in this repository. The store recomputes each digest at start-up and fails the process if bytes
+and digest disagree. A missing snapshot is collected into a run-scoped overlay instead of written back to git.
 
 | Source | Licence | What it carries |
 |---|---|---|
@@ -112,9 +142,12 @@ repository. The store recomputes each digest at start-up and fails the process i
 **Standards are read, never authored.** Every `StandardNode` carries the authority's own code verbatim, the authority's
 own wording, and an evidence span that matches the hashed bytes. All 30 Year 7 content descriptions span-match.
 
-**Two real agent stages, behind one seam.** The `ModelClient` interface has two implementations: `XaiModelClient`, using
+**Three real agent stages, behind one seam.** The `ModelClient` interface has two implementations: `XaiModelClient`, using
 `grok-4.6` with strict structured outputs, and `MockModelClient`. Selecting one changes no caller.
 
+- The **standards researcher** runs only when a snapshot is missing. It may name an official URL, a licence quote and
+  candidate statements. Code then fetches, hashes, classifies the licence and span-locks the statements. The model never
+  sets `mayRedistribute`.
 - The **curriculum mapper** decomposes fetched content descriptions into knowledge components, prerequisite edges and
   misconceptions. The model proposes pedagogy; code owns provenance. A standard code the model invents is dropped and
   counted, a dangling edge is dropped rather than repaired, ids are assigned by code, and confidence is computed from
@@ -126,21 +159,22 @@ own wording, and an evidence span that matches the hashed bytes. All 30 Year 7 c
 **Everything falls back rather than fails.** With no `XAI_API_KEY` the mock abstains, the gate records an abstention that
 never becomes a pass, and the deterministic path still produces a full bundle. The same fallback catches a rate limit, a
 timeout, a refusal, non-JSON and a schema mismatch. A graph still unsound after two repair passes refuses instead of
-being sequenced. Generation runs ahead of the pipeline, so a refusal never spends a token.
+being sequenced. Official exam emulation refuses before any model call. A collection miss refuses before mapper or item
+writer spend a token.
 
 **Transfer, and honest refusal.** One engine, one schema, several stage ladders:
 
 | Case | Ladder | Outcome |
 |---|---|---|
-| Australia, Year 7 Mathematics | `Year 7` | compiles, live |
+| Australia, Year 7 Mathematics | `Year 7` | compiles offline from the committed snapshot |
 | Australia, Year 8 Mathematics | `Year 8` | compiles against its own snapshot and `AC9M8*` codes |
-| Texas Education Agency, Grade 5 | grades | **refuses**, TEKS not fetched |
-| NCERT, Middle Stage Class 7, Hindi in Devanagari | stage and class | **refuses**, outcomes not fetched |
-| Australia, Year 6 | resolves as a prerequisite stage | **refuses**, no snapshot for that level |
+| Australia, Year 6 Mathematics | `Year 6` | collects via the official ACARA query, then compiles. One collected run is not “jurisdiction support” |
+| Texas / NCERT / unknown location | local labels | researcher may name an official page; code fetches and span-locks, or refuses with a collection plan |
+| Official exam emulation | any | **refuses**, no blueprint collector |
 
 `Year 7` and `Middle Stage, Class 7` share an internal ordinal without sharing a label. A registered jurisdiction is not
-a supported one: with no fetched curriculum behind the requested standards the compiler refuses with named missing
-evidence and a collection plan, rather than emitting invented standards under an official authority's name.
+a supported one. Support requires that jurisdiction's own snapshot, licence posture and gate report. Collection during
+compile can produce a draft for this run; it does not write `snapshots/` and it does not unlock GREEN.
 
 **Deterministic validators**, all model-free and blocking: graph acyclicity with cycle naming, dangling edges,
 unjustified edges, orphans, misconception resolution, topological order, lesson arc completeness, standards coverage,
@@ -158,22 +192,19 @@ the code.
 
 Express routes for health, demo request, compile, an event list, a server-sent event stream, a graph view and a
 cite-only-safe export. A React interface with the intake form, live pipeline status, artifact summary, knowledge graph,
-gate verdict and transfer strip. 134 tests, and `npm run reliability` scores 10 of 10 against the live model.
+gate verdict, transfer strip and a kid path at `/play`. Run `npm test` for the current suite. `npm run reliability`
+scores 10 of 10 against the live model.
 
 Deliberately not built yet: a database, authentication, item calibration, differential item functioning, and any claim
 about learning.
 
 ## Next actions
 
-**Engineer 1, compiler.** The six items from the original handoff are done: real ACARA acquisition with hashed
-snapshots, `XaiModelClient` on `grok-4.6` structured outputs, the mapper on real standards with the auditor's two-pass
-repair and abstain path, the item writer with per-distractor misconceptions, the transfer cases, and the ten-run
-reliability script with its cached fallback. What is left, in order:
+**Engineer 1, compiler.** The original handoff items are done, and missing snapshots now collect inside `compile`. What
+is left, in order:
 
-1. A learning-science critic as a third model stage, so `check:critic.learning-science` can pass instead of abstaining.
-   Not before the transfer strip is showing Texas refusing, Year 8 compiling and Year 7 live.
-2. Fetch a real second jurisdiction, most likely TEKS, and turn case A from a refusal into a compile. The refusal is
-   honest, but a second authority behind a hashed snapshot is the stronger claim.
+1. A learning-science critic as a real model stage, so `check:critic.learning-science` can pass instead of abstaining.
+2. Promote a good collected run into `snapshots/` with `npm run snapshot`, so the next compile of that stage is offline.
 3. A blueprint fetcher, which is the only thing standing between the exam-emulation refusal and a real
    `test_emulation` bundle.
 4. Span-match the sequencing decisions' evidence, not just the standards, so `check:evidence.span-match` covers every
