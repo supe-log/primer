@@ -48,6 +48,8 @@ function extraResult(id: "au-y8" | "a" | "b" | "c"): CompilationResultType | und
   return parsed.success ? parsed.data : undefined;
 }
 
+export const frozenYear8: CompilationResultType | undefined = extraResult("au-y8");
+
 export function transferCases(hasLiveResult: boolean): TransferCase[] {
   const caseAuY8 = extraResult("au-y8");
   const caseA = extraResult("a");
