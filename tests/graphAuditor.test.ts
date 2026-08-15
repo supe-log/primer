@@ -69,6 +69,15 @@ describe("graph auditor repair loop", () => {
     expect(result.revisions.every((revision) => !revision.kept)).toBe(true);
   });
 
+  it("does not revise a graph that already passed", () => {
+    const first = auditGraphWithRepair(graph);
+    expect(first.graph).toBeDefined();
+    const second = auditGraphWithRepair(first.graph!);
+    expect(second.abstained).toBe(false);
+    expect(second.revisions).toHaveLength(0);
+    expect(JSON.stringify(second.graph)).toBe(JSON.stringify(first.graph));
+  });
+
   it("flags orphans as atomic entry points rather than inventing edges", () => {
     const broken: CurriculumGraph = {
       ...graph,

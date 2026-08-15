@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { CompilationRequest, CompilationResult } from "@contracts";
 import { createCompiler } from "../server/compiler";
+import { buildPublicExport } from "../server/compiler/export/publicBundle";
 import demoRequestJson from "../fixtures/demo-request.json";
 
 /**
@@ -26,7 +27,14 @@ async function main() {
     const ok =
       parsed.success &&
       (parsed.data.status === "refused" || parsed.data.status === "draft" || parsed.data.status === "published");
-    if (ok) {
+    const exported = parsed.success ? buildPublicExport(parsed.data) : undefined;
+    const exportOk =
+      exported !== undefined &&
+      exported.citations.every((citation) => citation.attributionText.length > 0) &&
+      exported.citations
+        .filter((citation) => exported.licence.citeOnlySourceIds.includes(citation.sourceId))
+        .every((citation) => citation.quotedText === undefined);
+    if (ok && exportOk) {
       passed += 1;
       if (!cached && parsed.data.status !== "refused") cached = parsed.data;
     } else {
