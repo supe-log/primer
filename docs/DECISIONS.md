@@ -342,7 +342,6 @@ Content check on the frozen artifacts: Year 7 has 3 lessons, 4 shipped items, 2 
 
 Rejected: practice-only beats, and inventing replacements for the two Year 7 rejects.
 
-<<<<<<< HEAD
 ## 2026-08-15 19:00: Missing snapshots collect inside compile
 
 A request for a location and stage with no hashed curriculum used to refuse immediately. `compile` now tries to collect first: a researcher may name an official HTTPS URL, code fetches and hashes the page, a licence table classifies posture, and only statements that appear verbatim in the body become standards. Known Australia Year 7/8 maths still compiles offline. Official exam emulation still refuses without collecting, because that would invent a blueprint.
