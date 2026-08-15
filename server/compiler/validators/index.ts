@@ -150,14 +150,25 @@ export function validateCoursePlan(plan: CoursePlan, graph: CurriculumGraph): Ga
     .map((kc) => kc.knowledgeComponentId);
   const scheduled = new Set([...introduced, ...reviewed]);
 
-  const arcComplete = plan.lessons.every(
-    (lesson) =>
-      lesson.arc.review &&
-      lesson.arc.modelling &&
-      lesson.arc.guidedPractice &&
-      lesson.arc.independentPractice &&
-      lesson.arc.closingReview,
-  );
+  // The arc is complete when there is something to *deliver* for each phase, not
+  // when five description strings are non-empty. The old check passed on a lesson
+  // the learner receives as a picture and one question, because it read the lesson
+  // plan rather than the lesson's contents. A blocking gate that certifies five
+  // phases must not be satisfiable by prose about five phases.
+  const arcGaps = plan.lessons.flatMap((lesson) => {
+    const missing: string[] = [];
+    if (!lesson.arc.review || lesson.retrievalPrompts.length === 0) missing.push("review");
+    if (!lesson.arc.modelling || lesson.workedExamples.length === 0) missing.push("modelling");
+    if (!lesson.arc.guidedPractice || lesson.itemIds.length === 0) missing.push("guided practice");
+    if (!lesson.arc.independentPractice || lesson.itemIds.length < 2) {
+      missing.push("independent practice");
+    }
+    if (!lesson.arc.closingReview || lesson.deepExplanatoryQuestions.length === 0) {
+      missing.push("closing review");
+    }
+    return missing.length > 0 ? [`${lesson.lessonId}: ${missing.join(", ")}`] : [];
+  });
+  const arcComplete = arcGaps.length === 0;
 
   return [
     {
@@ -190,9 +201,9 @@ export function validateCoursePlan(plan: CoursePlan, graph: CurriculumGraph): Ga
       blocking: true,
       status: arcComplete ? "pass" : "fail",
       detail: arcComplete
-        ? `${plan.lessons.length} lessons, each with review, modelling, guided practice, independent practice and closing review.`
-        : "At least one lesson is missing an arc phase.",
-      counts: { lessons: plan.lessons.length },
+        ? `${plan.lessons.length} lessons, each carrying content for review, modelling, guided practice, independent practice and closing review.`
+        : `${arcGaps.length} of ${plan.lessons.length} lessons cannot deliver every phase. ${arcGaps.join("; ")}.`,
+      counts: { lessons: plan.lessons.length, lessonsWithGaps: arcGaps.length },
     },
     {
       checkId: "check:sequence.decisions-cited",

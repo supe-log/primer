@@ -134,10 +134,21 @@ export function friendlyLessonTitle(lesson: CourseLessonView): string {
   return lesson.components[0]?.label ?? lesson.lesson.title.split(" and ")[0] ?? lesson.lesson.title;
 }
 
-/** Last sentence of a stem — the question — so the picture can carry the setup. */
+/**
+ * The whole stem, setup and question together.
+ *
+ * This used to return only the last sentence, on the theory that the picture
+ * carried the setup. The picture carries no words, so the setup was simply lost:
+ * "A bag has red and blue counters in the ratio 2:3. What fraction of all the
+ * counters is red?" reached the learner as "What fraction of all the counters is
+ * red?" — no ratio, no bag, no referent for "the counters". Across a course about
+ * ratios the word "ratio" never appeared, and the questions were answerable only by
+ * pattern-matching the options.
+ *
+ * A picture may support a premise. It cannot replace one.
+ */
 export function shortPrompt(stem: string): string {
-  const parts = stem.trim().split(/(?<=[.?!])\s+/);
-  return parts.at(-1) ?? stem;
+  return stem.trim();
 }
 
 /**

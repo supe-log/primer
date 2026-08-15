@@ -80,9 +80,11 @@ describe("course workspace", () => {
     expect(beats.at(-1)?.kind).toBe("wrap");
     expect(friendlyLessonTitle(withItems).length).toBeGreaterThan(0);
     expect(friendlyLessonTitle(withItems)).not.toContain("SAMPLE");
-    expect(shortPrompt(withItems.items[0]!.item.stem).length).toBeLessThan(
-      withItems.items[0]!.item.stem.length,
-    );
+    // The learner must get the whole stem. Truncating to the last sentence dropped
+    // the premise — the ratio, the total, the referent — and left questions that
+    // were answerable only by pattern-matching the options.
+    const stem = withItems.items[0]!.item.stem;
+    expect(shortPrompt(stem)).toBe(stem.trim());
   });
 
   it("balances look screens with try screens on shipped items only", () => {
