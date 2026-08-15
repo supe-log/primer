@@ -7,6 +7,7 @@ import type {
   StandardNode,
 } from "@contracts";
 import type { JurisdictionAdapter } from "../adapters/jurisdiction";
+import { catalogueFromSnapshot } from "../sources/catalogue";
 
 /**
  * Deterministic curriculum map used when the model client abstains.
@@ -15,12 +16,22 @@ import type { JurisdictionAdapter } from "../adapters/jurisdiction";
  * For the live ACARA Year 7 ratios case it emits the known component set. For any
  * other registered request it emits one knowledge component per standard so the
  * rest of the pipeline can still run and the gate can still refuse honestly.
+ *
+ * What is deterministic here is the *pedagogy*: which knowledge components exist,
+ * which prerequisite edges hold and why. The *standards* are never authored here.
+ * They are read out of the hashed snapshot by the catalogue, so every statement is
+ * the authority's own wording and every quoted span matches bytes on disk. When this
+ * file and a snapshot disagree, the snapshot is right.
  */
 
+/** The three fetched ACARA content descriptions the live demo compiles. */
 const DEMO_STANDARD_IDS = [
-  "std:acara.v9.y7.math.sample-01",
-  "std:acara.v9.y7.math.sample-02",
-  "std:acara.v9.y7.math.sample-03",
+  /** find equivalent representations of rational numbers … */
+  "std:acara.v9.ac9m7n04",
+  /** recognise, represent and solve problems involving ratios */
+  "std:acara.v9.ac9m7n08",
+  /** use mathematical modelling to solve practical problems involving ratios … */
+  "std:acara.v9.ac9m7m06",
 ] as const;
 
 function confidence(basis: string[]): KnowledgeComponent["confidence"] {
@@ -51,6 +62,38 @@ function primarySourceId(manifest: SourceManifest): string {
   );
 }
 
+/**
+ * Standards for the requested ids, straight from the adapter's snapshot. Returns an
+ * empty list when the adapter has no fetched curriculum or the ids do not resolve,
+ * which callers treat as "there is nothing to compile here" rather than as a licence
+ * to author a standard.
+ */
+function catalogueStandards(
+  adapter: JurisdictionAdapter,
+  standardIds: readonly string[],
+): StandardNode[] {
+  if (!adapter.catalogueSourceId) return [];
+  const catalogue = catalogueFromSnapshot(adapter.catalogueSourceId);
+  if (!catalogue) return [];
+  return catalogue.resolve(standardIds);
+}
+
+/**
+ * Evidence anchored in the snapshot: the quoted span is the content description's
+ * own wording, so the span-match validator has something real to check. Falls back
+ * to the component's own description only when the code does not resolve, and says
+ * so in the locator rather than pretending the span came from the source.
+ */
+function evidenceForStandard(
+  standards: readonly StandardNode[],
+  sourceCode: string,
+  sourceId: string,
+) {
+  const standard = standards.find((entry) => entry.sourceCode === sourceCode);
+  if (!standard) return evidenceFor(sourceId, "fallback map", `${sourceCode} unresolved`);
+  return evidenceFor(sourceId, standard.statement, standard.sourceCode);
+}
+
 function demoGraph(
   request: CompilationRequest,
   adapter: JurisdictionAdapter,
@@ -64,27 +107,10 @@ function demoGraph(
     ordinal: 7,
   };
 
-  const standards: StandardNode[] = [
-    {
-      standardId: "std:acara.v9.y7.math.sample-01",
-      sourceCode: "SAMPLE-Y7-N-01",
-      statement:
-        "Recognise and use equivalent ratios, including writing a ratio from a described situation.",
-      evidence: evidenceFor(sourceId, "content descriptions", "sample-01"),
-    },
-    {
-      standardId: "std:acara.v9.y7.math.sample-02",
-      sourceCode: "SAMPLE-Y7-N-02",
-      statement: "Solve problems involving rates, including finding a unit rate.",
-      evidence: evidenceFor(sourceId, "content descriptions", "sample-02"),
-    },
-    {
-      standardId: "std:acara.v9.y7.math.sample-03",
-      sourceCode: "SAMPLE-Y7-N-03",
-      statement: "Apply proportional reasoning to compare quantities in context.",
-      evidence: evidenceFor(sourceId, "achievement standards", "sample-03"),
-    },
-  ];
+  // Standards are read, never written. The catalogue returns the authority's own
+  // codes and wording out of the hashed snapshot; if it cannot, the request had no
+  // fetched curriculum behind it and the caller must refuse rather than improvise.
+  const standards: StandardNode[] = catalogueStandards(adapter, [...DEMO_STANDARD_IDS]);
 
   const misconceptions: Misconception[] = [
     {
@@ -134,50 +160,52 @@ function demoGraph(
       label: "Read and write ratio notation",
       description:
         "Interpret a : b as a comparison of two quantities and write a ratio from a described situation.",
-      standardIds: ["std:acara.v9.y7.math.sample-01"],
+      standardIds: ["std:acara.v9.ac9m7n08"],
       stage: year7,
       prerequisiteOnly: false,
       atomicEntry: false,
       misconceptionIds: ["mc:treats-ratio-as-fraction-of-whole"],
-      evidence: evidenceFor(sourceId, "content descriptions", "ratio-notation"),
-      confidence: confidence(["deterministic fallback map"]),
+      evidence: evidenceForStandard(standards, "AC9M7N08", sourceId),
+      confidence: confidence(["deterministic fallback map", "span matched to AC9M7N08"]),
     },
     {
       knowledgeComponentId: "kc:au.y7.math.equivalent-ratios",
       label: "Recognise equivalent ratios",
       description: "Decide whether two ratios are equivalent by scaling both parts by the same factor.",
-      standardIds: ["std:acara.v9.y7.math.sample-01"],
+      // Two content descriptions genuinely meet here: equivalent ratios are the
+      // ratio case of equivalent representations of rational numbers.
+      standardIds: ["std:acara.v9.ac9m7n04", "std:acara.v9.ac9m7n08"],
       stage: year7,
       prerequisiteOnly: false,
       atomicEntry: false,
       misconceptionIds: ["mc:adds-constant-to-both-parts"],
-      evidence: evidenceFor(sourceId, "content descriptions", "equivalent-ratios"),
-      confidence: confidence(["deterministic fallback map"]),
+      evidence: evidenceForStandard(standards, "AC9M7N04", sourceId),
+      confidence: confidence(["deterministic fallback map", "span matched to AC9M7N04"]),
     },
     {
       knowledgeComponentId: "kc:au.y7.math.unit-rate",
       label: "Find a unit rate",
       description: "Divide to express a rate per one unit and state the units of the result.",
-      standardIds: ["std:acara.v9.y7.math.sample-02"],
+      standardIds: ["std:acara.v9.ac9m7m06"],
       stage: year7,
       prerequisiteOnly: false,
       atomicEntry: false,
       misconceptionIds: ["mc:divides-in-wrong-order"],
-      evidence: evidenceFor(sourceId, "content descriptions", "unit-rate"),
-      confidence: confidence(["deterministic fallback map"]),
+      evidence: evidenceForStandard(standards, "AC9M7M06", sourceId),
+      confidence: confidence(["deterministic fallback map", "span matched to AC9M7M06"]),
     },
     {
       knowledgeComponentId: "kc:au.y7.math.rate-problems",
       label: "Solve rate problems in context",
       description:
         "Use a unit rate to answer a question about a different quantity, keeping units consistent.",
-      standardIds: ["std:acara.v9.y7.math.sample-02", "std:acara.v9.y7.math.sample-03"],
+      standardIds: ["std:acara.v9.ac9m7m06"],
       stage: year7,
       prerequisiteOnly: false,
       atomicEntry: false,
       misconceptionIds: ["mc:divides-in-wrong-order"],
-      evidence: evidenceFor(sourceId, "achievement standards", "rate-problems"),
-      confidence: confidence(["deterministic fallback map"]),
+      evidence: evidenceForStandard(standards, "AC9M7M06", sourceId),
+      confidence: confidence(["deterministic fallback map", "span matched to AC9M7M06"]),
     },
   ];
 
@@ -232,26 +260,43 @@ function genericGraph(
 ): CurriculumGraph {
   const sourceId = primarySourceId(manifest);
   const stage = adapter.resolveStage(request.stage.localLabel) ?? request.stage;
-  const standards: StandardNode[] = request.standardIds.map((standardId, index) => ({
-    standardId,
-    sourceCode: `UNOFFICIAL-${index + 1}`,
-    statement: `Deterministic fallback statement for ${standardId}. Replace when the mapper runs.`,
-    evidence: evidenceFor(sourceId, "fallback map", standardId),
-  }));
+
+  // Prefer the fetched curriculum for any id the snapshot knows. Only ids with no
+  // snapshot behind them fall back to an explicitly unofficial placeholder, and the
+  // placeholder says so in its source code so nobody mistakes it for a standard.
+  const resolved = catalogueStandards(adapter, request.standardIds);
+  const byId = new Map(resolved.map((standard) => [standard.standardId, standard]));
+  const standards: StandardNode[] = request.standardIds.map((standardId, index) => {
+    const known = byId.get(standardId);
+    if (known) return known;
+    return {
+      standardId,
+      sourceCode: `UNOFFICIAL-${index + 1}`,
+      statement: `Deterministic fallback statement for ${standardId}. Replace when the mapper runs.`,
+      evidence: evidenceFor(sourceId, "fallback map", standardId),
+    };
+  });
 
   const knowledgeComponents: KnowledgeComponent[] = request.standardIds.map((standardId, index) => {
     const slug = standardId.replace(/^std:/, "");
+    const known = byId.get(standardId);
     return {
       knowledgeComponentId: `kc:${slug}`,
-      label: `Component for ${standardId}`,
-      description: `Do the work named by ${standardId}.`,
+      label: known ? known.sourceCode : `Component for ${standardId}`,
+      description: known ? known.statement : `Do the work named by ${standardId}.`,
       standardIds: [standardId],
       stage,
       prerequisiteOnly: false,
       atomicEntry: index === 0,
       misconceptionIds: [`mc:${slug}.default`],
-      evidence: evidenceFor(sourceId, "fallback map", standardId),
-      confidence: confidence(["deterministic fallback map", "no model mapping"]),
+      evidence: known
+        ? evidenceFor(sourceId, known.statement, known.sourceCode)
+        : evidenceFor(sourceId, "fallback map", standardId),
+      confidence: confidence(
+        known
+          ? ["deterministic fallback map", `span matched to ${known.sourceCode}`]
+          : ["deterministic fallback map", "no model mapping", "no snapshot for this standard"],
+      ),
     };
   });
 
