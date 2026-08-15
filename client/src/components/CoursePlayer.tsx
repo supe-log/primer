@@ -12,6 +12,7 @@ import {
   type CourseWorkspace,
   type LessonBeat,
 } from "@/lib/courseWorkspace";
+import { BEAT_TILE, KENNEY } from "@/lib/learnerArt";
 
 /**
  * Kid-facing course in a phone-sized frame. One beat at a time, in the
@@ -38,8 +39,8 @@ export function CoursePlayer({ result }: { result: CompilationResult }) {
         Learner view. The compiler stays on the other tab. Nothing here is a score
         or a claim about learning.
       </p>
-      <div className="w-full max-w-[24.5rem] rounded-[2rem] border-[10px] border-[hsl(28_16%_18%)] bg-[hsl(28_16%_18%)]">
-        <div className="learner-device flex min-h-[38rem] flex-col overflow-hidden rounded-[1.35rem]">
+      <div className="w-full max-w-[24.5rem] rounded-[2rem] border-[10px] border-[hsl(28_16%_18%)] bg-[hsl(28_16%_18%)] p-1">
+        <div className="learner-device px-slice px-screen flex min-h-[38rem] flex-col">
           {lesson ? (
             <LessonApp
               course={course}
@@ -75,7 +76,7 @@ function HomeScreen({
             <button
               type="button"
               onClick={() => onOpen(entry.index)}
-              className="w-full rounded-2xl border border-border bg-surface px-4 py-3 text-left"
+              className="px-slice px-card w-full px-4 py-3 text-left"
               data-testid={`button-lesson-${entry.index}`}
             >
               <span className="text-xs font-semibold text-primary">
@@ -97,6 +98,9 @@ function HomeScreen({
       </ol>
       <p className="mt-4 text-center text-[11px] text-muted-foreground">
         From the Australian Curriculum · draft
+      </p>
+      <p className="mt-1 text-center text-[10px] text-muted-foreground">
+        UI tiles: Kenney.nl · CC0
       </p>
     </div>
   );
@@ -134,14 +138,14 @@ function LessonApp({
           {beatIndex + 1}/{beats.length}
         </span>
       </header>
-      <ol className="flex gap-1 px-4" aria-label="Lesson steps">
+      <ol className="flex items-center gap-1 px-4" aria-label="Lesson steps">
         {beats.map((entry, index) => (
           <li key={`${entry.kind}-${index}`} className="flex-1">
-            <span
-              className={clsx(
-                "block h-1.5 rounded-full",
-                index <= beatIndex ? "bg-primary" : "bg-border",
-              )}
+            <img
+              src={index <= beatIndex ? BEAT_TILE[entry.kind] : KENNEY.grey}
+              alt=""
+              className="h-3 w-full"
+              style={{ imageRendering: "pixelated" }}
             />
           </li>
         ))}
@@ -170,6 +174,9 @@ function LessonApp({
         <p className="mt-2 text-center text-[11px] text-muted-foreground">
           {course.stage} · practice only · not a test score
         </p>
+        <p className="mt-1 text-center text-[10px] text-muted-foreground">
+          UI tiles: Kenney.nl · CC0
+        </p>
       </footer>
     </div>
   );
@@ -186,7 +193,7 @@ function BeatBody({ beat }: { beat: LessonBeat }) {
             {beat.prompts.map((prompt) => (
               <li
                 key={prompt}
-                className="rounded-2xl border border-border bg-surface px-4 py-3 text-sm leading-relaxed"
+                className="px-slice px-card-yellow px-4 py-3 text-sm leading-relaxed"
               >
                 {prompt}
               </li>
@@ -243,7 +250,7 @@ function BeatBody({ beat }: { beat: LessonBeat }) {
           {beat.prompts.map((prompt) => (
             <li
               key={prompt}
-              className="rounded-2xl border border-border bg-surface px-4 py-3 text-sm leading-relaxed"
+              className="px-slice px-card px-4 py-3 text-sm leading-relaxed"
             >
               {prompt}
             </li>
@@ -263,7 +270,7 @@ function WorkedExampleCard({ example }: { example: WorkedExample }) {
   const [revealed, setRevealed] = useState(false);
 
   return (
-    <div className="mt-4 rounded-2xl border border-border bg-surface p-4">
+    <div className="px-slice px-card-blue mt-4 p-4">
       <p className="text-sm font-semibold">{example.prompt}</p>
       <ol className="mt-3 space-y-2">
         {example.steps.map((step, index) => {
@@ -326,11 +333,11 @@ function PracticeItem({ entry }: { entry: CourseItemView }) {
               <label
                 key={option.optionId}
                 className={clsx(
-                  "flex min-h-12 cursor-pointer items-start gap-3 rounded-2xl border px-3 py-3 text-sm",
-                  isSelected && !grade && "border-primary bg-primary/10",
-                  !isSelected && !grade && "border-border bg-surface",
-                  showKey && "border-success/60 bg-success/10",
-                  showMiss && "border-error/60 bg-error/10",
+                  "px-slice flex min-h-12 cursor-pointer items-start gap-3 px-3 py-3 text-sm",
+                  showKey && "px-choice-yes",
+                  showMiss && "px-choice-no",
+                  isSelected && !grade && "px-choice-on",
+                  !isSelected && !grade && "px-choice",
                 )}
               >
                 <input
@@ -362,7 +369,10 @@ function PracticeItem({ entry }: { entry: CourseItemView }) {
       </button>
       {grade ? (
         <div
-          className="mt-3 rounded-2xl bg-surface-alt px-4 py-3 text-sm leading-relaxed"
+          className={clsx(
+            "px-slice mt-3 px-4 py-3 text-sm leading-relaxed",
+            grade.correct ? "px-choice-yes" : "px-card",
+          )}
           role="status"
           aria-live="polite"
           data-testid={`practice-feedback-${item.itemId}`}
