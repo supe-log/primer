@@ -3,40 +3,56 @@
 @tailwind utilities;
 
 /*
-  Primer Compiler art direction: warm paper surfaces, ink-dark text,
-  one teal accent, semantic status colors only where status is the message.
-  No decorative illustration anywhere in this app.
+  Primer Compiler art direction, on GT brand colours.
+
+  Palette taken from a live GT property rather than invented:
+    #e48b53  warm orange   primary
+    #ebba9b  orange tint   hover and secondary fills
+    #002a3a  deep teal     ink, and the dark-mode ground
+    #f5ddcd  cream         paper
+    #f2be22  gold          accent, used where attention is the message
+
+  One accessibility constraint drives the token choices: white on GT orange is
+  2.59:1 and fails WCAG AA, while deep teal on GT orange is 5.83:1 and passes.
+  So --primary-foreground is deep teal, never white, and every button label
+  inherits that. Semantic status colours stay separate from brand: a failing gate
+  must not read as orange when orange also means "primary action".
 */
 
 :root {
-  --background: 44 32% 95%;
-  --surface: 44 40% 97%;
-  --surface-alt: 42 26% 91%;
-  --border: 40 18% 81%;
-  --foreground: 40 12% 13%;
-  --muted-foreground: 40 8% 38%;
-  --primary: 184 72% 24%;
-  --primary-foreground: 44 40% 97%;
-  --success: 100 48% 28%;
-  --warning: 28 72% 31%;
-  --error: 344 60% 38%;
+  --background: 24 60% 94%;
+  --surface: 26 62% 97%;
+  --surface-alt: 24 67% 88%;
+  --border: 24 30% 78%;
+  --foreground: 197 100% 11%;
+  --muted-foreground: 197 22% 34%;
+  --primary: 23 73% 61%;
+  --primary-foreground: 197 100% 11%;
+  --accent: 45 89% 54%;
+  --accent-foreground: 197 100% 11%;
+  /* Status stays its own language. Warning is deliberately not brand orange. */
+  --success: 158 64% 26%;
+  --warning: 38 88% 30%;
+  --error: 355 62% 38%;
 
   --font-sans: "Satoshi", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 }
 
 .dark {
-  --background: 40 10% 9%;
-  --surface: 40 9% 12%;
-  --surface-alt: 40 8% 16%;
-  --border: 40 7% 24%;
-  --foreground: 44 14% 87%;
-  --muted-foreground: 42 7% 61%;
-  --primary: 184 38% 55%;
-  --primary-foreground: 40 12% 10%;
-  --success: 100 40% 58%;
-  --warning: 28 58% 58%;
-  --error: 344 58% 68%;
+  --background: 197 58% 7%;
+  --surface: 197 48% 10%;
+  --surface-alt: 197 40% 14%;
+  --border: 197 24% 24%;
+  --foreground: 24 67% 88%;
+  --muted-foreground: 24 18% 64%;
+  --primary: 23 73% 63%;
+  --primary-foreground: 197 100% 9%;
+  --accent: 45 89% 58%;
+  --accent-foreground: 197 100% 9%;
+  --success: 158 52% 56%;
+  --warning: 38 80% 60%;
+  --error: 355 70% 70%;
 }
 
 @layer base {
