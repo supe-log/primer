@@ -314,3 +314,12 @@ sourcing order if we need a mascot, and game-icons.net would force a credits pag
 
 Rejected: mixing packs for personality on demo day. Grid and palette consistency matters more than variety, and
 CC-BY-NC / personal-use packs are unsafe if a school ever pays.
+
+## 2026-08-15 14:00: GitHub topic/pixelart is not the kid pack
+
+https://github.com/topics/pixelart is mostly CryptoPunks (24px), fantasy consoles, and combat games. The one
+CC0 icon repo on that topic (`tstamborski/pixelart-icons`) is a different grid and palette. Pulling it would
+stitch the Kenney 16px classroom. Personality instead comes from a 16px mascot we drew (Pip) on the Kenney
+greens/yellows, Pixelify Sans on labels only, and a finish burst. Still no XP, no score, no swords.
+
+Rejected: dropping a GitHub pixel-art repo into the phone for demo-day fun.
