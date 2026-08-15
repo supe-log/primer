@@ -5,6 +5,7 @@ import {
   topologicalOrder,
   validateGraph,
   validateItems,
+  validateCoverage,
   validatePrivacy,
 } from "../server/compiler/validators";
 import compilationResult from "../fixtures/compilation-result.json";
@@ -146,6 +147,52 @@ describe("privacy validator", () => {
   it("hard-blocks a student-identifying field", () => {
     const check = validatePrivacy({ ...sample.request, studentName: "a name" });
     expect(check.status).toBe("fail");
+    expect(check.blocking).toBe(true);
+  });
+});
+
+describe("coverage validator", () => {
+  const graph = sample.graph!;
+
+  function itemFor(standardId: string, rejected: boolean) {
+    const base = sample.items.find((entry) => !entry.rejection)!;
+    return {
+      ...base,
+      itemId: `item:test.${standardId.replace(/[^a-z0-9]/g, "-")}.${rejected ? "rej" : "ok"}`,
+      standardIds: [standardId],
+      rejection: rejected
+        ? { checkId: "check:item.single-defensible-key", reason: "Two keys. Rejected." }
+        : undefined,
+    };
+  }
+
+  const request = { ...sample.request, standardIds: [sample.request.standardIds[0]!] };
+
+  it("counts a standard assessed when a surviving item covers it", () => {
+    const check = validateCoverage(request, graph, [itemFor(request.standardIds[0]!, false)]);
+    expect(check.status).toBe("pass");
+  });
+
+  it("does not count a rejected item as assessing its standard", () => {
+    // A rejected item is never practised. Counting it would let a bundle claim full
+    // coverage while shipping nothing to practise for that standard.
+    const check = validateCoverage(request, graph, [itemFor(request.standardIds[0]!, true)]);
+    expect(check.status).toBe("fail");
+    expect(check.detail).toContain(request.standardIds[0]!);
+    expect(check.counts.itemsRejected).toBe(1);
+  });
+
+  it("passes when a standard has both a rejected and a surviving item", () => {
+    const check = validateCoverage(request, graph, [
+      itemFor(request.standardIds[0]!, true),
+      itemFor(request.standardIds[0]!, false),
+    ]);
+    expect(check.status).toBe("pass");
+    expect(check.counts.itemsRejected).toBe(1);
+  });
+
+  it("stays blocking, so a coverage failure cannot ship as a pass", () => {
+    const check = validateCoverage(request, graph, [itemFor(request.standardIds[0]!, true)]);
     expect(check.blocking).toBe(true);
   });
 });
