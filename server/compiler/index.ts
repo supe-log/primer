@@ -28,6 +28,15 @@ export interface Compiler {
   observe(runId: string): AgentEvent[];
 }
 
+/**
+ * Process-local handle used by HTTP routes. `result` is not part of the public
+ * Compiler seam; it only lets export and graph presentation read a completed run
+ * without reaching into stages.
+ */
+export interface CompilerHandle extends Compiler {
+  result(runId: string): CompilationResult | undefined;
+}
+
 export interface CompilerOptions {
   /** Defaults to MockModelClient, which abstains and lets the deterministic path run. */
   modelClient?: ModelClient;
@@ -35,13 +44,14 @@ export interface CompilerOptions {
   now?: () => Date;
 }
 
-export function createCompiler(options: CompilerOptions = {}): Compiler {
+export function createCompiler(options: CompilerOptions = {}): CompilerHandle {
   const base = defaultDeps();
   const deps = {
     modelClient: options.modelClient ?? base.modelClient,
     now: options.now ?? base.now,
   };
   const runs = new Map<string, AgentEvent[]>();
+  const results = new Map<string, CompilationResult>();
   let sequence = 0;
 
   return {
@@ -49,10 +59,14 @@ export function createCompiler(options: CompilerOptions = {}): Compiler {
       sequence += 1;
       const record = runCompile(request, deps, sequence);
       runs.set(record.result.runId, record.events);
+      results.set(record.result.runId, record.result);
       return record.result;
     },
     observe(runId) {
       return runs.get(runId) ?? [];
+    },
+    result(runId) {
+      return results.get(runId);
     },
   };
 }

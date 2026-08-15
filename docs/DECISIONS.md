@@ -99,3 +99,11 @@ Rejected: collecting a learner name to personalize output.
 Engineer 1 split: live ACARA fetch and the snapshot store stay in `server/compiler/sources/`. The complementary slice is the licence policy engine, the graph auditor's two-pass repair and abstain path, and a deterministic sequence planner plus item bank used when the model client abstains. The orchestrator calls those stages instead of replaying fixture artifacts, so MockModelClient still produces a full bundle and a rejected item still ships with a stated reason.
 
 Rejected: waiting for the xAI client before replacing fixture replay. The handoff says the deterministic half is the stage fallback and the part a judge can verify.
+
+## 2026-08-15 11:40: Engineer 1 split — snapshots stay on the other session, export lands here
+
+Claude Code (other Engineer 1 session) owns live ACARA snapshots, re-keying `fallbackMap.ts` to official AC9 codes, `XaiModelClient`, and the model-backed mapper and item writer. Off limits until they finish: `server/compiler/sources/**`, `script/snapshot.ts`, `snapshots/**`, `fallbackMap.ts`, and any xAI client files.
+
+This session owns the cite-only public export, the graph-node API, extra licence/auditor/planner tests, and merge-prep. Work happens on `engineer-1/cite-only-export` in a separate worktree branched from `5a85619`, so the unpushed snapshot commit on `engineer-1/deterministic-stages` is neither rewritten nor force-pushed.
+
+Rejected: continuing on the same checkout as the snapshot work. Those files are in flight.

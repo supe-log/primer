@@ -30,6 +30,22 @@ describe("sequence planner", () => {
     expect(JSON.stringify(first)).toBe(JSON.stringify(second));
   });
 
+  it("cites the IES interleaving study on mixed practice, never as redistributable text", () => {
+    const plan = planSequence({
+      graph: sample.graph!,
+      request: demoRequest,
+      sourceManifest: sample.sourceManifest,
+    });
+    const interleaved = [...plan.decisions, ...plan.lessons.flatMap((lesson) => lesson.decisions)].filter(
+      (decision) => decision.lever === "interleaving",
+    );
+    expect(interleaved.length).toBeGreaterThan(0);
+    for (const decision of interleaved) {
+      expect(decision.evidenceLevel).toBe("moderate");
+      expect(decision.evidence.some((ref) => ref.sourceId === "src:ies.interleaving-rct")).toBe(true);
+    }
+  });
+
   it("records a reason and an evidence level on every sequencing decision", () => {
     const plan = planSequence({
       graph: sample.graph!,
