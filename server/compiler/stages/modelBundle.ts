@@ -152,7 +152,7 @@ export async function buildModelBundle(input: {
     coursePlan,
     modelClient,
   });
-  modelCalls.push(written.call);
+  modelCalls.push(...written.calls);
   notes.push({
     agentId: "agent:item-writer",
     phase: written.abstained ? "agent_abstained" : "agent_succeeded",
