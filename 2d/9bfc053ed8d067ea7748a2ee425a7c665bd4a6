@@ -1,0 +1,21 @@
+client/src/index.css
+  s_207d06870c4a11::t_4085397e11e02b 6-19,23-36,43-55
+tailwind.config.ts
+  s_207d06870c4a11::t_4085397e11e02b 24-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "2d9bfc053ed8d067ea7748a2ee425a7c665bd4a6",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
