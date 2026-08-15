@@ -10,12 +10,16 @@ import {
   type RunManifest,
   type SourceManifest,
 } from "@contracts";
-import { resolveAdapter } from "./adapters/jurisdiction";
+import { catalogueSourceIdFor, resolveAdapter } from "./adapters/jurisdiction";
 import { buildGateReport } from "./evidenceGate";
 import { evaluateLicenceGate } from "./licence/gate";
 import { MockModelClient, type ModelClient } from "./model/modelClient";
 import { buildFallbackBundle } from "./stages/fallbackBundle";
-import { allSnapshotsManifest, buildSourceManifest } from "./sources/catalogue";
+import {
+  allSnapshotsManifest,
+  buildSourceManifest,
+  curriculumReadiness,
+} from "./sources/catalogue";
 import type { ModelBundle } from "./stages/modelBundle";
 import {
   validateCoursePlan,
@@ -337,6 +341,79 @@ export function runCompile(
             "Fetch the jurisdiction's published blueprint and record its URL, retrieval time, digest and licence.",
             "Fetch a released form with its answer key and item rationales, keeping it local if the licence forbids redistribution.",
             "Re-run with assessment target set to unit test to get a formative bundle now, then upgrade once the blueprint is in the snapshot store.",
+          ],
+        },
+      }),
+      events,
+    };
+  }
+
+  // A registered jurisdiction is not a supported one. If the adapter has no fetched
+  // curriculum behind the requested standards, refuse here rather than fall through
+  // to a generic map that would emit invented standards under an official
+  // authority's name. Support requires that jurisdiction's own snapshot.
+  const readiness = curriculumReadiness({
+    catalogueSourceId: catalogueSourceIdFor(adapter, stage.localLabel),
+    authorityName: adapter.authorityName,
+    standardIds: request.standardIds,
+  });
+
+  if (!readiness.ok) {
+    sink.emit({
+      agentId: "agent:standards-researcher",
+      phase: "run_refused",
+      message: `${readiness.reason} Refused before generating anything.`,
+      counts: { requested: request.standardIds.length, unresolved: readiness.unresolved.length },
+    });
+    const checks: GateCheck[] = [
+      privacyCheck,
+      ...sourceChecks,
+      {
+        checkId: "check:source.standards-fetched",
+        label: "Requested standards resolve to a fetched content description",
+        kind: "deterministic",
+        blocking: true,
+        status: "fail",
+        detail: readiness.reason,
+        counts: {
+          requested: request.standardIds.length,
+          unresolved: readiness.unresolved.length,
+        },
+      },
+    ];
+    return {
+      result: refuse({
+        runId,
+        request,
+        sourceManifest,
+        checks,
+        summary:
+          "Refused. The stage resolves, but no fetched curriculum stands behind the requested standards, and a bundle built on invented standards would be worse than no bundle.",
+        runManifest: buildRunManifest({
+          runId,
+          request,
+          modelClient: deps.modelClient,
+          now: deps.now,
+          startedAt,
+          sourceManifest,
+          abstainedRoles: [],
+          revisions: [],
+        }),
+        refusal: {
+          code: "unresolved_adapter",
+          requested: `${request.subject} for ${stage.localLabel} in ${adapter.authorityName}`,
+          missingEvidence: [
+            `A fetched, content-hashed curriculum snapshot for ${adapter.authorityName}`,
+            ...(readiness.unresolved.length > 0
+              ? [`Content descriptions for: ${readiness.unresolved.join(", ")}`]
+              : []),
+            `A verified licence for that source, since ${adapter.legalStatus}`,
+          ],
+          collectionPlan: [
+            `Add a fetcher for ${adapter.authorityName} in server/compiler/sources and register it in script/snapshot.ts.`,
+            "Run npm run snapshot to fetch, hash and commit the curriculum bytes.",
+            "Verify the licence posture before compiling: an unknown licence caps the run at prototype and blocks redistribution.",
+            "Point the adapter's catalogueSourceId at the new snapshot and re-run.",
           ],
         },
       }),

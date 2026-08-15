@@ -17,9 +17,9 @@
     },
     "subject": "Mathematics",
     "standardIds": [
-      "std:acara.v9.y7.math.sample-01",
-      "std:acara.v9.y7.math.sample-02",
-      "std:acara.v9.y7.math.sample-03"
+      "std:acara.v9.ac9m7n04",
+      "std:acara.v9.ac9m7n08",
+      "std:acara.v9.ac9m7m06"
     ],
     "locale": {
       "bcp47": "en-AU",
@@ -44,76 +44,126 @@
     "schemaVersion": "0.1.0",
     "sources": [
       {
-        "sourceId": "src:acara.v9.terms",
-        "title": "Australian Curriculum: copyright and terms of use (licence evidence only, content descriptions not yet fetched)",
+        "sourceId": "src:acara.v9.mathematics.year-7",
+        "title": "Australian Curriculum V9.0, Mathematics, Year 7: content descriptions, elaborations and achievement standard",
         "publisher": "Australian Curriculum, Assessment and Reporting Authority",
-        "url": "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
-        "retrievedAt": "2026-08-15T14:00:00Z",
-        "contentSha256": "0000000000000000000000000000000000000000000000000000000000000000",
-        "fetched": false,
+        "url": "https://v9.australiancurriculum.edu.au/f-10-curriculum/learning-areas/mathematics/year-7",
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "bce982cbb30e09721941a1421a7e3d944345ece29258768d376de1aab8944698",
+        "fetched": true,
         "licence": {
           "licenceId": "cc-by-4.0",
           "posture": "redistributable",
           "mayQuote": true,
           "mayRedistribute": true,
-          "attributionText": "Australian Curriculum, Assessment and Reporting Authority (ACARA), licensed CC BY 4.0.",
+          "attributionText": "Australian Curriculum, Assessment and Reporting Authority (ACARA), Australian Curriculum Version 9.0, licensed CC BY 4.0.",
           "excludedMaterial": [
             "ACARA logos and other trade marks",
-            "website design",
-            "third-party material",
-            "National Literacy Learning Progressions (CC BY-NC 4.0)"
+            "website design and layout",
+            "third-party material identified as such",
+            "National Literacy and Numeracy Learning Progressions"
+          ]
+        }
+      },
+      {
+        "sourceId": "src:acara.v9.mathematics.year-8",
+        "title": "Australian Curriculum V9.0, Mathematics, Year 8: content descriptions, elaborations and achievement standard",
+        "publisher": "Australian Curriculum, Assessment and Reporting Authority",
+        "url": "https://v9.australiancurriculum.edu.au/f-10-curriculum/learning-areas/mathematics/year-8",
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "74de4d467b917f271f236f7196aa85c2fc300b8840f9e1cdca5384f1f2fabd95",
+        "fetched": true,
+        "licence": {
+          "licenceId": "cc-by-4.0",
+          "posture": "redistributable",
+          "mayQuote": true,
+          "mayRedistribute": true,
+          "attributionText": "Australian Curriculum, Assessment and Reporting Authority (ACARA), Australian Curriculum Version 9.0, licensed CC BY 4.0.",
+          "excludedMaterial": [
+            "ACARA logos and other trade marks",
+            "website design and layout",
+            "third-party material identified as such",
+            "National Literacy and Numeracy Learning Progressions"
+          ]
+        }
+      },
+      {
+        "sourceId": "src:acara.v9.terms",
+        "title": "Australian Curriculum: copyright and terms of use (text extraction)",
+        "publisher": "Australian Curriculum, Assessment and Reporting Authority",
+        "url": "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "1ea90d8866de8755ef8208e3febe42624a0d9769a2c2b81a3e97347c24b4c720",
+        "fetched": true,
+        "licence": {
+          "licenceId": "cc-by-4.0",
+          "posture": "redistributable",
+          "mayQuote": true,
+          "mayRedistribute": true,
+          "attributionText": "Australian Curriculum, Assessment and Reporting Authority (ACARA), Australian Curriculum Version 9.0, licensed CC BY 4.0.",
+          "excludedMaterial": [
+            "ACARA logos and other trade marks",
+            "website design and layout",
+            "third-party material identified as such",
+            "National Literacy and Numeracy Learning Progressions"
           ]
         }
       },
       {
         "sourceId": "src:ies.interleaving-rct",
-        "title": "Efficacy study of interleaved mathematics practice",
-        "publisher": "Institute of Education Sciences",
+        "title": "An Efficacy Study of Interleaved Mathematics Practice, award R305A160263 (text extraction)",
+        "publisher": "Institute of Education Sciences, U.S. Department of Education",
         "url": "https://ies.ed.gov/use-work/awards/efficacy-study-interleaved-mathematics-practice",
-        "retrievedAt": "2026-08-15T14:00:00Z",
-        "contentSha256": "0000000000000000000000000000000000000000000000000000000000000000",
-        "fetched": false,
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "206281b327bc3fdb0bbaba51805da6abbb0324e434beb3b9542a4e4d01a0d199",
+        "fetched": true,
         "licence": {
-          "licenceId": "not-verified",
+          "licenceId": "us-gov-work-not-verified",
           "posture": "cite_only",
           "mayQuote": true,
           "mayRedistribute": false,
-          "attributionText": "Institute of Education Sciences, U.S. Department of Education.",
-          "excludedMaterial": []
+          "attributionText": "Institute of Education Sciences, U.S. Department of Education. Redistribution rights not verified for this page.",
+          "excludedMaterial": [
+            "full text of the funded study and any publisher-held manuscript"
+          ]
         }
       },
       {
         "sourceId": "src:ies.organizing-instruction",
-        "title": "Organizing Instruction and Study to Improve Student Learning (IES practice guide)",
-        "publisher": "Institute of Education Sciences",
+        "title": "Organizing Instruction and Study to Improve Student Learning, IES practice guide (PDF text layer)",
+        "publisher": "Institute of Education Sciences, U.S. Department of Education",
         "url": "https://files.eric.ed.gov/fulltext/ED498555.pdf",
-        "retrievedAt": "2026-08-15T14:00:00Z",
-        "contentSha256": "0000000000000000000000000000000000000000000000000000000000000000",
-        "fetched": false,
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "37aec6929270a0d2826685bd6195b1d829bc0f5fa4aac75138a7334846b38594",
+        "fetched": true,
         "licence": {
-          "licenceId": "not-verified",
+          "licenceId": "us-gov-work-not-verified",
           "posture": "cite_only",
           "mayQuote": true,
           "mayRedistribute": false,
-          "attributionText": "Institute of Education Sciences, U.S. Department of Education.",
-          "excludedMaterial": []
+          "attributionText": "Institute of Education Sciences, U.S. Department of Education. Redistribution rights not verified for this page.",
+          "excludedMaterial": [
+            "full text of the funded study and any publisher-held manuscript"
+          ]
         }
       },
       {
         "sourceId": "src:rosenshine.principles",
-        "title": "Principles of Instruction (Rosenshine, American Educator)",
+        "title": "Principles of Instruction, Barak Rosenshine, American Educator Spring 2012 (PDF text layer)",
         "publisher": "American Federation of Teachers",
         "url": "https://www.aft.org/sites/default/files/Rosenshine.pdf",
-        "retrievedAt": "2026-08-15T14:00:00Z",
-        "contentSha256": "0000000000000000000000000000000000000000000000000000000000000000",
-        "fetched": false,
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "3c0f2ec761a79e218fa60f263f74cf5e08a2014d326991594d61efd9e1ff1312",
+        "fetched": true,
         "licence": {
-          "licenceId": "not-verified",
+          "licenceId": "aft-american-educator-not-verified",
           "posture": "cite_only",
           "mayQuote": true,
           "mayRedistribute": false,
-          "attributionText": "Barak Rosenshine, American Educator, American Federation of Teachers.",
-          "excludedMaterial": []
+          "attributionText": "Barak Rosenshine, Principles of Instruction, American Educator, American Federation of Teachers, Spring 2012. Redistribution rights not verified.",
+          "excludedMaterial": [
+            "the full article text and any figures"
+          ]
         }
       }
     ]
@@ -124,40 +174,40 @@
     "curriculumSourceId": "acara.v9",
     "standards": [
       {
-        "standardId": "std:acara.v9.y7.math.sample-01",
-        "sourceCode": "SAMPLE-Y7-N-01",
-        "statement": "Recognise and use equivalent ratios, including writing a ratio from a described situation.",
+        "standardId": "std:acara.v9.ac9m7n04",
+        "sourceCode": "AC9M7N04",
+        "statement": "find equivalent representations of rational numbers and represent rational numbers on a number line",
         "evidence": [
           {
-            "sourceId": "src:acara.v9.terms",
-            "quotedSpan": "content descriptions",
-            "locator": "sample-01",
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "find equivalent representations of rational numbers and represent rational numbers on a number line",
+            "locator": "AC9M7N04",
             "retrievalLanguage": "en"
           }
         ]
       },
       {
-        "standardId": "std:acara.v9.y7.math.sample-02",
-        "sourceCode": "SAMPLE-Y7-N-02",
-        "statement": "Solve problems involving rates, including finding a unit rate.",
+        "standardId": "std:acara.v9.ac9m7n08",
+        "sourceCode": "AC9M7N08",
+        "statement": "recognise, represent and solve problems involving ratios",
         "evidence": [
           {
-            "sourceId": "src:acara.v9.terms",
-            "quotedSpan": "content descriptions",
-            "locator": "sample-02",
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "recognise, represent and solve problems involving ratios",
+            "locator": "AC9M7N08",
             "retrievalLanguage": "en"
           }
         ]
       },
       {
-        "standardId": "std:acara.v9.y7.math.sample-03",
-        "sourceCode": "SAMPLE-Y7-N-03",
-        "statement": "Apply proportional reasoning to compare quantities in context.",
+        "standardId": "std:acara.v9.ac9m7m06",
+        "sourceCode": "AC9M7M06",
+        "statement": "use mathematical modelling to solve practical problems involving ratios; formulate problems, interpret and communicate solutions in terms of the situation, justifying choices made about the representation",
         "evidence": [
           {
-            "sourceId": "src:acara.v9.terms",
-            "quotedSpan": "achievement standards",
-            "locator": "sample-03",
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "use mathematical modelling to solve practical problems involving ratios; formulate problems, interpret and communicate solutions in terms of the situation, justifying choices made about the representation",
+            "locator": "AC9M7M06",
             "retrievalLanguage": "en"
           }
         ]
@@ -165,262 +215,356 @@
     ],
     "knowledgeComponents": [
       {
-        "knowledgeComponentId": "kc:au.y7.math.equivalent-fractions",
-        "label": "Generate equivalent fractions",
-        "description": "Multiply or divide numerator and denominator by the same non-zero number and explain why the value is unchanged.",
+        "knowledgeComponentId": "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+        "label": "Equivalent fractions",
+        "description": "Generate and recognise equivalent fractions using common multiples or a fraction wall, and write a fraction in simplest form using common divisors.",
+        "standardIds": [
+          "std:acara.v9.ac9m7n04"
+        ],
+        "stage": {
+          "localLabel": "Year 7",
+          "ageBand": [
+            12,
+            13
+          ],
+          "ordinal": 8
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [
+          "mc:au.year-7.mathematics.add-numerators-and-denominators"
+        ],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "find equivalent representations of rational numbers and represent rational numbers on a number line",
+            "locator": "AC9M7N04",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "1 of 1 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.fraction-decimal-percent-links",
+        "label": "Fraction–decimal–percent equivalence",
+        "description": "Move fluently among fraction, decimal and percentage forms of the same rational number and choose a form that helps a calculation.",
+        "standardIds": [
+          "std:acara.v9.ac9m7n04"
+        ],
+        "stage": {
+          "localLabel": "Year 7",
+          "ageBand": [
+            12,
+            13
+          ],
+          "ordinal": 8
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [
+          "mc:au.year-7.mathematics.percent-as-whole-number"
+        ],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "find equivalent representations of rational numbers and represent rational numbers on a number line",
+            "locator": "AC9M7N04",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "1 of 1 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.rationals-on-number-line",
+        "label": "Rationals on a number line",
+        "description": "Place positive and negative fractions and mixed numerals on number-line intervals, including intervals not symmetric about zero.",
+        "standardIds": [
+          "std:acara.v9.ac9m7n04"
+        ],
+        "stage": {
+          "localLabel": "Year 7",
+          "ageBand": [
+            12,
+            13
+          ],
+          "ordinal": 8
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "find equivalent representations of rational numbers and represent rational numbers on a number line",
+            "locator": "AC9M7N04",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "1 of 1 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.ratio-as-part-part",
+        "label": "Ratio as a comparison",
+        "description": "Represent a ratio with diagrams or materials and distinguish part–part from part–whole language, including writing a ratio as a fraction of a whole.",
+        "standardIds": [
+          "std:acara.v9.ac9m7n08"
+        ],
+        "stage": {
+          "localLabel": "Year 7",
+          "ageBand": [
+            12,
+            13
+          ],
+          "ordinal": 8
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [
+          "mc:au.year-7.mathematics.ratio-as-difference"
+        ],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "recognise, represent and solve problems involving ratios",
+            "locator": "AC9M7N08",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "1 of 1 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio",
+        "label": "Share a quantity in a ratio",
+        "description": "Partition a given quantity into a stated ratio by finding the value of one part and scaling.",
+        "standardIds": [
+          "std:acara.v9.ac9m7n08"
+        ],
+        "stage": {
+          "localLabel": "Year 7",
+          "ageBand": [
+            12,
+            13
+          ],
+          "ordinal": 8
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [
+          "mc:au.year-7.mathematics.share-by-adding-parts-only"
+        ],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "recognise, represent and solve problems involving ratios",
+            "locator": "AC9M7N08",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "1 of 1 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.model-practical-ratio-problems",
+        "label": "Model practical ratio problems",
+        "description": "Formulate a real mixing, design or measurement situation as a ratio, choose a representation, compute, and justify the answer in context.",
+        "standardIds": [
+          "std:acara.v9.ac9m7m06"
+        ],
+        "stage": {
+          "localLabel": "Year 7",
+          "ageBand": [
+            12,
+            13
+          ],
+          "ordinal": 8
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "use mathematical modelling to solve practical problems involving ratios; formulate problems, interpret and communicate solutions in terms of the situation, justifying choices made about the representation",
+            "locator": "AC9M7M06",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "1 of 1 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.add-same-denominator-fractions",
+        "label": "Add fractions same denominator",
+        "description": "Add or subtract fractions that already share a denominator by operating only on the numerators.",
         "standardIds": [],
         "stage": {
-          "localLabel": "Year 6",
+          "localLabel": "Year 7",
           "ageBand": [
-            11,
-            12
+            12,
+            13
           ],
           "ordinal": 7
         },
         "prerequisiteOnly": true,
         "atomicEntry": true,
         "misconceptionIds": [
-          "mc:adds-across-fraction-bar"
+          "mc:au.year-7.mathematics.add-numerators-and-denominators"
         ],
         "evidence": [],
         "confidence": {
-          "value": 0.55,
+          "value": 0.3,
           "basis": [
-            "pulled in from learner context"
+            "model mapping via grok-4.6",
+            "0 of 0 evidence spans matched the snapshot"
           ],
           "unmeasured": [
-            "exact_span_match",
             "expert_review",
-            "pilot_data"
-          ]
-        }
-      },
-      {
-        "knowledgeComponentId": "kc:au.y7.math.ratio-notation",
-        "label": "Read and write ratio notation",
-        "description": "Interpret a : b as a comparison of two quantities and write a ratio from a described situation.",
-        "standardIds": [
-          "std:acara.v9.y7.math.sample-01"
-        ],
-        "stage": {
-          "localLabel": "Year 7",
-          "ageBand": [
-            12,
-            13
-          ],
-          "ordinal": 8
-        },
-        "prerequisiteOnly": false,
-        "atomicEntry": false,
-        "misconceptionIds": [
-          "mc:treats-ratio-as-fraction-of-whole"
-        ],
-        "evidence": [
-          {
-            "sourceId": "src:acara.v9.terms",
-            "quotedSpan": "content descriptions",
-            "locator": "ratio-notation",
-            "retrievalLanguage": "en"
-          }
-        ],
-        "confidence": {
-          "value": 0.55,
-          "basis": [
-            "deterministic fallback map"
-          ],
-          "unmeasured": [
-            "exact_span_match",
-            "expert_review",
-            "pilot_data"
-          ]
-        }
-      },
-      {
-        "knowledgeComponentId": "kc:au.y7.math.equivalent-ratios",
-        "label": "Recognise equivalent ratios",
-        "description": "Decide whether two ratios are equivalent by scaling both parts by the same factor.",
-        "standardIds": [
-          "std:acara.v9.y7.math.sample-01"
-        ],
-        "stage": {
-          "localLabel": "Year 7",
-          "ageBand": [
-            12,
-            13
-          ],
-          "ordinal": 8
-        },
-        "prerequisiteOnly": false,
-        "atomicEntry": false,
-        "misconceptionIds": [
-          "mc:adds-constant-to-both-parts"
-        ],
-        "evidence": [
-          {
-            "sourceId": "src:acara.v9.terms",
-            "quotedSpan": "content descriptions",
-            "locator": "equivalent-ratios",
-            "retrievalLanguage": "en"
-          }
-        ],
-        "confidence": {
-          "value": 0.55,
-          "basis": [
-            "deterministic fallback map"
-          ],
-          "unmeasured": [
-            "exact_span_match",
-            "expert_review",
-            "pilot_data"
-          ]
-        }
-      },
-      {
-        "knowledgeComponentId": "kc:au.y7.math.unit-rate",
-        "label": "Find a unit rate",
-        "description": "Divide to express a rate per one unit and state the units of the result.",
-        "standardIds": [
-          "std:acara.v9.y7.math.sample-02"
-        ],
-        "stage": {
-          "localLabel": "Year 7",
-          "ageBand": [
-            12,
-            13
-          ],
-          "ordinal": 8
-        },
-        "prerequisiteOnly": false,
-        "atomicEntry": false,
-        "misconceptionIds": [
-          "mc:divides-in-wrong-order"
-        ],
-        "evidence": [
-          {
-            "sourceId": "src:acara.v9.terms",
-            "quotedSpan": "content descriptions",
-            "locator": "unit-rate",
-            "retrievalLanguage": "en"
-          }
-        ],
-        "confidence": {
-          "value": 0.55,
-          "basis": [
-            "deterministic fallback map"
-          ],
-          "unmeasured": [
-            "exact_span_match",
-            "expert_review",
-            "pilot_data"
-          ]
-        }
-      },
-      {
-        "knowledgeComponentId": "kc:au.y7.math.rate-problems",
-        "label": "Solve rate problems in context",
-        "description": "Use a unit rate to answer a question about a different quantity, keeping units consistent.",
-        "standardIds": [
-          "std:acara.v9.y7.math.sample-02",
-          "std:acara.v9.y7.math.sample-03"
-        ],
-        "stage": {
-          "localLabel": "Year 7",
-          "ageBand": [
-            12,
-            13
-          ],
-          "ordinal": 8
-        },
-        "prerequisiteOnly": false,
-        "atomicEntry": false,
-        "misconceptionIds": [
-          "mc:divides-in-wrong-order"
-        ],
-        "evidence": [
-          {
-            "sourceId": "src:acara.v9.terms",
-            "quotedSpan": "achievement standards",
-            "locator": "rate-problems",
-            "retrievalLanguage": "en"
-          }
-        ],
-        "confidence": {
-          "value": 0.55,
-          "basis": [
-            "deterministic fallback map"
-          ],
-          "unmeasured": [
-            "exact_span_match",
-            "expert_review",
-            "pilot_data"
+            "pilot_data",
+            "item_difficulty"
           ]
         }
       }
     ],
     "prerequisiteEdges": [
       {
-        "from": "kc:au.y7.math.equivalent-fractions",
-        "to": "kc:au.y7.math.equivalent-ratios",
-        "justification": "Scaling both parts of a ratio is the same multiplicative move as generating an equivalent fraction.",
+        "from": "kc:au.year-7.mathematics.add-same-denominator-fractions",
+        "to": "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+        "justification": "Finding a common multiple to rewrite fractions only makes sense after the learner already treats same-denominator fractions correctly instead of adding both parts.",
         "evidence": []
       },
       {
-        "from": "kc:au.y7.math.ratio-notation",
-        "to": "kc:au.y7.math.equivalent-ratios",
-        "justification": "A learner cannot compare two ratios before reading ratio notation reliably.",
+        "from": "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+        "to": "kc:au.year-7.mathematics.fraction-decimal-percent-links",
+        "justification": "Percent and decimal forms are equivalent fractions with denominators 100 or powers of ten, so the learner must already generate those equivalents.",
         "evidence": []
       },
       {
-        "from": "kc:au.y7.math.ratio-notation",
-        "to": "kc:au.y7.math.unit-rate",
-        "justification": "A unit rate is a ratio with the second part scaled to one.",
+        "from": "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+        "to": "kc:au.year-7.mathematics.rationals-on-number-line",
+        "justification": "Placing a fraction on a marked line requires rewriting it with a denominator that matches the chosen partition.",
         "evidence": []
       },
       {
-        "from": "kc:au.y7.math.unit-rate",
-        "to": "kc:au.y7.math.rate-problems",
-        "justification": "Contextual rate problems are solved by first producing a unit rate.",
+        "from": "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+        "to": "kc:au.year-7.mathematics.ratio-as-part-part",
+        "justification": "A ratio becomes a fraction of a whole only after the learner can combine parts into an equivalent whole and simplify.",
         "evidence": []
       },
       {
-        "from": "kc:au.y7.math.equivalent-ratios",
-        "to": "kc:au.y7.math.rate-problems",
-        "justification": "Checking a scaled answer against an equivalent ratio is the verification step inside a rate problem.",
+        "from": "kc:au.year-7.mathematics.ratio-as-part-part",
+        "to": "kc:au.year-7.mathematics.share-in-a-ratio",
+        "justification": "Sharing requires knowing how many equal parts the whole comprises, which is the part–whole reading of the given ratio.",
+        "evidence": []
+      },
+      {
+        "from": "kc:au.year-7.mathematics.fraction-decimal-percent-links",
+        "to": "kc:au.year-7.mathematics.model-practical-ratio-problems",
+        "justification": "Practical mix problems often state a concentration as a percent or decimal, so conversion among forms is needed to compute volumes.",
+        "evidence": []
+      },
+      {
+        "from": "kc:au.year-7.mathematics.share-in-a-ratio",
+        "to": "kc:au.year-7.mathematics.model-practical-ratio-problems",
+        "justification": "Modelling a recipe or mix is the same partition-and-scale procedure applied to authentic quantities and then interpreted.",
         "evidence": []
       }
     ],
     "misconceptions": [
       {
-        "misconceptionId": "mc:adds-across-fraction-bar",
-        "label": "Adds numerators and denominators",
-        "description": "Treats a fraction as two independent whole numbers, so 1/2 and 1/3 combine to 2/5.",
+        "misconceptionId": "mc:au.year-7.mathematics.add-numerators-and-denominators",
+        "label": "Adds both parts of a fraction",
+        "description": "When combining or rewriting fractions the learner adds numerators and adds denominators (e.g. 1/2 + 1/3 = 2/5) instead of finding a common denominator or using multiples.",
         "knowledgeComponentIds": [
-          "kc:au.y7.math.equivalent-fractions"
+          "kc:au.year-7.mathematics.add-same-denominator-fractions",
+          "kc:au.year-7.mathematics.equivalent-fractions-via-multiples"
         ]
       },
       {
-        "misconceptionId": "mc:treats-ratio-as-fraction-of-whole",
-        "label": "Reads a part-to-part ratio as a part-to-whole fraction",
-        "description": "Reads 2 : 3 as two thirds rather than two parts out of five.",
+        "misconceptionId": "mc:au.year-7.mathematics.percent-as-whole-number",
+        "label": "Treats percent as a count",
+        "description": "Reads 16% as the integer 16 or as 16/10 rather than 16/100 when converting among representations.",
         "knowledgeComponentIds": [
-          "kc:au.y7.math.ratio-notation"
+          "kc:au.year-7.mathematics.fraction-decimal-percent-links"
         ]
       },
       {
-        "misconceptionId": "mc:adds-constant-to-both-parts",
-        "label": "Adds the same number to both parts of a ratio",
-        "description": "Produces 3 : 4 from 2 : 3 by adding one to each part instead of scaling multiplicatively.",
+        "misconceptionId": "mc:au.year-7.mathematics.ratio-as-difference",
+        "label": "Reads ratio as a subtraction",
+        "description": "Interprets 2:3 as a difference of 1 rather than as two quantities in a multiplicative relationship.",
         "knowledgeComponentIds": [
-          "kc:au.y7.math.equivalent-ratios"
+          "kc:au.year-7.mathematics.ratio-as-part-part"
         ]
       },
       {
-        "misconceptionId": "mc:divides-in-wrong-order",
-        "label": "Divides in the wrong order",
-        "description": "Computes quantity divided by cost when the question asks for cost per unit.",
+        "misconceptionId": "mc:au.year-7.mathematics.share-by-adding-parts-only",
+        "label": "Splits without finding one part",
+        "description": "When sharing $20 in the ratio 2:3, splits into $2 and $3 (or $10 and $10) instead of finding the value of one of five equal parts.",
         "knowledgeComponentIds": [
-          "kc:au.y7.math.unit-rate",
-          "kc:au.y7.math.rate-problems"
+          "kc:au.year-7.mathematics.share-in-a-ratio"
         ]
       }
     ]
@@ -429,11 +573,13 @@
     "schemaVersion": "0.1.0",
     "title": "Mathematics: Prepare for a unit test on ratios and rates in three weeks.",
     "knowledgeComponentOrder": [
-      "kc:au.y7.math.equivalent-fractions",
-      "kc:au.y7.math.ratio-notation",
-      "kc:au.y7.math.equivalent-ratios",
-      "kc:au.y7.math.unit-rate",
-      "kc:au.y7.math.rate-problems"
+      "kc:au.year-7.mathematics.add-same-denominator-fractions",
+      "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+      "kc:au.year-7.mathematics.fraction-decimal-percent-links",
+      "kc:au.year-7.mathematics.ratio-as-part-part",
+      "kc:au.year-7.mathematics.rationals-on-number-line",
+      "kc:au.year-7.mathematics.share-in-a-ratio",
+      "kc:au.year-7.mathematics.model-practical-ratio-problems"
     ],
     "units": [
       {
@@ -441,36 +587,36 @@
         "title": "Year 7 Mathematics",
         "goal": "Prepare for a unit test on ratios and rates in three weeks.",
         "lessonIds": [
-          "lesson:au.01-y7-math-ratio-notation",
-          "lesson:au.02-y7-math-unit-rate",
-          "lesson:au.03-y7-math-rate-problems"
+          "lesson:au.01-year-7-mathematics-equivalent-fractions-via-multiples",
+          "lesson:au.02-year-7-mathematics-ratio-as-part-part",
+          "lesson:au.03-year-7-mathematics-share-in-a-ratio"
         ]
       }
     ],
     "lessons": [
       {
-        "lessonId": "lesson:au.01-y7-math-ratio-notation",
+        "lessonId": "lesson:au.01-year-7-mathematics-equivalent-fractions-via-multiples",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Read and write ratio notation and Recognise equivalent ratios",
-        "objective": "Learners can interpret a : b as a comparison of two quantities and write a ratio from a described situation.",
+        "title": "Equivalent fractions and Fraction–decimal–percent equivalence",
+        "objective": "Learners can generate and recognise equivalent fractions using common multiples or a fraction wall, and write a fraction in simplest form using common divisors.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.y7.math.ratio-notation",
-          "kc:au.y7.math.equivalent-ratios"
+          "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+          "kc:au.year-7.mathematics.fraction-decimal-percent-links"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.y7.math.equivalent-fractions"
+          "kc:au.year-7.mathematics.add-same-denominator-fractions"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Generate equivalent fractions, because retrieval opens every lesson.",
-          "modelling": "Teacher models Read and write ratio notation; Recognise equivalent ratios, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Read and write ratio notation; Recognise equivalent ratios, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Read and write ratio notation; Recognise equivalent ratios with Generate equivalent fractions so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Generate equivalent fractions."
+          "review": "Low-stakes retrieval on Add fractions same denominator, because retrieval opens every lesson.",
+          "modelling": "Teacher models Equivalent fractions; Fraction–decimal–percent equivalence, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Equivalent fractions; Fraction–decimal–percent equivalence, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Equivalent fractions; Fraction–decimal–percent equivalence with Add fractions same denominator so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Add fractions same denominator."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Read and write ratio notation.",
+            "prompt": "A worked example for: Equivalent fractions.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -481,10 +627,10 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.y7.math.ratio-notation"
+            "knowledgeComponentId": "kc:au.year-7.mathematics.equivalent-fractions-via-multiples"
           },
           {
-            "prompt": "A worked example for: Recognise equivalent ratios.",
+            "prompt": "A worked example for: Fraction–decimal–percent equivalence.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -495,19 +641,19 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.y7.math.equivalent-ratios"
+            "knowledgeComponentId": "kc:au.year-7.mathematics.fraction-decimal-percent-links"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Read and write ratio notation in one sentence.",
-          "Name the error a learner makes when they confuse Read and write ratio notation with a nearby idea."
+          "Without looking back, state Equivalent fractions in one sentence.",
+          "Name the error a learner makes when they confuse Equivalent fractions with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Read and write ratio notation have to hold before the next component?"
+          "Why does Equivalent fractions have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.y7.math.ratio-notation.01",
-          "item:au.y7.math.equivalent-ratios.02"
+          "item:au.year-7.mathematics.equivalent-fractions-via-multiples.01",
+          "item:au.year-7.mathematics.fraction-decimal-percent-links.01"
         ],
         "decisions": [
           {
@@ -537,29 +683,30 @@
         ]
       },
       {
-        "lessonId": "lesson:au.02-y7-math-unit-rate",
+        "lessonId": "lesson:au.02-year-7-mathematics-ratio-as-part-part",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Find a unit rate",
-        "objective": "Learners can divide to express a rate per one unit and state the units of the result.",
+        "title": "Ratio as a comparison and Rationals on a number line",
+        "objective": "Learners can represent a ratio with diagrams or materials and distinguish part–part from part–whole language, including writing a ratio as a fraction of a whole.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.y7.math.unit-rate"
+          "kc:au.year-7.mathematics.ratio-as-part-part",
+          "kc:au.year-7.mathematics.rationals-on-number-line"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.y7.math.equivalent-fractions",
-          "kc:au.y7.math.ratio-notation",
-          "kc:au.y7.math.equivalent-ratios"
+          "kc:au.year-7.mathematics.add-same-denominator-fractions",
+          "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+          "kc:au.year-7.mathematics.fraction-decimal-percent-links"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Generate equivalent fractions; Read and write ratio notation; Recognise equivalent ratios, because retrieval opens every lesson.",
-          "modelling": "Teacher models Find a unit rate, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Find a unit rate, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Find a unit rate with Generate equivalent fractions; Read and write ratio notation; Recognise equivalent ratios so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Generate equivalent fractions; Read and write ratio notation; Recognise equivalent ratios."
+          "review": "Low-stakes retrieval on Add fractions same denominator; Equivalent fractions; Fraction–decimal–percent equivalence, because retrieval opens every lesson.",
+          "modelling": "Teacher models Ratio as a comparison; Rationals on a number line, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Ratio as a comparison; Rationals on a number line, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Ratio as a comparison; Rationals on a number line with Add fractions same denominator; Equivalent fractions; Fraction–decimal–percent equivalence so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Add fractions same denominator; Equivalent fractions; Fraction–decimal–percent equivalence."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Find a unit rate.",
+            "prompt": "A worked example for: Ratio as a comparison.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -570,18 +717,33 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.y7.math.unit-rate"
+            "knowledgeComponentId": "kc:au.year-7.mathematics.ratio-as-part-part"
+          },
+          {
+            "prompt": "A worked example for: Rationals on a number line.",
+            "steps": [
+              "Name the quantities and the comparison the question asks for.",
+              "Write the representation the knowledge component requires.",
+              "Compute the result and state the units.",
+              "Check the result against the comparison."
+            ],
+            "fadedSteps": [
+              2,
+              3
+            ],
+            "knowledgeComponentId": "kc:au.year-7.mathematics.rationals-on-number-line"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Find a unit rate in one sentence.",
-          "Name the error a learner makes when they confuse Find a unit rate with a nearby idea."
+          "Without looking back, state Ratio as a comparison in one sentence.",
+          "Name the error a learner makes when they confuse Ratio as a comparison with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Find a unit rate have to hold before the next component?"
+          "Why does Ratio as a comparison have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.y7.math.unit-rate.03"
+          "item:au.year-7.mathematics.ratio-as-part-part.01",
+          "item:au.year-7.mathematics.rationals-on-number-line.01"
         ],
         "decisions": [
           {
@@ -635,29 +797,30 @@
         ]
       },
       {
-        "lessonId": "lesson:au.03-y7-math-rate-problems",
+        "lessonId": "lesson:au.03-year-7-mathematics-share-in-a-ratio",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Solve rate problems in context",
-        "objective": "Learners can use a unit rate to answer a question about a different quantity, keeping units consistent.",
+        "title": "Share a quantity in a ratio and Model practical ratio problems",
+        "objective": "Learners can partition a given quantity into a stated ratio by finding the value of one part and scaling.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.y7.math.rate-problems"
+          "kc:au.year-7.mathematics.share-in-a-ratio",
+          "kc:au.year-7.mathematics.model-practical-ratio-problems"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.y7.math.equivalent-fractions",
-          "kc:au.y7.math.equivalent-ratios",
-          "kc:au.y7.math.unit-rate"
+          "kc:au.year-7.mathematics.add-same-denominator-fractions",
+          "kc:au.year-7.mathematics.ratio-as-part-part",
+          "kc:au.year-7.mathematics.rationals-on-number-line"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Generate equivalent fractions; Recognise equivalent ratios; Find a unit rate, because retrieval opens every lesson.",
-          "modelling": "Teacher models Solve rate problems in context, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Solve rate problems in context, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Solve rate problems in context with Generate equivalent fractions; Recognise equivalent ratios; Find a unit rate so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Generate equivalent fractions; Recognise equivalent ratios; Find a unit rate."
+          "review": "Low-stakes retrieval on Add fractions same denominator; Ratio as a comparison; Rationals on a number line, because retrieval opens every lesson.",
+          "modelling": "Teacher models Share a quantity in a ratio; Model practical ratio problems, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Share a quantity in a ratio; Model practical ratio problems, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Share a quantity in a ratio; Model practical ratio problems with Add fractions same denominator; Ratio as a comparison; Rationals on a number line so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Add fractions same denominator; Ratio as a comparison; Rationals on a number line."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Solve rate problems in context.",
+            "prompt": "A worked example for: Share a quantity in a ratio.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -668,19 +831,33 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.y7.math.rate-problems"
+            "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio"
+          },
+          {
+            "prompt": "A worked example for: Model practical ratio problems.",
+            "steps": [
+              "Name the quantities and the comparison the question asks for.",
+              "Write the representation the knowledge component requires.",
+              "Compute the result and state the units.",
+              "Check the result against the comparison."
+            ],
+            "fadedSteps": [
+              2,
+              3
+            ],
+            "knowledgeComponentId": "kc:au.year-7.mathematics.model-practical-ratio-problems"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Solve rate problems in context in one sentence.",
-          "Name the error a learner makes when they confuse Solve rate problems in context with a nearby idea."
+          "Without looking back, state Share a quantity in a ratio in one sentence.",
+          "Name the error a learner makes when they confuse Share a quantity in a ratio with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Solve rate problems in context have to hold before the next component?"
+          "Why does Share a quantity in a ratio have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.y7.math.rate-problems.04",
-          "item:au.y7.math.rate-problems.rejected"
+          "item:au.year-7.mathematics.share-in-a-ratio.01",
+          "item:au.year-7.mathematics.model-practical-ratio-problems.01"
         ],
         "decisions": [
           {
@@ -736,20 +913,28 @@
     ],
     "masteryCriteria": [
       {
-        "knowledgeComponentId": "kc:au.y7.math.ratio-notation",
-        "rule": "Four of five items correct on Read and write ratio notation across two separate days."
+        "knowledgeComponentId": "kc:au.year-7.mathematics.equivalent-fractions-via-multiples",
+        "rule": "Four of five items correct on Equivalent fractions across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.y7.math.equivalent-ratios",
-        "rule": "Four of five items correct on Recognise equivalent ratios across two separate days."
+        "knowledgeComponentId": "kc:au.year-7.mathematics.fraction-decimal-percent-links",
+        "rule": "Four of five items correct on Fraction–decimal–percent equivalence across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.y7.math.unit-rate",
-        "rule": "Four of five items correct on Find a unit rate across two separate days."
+        "knowledgeComponentId": "kc:au.year-7.mathematics.ratio-as-part-part",
+        "rule": "Four of five items correct on Ratio as a comparison across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.y7.math.rate-problems",
-        "rule": "Four of five items correct on Solve rate problems in context across two separate days."
+        "knowledgeComponentId": "kc:au.year-7.mathematics.rationals-on-number-line",
+        "rule": "Four of five items correct on Rationals on a number line across two separate days."
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio",
+        "rule": "Four of five items correct on Share a quantity in a ratio across two separate days."
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.model-practical-ratio-problems",
+        "rule": "Four of five items correct on Model practical ratio problems across two separate days."
       }
     ],
     "decisions": [
@@ -782,49 +967,42 @@
   "items": [
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.y7.math.ratio-notation.01",
+      "itemId": "item:au.year-7.mathematics.equivalent-fractions-via-multiples.01",
       "purpose": "formative",
-      "stem": "Which statement correctly applies Read and write ratio notation?",
+      "stem": "Which fraction is equivalent to 2/5?",
       "options": [
         {
           "optionId": "A",
-          "text": "The move required by Read and write ratio notation.",
+          "text": "4/10",
           "correct": true,
-          "rationale": "This is the procedure named in kc:au.y7.math.ratio-notation."
+          "rationale": "Multiply numerator and denominator by 2 to get an equivalent fraction."
         },
         {
           "optionId": "B",
-          "text": "The nearby error: treats ratio as fraction of whole.",
+          "text": "4/7",
           "correct": false,
-          "rationale": "Targets the named misconception for this component.",
-          "misconceptionId": "mc:treats-ratio-as-fraction-of-whole"
+          "rationale": "Adds 2 to both the numerator and the denominator instead of multiplying both by the same number.",
+          "misconceptionId": "mc:au.year-7.mathematics.add-numerators-and-denominators"
         },
         {
           "optionId": "C",
-          "text": "A reversed comparison that changes the meaning.",
+          "text": "3/6",
           "correct": false,
-          "rationale": "Reverses the order the question asked for.",
-          "misconceptionId": "mc:treats-ratio-as-fraction-of-whole"
-        },
-        {
-          "optionId": "D",
-          "text": "An additive move where a multiplicative one is required.",
-          "correct": false,
-          "rationale": "Uses addition in place of scaling.",
-          "misconceptionId": "mc:treats-ratio-as-fraction-of-whole"
+          "rationale": "Adds 1 to both parts of the fraction rather than using a common multiple.",
+          "misconceptionId": "mc:au.year-7.mathematics.add-numerators-and-denominators"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "Option A is the only move that matches Read and write ratio notation.",
+      "keyRationale": "Equivalent fractions are made by multiplying (or dividing) numerator and denominator by the same non-zero whole number.",
       "standardIds": [
-        "std:acara.v9.y7.math.sample-01"
+        "std:acara.v9.ac9m7n04"
       ],
       "knowledgeComponentIds": [
-        "kc:au.y7.math.ratio-notation"
+        "kc:au.year-7.mathematics.equivalent-fractions-via-multiples"
       ],
       "difficulty": {
         "band": "recall",
-        "estimate": 1,
+        "estimate": 2,
         "calibrated": false,
         "difStatus": "not_yet_measured"
       },
@@ -832,45 +1010,38 @@
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.y7.math.equivalent-ratios.02",
+      "itemId": "item:au.year-7.mathematics.fraction-decimal-percent-links.01",
       "purpose": "formative",
-      "stem": "Which statement correctly applies Recognise equivalent ratios?",
+      "stem": "Write 16% as a fraction in simplest form.",
       "options": [
         {
           "optionId": "A",
-          "text": "The move required by Recognise equivalent ratios.",
+          "text": "4/25",
           "correct": true,
-          "rationale": "This is the procedure named in kc:au.y7.math.equivalent-ratios."
+          "rationale": "16% means 16/100, which simplifies by dividing by 4 to give 4/25."
         },
         {
           "optionId": "B",
-          "text": "The nearby error: adds constant to both parts.",
+          "text": "16/10",
           "correct": false,
-          "rationale": "Targets the named misconception for this component.",
-          "misconceptionId": "mc:adds-constant-to-both-parts"
+          "rationale": "Treats the percent as a two-digit whole number over 10 instead of over 100.",
+          "misconceptionId": "mc:au.year-7.mathematics.percent-as-whole-number"
         },
         {
           "optionId": "C",
-          "text": "A reversed comparison that changes the meaning.",
+          "text": "16",
           "correct": false,
-          "rationale": "Reverses the order the question asked for.",
-          "misconceptionId": "mc:adds-constant-to-both-parts"
-        },
-        {
-          "optionId": "D",
-          "text": "An additive move where a multiplicative one is required.",
-          "correct": false,
-          "rationale": "Uses addition in place of scaling.",
-          "misconceptionId": "mc:adds-constant-to-both-parts"
+          "rationale": "Reads 16% as the integer 16 rather than as 16 hundredths.",
+          "misconceptionId": "mc:au.year-7.mathematics.percent-as-whole-number"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "Option A is the only move that matches Recognise equivalent ratios.",
+      "keyRationale": "Percent means per hundred, so 16% = 16/100 = 4/25.",
       "standardIds": [
-        "std:acara.v9.y7.math.sample-01"
+        "std:acara.v9.ac9m7n04"
       ],
       "knowledgeComponentIds": [
-        "kc:au.y7.math.equivalent-ratios"
+        "kc:au.year-7.mathematics.fraction-decimal-percent-links"
       ],
       "difficulty": {
         "band": "apply",
@@ -882,139 +1053,42 @@
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.y7.math.unit-rate.03",
+      "itemId": "item:au.year-7.mathematics.rationals-on-number-line.01",
       "purpose": "formative",
-      "stem": "Which statement correctly applies Find a unit rate?",
+      "stem": "On a number line marked from −2 to 3, which point is halfway between −1 and 2?",
       "options": [
         {
           "optionId": "A",
-          "text": "The move required by Find a unit rate.",
+          "text": "1/2",
           "correct": true,
-          "rationale": "This is the procedure named in kc:au.y7.math.unit-rate."
+          "rationale": "The midpoint of −1 and 2 is (−1 + 2)/2 = 1/2."
         },
         {
           "optionId": "B",
-          "text": "The nearby error: divides in wrong order.",
+          "text": "0",
           "correct": false,
-          "rationale": "Targets the named misconception for this component.",
-          "misconceptionId": "mc:divides-in-wrong-order"
+          "rationale": "Chooses the origin instead of averaging the two endpoints."
         },
         {
           "optionId": "C",
-          "text": "A reversed comparison that changes the meaning.",
+          "text": "1",
           "correct": false,
-          "rationale": "Reverses the order the question asked for.",
-          "misconceptionId": "mc:divides-in-wrong-order"
+          "rationale": "Averages the absolute values or counts one unit from 0 toward 2."
         },
         {
           "optionId": "D",
-          "text": "An additive move where a multiplicative one is required.",
+          "text": "−1/2",
           "correct": false,
-          "rationale": "Uses addition in place of scaling.",
-          "misconceptionId": "mc:divides-in-wrong-order"
+          "rationale": "Takes the negative of the true midpoint."
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "Option A is the only move that matches Find a unit rate.",
+      "keyRationale": "The midpoint of two numbers is their average: (−1 + 2) ÷ 2 = 1/2.",
       "standardIds": [
-        "std:acara.v9.y7.math.sample-02"
+        "std:acara.v9.ac9m7n04"
       ],
       "knowledgeComponentIds": [
-        "kc:au.y7.math.unit-rate"
-      ],
-      "difficulty": {
-        "band": "analyze",
-        "estimate": 3,
-        "calibrated": false,
-        "difStatus": "not_yet_measured"
-      },
-      "evidence": []
-    },
-    {
-      "schemaVersion": "0.1.0",
-      "itemId": "item:au.y7.math.rate-problems.04",
-      "purpose": "formative",
-      "stem": "Which statement correctly applies Solve rate problems in context?",
-      "options": [
-        {
-          "optionId": "A",
-          "text": "The move required by Solve rate problems in context.",
-          "correct": true,
-          "rationale": "This is the procedure named in kc:au.y7.math.rate-problems."
-        },
-        {
-          "optionId": "B",
-          "text": "The nearby error: divides in wrong order.",
-          "correct": false,
-          "rationale": "Targets the named misconception for this component.",
-          "misconceptionId": "mc:divides-in-wrong-order"
-        },
-        {
-          "optionId": "C",
-          "text": "A reversed comparison that changes the meaning.",
-          "correct": false,
-          "rationale": "Reverses the order the question asked for.",
-          "misconceptionId": "mc:divides-in-wrong-order"
-        },
-        {
-          "optionId": "D",
-          "text": "An additive move where a multiplicative one is required.",
-          "correct": false,
-          "rationale": "Uses addition in place of scaling.",
-          "misconceptionId": "mc:divides-in-wrong-order"
-        }
-      ],
-      "correctOptionId": "A",
-      "keyRationale": "Option A is the only move that matches Solve rate problems in context.",
-      "standardIds": [
-        "std:acara.v9.y7.math.sample-02",
-        "std:acara.v9.y7.math.sample-03"
-      ],
-      "knowledgeComponentIds": [
-        "kc:au.y7.math.rate-problems"
-      ],
-      "difficulty": {
-        "band": "recall",
-        "estimate": 4,
-        "calibrated": false,
-        "difStatus": "not_yet_measured"
-      },
-      "evidence": []
-    },
-    {
-      "schemaVersion": "0.1.0",
-      "itemId": "item:au.y7.math.rate-problems.rejected",
-      "purpose": "formative",
-      "stem": "Which of these is the best description of Solve rate problems in context?",
-      "options": [
-        {
-          "optionId": "A",
-          "text": "A correct description.",
-          "correct": true,
-          "rationale": "Defensible."
-        },
-        {
-          "optionId": "B",
-          "text": "An equivalent correct description.",
-          "correct": true,
-          "rationale": "Also defensible. Two keys is why the item is rejected."
-        },
-        {
-          "optionId": "C",
-          "text": "An incorrect description.",
-          "correct": false,
-          "rationale": "Not the component.",
-          "misconceptionId": "mc:divides-in-wrong-order"
-        }
-      ],
-      "correctOptionId": "A",
-      "keyRationale": "Rejected before use: two options are equally defensible.",
-      "standardIds": [
-        "std:acara.v9.y7.math.sample-02",
-        "std:acara.v9.y7.math.sample-03"
-      ],
-      "knowledgeComponentIds": [
-        "kc:au.y7.math.rate-problems"
+        "kc:au.year-7.mathematics.rationals-on-number-line"
       ],
       "difficulty": {
         "band": "analyze",
@@ -1024,8 +1098,145 @@
       },
       "evidence": [],
       "rejection": {
-        "checkId": "check:item.single-defensible-key",
-        "reason": "2 defensible keys. Rejected rather than repaired."
+        "checkId": "check:item.distractor-misconception",
+        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.rationals-on-number-line.01/B, item:au.year-7.mathematics.rationals-on-number-line.01/C, item:au.year-7.mathematics.rationals-on-number-line.01/D. Rejected rather than repaired."
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "itemId": "item:au.year-7.mathematics.ratio-as-part-part.01",
+      "purpose": "formative",
+      "stem": "In a class the ratio of girls to boys is 2 : 3. What fraction of the class is girls?",
+      "options": [
+        {
+          "optionId": "A",
+          "text": "2/5",
+          "correct": true,
+          "rationale": "There are 2 + 3 = 5 parts in total, so girls are 2 of the 5 parts."
+        },
+        {
+          "optionId": "B",
+          "text": "1",
+          "correct": false,
+          "rationale": "Interprets 2 : 3 as a difference of 1 rather than as parts of a whole.",
+          "misconceptionId": "mc:au.year-7.mathematics.ratio-as-difference"
+        },
+        {
+          "optionId": "C",
+          "text": "2/3",
+          "correct": false,
+          "rationale": "Uses the part–part ratio as if it were already a part–whole fraction.",
+          "misconceptionId": "mc:au.year-7.mathematics.ratio-as-difference"
+        }
+      ],
+      "correctOptionId": "A",
+      "keyRationale": "A part–part ratio 2 : 3 has 5 equal parts in the whole, so the girls are 2/5 of the class.",
+      "standardIds": [
+        "std:acara.v9.ac9m7n08"
+      ],
+      "knowledgeComponentIds": [
+        "kc:au.year-7.mathematics.ratio-as-part-part"
+      ],
+      "difficulty": {
+        "band": "apply",
+        "estimate": 3,
+        "calibrated": false,
+        "difStatus": "not_yet_measured"
+      },
+      "evidence": []
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "itemId": "item:au.year-7.mathematics.share-in-a-ratio.01",
+      "purpose": "formative",
+      "stem": "Share $20 in the ratio 2 : 3. How much does the larger share receive?",
+      "options": [
+        {
+          "optionId": "A",
+          "text": "$12",
+          "correct": true,
+          "rationale": "2 + 3 = 5 parts; one part is $4; three parts are $12."
+        },
+        {
+          "optionId": "B",
+          "text": "$3",
+          "correct": false,
+          "rationale": "Gives the two people $2 and $3 instead of finding the value of one of five equal parts.",
+          "misconceptionId": "mc:au.year-7.mathematics.share-by-adding-parts-only"
+        },
+        {
+          "optionId": "C",
+          "text": "$10",
+          "correct": false,
+          "rationale": "Splits the $20 equally rather than in the given ratio.",
+          "misconceptionId": "mc:au.year-7.mathematics.share-by-adding-parts-only"
+        }
+      ],
+      "correctOptionId": "A",
+      "keyRationale": "Total parts = 5; $20 ÷ 5 = $4 per part; larger share = 3 × $4 = $12.",
+      "standardIds": [
+        "std:acara.v9.ac9m7n08"
+      ],
+      "knowledgeComponentIds": [
+        "kc:au.year-7.mathematics.share-in-a-ratio"
+      ],
+      "difficulty": {
+        "band": "apply",
+        "estimate": 3,
+        "calibrated": false,
+        "difStatus": "not_yet_measured"
+      },
+      "evidence": []
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "itemId": "item:au.year-7.mathematics.model-practical-ratio-problems.01",
+      "purpose": "formative",
+      "stem": "A cordial mix needs 1 part concentrate to 4 parts water. How many millilitres of concentrate are needed to make 500 mL of drink?",
+      "options": [
+        {
+          "optionId": "A",
+          "text": "100 mL",
+          "correct": true,
+          "rationale": "1 + 4 = 5 parts; 500 ÷ 5 = 100 mL of concentrate."
+        },
+        {
+          "optionId": "B",
+          "text": "125 mL",
+          "correct": false,
+          "rationale": "Divides 500 by 4 and treats water parts only as the whole."
+        },
+        {
+          "optionId": "C",
+          "text": "400 mL",
+          "correct": false,
+          "rationale": "Uses the water share as if it were the concentrate."
+        },
+        {
+          "optionId": "D",
+          "text": "20 mL",
+          "correct": false,
+          "rationale": "Divides 500 by 1 + 4 × 5 or another incorrect grouping of the parts."
+        }
+      ],
+      "correctOptionId": "A",
+      "keyRationale": "Five equal parts make 500 mL, so one part of concentrate is 100 mL.",
+      "standardIds": [
+        "std:acara.v9.ac9m7m06"
+      ],
+      "knowledgeComponentIds": [
+        "kc:au.year-7.mathematics.model-practical-ratio-problems"
+      ],
+      "difficulty": {
+        "band": "analyze",
+        "estimate": 3,
+        "calibrated": false,
+        "difStatus": "not_yet_measured"
+      },
+      "evidence": [],
+      "rejection": {
+        "checkId": "check:item.distractor-misconception",
+        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D. Rejected rather than repaired."
       }
     }
   ],
@@ -1063,9 +1274,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "4 sources, every one with a licence posture. Cite-only source text is never reproduced in an export.",
+        "detail": "6 sources, every one with a licence posture. Cite-only source text is never reproduced in an export.",
         "counts": {
-          "sources": 4,
+          "sources": 6,
           "unknownLicence": 0
         }
       },
@@ -1074,11 +1285,11 @@
         "label": "Sources were fetched and content-hashed",
         "kind": "deterministic",
         "blocking": false,
-        "status": "fail",
-        "detail": "0 of 4 sources were fetched. The rest are hand-written prototype samples with no span match to an official snapshot.",
+        "status": "pass",
+        "detail": "6 sources fetched and hashed.",
         "counts": {
-          "sources": 4,
-          "fetched": 0
+          "sources": 6,
+          "fetched": 6
         }
       },
       {
@@ -1111,10 +1322,10 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "5 knowledge components, 5 edges, no cycles.",
+        "detail": "7 knowledge components, 7 edges, no cycles.",
         "counts": {
-          "nodes": 5,
-          "edges": 5,
+          "nodes": 7,
+          "edges": 7,
           "cycles": 0
         }
       },
@@ -1126,7 +1337,7 @@
         "status": "pass",
         "detail": "All edge endpoints resolve into the graph.",
         "counts": {
-          "edges": 5,
+          "edges": 7,
           "dangling": 0
         }
       },
@@ -1136,9 +1347,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "5 of 5 edges carry a justification.",
+        "detail": "7 of 7 edges carry a justification.",
         "counts": {
-          "edges": 5,
+          "edges": 7,
           "unjustified": 0
         }
       },
@@ -1150,7 +1361,7 @@
         "status": "pass",
         "detail": "Every knowledge component is either connected or explicitly flagged as an entry point.",
         "counts": {
-          "nodes": 5,
+          "nodes": 7,
           "orphans": 0
         }
       },
@@ -1174,7 +1385,7 @@
         "status": "pass",
         "detail": "Every prerequisite appears before the component that needs it.",
         "counts": {
-          "edges": 5
+          "edges": 7
         }
       },
       {
@@ -1183,9 +1394,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "5 knowledge components scheduled across 3 lessons.",
+        "detail": "7 knowledge components scheduled across 3 lessons.",
         "counts": {
-          "scheduled": 5,
+          "scheduled": 7,
           "unscheduled": 0
         }
       },
@@ -1217,11 +1428,11 @@
         "label": "Each item has exactly one defensible key",
         "kind": "deterministic",
         "blocking": true,
-        "status": "fail",
-        "detail": "1 of 5 items rejected for key problems: item:au.y7.math.rate-problems.rejected.",
+        "status": "pass",
+        "detail": "6 items inspected, each with exactly one key that matches correctOptionId.",
         "counts": {
-          "inspected": 5,
-          "rejected": 1
+          "inspected": 6,
+          "rejected": 0
         }
       },
       {
@@ -1229,11 +1440,11 @@
         "label": "Every incorrect option names a known misconception",
         "kind": "deterministic",
         "blocking": true,
-        "status": "pass",
-        "detail": "13 distractors, all traced to a declared misconception.",
+        "status": "fail",
+        "detail": "6 distractors have no known misconception: item:au.year-7.mathematics.rationals-on-number-line.01/B, item:au.year-7.mathematics.rationals-on-number-line.01/C, item:au.year-7.mathematics.rationals-on-number-line.01/D, item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D.",
         "counts": {
-          "options": 13,
-          "unmapped": 0
+          "options": 14,
+          "unmapped": 6
         }
       },
       {
@@ -1264,10 +1475,10 @@
         "kind": "deterministic",
         "blocking": false,
         "status": "pass",
-        "detail": "Measured demand bands: recall 2, apply 1, analyze 2. Language models skew toward lower-order demand, so this is counted rather than trusted.",
+        "detail": "Measured demand bands: recall 1, apply 3, analyze 2. Language models skew toward lower-order demand, so this is counted rather than trusted.",
         "counts": {
-          "recall": 2,
-          "apply": 1,
+          "recall": 1,
+          "apply": 3,
           "analyze": 2
         }
       },
@@ -1277,9 +1488,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "5 of 5 items are uncalibrated and say so. Differential item functioning is recorded as not yet measured.",
+        "detail": "6 of 6 items are uncalibrated and say so. Differential item functioning is recorded as not yet measured.",
         "counts": {
-          "uncalibrated": 5,
+          "uncalibrated": 6,
           "calibrated": 0
         }
       },
@@ -1302,7 +1513,7 @@
         "kind": "model_critic",
         "blocking": false,
         "status": "abstain",
-        "detail": "No model client configured, so the critic abstained. The gate records an abstention, never a pass.",
+        "detail": "Critic did not return a usable verdict, so it abstained.",
         "counts": {}
       },
       {
@@ -1340,10 +1551,11 @@
       "expert accept rate"
     ],
     "needsHumanReview": [
-      "item:au.y7.math.rate-problems.rejected",
-      "std:acara.v9.y7.math.sample-01",
-      "std:acara.v9.y7.math.sample-02",
-      "std:acara.v9.y7.math.sample-03"
+      "item:au.year-7.mathematics.rationals-on-number-line.01",
+      "item:au.year-7.mathematics.model-practical-ratio-problems.01",
+      "std:acara.v9.ac9m7n04",
+      "std:acara.v9.ac9m7n08",
+      "std:acara.v9.ac9m7m06"
     ],
     "summary": "Prototype bundle built from sample standards. Structure, coverage and item rules check out. Nothing here has earned a claim about learning, difficulty or fairness."
   },
@@ -1352,13 +1564,31 @@
     "runId": "run:demo.au.y7.ratios.0001",
     "requestId": "req:demo.au.y7.ratios",
     "startedAt": "2026-08-15T14:00:00.000Z",
-    "finishedAt": "2026-08-15T14:00:06.750Z",
+    "finishedAt": "2026-08-15T14:00:07.250Z",
     "compilerVersion": "primer-compiler-0.1.1",
-    "modelClient": "mock",
+    "modelClient": "xai",
     "modelCalls": [
       {
+        "agentId": "agent:curriculum-mapper",
+        "model": "grok-4.6",
+        "promptVersion": "curriculum-mapper/2026-08-15.1",
+        "abstained": false,
+        "latencyMs": 22555,
+        "inputTokens": 1828,
+        "outputTokens": 1577
+      },
+      {
+        "agentId": "agent:item-writer",
+        "model": "grok-4.6",
+        "promptVersion": "item-writer/2026-08-15.1",
+        "abstained": false,
+        "latencyMs": 23886,
+        "inputTokens": 1445,
+        "outputTokens": 1905
+      },
+      {
         "agentId": "learning-science-critic",
-        "model": "mock-deterministic",
+        "model": "grok-4.6",
         "promptVersion": "none",
         "abstained": true,
         "latencyMs": 0,
@@ -1367,20 +1597,28 @@
       }
     ],
     "sourceDigests": [
-      "0000000000000000000000000000000000000000000000000000000000000000",
-      "0000000000000000000000000000000000000000000000000000000000000000",
-      "0000000000000000000000000000000000000000000000000000000000000000",
-      "0000000000000000000000000000000000000000000000000000000000000000"
+      "bce982cbb30e09721941a1421a7e3d944345ece29258768d376de1aab8944698",
+      "74de4d467b917f271f236f7196aa85c2fc300b8840f9e1cdca5384f1f2fabd95",
+      "1ea90d8866de8755ef8208e3febe42624a0d9769a2c2b81a3e97347c24b4c720",
+      "206281b327bc3fdb0bbaba51805da6abbb0324e434beb3b9542a4e4d01a0d199",
+      "37aec6929270a0d2826685bd6195b1d829bc0f5fa4aac75138a7334846b38594",
+      "3c0f2ec761a79e218fa60f263f74cf5e08a2014d326991594d61efd9e1ff1312"
     ],
     "revisions": [
       {
         "agentId": "item-writer",
         "attempt": 1,
         "kept": false,
-        "reason": "2 defensible keys. Rejected rather than repaired."
+        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.rationals-on-number-line.01/B, item:au.year-7.mathematics.rationals-on-number-line.01/C, item:au.year-7.mathematics.rationals-on-number-line.01/D. Rejected rather than repaired."
+      },
+      {
+        "agentId": "item-writer",
+        "attempt": 1,
+        "kept": false,
+        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D. Rejected rather than repaired."
       }
     ],
-    "replayable": true
+    "replayable": false
   },
   "approvedByHuman": false
 }

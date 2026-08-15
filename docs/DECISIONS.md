@@ -132,6 +132,51 @@ Rejected: wiring XaiModelClient or waiting for official AC9 re-keying before the
 
 Rejected: dropping the graph panel to avoid touching Engineer 1's client files. Both demo beats need to ship.
 
+## 2026-08-15 12:05: Standards are read from a hashed snapshot, never authored by anything
+
+The mapper is a model call, and the model is never asked what the curriculum says. It is asked how the curriculum
+decomposes. `catalogueFromSnapshot` supplies every `StandardNode` — the official `AC9M7*` code verbatim, the authority's
+own wording, and an evidence span that is the content description itself — and the stage attaches ids, evidence and
+confidence by code after the call returns. A standard code the model invents is dropped and counted; a dangling edge is
+dropped rather than repaired; confidence is computed from span matches rather than self-reported.
+
+The demo request now compiles `AC9M7N04`, `AC9M7N08` and `AC9M7M06` instead of the three invented `SAMPLE-Y7-N-0x`
+placeholders. Handover on `fallbackMap.ts` was taken to re-key it; its knowledge components, edges and misconceptions
+are unchanged, because that pedagogy was good and only the standards layer was fictional.
+
+Rejected: leaving the placeholders in place because they parsed. A bundle whose nodes cite `SAMPLE-Y7-N-01` fails the
+one claim this project makes.
+
+## 2026-08-15 12:05: A registered jurisdiction is not a supported one
+
+An adapter that resolves a stage ladder but has no fetched curriculum used to fall through to the generic map, which
+emitted invented standards under an official authority's name. That is the fake bundle the whole system exists to
+refuse, so `curriculumReadiness` now blocks it: the run refuses with `unresolved_adapter`, names the missing snapshot and
+licence, and ships a four-step collection plan.
+
+This is what the transfer cases are. `us-tx` (Texas, grades) and `in` (NCERT, a stage-and-class ladder) are registered
+with real stage ladders and no curriculum snapshot, so they prove the schema does not care what a stage is called while
+refusing to pretend they are supported. `Year 6` refuses for the same reason on the live jurisdiction. The real transfer
+is `Year 8`, which has its own fetched snapshot and compiles through the same engine against `AC9M8*` codes.
+
+`check:source.standards-fetched` joins the source-check set in the evidence gate, so these refuse at AMBER rather than
+shipping a YELLOW draft. A refusal at YELLOW would render to the client as a draft.
+
+Rejected: precomputing frozen bundles for Texas and India. The handoff is explicit that a case which will not compile
+becomes a documented refusal rather than a fake bundle.
+
+## 2026-08-15 12:05: Low reasoning effort for both generative stages
+
+`grok-4.6` at default effort took over 90 seconds on the mapper prompt and timed out. At `reasoning_effort: "low"` the
+mapper answers in about 25 seconds and the item writer in about 19, and the output is a decomposition a teacher would
+recognise. These stages are structured decomposition and item writing, not open-ended reasoning, and a stage that times
+out helps nobody. Ten live runs finished 10/10 at roughly 49 seconds each, inside the 180 second AC-1 budget.
+
+Span matching also had to learn one thing: a snapshot whose bytes are JSON holds its text escaped, so a content
+description containing LaTeX appeared as `\\(` and a real citation was reported unsupported. The matcher now retries in
+the snapshot's own encoding, which widens a match by exactly one re-encoding of the same characters and never by fuzzy
+matching. All 30 Year 7 content descriptions span-match.
+
 ## 2026-08-15 12:20: Merge-bugfixes after Engineer 2 landed
 
 The compiler never sets status to published. Frozen transfer cards no longer write a fixture run id into the load box. Pipeline stage colour treats a later success as a pass so a mapper that abstains then falls back does not stay amber. Provenance hover hides cite-only spans.
