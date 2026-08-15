@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "0.1.0",
+  "runId": "run:demo.au.y7.ratios.refusal",
+  "status": "refused",
+  "request": {
+    "schemaVersion": "0.1.0",
+    "requestId": "req:demo.au.y7.ratios",
+    "jurisdictionId": "au",
+    "curriculumSourceId": "acara.v9",
+    "stage": { "localLabel": "Year 7", "ageBand": [12, 13], "ordinal": 8 },
+    "subject": "Mathematics",
+    "standardIds": [
+      "std:acara.v9.y7.math.sample-01",
+      "std:acara.v9.y7.math.sample-02",
+      "std:acara.v9.y7.math.sample-03"
+    ],
+    "locale": {
+      "bcp47": "en-AU",
+      "script": "Latn",
+      "numeralSystem": "latn",
+      "direction": "ltr",
+      "resourceTier": "high"
+    },
+    "goal": "Produce practice that predicts performance on the official exam.",
+    "learnerContext": {
+      "priorKnowledgeNotes": "Class is shaky on equivalent fractions.",
+      "dailyMinutes": 20,
+      "accessibilityNeeds": []
+    },
+    "assessmentTarget": "official_exam_emulation",
+    "lessonCount": 3
+  },
+  "sourceManifest": {
+    "schemaVersion": "0.1.0",
+    "sources": [
+      {
+        "sourceId": "src:acara.v9.terms",
+        "title": "Australian Curriculum: copyright and terms of use (licence evidence only, content descriptions not yet fetched)",
+        "publisher": "Australian Curriculum, Assessment and Reporting Authority",
+        "url": "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+        "retrievedAt": "2026-08-15T14:05:00Z",
+        "contentSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "fetched": false,
+        "licence": {
+          "licenceId": "cc-by-4.0",
+          "posture": "redistributable",
+          "mayQuote": true,
+          "mayRedistribute": true,
+          "attributionText": "Australian Curriculum, Assessment and Reporting Authority (ACARA), licensed CC BY 4.0.",
+          "excludedMaterial": [
+            "ACARA logos and other trade marks",
+            "website design",
+            "third-party material",
+            "National Literacy Learning Progressions (CC BY-NC 4.0)"
+          ]
+        }
+      }
+    ]
+  },
+  "items": [],
+  "gateReport": {
+    "schemaVersion": "0.1.0",
+    "verdict": "AMBER",
+    "permission": "investigate",
+    "checks": [
+      {
+        "checkId": "check:request.schema-valid",
+        "label": "Request parses against contracts 0.1.0",
+        "kind": "deterministic",
+        "blocking": true,
+        "status": "pass",
+        "detail": "Request is well formed.",
+        "counts": {}
+      },
+      {
+        "checkId": "check:blueprint.present",
+        "label": "Official exam emulation requires a fetched blueprint",
+        "kind": "deterministic",
+        "blocking": true,
+        "status": "fail",
+        "detail": "Assessment target is official exam emulation and no blueprint was fetched for this jurisdiction, stage and subject. Refused before generating any content.",
+        "counts": { "blueprintsFound": 0 }
+      },
+      {
+        "checkId": "check:source.snapshot-fetched",
+        "label": "Sources were fetched and content-hashed",
+        "kind": "deterministic",
+        "blocking": false,
+        "status": "fail",
+        "detail": "The only recorded source is a prototype sample, not a fetched snapshot.",
+        "counts": { "sources": 1, "fetched": 0 }
+      }
+    ],
+    "missingEvidence": [
+      "A fetched assessment blueprint with item counts per reporting category",
+      "A fetched set of released items with keys and rationales",
+      "Fetched and content-hashed content descriptions with official codes"
+    ],
+    "unmeasured": [
+      "blueprint conformance",
+      "item difficulty calibration",
+      "learner outcomes"
+    ],
+    "needsHumanReview": [],
+    "summary": "Refused. Emulating an official exam without its blueprint would be a validity claim this run has not earned."
+  },
+  "runManifest": {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.refusal",
+    "requestId": "req:demo.au.y7.ratios",
+    "startedAt": "2026-08-15T14:05:00Z",
+    "finishedAt": "2026-08-15T14:05:00Z",
+    "compilerVersion": "primer-compiler-scaffold-0.1.0",
+    "modelClient": "mock",
+    "modelCalls": [],
+    "sourceDigests": [
+      "0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "revisions": [],
+    "replayable": true
+  },
+  "refusal": {
+    "code": "missing_blueprint",
+    "requested": "A Year 7 Mathematics unit whose practice items emulate the official exam.",
+    "missingEvidence": [
+      "The official blueprint for this jurisdiction, stage and subject, fetched and content-hashed",
+      "Released items with published keys and rationales to check tag agreement against",
+      "An expert review sample large enough for an interval to be interpretable"
+    ],
+    "collectionPlan": [
+      "Fetch the jurisdiction's published blueprint, record its URL, retrieval time, digest and licence.",
+      "Fetch a released form with its answer key and item rationales, keep it local if the licence forbids redistribution.",
+      "Re-run with assessment target set to unit test to get a formative bundle now, then upgrade once the blueprint is in the snapshot store.",
+      "Recruit two subject reviewers and hold a frozen sample for a single scored review."
+    ]
+  },
+  "approvedByHuman": false
+}
