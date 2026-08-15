@@ -1,0 +1,41 @@
+tests/graphAuditor.test.ts
+  s_e6781d56c649b5::t_ee7ce6116b3b58 72-80
+server/compiler/export/publicBundle.ts
+  s_e6781d56c649b5::t_f0f53d6329a572 1-181
+tests/sequencePlanner.test.ts
+  s_e6781d56c649b5::t_75905b1244e316 33-48
+server/routes.ts
+  s_e6781d56c649b5::t_c8c884c4a66677 5-6,18-19
+  s_e6781d56c649b5::t_af83a7495eb4e9 62-81
+tests/licenceGate.test.ts
+  s_e6781d56c649b5::t_fe3f371ec5678a 78-87
+server/compiler/index.ts
+  s_e6781d56c649b5::t_79bb3281b96387 47,54,62,68-69
+  s_e6781d56c649b5::t_88efc0ba7d58ea 31-39
+  s_e6781d56c649b5::t_347904bcd4c339 70
+server/compiler/export/graphView.ts
+  s_e6781d56c649b5::t_cbb33ee8eeee46 1-80
+script/reliability.ts
+  s_e6781d56c649b5::t_ff729252a75f18 4
+  s_e6781d56c649b5::t_49a7283fc7e769 30-37
+docs/DECISIONS.md
+  s_e6781d56c649b5::t_e383817d4f75db 102-109
+tests/publicExport.test.ts
+  s_e6781d56c649b5::t_59d561ef933e9c 1-116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "dea9a20f9d8ef271cb67cdc4600ba0b58d13abf0",
+  "prompts": {},
+  "sessions": {
+    "s_e6781d56c649b5": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f50e34a-a582-422f-a697-13eb0c0846d7",
+        "model": "cursor-grok-4.6-high-fast"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
