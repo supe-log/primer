@@ -20,8 +20,19 @@ describe("sequence planner", () => {
     expect(() => CoursePlan.parse(plan)).not.toThrow();
     expect(plan.lessons).toHaveLength(demoRequest.lessonCount);
 
-    const failures = validateCoursePlan(plan, sample.graph!).filter((check) => check.status === "fail");
+    // Structural checks pass on the planner's own output. The arc check does not,
+    // and should not: at sequencing time no items exist, so the lesson cannot yet
+    // deliver guided or independent practice. It is validated after items attach.
+    const failures = validateCoursePlan(plan, sample.graph!).filter(
+      (check) => check.status === "fail" && check.checkId !== "check:lesson.arc-complete",
+    );
     expect(failures).toHaveLength(0);
+
+    const arc = validateCoursePlan(plan, sample.graph!).find(
+      (check) => check.checkId === "check:lesson.arc-complete",
+    );
+    expect(arc?.status).toBe("fail");
+    expect(arc?.detail).toContain("cannot deliver every phase");
   });
 
   it("is deterministic for the same graph and request", () => {
