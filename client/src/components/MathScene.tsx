@@ -1,5 +1,30 @@
-import { useMemo, useState } from "react";
+import { type ReactNode, useMemo, useState } from "react";
 import { parseMathScene, type MathScene } from "@/lib/mathScene";
+
+export function prettyMath(text: string): ReactNode {
+  const chunks = text.split(/(\d+\^\d+)/g);
+  return chunks.map((chunk, index) => {
+    const power = chunk.match(/^(\d+)\^(\d+)$/);
+    if (power) {
+      return (
+        <span key={`${chunk}-${index}`}>
+          {power[1]}
+          <sup>{power[2]}</sup>
+        </span>
+      );
+    }
+    return <span key={`${chunk}-${index}`}>{chunk}</span>;
+  });
+}
+
+function Power({ base, exp }: { base: number; exp: number }) {
+  return (
+    <span className="learner-math">
+      {base}
+      <sup>{exp}</sup>
+    </span>
+  );
+}
 
 type Mode = "look" | "hint";
 
@@ -82,7 +107,7 @@ function RatioCounters({
         </span>
       </div>
       {grouped ? (
-        <p className="learner-pixel mt-3 text-center text-lg font-bold">{whole} in all</p>
+        <p className="learner-math mt-3 text-center text-xl">{whole} in all</p>
       ) : (
         <button type="button" className="learner-btn-quiet mt-3 w-full" onClick={() => setGrouped(true)}>
           Show all
@@ -108,8 +133,8 @@ function ShareBar({
         {Array.from({ length: parts }, (_, i) => (
           <span
             key={i}
-            className={`flex h-12 flex-1 items-center justify-center text-sm font-bold ${
-              i < scene.left ? "bg-[#6abe30]" : "bg-[#5b6ee1]"
+            className={`flex h-12 flex-1 items-center justify-center text-base font-bold ${
+              i < scene.left ? "bg-[#6abe30] text-[#14110d]" : "bg-[#5b6ee1] text-white"
             }`}
           >
             {open ? `${scene.unit}${each}` : "?"}
@@ -129,7 +154,7 @@ function FractionBar({ num, den, label }: { num: number; den: number; label: str
   const shown = Math.min(den, 24);
   return (
     <div>
-      <p className="learner-pixel text-center text-lg font-bold">{label}</p>
+      <p className="learner-math text-center text-2xl">{label}</p>
       <div className="mt-2 flex h-10 overflow-hidden">
         {Array.from({ length: shown }, (_, i) => (
           <span
@@ -174,9 +199,9 @@ function NumberLine({ scene }: { scene: Extract<MathScene, { kind: "number-line"
                 className={`block w-0.5 ${isMid ? "h-5 bg-[#d95763]" : isEnd ? "h-4 bg-[#5b6ee1]" : "h-2 bg-[hsl(24_28%_14%)]"}`}
               />
               {Number.isInteger(tick) ? (
-                <span className="mt-1 text-[10px]">{tick}</span>
+                <span className="mt-1 text-xs font-semibold">{tick}</span>
               ) : isMid ? (
-                <span className="mt-1 text-[10px] font-bold text-[#d95763]">?</span>
+                <span className="mt-1 text-xs font-bold text-[#d95763]">?</span>
               ) : null}
             </span>
           );
@@ -225,8 +250,10 @@ function PowerProduct({
   const [open, setOpen] = useState(mode === "look");
   return (
     <div>
-      <p className="learner-pixel text-center text-lg font-bold">
-        {scene.base}^{scene.expA} × {scene.base}^{scene.expB}
+      <p className="text-center text-2xl font-bold leading-tight">
+        <Power base={scene.base} exp={scene.expA} />
+        <span className="mx-1">×</span>
+        <Power base={scene.base} exp={scene.expB} />
       </p>
       {open ? (
         <p className="mt-3 flex flex-wrap justify-center gap-1 text-sm">
@@ -255,11 +282,15 @@ function ZeroPower({ base, mode }: { base: number; mode: Mode }) {
   const [open, setOpen] = useState(mode === "look");
   return (
     <div>
-      <p className="learner-pixel text-center text-lg font-bold">
-        {base}³ ÷ {base}³
+      <p className="text-center text-2xl font-bold leading-tight">
+        <Power base={base} exp={3} />
+        <span className="mx-1">÷</span>
+        <Power base={base} exp={3} />
       </p>
       {open ? (
-        <p className="learner-pixel mt-3 text-center text-lg font-bold">{base}⁰</p>
+        <p className="mt-3 text-center text-2xl font-bold">
+          <Power base={base} exp={0} />
+        </p>
       ) : (
         <button type="button" className="learner-btn-quiet mt-3 w-full" onClick={() => setOpen(true)}>
           Cancel
@@ -273,7 +304,7 @@ function DecimalStrip({ num, den }: { num: number; den: number }) {
   const value = num / den;
   return (
     <div>
-      <p className="learner-pixel text-center text-lg font-bold">
+      <p className="learner-math text-center text-2xl">
         {num} ÷ {den}
       </p>
       <div className="mt-2 h-8 overflow-hidden bg-[hsl(40_50%_96%)]">
@@ -290,14 +321,14 @@ function RootLine({ root, mode }: { root: number; mode: Mode }) {
   const pct = ((value - 1) / 1) * 100;
   return (
     <div>
-      <p className="learner-pixel text-center text-lg font-bold">√{root}</p>
+      <p className="learner-math text-center text-2xl">√{root}</p>
       <div className="relative mt-4 h-2 bg-[hsl(24_28%_14%)]">
         <span
           className="absolute -top-3 h-4 w-1 bg-[#d95763]"
           style={{ left: `${Math.min(90, Math.max(10, pct))}%` }}
         />
       </div>
-      <div className="mt-2 flex justify-between text-xs">
+      <div className="mt-2 flex justify-between text-sm font-semibold">
         <span>1.0</span>
         <span className="font-bold">{mode === "look" ? `${low} · ${high}` : "?"}</span>
         <span>2.0</span>
@@ -312,8 +343,8 @@ function SquareTiles({ base, exp, mode }: { base: number; exp: number; mode: Mod
   const [open, setOpen] = useState(mode === "look");
   return (
     <div>
-      <p className="learner-pixel text-center text-lg font-bold">
-        {base}^{exp}
+      <p className="text-center text-2xl font-bold">
+        <Power base={base} exp={exp} />
       </p>
       {open ? (
         <div
