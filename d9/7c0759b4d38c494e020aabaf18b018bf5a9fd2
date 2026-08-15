@@ -1,0 +1,139 @@
+.cursor/rules/primer-compiler.mdc
+  s_207d06870c4a11::t_832bf82ae4c993 1-54
+.env.example
+  s_207d06870c4a11::t_3bcf108f0987df 1-9
+.gitignore
+  s_207d06870c4a11::t_c87021d6b86d1a 1-11
+AGENTS.md
+  s_207d06870c4a11::t_2eddf3ee129457 1-70
+ENGINEERING_HANDOFF.md
+  s_207d06870c4a11::t_00d37521f82023 1-1251
+README.md
+  s_207d06870c4a11::t_045b1398326c51 1-93
+client/index.html
+  s_207d06870c4a11::t_e754161b11e57c 1-27
+client/src/App.tsx
+  s_207d06870c4a11::t_e4243468e6b089 1-11
+client/src/components/ArtifactSummary.tsx
+  s_207d06870c4a11::t_9eec39d0756bc8 1-116
+client/src/components/GateVerdictPanel.tsx
+  s_207d06870c4a11::t_703760981566f5 1-94
+client/src/components/IntakeForm.tsx
+  s_207d06870c4a11::t_76ea876fddaae2 1-244
+client/src/components/PipelineStatus.tsx
+  s_207d06870c4a11::t_5481f06e67103f 1-92
+client/src/components/primitives.tsx
+  s_207d06870c4a11::t_ef23e36668d23c 1-108
+client/src/index.css
+  s_207d06870c4a11::t_019a79ea1a22e9 1-90
+client/src/lib/api.ts
+  s_207d06870c4a11::t_f12b431720c650 1-91
+client/src/lib/queryClient.ts
+  s_207d06870c4a11::t_a494988a2e20e3 1-56
+client/src/main.tsx
+  s_207d06870c4a11::t_39cc0c172eba55 1-5
+client/src/pages/Compile.tsx
+  s_207d06870c4a11::t_a4a27e6dc87358 1-138
+docs/DECISIONS.md
+  s_207d06870c4a11::t_a721e0e76688ff 1-95
+docs/PARALLEL_BUILD.md
+  s_207d06870c4a11::t_6a4ca2e98c83d5 1-74
+docs/SCHEMA_CHANGELOG.md
+  s_207d06870c4a11::t_006d06e4a0916e 1-56
+fixtures/agent-events.json
+  s_207d06870c4a11::t_bd7cd8d1118f84 1-156
+fixtures/compilation-result.json
+  s_207d06870c4a11::t_59d625c7b557ab 1-964
+fixtures/demo-request.json
+  s_207d06870c4a11::t_96b3be9792e7d6 1-32
+fixtures/refusal-result.json
+  s_207d06870c4a11::t_db8fd12746cce2 1-138
+package.json
+  s_207d06870c4a11::t_6390a8075f7e1c 1-42
+postcss.config.js
+  s_207d06870c4a11::t_4b6db843706155 1-6
+script/build.ts
+  s_207d06870c4a11::t_81c80c51af0b19 1-39
+server/compiler/adapters/jurisdiction.ts
+  s_207d06870c4a11::t_33c9e70ec336b2 1-87
+server/compiler/evidenceGate.ts
+  s_207d06870c4a11::t_96a6dff4e03841 1-73
+server/compiler/fixtureStore.ts
+  s_207d06870c4a11::t_b5ffcaf4062f85 1-24
+server/compiler/index.ts
+  s_207d06870c4a11::t_20ca9aa34752cb 1-61
+server/compiler/model/modelClient.ts
+  s_207d06870c4a11::t_469dc5f7c0f9a3 1-63
+server/compiler/orchestrator.ts
+  s_207d06870c4a11::t_2f20322ff66b32 1-496
+server/compiler/validators/graph.ts
+  s_207d06870c4a11::t_ff4f242f50a41f 1-179
+server/compiler/validators/index.ts
+  s_207d06870c4a11::t_df5296fa4644de 1-204
+server/compiler/validators/items.ts
+  s_207d06870c4a11::t_4570ddafd4bdf2 1-134
+server/index.ts
+  s_207d06870c4a11::t_a57a67d0b31429 1-53
+server/routes.ts
+  s_207d06870c4a11::t_3328944438c633 1-94
+server/static.ts
+  s_207d06870c4a11::t_f83d57b062d5bb 1-20
+server/vite.ts
+  s_207d06870c4a11::t_d45fe4e135e518 1-58
+shared/contracts/course.ts
+  s_207d06870c4a11::t_ff9ccdd38c5fe7 1-103
+shared/contracts/events.ts
+  s_207d06870c4a11::t_0aed4ebbbf7b76 1-45
+shared/contracts/gate.ts
+  s_207d06870c4a11::t_090cdaffed07e8 1-53
+shared/contracts/graph.ts
+  s_207d06870c4a11::t_5962e9827a93c5 1-78
+shared/contracts/index.ts
+  s_207d06870c4a11::t_99e1f0908fc1a8 1-30
+shared/contracts/items.ts
+  s_207d06870c4a11::t_ed050cac7df56e 1-71
+shared/contracts/primitives.ts
+  s_207d06870c4a11::t_9234ee4dbfdee5 1-108
+shared/contracts/request.ts
+  s_207d06870c4a11::t_20a624aa50d923 1-44
+shared/contracts/result.ts
+  s_207d06870c4a11::t_1e2d65283fe602 1-97
+shared/contracts/run.ts
+  s_207d06870c4a11::t_76fbfa72524d81 1-51
+shared/contracts/source.ts
+  s_207d06870c4a11::t_e1d39f2283048d 1-64
+shared/contracts/version.ts
+  s_207d06870c4a11::t_7a86a3413a84f6 1-12
+tailwind.config.ts
+  s_207d06870c4a11::t_37d85b821e3e3f 1-48
+tests/compiler.test.ts
+  s_207d06870c4a11::t_670c01174948d0 1-135
+tests/contracts.test.ts
+  s_207d06870c4a11::t_d96885f27dc8cb 1-120
+tests/validators.test.ts
+  s_207d06870c4a11::t_dbd24875f62d06 1-151
+tsconfig.json
+  s_207d06870c4a11::t_45624817b5656d 1-28
+vite.config.ts
+  s_207d06870c4a11::t_b7c013b0e6812c 1-23
+vitest.config.ts
+  s_207d06870c4a11::t_ad25f73a7a3085 1-15
+package-lock.json
+  s_207d06870c4a11::t_5fc681313c36b1 1-6147
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "d97c0759b4d38c494e020aabaf18b018bf5a9fd2",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
