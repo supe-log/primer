@@ -80,6 +80,98 @@
   }
 }
 
+/* Learner device: Kenney 16px Pixel UI, always a warm classroom. */
+.learner-device {
+  --background: 40 42% 88%;
+  --surface: 40 50% 96%;
+  --surface-alt: 36 36% 90%;
+  --border: 28 18% 42%;
+  --foreground: 24 28% 14%;
+  --muted-foreground: 24 14% 28%;
+  --primary: 142 48% 28%;
+  --primary-foreground: 48 80% 96%;
+  --success: 142 48% 28%;
+  --warning: 42 80% 38%;
+  --error: 8 62% 38%;
+  color: hsl(var(--foreground));
+}
+
+.px-slice {
+  border-style: solid;
+  border-color: transparent;
+  border-image-slice: 16 fill;
+  border-image-repeat: stretch;
+  image-rendering: pixelated;
+}
+
+.px-screen {
+  border-width: 14px;
+  border-image-source: url("/kenney/pixel-ui/tan.png");
+}
+
+.px-card {
+  border-width: 10px;
+  border-image-source: url("/kenney/pixel-ui/tan-inlay.png");
+}
+
+.px-card-yellow {
+  border-width: 10px;
+  border-image-source: url("/kenney/pixel-ui/yellow.png");
+}
+
+.px-card-blue {
+  border-width: 10px;
+  border-image-source: url("/kenney/pixel-ui/blue.png");
+}
+
+.px-btn {
+  border-width: 10px;
+  border-image-source: url("/kenney/pixel-ui/green.png");
+}
+
+.px-btn:active:not(:disabled),
+.px-btn.is-pressed {
+  border-image-source: url("/kenney/pixel-ui/green-pressed.png");
+}
+
+.px-btn-blue {
+  border-width: 10px;
+  border-image-source: url("/kenney/pixel-ui/blue.png");
+}
+
+.px-btn-grey {
+  border-width: 10px;
+  border-image-source: url("/kenney/pixel-ui/grey.png");
+}
+
+.px-choice {
+  border-width: 8px;
+  border-image-source: url("/kenney/pixel-ui/outline-blue.png");
+}
+
+.px-choice-on {
+  border-image-source: url("/kenney/pixel-ui/blue.png");
+}
+
+.px-choice-yes {
+  border-image-source: url("/kenney/pixel-ui/green.png");
+}
+
+.px-choice-no {
+  border-image-source: url("/kenney/pixel-ui/red.png");
+}
+
+@layer components {
+  .learner-btn {
+    @apply px-slice px-btn min-h-12 w-full px-4 py-3 text-base font-semibold text-[hsl(24_28%_12%)]
+      disabled:opacity-50;
+  }
+
+  .learner-btn-quiet {
+    @apply px-slice px-btn-grey min-h-11 px-3 py-2 text-sm font-medium disabled:opacity-50;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

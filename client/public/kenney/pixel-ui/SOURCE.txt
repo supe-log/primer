@@ -1,0 +1,7 @@
+Kenney Pixel UI Pack
+https://kenney.nl/assets/pixel-ui-pack
+License: CC0 1.0 Universal (see LICENSE.txt)
+
+This folder is a curated 16px subset: 9-slice panels and buttons only.
+The full spritesheet was not vendored so combat icons never enter the
+learner app. One grid, one palette, no 32px mix.
