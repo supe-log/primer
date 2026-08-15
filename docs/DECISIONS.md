@@ -233,3 +233,11 @@ Rejected: leaving the SAMPLE checkboxes because submit still sent the real ids. 
 The snapshot store holds Year 7 and Year 8. A Year 7 compile was listing the Year 8 curriculum in the export and artifact source list. Citations now come from evidence on the graph, lessons and items. A refusal with no artifacts still exports the full manifest so observing stays allowed.
 
 Rejected: hiding Year 8 only in the client. The public export is the artifact that may leave the box.
+
+## 2026-08-15 13:06: Vercel serves the Vite build and one Express function
+
+The demo URL is a Vite static output plus `api/index.ts` wrapping the same Express routes as local `npm start`. All `/api/*` traffic hits one isolate so compile, SSE, graph and export share the process-local run store. `maxDuration` is 300 seconds because a live grok compile can exceed the hobby default. `XAI_API_KEY` stays a Vercel env var, never a file in the repo.
+
+Rejected: deploying the bundled `dist/index.cjs` as a long-running listen server. Vercel does not give us a persistent process, and the CDN should serve the client.
+
+The first production isolate failed with `ERR_MODULE_NOT_FOUND` for `server/app` because Vercel compiled `api/index.ts` without emitting the rest of the TypeScript graph. The function now loads an esbuild ESM bundle (`dist/function.js`) so path aliases and JSON snapshots are resolved at build time.

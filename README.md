@@ -32,6 +32,18 @@ touches the network and never depends on a model being reachable.
 Try both paths in the app: submit the prefilled form for a draft bundle, then switch the assessment target to official
 exam emulation to see the refusal.
 
+## Deploy (Vercel)
+
+The client is a Vite static build. `/api/*` is one Express function so compile, stream, graph and export share the
+in-memory run store. Set `XAI_API_KEY` in the Vercel project if you want the live model path; without it the
+deterministic fallback still compiles.
+
+```bash
+npx vercel link
+npx vercel env add XAI_API_KEY
+npx vercel --prod
+```
+
 ## Ownership map
 
 | Path | Owner |
