@@ -1,0 +1,43 @@
+server/compiler/model/xaiModelClient.ts
+  s_207d06870c4a11::t_8a2fc706ea4fe2 1-212
+server/compiler/sources/catalogue.ts
+  s_207d06870c4a11::t_30eda71a1fdb4c 108-119
+  s_207d06870c4a11::t_679cc5eabc6e51 1-13,15-107,120-131
+  s_207d06870c4a11::t_58cb342fa1accb 14
+server/compiler/adapters/jurisdiction.ts
+  s_207d06870c4a11::t_a5c5f0ddf85130 84-85,93-96
+  s_207d06870c4a11::t_b4e887b91f38a1 26-35
+  s_207d06870c4a11::t_bec12d90df21e6 58-66
+server/compiler/stages/fallbackMap.ts
+  s_207d06870c4a11::t_8e65d004f735fe 10,19-24,27,29-34
+  s_207d06870c4a11::t_2523b848259d01 202,207-208
+  s_207d06870c4a11::t_05957c023a89c8 282,285-286,292-299
+  s_207d06870c4a11::t_4d6b68e4b3718e 163,168-169
+  s_207d06870c4a11::t_388290c9a9acb2 110-113
+  s_207d06870c4a11::t_60cdcad186452b 189,194-195
+  s_207d06870c4a11::t_a7f8a7de140866 65-96
+  s_207d06870c4a11::t_d3ed92770a8ba3 175-177,182-183
+  s_207d06870c4a11::t_0f23b24713aa29 263-278
+fixtures/demo-request.json
+  s_207d06870c4a11::t_719fa9c9a1dc16 13-15
+server/compiler/orchestrator.ts
+  s_207d06870c4a11::t_7bfe2bfae92cd0 180
+  s_207d06870c4a11::t_ce3efa670b73a5 160-170
+  s_207d06870c4a11::t_f988d6480d14b2 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "3b17b336e7abf30ae44ad3fdb556c093dba38795",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
