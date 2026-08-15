@@ -82,6 +82,11 @@ describe("gate arithmetic", () => {
         { ...baseCheck, checkId: "check:source.licence-known", status: "fail" },
       ]),
     ).toEqual({ verdict: "AMBER", permission: "investigate" });
+    expect(
+      evaluateGate([
+        { ...baseCheck, checkId: "check:source.cite-only-no-redistribute", status: "fail" },
+      ]),
+    ).toEqual({ verdict: "AMBER", permission: "investigate" });
   });
 
   it("returns YELLOW when another blocking check fails", () => {

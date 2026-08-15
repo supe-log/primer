@@ -93,3 +93,9 @@ artifact. If there is no student data field, there is no student data breach, an
 scope for the prototype.
 
 Rejected: collecting a learner name to personalize output.
+
+## 2026-08-15 11:30: Deterministic fallback stages sit beside the snapshot store
+
+Engineer 1 split: live ACARA fetch and the snapshot store stay in `server/compiler/sources/`. The complementary slice is the licence policy engine, the graph auditor's two-pass repair and abstain path, and a deterministic sequence planner plus item bank used when the model client abstains. The orchestrator calls those stages instead of replaying fixture artifacts, so MockModelClient still produces a full bundle and a rejected item still ships with a stated reason.
+
+Rejected: waiting for the xAI client before replacing fixture replay. The handoff says the deterministic half is the stage fallback and the part a judge can verify.
