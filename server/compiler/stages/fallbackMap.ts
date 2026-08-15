@@ -6,7 +6,7 @@ import type {
   SourceManifest,
   StandardNode,
 } from "@contracts";
-import type { JurisdictionAdapter } from "../adapters/jurisdiction";
+import { catalogueSourceIdFor, type JurisdictionAdapter } from "../adapters/jurisdiction";
 import { catalogueFromSnapshot } from "../sources/catalogue";
 
 /**
@@ -71,9 +71,11 @@ function primarySourceId(manifest: SourceManifest): string {
 function catalogueStandards(
   adapter: JurisdictionAdapter,
   standardIds: readonly string[],
+  stageLabel: string,
 ): StandardNode[] {
-  if (!adapter.catalogueSourceId) return [];
-  const catalogue = catalogueFromSnapshot(adapter.catalogueSourceId);
+  const sourceId = catalogueSourceIdFor(adapter, stageLabel);
+  if (!sourceId) return [];
+  const catalogue = catalogueFromSnapshot(sourceId);
   if (!catalogue) return [];
   return catalogue.resolve(standardIds);
 }
@@ -110,7 +112,7 @@ function demoGraph(
   // Standards are read, never written. The catalogue returns the authority's own
   // codes and wording out of the hashed snapshot; if it cannot, the request had no
   // fetched curriculum behind it and the caller must refuse rather than improvise.
-  const standards: StandardNode[] = catalogueStandards(adapter, [...DEMO_STANDARD_IDS]);
+  const standards: StandardNode[] = catalogueStandards(adapter, [...DEMO_STANDARD_IDS], request.stage.localLabel);
 
   const misconceptions: Misconception[] = [
     {
@@ -264,7 +266,7 @@ function genericGraph(
   // Prefer the fetched curriculum for any id the snapshot knows. Only ids with no
   // snapshot behind them fall back to an explicitly unofficial placeholder, and the
   // placeholder says so in its source code so nobody mistakes it for a standard.
-  const resolved = catalogueStandards(adapter, request.standardIds);
+  const resolved = catalogueStandards(adapter, request.standardIds, request.stage.localLabel);
   const byId = new Map(resolved.map((standard) => [standard.standardId, standard]));
   const standards: StandardNode[] = request.standardIds.map((standardId, index) => {
     const known = byId.get(standardId);

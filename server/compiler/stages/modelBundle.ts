@@ -4,7 +4,7 @@ import type {
   ModelCallRecord,
   SourceManifest,
 } from "@contracts";
-import type { JurisdictionAdapter } from "../adapters/jurisdiction";
+import { catalogueSourceIdFor, type JurisdictionAdapter } from "../adapters/jurisdiction";
 import type { ModelClient } from "../model/modelClient";
 import { catalogueFromSnapshot } from "../sources/catalogue";
 import { buildFallbackBundle, type FallbackBundle } from "./fallbackBundle";
@@ -59,9 +59,8 @@ export async function buildModelBundle(input: {
   const notes: StageNote[] = [];
   const modelCalls: ModelCallRecord[] = [];
 
-  const catalogue = adapter.catalogueSourceId
-    ? catalogueFromSnapshot(adapter.catalogueSourceId)
-    : undefined;
+  const catalogueSourceId = catalogueSourceIdFor(adapter, request.stage.localLabel);
+  const catalogue = catalogueSourceId ? catalogueFromSnapshot(catalogueSourceId) : undefined;
 
   // Stage 2, graph construction.
   let graph = undefined as ModelBundle["graph"];
