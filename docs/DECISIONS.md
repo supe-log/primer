@@ -233,3 +233,44 @@ Rejected: leaving the SAMPLE checkboxes because submit still sent the real ids. 
 The snapshot store holds Year 7 and Year 8. A Year 7 compile was listing the Year 8 curriculum in the export and artifact source list. Citations now come from evidence on the graph, lessons and items. A refusal with no artifacts still exports the full manifest so observing stays allowed.
 
 Rejected: hiding Year 8 only in the client. The public export is the artifact that may leave the box.
+
+## 2026-08-15 13:30: A backtest found the Texas card citing the Australian licence page
+
+Six live compiles against grok-4.6, checked against written pass rules. Five behaved. The Texas refusal cited
+`src:acara.v9.terms`, whose title is "Australian Curriculum: copyright and terms of use", so the citations panel on the
+Texas card read as though Texas had been compiled from ACARA.
+
+The cause was a placeholder of mine. `SourceManifest` requires at least one source on every result including a refusal,
+and the transfer adapters had nothing fetched, so they were pointed at the ACARA terms page to satisfy the minimum.
+`JURISDICTION_NEUTRAL_SOURCE_IDS` replaces that: the IES guides and Rosenshine, which belong to no jurisdiction and are
+the pedagogical evidence the sequence planner cites whatever curriculum is being compiled.
+
+Rejected: emptying the citation list for any refused run. That reads well for Texas and badly everywhere else — it also
+strips the Australian exam-emulation refusal, where the licence gate really did evaluate those sources, and it
+contradicts the export test that a refused compile still exports attributed citations. The fix belonged at the source,
+not at the presentation layer.
+
+Also rejected: fetching TEKS to make the problem disappear. That is a real second jurisdiction and a separate piece of
+work, not a way to dodge a bad manifest.
+
+## 2026-08-15 13:30: The item writer's slug resolver was first-writer-wins
+
+Pinned with unit tests, then fixed. The resolver accepts a shortened id because models return `unit-rate` where the
+graph declares `kc:au.year-7.mathematics.unit-rate`, and discarding those threw away four of six items on a real run.
+Its comment claimed it only claimed a bare slug when unambiguous; the code kept whichever id was seen first, so with
+`kc:au.year-7.mathematics.unit-rate` and `kc:au.year-8.mathematics.unit-rate` the answer depended on declaration order.
+
+An ambiguous reference now resolves to undefined. Guessing between two components would silently mis-tag an item, and a
+mis-tagged item still counts toward standards coverage, which makes it worse than a discarded one. An exact id still
+resolves even when its tail is ambiguous.
+
+## 2026-08-15 13:30: The reliability score does not measure what the demo needs
+
+`npm run reliability` passes a run when it returns a schema-valid bundle *or* a schema-valid refusal. A Year 7 compile
+that ships zero items and rejects its only one is schema-valid, so it counts. The score was 10 of 10 in the same session
+where one observed live Year 7 compile shipped no items at all.
+
+The frozen fixtures are guarded properly — `tests/demoFixtures.test.ts` requires the Year 8 card's coverage check to
+pass, and it caught and blocked a one-item Year 8 fixture during this pass. The live path has no equivalent floor, and
+the item writer's per-component count is not reliably honoured even when stated as arithmetic. Recorded here rather than
+fixed, because a stop condition on item count is pipeline work and this pass was scoped to tests and fixes.
