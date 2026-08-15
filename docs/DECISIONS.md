@@ -274,3 +274,10 @@ The frozen fixtures are guarded properly — `tests/demoFixtures.test.ts` requir
 pass, and it caught and blocked a one-item Year 8 fixture during this pass. The live path has no equivalent floor, and
 the item writer's per-component count is not reliably honoured even when stated as arithmetic. Recorded here rather than
 fixed, because a stop condition on item count is pipeline work and this pass was scoped to tests and fixes.
+## 2026-08-15 13:06: Vercel serves the Vite build and one Express function
+
+The demo URL is a Vite static output plus `api/index.ts` wrapping the same Express routes as local `npm start`. All `/api/*` traffic hits one isolate so compile, SSE, graph and export share the process-local run store. `maxDuration` is 300 seconds because a live grok compile can exceed the hobby default. `XAI_API_KEY` stays a Vercel env var, never a file in the repo.
+
+Rejected: deploying the bundled `dist/index.cjs` as a long-running listen server. Vercel does not give us a persistent process, and the CDN should serve the client.
+
+The first production isolate failed with `ERR_MODULE_NOT_FOUND` for `server/app` because Vercel compiled `api/index.ts` without emitting the rest of the TypeScript graph. The function now loads an esbuild ESM bundle (`dist/function.js`) so path aliases and JSON snapshots are resolved at build time.
