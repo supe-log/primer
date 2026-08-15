@@ -3,9 +3,11 @@ import { CompilationResult } from "@contracts";
 import {
   buildCourseWorkspace,
   canOpenCourse,
+  evaluateCourseContent,
   friendlyLessonTitle,
   gradeOption,
   lessonBeats,
+  shortPrompt,
 } from "../client/src/lib/courseWorkspace";
 import { defaultStandardIdsForStage, standardsForStage } from "../client/src/lib/stageCatalogue";
 import draftJson from "../client/src/fixtures/compilation-result.json";
@@ -73,12 +75,30 @@ describe("course workspace", () => {
     const course = buildCourseWorkspace(draft)!;
     const withItems = course.lessons.find((lesson) => lesson.items.length > 0)!;
     const beats = lessonBeats(withItems);
-    expect(beats[0]?.kind).toBe("warmup");
-    expect(beats.some((beat) => beat.kind === "model")).toBe(true);
+    expect(beats[0]?.kind).toBe("model");
     expect(beats.some((beat) => beat.kind === "guided")).toBe(true);
     expect(beats.at(-1)?.kind).toBe("wrap");
     expect(friendlyLessonTitle(withItems).length).toBeGreaterThan(0);
     expect(friendlyLessonTitle(withItems)).not.toContain("SAMPLE");
+    expect(shortPrompt(withItems.items[0]!.item.stem).length).toBeLessThan(
+      withItems.items[0]!.item.stem.length,
+    );
+  });
+
+  it("balances look screens with try screens on shipped items only", () => {
+    const y7 = evaluateCourseContent(buildCourseWorkspace(draft)!);
+    expect(y7.lessons).toBe(3);
+    expect(y7.tryScreens).toBe(y7.shippedItems);
+    expect(y7.lookScreens).toBe(y7.picturedItems);
+    expect(y7.lookScreens).toBeGreaterThan(0);
+    expect(y7.rejectedItems).toBeGreaterThan(0);
+    expect(y7.lookScreens + y7.tryScreens).toBeGreaterThan(y7.tryScreens);
+
+    const y8 = evaluateCourseContent(buildCourseWorkspace(year8)!);
+    expect(y8.lessons).toBe(3);
+    expect(y8.tryScreens).toBe(y8.shippedItems);
+    expect(y8.lookScreens).toBe(y8.picturedItems);
+    expect(y8.rejectedItems).toBe(0);
   });
 
   it("skips practice beats when a lesson has no shipped items", () => {
