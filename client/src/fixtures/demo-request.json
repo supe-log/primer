@@ -5,14 +5,17 @@
   "curriculumSourceId": "acara.v9",
   "stage": {
     "localLabel": "Year 7",
-    "ageBand": [12, 13],
+    "ageBand": [
+      12,
+      13
+    ],
     "ordinal": 8
   },
   "subject": "Mathematics",
   "standardIds": [
-    "std:acara.v9.y7.math.sample-01",
-    "std:acara.v9.y7.math.sample-02",
-    "std:acara.v9.y7.math.sample-03"
+    "std:acara.v9.ac9m7n04",
+    "std:acara.v9.ac9m7n08",
+    "std:acara.v9.ac9m7m06"
   ],
   "locale": {
     "bcp47": "en-AU",
@@ -25,7 +28,10 @@
   "learnerContext": {
     "priorKnowledgeNotes": "Class is shaky on equivalent fractions. Several students still add numerators and denominators.",
     "dailyMinutes": 20,
-    "accessibilityNeeds": ["read-aloud option", "reduced visual clutter"]
+    "accessibilityNeeds": [
+      "read-aloud option",
+      "reduced visual clutter"
+    ]
   },
   "assessmentTarget": "unit_test",
   "lessonCount": 3

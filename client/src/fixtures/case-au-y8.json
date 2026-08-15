@@ -1,25 +1,25 @@
 {
   "schemaVersion": "0.1.0",
-  "runId": "run:demo.au.y7.ratios.0001",
+  "runId": "run:transfer.au.y8.math.0001",
   "status": "draft",
   "request": {
     "schemaVersion": "0.1.0",
-    "requestId": "req:demo.au.y7.ratios",
+    "requestId": "req:transfer.au.y8.math",
     "jurisdictionId": "au",
     "curriculumSourceId": "acara.v9",
     "stage": {
-      "localLabel": "Year 7",
+      "localLabel": "Year 8",
       "ageBand": [
-        12,
-        13
+        13,
+        14
       ],
-      "ordinal": 8
+      "ordinal": 9
     },
     "subject": "Mathematics",
     "standardIds": [
-      "std:acara.v9.ac9m7n04",
-      "std:acara.v9.ac9m7n08",
-      "std:acara.v9.ac9m7m06"
+      "std:acara.v9.ac9m8n01",
+      "std:acara.v9.ac9m8n02",
+      "std:acara.v9.ac9m8n03"
     ],
     "locale": {
       "bcp47": "en-AU",
@@ -28,12 +28,11 @@
       "direction": "ltr",
       "resourceTier": "high"
     },
-    "goal": "Prepare for a unit test on ratios and rates in three weeks.",
+    "goal": "Prepare a Year 8 unit on integers, exponents and equivalent representations.",
     "learnerContext": {
-      "priorKnowledgeNotes": "Class is shaky on equivalent fractions. Several students still add numerators and denominators.",
-      "dailyMinutes": 20,
+      "priorKnowledgeNotes": "Class finished Year 7 ratios but is unreliable with negative numbers and exponent notation.",
+      "dailyMinutes": 25,
       "accessibilityNeeds": [
-        "read-aloud option",
         "reduced visual clutter"
       ]
     },
@@ -174,40 +173,40 @@
     "curriculumSourceId": "acara.v9",
     "standards": [
       {
-        "standardId": "std:acara.v9.ac9m7n04",
-        "sourceCode": "AC9M7N04",
-        "statement": "find equivalent representations of rational numbers and represent rational numbers on a number line",
+        "standardId": "std:acara.v9.ac9m8n01",
+        "sourceCode": "AC9M8N01",
+        "statement": "recognise irrational numbers in applied contexts, including square roots and \\(π\\)",
         "evidence": [
           {
-            "sourceId": "src:acara.v9.mathematics.year-7",
-            "quotedSpan": "find equivalent representations of rational numbers and represent rational numbers on a number line",
-            "locator": "AC9M7N04",
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "recognise irrational numbers in applied contexts, including square roots and \\(π\\)",
+            "locator": "AC9M8N01",
             "retrievalLanguage": "en"
           }
         ]
       },
       {
-        "standardId": "std:acara.v9.ac9m7n08",
-        "sourceCode": "AC9M7N08",
-        "statement": "recognise, represent and solve problems involving ratios",
+        "standardId": "std:acara.v9.ac9m8n02",
+        "sourceCode": "AC9M8N02",
+        "statement": "establish and apply the exponent laws with positive integer exponents and the zero-exponent, using exponent notation with numbers",
         "evidence": [
           {
-            "sourceId": "src:acara.v9.mathematics.year-7",
-            "quotedSpan": "recognise, represent and solve problems involving ratios",
-            "locator": "AC9M7N08",
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "establish and apply the exponent laws with positive integer exponents and the zero-exponent, using exponent notation with numbers",
+            "locator": "AC9M8N02",
             "retrievalLanguage": "en"
           }
         ]
       },
       {
-        "standardId": "std:acara.v9.ac9m7m06",
-        "sourceCode": "AC9M7M06",
-        "statement": "use mathematical modelling to solve practical problems involving ratios; formulate problems, interpret and communicate solutions in terms of the situation, justifying choices made about the representation",
+        "standardId": "std:acara.v9.ac9m8n03",
+        "sourceCode": "AC9M8N03",
+        "statement": "recognise terminating and recurring decimals, using digital tools as appropriate",
         "evidence": [
           {
-            "sourceId": "src:acara.v9.mathematics.year-7",
-            "quotedSpan": "use mathematical modelling to solve practical problems involving ratios; formulate problems, interpret and communicate solutions in terms of the situation, justifying choices made about the representation",
-            "locator": "AC9M7M06",
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "recognise terminating and recurring decimals, using digital tools as appropriate",
+            "locator": "AC9M8N03",
             "retrievalLanguage": "en"
           }
         ]
@@ -215,22 +214,22 @@
     ],
     "knowledgeComponents": [
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.add-fractions-same-whole",
-        "label": "Add like-denominator fractions",
-        "description": "Add or subtract two proper fractions that share a denominator by combining numerators only, keeping the common whole.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.integer-ops-with-negatives",
+        "label": "Integer operations with negatives",
+        "description": "Compute sums, differences, products and quotients of integers that include negatives, and interpret the sign of a result.",
         "standardIds": [],
         "stage": {
-          "localLabel": "Year 7",
+          "localLabel": "Year 8",
           "ageBand": [
-            12,
-            13
+            13,
+            14
           ],
-          "ordinal": 7
+          "ordinal": 8
         },
         "prerequisiteOnly": true,
         "atomicEntry": true,
         "misconceptionIds": [
-          "mc:au.year-7.mathematics.add-across-numerators-and-denominators"
+          "mc:au.year-8.mathematics.minus-means-subtract-always"
         ],
         "evidence": [],
         "confidence": {
@@ -247,30 +246,63 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "label": "Generate equivalent fractions",
-        "description": "Produce equivalent fractions by multiplying or dividing numerator and denominator by the same non-zero integer, including writing a fraction in simplest form.",
-        "standardIds": [
-          "std:acara.v9.ac9m7n04"
-        ],
+        "knowledgeComponentId": "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
+        "label": "Exponent notation as repeated factors",
+        "description": "Rewrite a positive integer power in expanded product form and vice versa, including identifying the base and the exponent.",
+        "standardIds": [],
         "stage": {
-          "localLabel": "Year 7",
+          "localLabel": "Year 8",
           "ageBand": [
-            12,
-            13
+            13,
+            14
           ],
           "ordinal": 8
+        },
+        "prerequisiteOnly": true,
+        "atomicEntry": true,
+        "misconceptionIds": [
+          "mc:au.year-8.mathematics.exponent-as-multiply-by-index"
+        ],
+        "evidence": [],
+        "confidence": {
+          "value": 0.3,
+          "basis": [
+            "model mapping via grok-4.6",
+            "0 of 0 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-8.mathematics.product-quotient-power-laws",
+        "label": "Product, quotient and power-of-a-power laws",
+        "description": "Apply the product-of-powers, quotient-of-powers and power-of-a-power laws to expressions with the same base and positive integer exponents.",
+        "standardIds": [
+          "std:acara.v9.ac9m8n02"
+        ],
+        "stage": {
+          "localLabel": "Year 8",
+          "ageBand": [
+            13,
+            14
+          ],
+          "ordinal": 9
         },
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-7.mathematics.add-across-numerators-and-denominators"
+          "mc:au.year-8.mathematics.add-exponents-different-bases",
+          "mc:au.year-8.mathematics.multiply-exponents-on-product"
         ],
         "evidence": [
           {
-            "sourceId": "src:acara.v9.mathematics.year-7",
-            "quotedSpan": "find equivalent representations of rational numbers and represent rational numbers on a number line",
-            "locator": "AC9M7N04",
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "establish and apply the exponent laws with positive integer exponents and the zero-exponent, using exponent notation with numbers",
+            "locator": "AC9M8N02",
             "retrievalLanguage": "en"
           }
         ],
@@ -288,69 +320,30 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.place-rationals-on-line",
-        "label": "Place rationals on a number line",
-        "description": "Locate positive and negative fractions, mixed numerals and their equivalent decimals or percentages on intervals of the number line that need not be symmetric about zero.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.zero-exponent-law",
+        "label": "Zero-exponent law",
+        "description": "Justify and use n^0 = 1 for nonzero n by relating a quotient of identical powers to subtraction of exponents.",
         "standardIds": [
-          "std:acara.v9.ac9m7n04"
+          "std:acara.v9.ac9m8n02"
         ],
         "stage": {
-          "localLabel": "Year 7",
+          "localLabel": "Year 8",
           "ageBand": [
-            12,
-            13
+            13,
+            14
           ],
-          "ordinal": 8
-        },
-        "prerequisiteOnly": false,
-        "atomicEntry": false,
-        "misconceptionIds": [],
-        "evidence": [
-          {
-            "sourceId": "src:acara.v9.mathematics.year-7",
-            "quotedSpan": "find equivalent representations of rational numbers and represent rational numbers on a number line",
-            "locator": "AC9M7N04",
-            "retrievalLanguage": "en"
-          }
-        ],
-        "confidence": {
-          "value": 0.75,
-          "basis": [
-            "model mapping via grok-4.6",
-            "1 of 1 evidence spans matched the snapshot"
-          ],
-          "unmeasured": [
-            "expert_review",
-            "pilot_data",
-            "item_difficulty"
-          ]
-        }
-      },
-      {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-        "label": "Read part-part and part-whole ratios",
-        "description": "Interpret a ratio a:b as both a comparison of two parts and as a:b of a whole with a+b parts, using diagrams or materials.",
-        "standardIds": [
-          "std:acara.v9.ac9m7n08"
-        ],
-        "stage": {
-          "localLabel": "Year 7",
-          "ageBand": [
-            12,
-            13
-          ],
-          "ordinal": 8
+          "ordinal": 9
         },
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-7.mathematics.treat-ratio-as-single-fraction-of-whole"
+          "mc:au.year-8.mathematics.zero-power-is-zero"
         ],
         "evidence": [
           {
-            "sourceId": "src:acara.v9.mathematics.year-7",
-            "quotedSpan": "recognise, represent and solve problems involving ratios",
-            "locator": "AC9M7N08",
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "establish and apply the exponent laws with positive integer exponents and the zero-exponent, using exponent notation with numbers",
+            "locator": "AC9M8N02",
             "retrievalLanguage": "en"
           }
         ],
@@ -368,30 +361,30 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio",
-        "label": "Share a quantity in a given ratio",
-        "description": "Partition a given quantity into a stated ratio by finding the value of one part and multiplying, then checking that the parts recombine to the original whole.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.terminating-from-denominator-primes",
+        "label": "Terminating decimals from prime factors",
+        "description": "Decide whether a fraction in lowest terms has a terminating decimal expansion by inspecting the prime factors of its denominator.",
         "standardIds": [
-          "std:acara.v9.ac9m7n08"
+          "std:acara.v9.ac9m8n03"
         ],
         "stage": {
-          "localLabel": "Year 7",
+          "localLabel": "Year 8",
           "ageBand": [
-            12,
-            13
+            13,
+            14
           ],
-          "ordinal": 8
+          "ordinal": 9
         },
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-7.mathematics.share-by-subtracting-ratio-numbers"
+          "mc:au.year-8.mathematics.terminating-if-looks-short"
         ],
         "evidence": [
           {
-            "sourceId": "src:acara.v9.mathematics.year-7",
-            "quotedSpan": "recognise, represent and solve problems involving ratios",
-            "locator": "AC9M7N08",
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "recognise terminating and recurring decimals, using digital tools as appropriate",
+            "locator": "AC9M8N03",
             "retrievalLanguage": "en"
           }
         ],
@@ -409,28 +402,71 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.model-practical-ratio-problems",
-        "label": "Model practical ratio problems",
-        "description": "Formulate a real context (mixtures, lengths, money) as a ratio, choose a representation (parts, fractions or rates), solve and justify the choice in the situation.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.represent-recurring-decimals",
+        "label": "Recurring decimal notation",
+        "description": "Write a recurring decimal using bar or dotted notation and match it to the corresponding rational number.",
         "standardIds": [
-          "std:acara.v9.ac9m7m06"
+          "std:acara.v9.ac9m8n03"
         ],
         "stage": {
-          "localLabel": "Year 7",
+          "localLabel": "Year 8",
           "ageBand": [
-            12,
-            13
+            13,
+            14
           ],
-          "ordinal": 8
+          "ordinal": 9
         },
         "prerequisiteOnly": false,
         "atomicEntry": false,
-        "misconceptionIds": [],
+        "misconceptionIds": [
+          "mc:au.year-8.mathematics.all-nonterminating-are-irrational"
+        ],
         "evidence": [
           {
-            "sourceId": "src:acara.v9.mathematics.year-7",
-            "quotedSpan": "use mathematical modelling to solve practical problems involving ratios; formulate problems, interpret and communicate solutions in terms of the situation, justifying choices made about the representation",
-            "locator": "AC9M7M06",
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "recognise terminating and recurring decimals, using digital tools as appropriate",
+            "locator": "AC9M8N03",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "1 of 1 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-8.mathematics.approximate-locate-irrationals",
+        "label": "Approximate and locate irrationals",
+        "description": "Recognise square roots of non-squares and π as irrational, give decimal bounds, and place them approximately on a number line in applied contexts.",
+        "standardIds": [
+          "std:acara.v9.ac9m8n01"
+        ],
+        "stage": {
+          "localLabel": "Year 8",
+          "ageBand": [
+            13,
+            14
+          ],
+          "ordinal": 9
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [
+          "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
+        ],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "recognise irrational numbers in applied contexts, including square roots and \\(π\\)",
+            "locator": "AC9M8N01",
             "retrievalLanguage": "en"
           }
         ],
@@ -450,117 +486,159 @@
     ],
     "prerequisiteEdges": [
       {
-        "from": "kc:au.year-7.mathematics.add-fractions-same-whole",
-        "to": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "justification": "Students who still add numerators and denominators cannot yet treat a fraction as a single quantity that must be scaled by the same factor on both parts.",
+        "from": "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
+        "to": "kc:au.year-8.mathematics.product-quotient-power-laws",
+        "justification": "The laws are justified by counting repeated factors, which requires fluent translation between exponent and expanded form.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "to": "kc:au.year-7.mathematics.place-rationals-on-line",
-        "justification": "Placing equivalent forms (fraction, decimal, mixed number) at the same point requires recognising they name the same rational.",
+        "from": "kc:au.year-8.mathematics.product-quotient-power-laws",
+        "to": "kc:au.year-8.mathematics.zero-exponent-law",
+        "justification": "The identity n^0 = 1 is obtained by applying the quotient law to identical powers, so those laws must already be available.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "to": "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-        "justification": "Turning a:b into the fractions a/(a+b) and b/(a+b) uses exactly the equivalence move of writing each part over the new whole.",
+        "from": "kc:au.year-8.mathematics.integer-ops-with-negatives",
+        "to": "kc:au.year-8.mathematics.product-quotient-power-laws",
+        "justification": "Evaluating numerical examples of the laws after combining exponents requires reliable signed arithmetic.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-        "to": "kc:au.year-7.mathematics.share-in-a-ratio",
-        "justification": "Finding the size of one share first requires knowing that the whole has been split into a+b equal parts.",
+        "from": "kc:au.year-8.mathematics.terminating-from-denominator-primes",
+        "to": "kc:au.year-8.mathematics.represent-recurring-decimals",
+        "justification": "Learners first need the criterion that distinguishes terminating expansions before they can consistently notate the complementary recurring cases.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.share-in-a-ratio",
-        "to": "kc:au.year-7.mathematics.model-practical-ratio-problems",
-        "justification": "Applied modelling asks students to share or scale real quantities once they can already partition an abstract whole in a given ratio.",
+        "from": "kc:au.year-8.mathematics.represent-recurring-decimals",
+        "to": "kc:au.year-8.mathematics.approximate-locate-irrationals",
+        "justification": "Irrationals are recognised as neither terminating nor recurring, so those decimal types must already be distinguished.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.place-rationals-on-line",
-        "to": "kc:au.year-7.mathematics.model-practical-ratio-problems",
-        "justification": "Interpreting mixture strengths or scaled lengths as positions or percentages on a continuum uses the number-line representation of the same rationals.",
+        "from": "kc:au.year-8.mathematics.integer-ops-with-negatives",
+        "to": "kc:au.year-8.mathematics.approximate-locate-irrationals",
+        "justification": "Placing bounds such as 3.141 < π < 3.142 and comparing square-root estimates uses ordered comparison of signed decimals.",
         "evidence": []
       }
     ],
     "misconceptions": [
       {
-        "misconceptionId": "mc:au.year-7.mathematics.add-across-numerators-and-denominators",
-        "label": "Adds across both parts",
-        "description": "Writes a/b + c/d as (a+c)/(b+d) instead of finding a common denominator or scaling both parts of one fraction.",
+        "misconceptionId": "mc:au.year-8.mathematics.minus-means-subtract-always",
+        "label": "Minus always subtracts",
+        "description": "Treats every minus sign as a binary subtraction and therefore miscomputes products or sums involving negative integers.",
         "knowledgeComponentIds": [
-          "kc:au.year-7.mathematics.add-fractions-same-whole",
-          "kc:au.year-7.mathematics.generate-equivalent-fractions"
+          "kc:au.year-8.mathematics.integer-ops-with-negatives"
         ]
       },
       {
-        "misconceptionId": "mc:au.year-7.mathematics.treat-ratio-as-single-fraction-of-whole",
-        "label": "Reads a:b as a/b of the whole",
-        "description": "Treats the ratio 2:3 as meaning two-thirds of the whole rather than two parts out of five.",
+        "misconceptionId": "mc:au.year-8.mathematics.exponent-as-multiply-by-index",
+        "label": "Exponent means multiply by the index",
+        "description": "Evaluates a^n as a × n instead of n factors of a.",
         "knowledgeComponentIds": [
-          "kc:au.year-7.mathematics.read-part-part-and-part-whole"
+          "kc:au.year-8.mathematics.exponent-as-repeated-multiplication"
         ]
       },
       {
-        "misconceptionId": "mc:au.year-7.mathematics.share-by-subtracting-ratio-numbers",
-        "label": "Subtracts the ratio numbers from the total",
-        "description": "Given $20 in the ratio 2:3, awards $18 and $17 (or similar) by subtracting 2 and 3 from 20 instead of splitting into five equal parts.",
+        "misconceptionId": "mc:au.year-8.mathematics.add-exponents-different-bases",
+        "label": "Add exponents across different bases",
+        "description": "Writes a^m × b^n = (ab)^{m+n} or similar, combining exponents when bases differ.",
         "knowledgeComponentIds": [
-          "kc:au.year-7.mathematics.share-in-a-ratio"
+          "kc:au.year-8.mathematics.product-quotient-power-laws"
+        ]
+      },
+      {
+        "misconceptionId": "mc:au.year-8.mathematics.multiply-exponents-on-product",
+        "label": "Multiply exponents when multiplying powers",
+        "description": "Applies a^m × a^n = a^{mn} instead of adding the exponents.",
+        "knowledgeComponentIds": [
+          "kc:au.year-8.mathematics.product-quotient-power-laws"
+        ]
+      },
+      {
+        "misconceptionId": "mc:au.year-8.mathematics.zero-power-is-zero",
+        "label": "Any number to the power zero is zero",
+        "description": "States n^0 = 0 for nonzero n.",
+        "knowledgeComponentIds": [
+          "kc:au.year-8.mathematics.zero-exponent-law"
+        ]
+      },
+      {
+        "misconceptionId": "mc:au.year-8.mathematics.terminating-if-looks-short",
+        "label": "Short-looking decimals terminate",
+        "description": "Judges termination from how many digits appear on a calculator rather than from the denominator’s primes.",
+        "knowledgeComponentIds": [
+          "kc:au.year-8.mathematics.terminating-from-denominator-primes"
+        ]
+      },
+      {
+        "misconceptionId": "mc:au.year-8.mathematics.all-nonterminating-are-irrational",
+        "label": "Every non-terminating decimal is irrational",
+        "description": "Classifies recurring decimals such as 0.333… as irrational because they do not stop.",
+        "knowledgeComponentIds": [
+          "kc:au.year-8.mathematics.represent-recurring-decimals",
+          "kc:au.year-8.mathematics.approximate-locate-irrationals"
+        ]
+      },
+      {
+        "misconceptionId": "mc:au.year-8.mathematics.pi-is-exactly-22-over-7",
+        "label": "π equals 22/7 exactly",
+        "description": "Treats the familiar fraction 22/7 as the exact value of π rather than an approximation.",
+        "knowledgeComponentIds": [
+          "kc:au.year-8.mathematics.approximate-locate-irrationals"
         ]
       }
     ]
   },
   "coursePlan": {
     "schemaVersion": "0.1.0",
-    "title": "Mathematics: Prepare for a unit test on ratios and rates in three weeks.",
+    "title": "Mathematics: Prepare a Year 8 unit on integers, exponents and equivalent representations.",
     "knowledgeComponentOrder": [
-      "kc:au.year-7.mathematics.add-fractions-same-whole",
-      "kc:au.year-7.mathematics.generate-equivalent-fractions",
-      "kc:au.year-7.mathematics.place-rationals-on-line",
-      "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-      "kc:au.year-7.mathematics.share-in-a-ratio",
-      "kc:au.year-7.mathematics.model-practical-ratio-problems"
+      "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
+      "kc:au.year-8.mathematics.integer-ops-with-negatives",
+      "kc:au.year-8.mathematics.product-quotient-power-laws",
+      "kc:au.year-8.mathematics.terminating-from-denominator-primes",
+      "kc:au.year-8.mathematics.represent-recurring-decimals",
+      "kc:au.year-8.mathematics.approximate-locate-irrationals",
+      "kc:au.year-8.mathematics.zero-exponent-law"
     ],
     "units": [
       {
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Year 7 Mathematics",
-        "goal": "Prepare for a unit test on ratios and rates in three weeks.",
+        "title": "Year 8 Mathematics",
+        "goal": "Prepare a Year 8 unit on integers, exponents and equivalent representations.",
         "lessonIds": [
-          "lesson:au.01-year-7-mathematics-generate-equivalent-fractions",
-          "lesson:au.02-year-7-mathematics-read-part-part-and-part-whole",
-          "lesson:au.03-year-7-mathematics-model-practical-ratio-problems"
+          "lesson:au.01-year-8-mathematics-product-quotient-power-laws",
+          "lesson:au.02-year-8-mathematics-represent-recurring-decimals",
+          "lesson:au.03-year-8-mathematics-zero-exponent-law"
         ]
       }
     ],
     "lessons": [
       {
-        "lessonId": "lesson:au.01-year-7-mathematics-generate-equivalent-fractions",
+        "lessonId": "lesson:au.01-year-8-mathematics-product-quotient-power-laws",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Generate equivalent fractions and Place rationals on a number line",
-        "objective": "Learners can produce equivalent fractions by multiplying or dividing numerator and denominator by the same non-zero integer, including writing a fraction in simplest form.",
+        "title": "Product, quotient and power-of-a-power laws and Terminating decimals from prime factors",
+        "objective": "Learners can apply the product-of-powers, quotient-of-powers and power-of-a-power laws to expressions with the same base and positive integer exponents.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.generate-equivalent-fractions",
-          "kc:au.year-7.mathematics.place-rationals-on-line"
+          "kc:au.year-8.mathematics.product-quotient-power-laws",
+          "kc:au.year-8.mathematics.terminating-from-denominator-primes"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.add-fractions-same-whole"
+          "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
+          "kc:au.year-8.mathematics.integer-ops-with-negatives"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Add like-denominator fractions, because retrieval opens every lesson.",
-          "modelling": "Teacher models Generate equivalent fractions; Place rationals on a number line, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Generate equivalent fractions; Place rationals on a number line, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Generate equivalent fractions; Place rationals on a number line with Add like-denominator fractions so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Add like-denominator fractions."
+          "review": "Low-stakes retrieval on Exponent notation as repeated factors; Integer operations with negatives, because retrieval opens every lesson.",
+          "modelling": "Teacher models Product, quotient and power-of-a-power laws; Terminating decimals from prime factors, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Product, quotient and power-of-a-power laws; Terminating decimals from prime factors, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Product, quotient and power-of-a-power laws; Terminating decimals from prime factors with Exponent notation as repeated factors; Integer operations with negatives so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Exponent notation as repeated factors; Integer operations with negatives."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Generate equivalent fractions.",
+            "prompt": "A worked example for: Product, quotient and power-of-a-power laws.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -571,10 +649,10 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.generate-equivalent-fractions"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.product-quotient-power-laws"
           },
           {
-            "prompt": "A worked example for: Place rationals on a number line.",
+            "prompt": "A worked example for: Terminating decimals from prime factors.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -585,19 +663,19 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.place-rationals-on-line"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.terminating-from-denominator-primes"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Generate equivalent fractions in one sentence.",
-          "Name the error a learner makes when they confuse Generate equivalent fractions with a nearby idea."
+          "Without looking back, state Product, quotient and power-of-a-power laws in one sentence.",
+          "Name the error a learner makes when they confuse Product, quotient and power-of-a-power laws with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Generate equivalent fractions have to hold before the next component?"
+          "Why does Product, quotient and power-of-a-power laws have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.year-7.mathematics.generate-equivalent-fractions.01",
-          "item:au.year-7.mathematics.place-rationals-on-line.01"
+          "item:au.year-8.mathematics.product-quotient-power-laws.01",
+          "item:au.year-8.mathematics.terminating-from-denominator-primes.01"
         ],
         "decisions": [
           {
@@ -627,30 +705,30 @@
         ]
       },
       {
-        "lessonId": "lesson:au.02-year-7-mathematics-read-part-part-and-part-whole",
+        "lessonId": "lesson:au.02-year-8-mathematics-represent-recurring-decimals",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Read part-part and part-whole ratios and Share a quantity in a given ratio",
-        "objective": "Learners can interpret a ratio a:b as both a comparison of two parts and as a:b of a whole with a+b parts, using diagrams or materials.",
+        "title": "Recurring decimal notation and Approximate and locate irrationals",
+        "objective": "Learners can write a recurring decimal using bar or dotted notation and match it to the corresponding rational number.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-          "kc:au.year-7.mathematics.share-in-a-ratio"
+          "kc:au.year-8.mathematics.represent-recurring-decimals",
+          "kc:au.year-8.mathematics.approximate-locate-irrationals"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.add-fractions-same-whole",
-          "kc:au.year-7.mathematics.generate-equivalent-fractions",
-          "kc:au.year-7.mathematics.place-rationals-on-line"
+          "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
+          "kc:au.year-8.mathematics.product-quotient-power-laws",
+          "kc:au.year-8.mathematics.terminating-from-denominator-primes"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Add like-denominator fractions; Generate equivalent fractions; Place rationals on a number line, because retrieval opens every lesson.",
-          "modelling": "Teacher models Read part-part and part-whole ratios; Share a quantity in a given ratio, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Read part-part and part-whole ratios; Share a quantity in a given ratio, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Read part-part and part-whole ratios; Share a quantity in a given ratio with Add like-denominator fractions; Generate equivalent fractions; Place rationals on a number line so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Add like-denominator fractions; Generate equivalent fractions; Place rationals on a number line."
+          "review": "Low-stakes retrieval on Exponent notation as repeated factors; Product, quotient and power-of-a-power laws; Terminating decimals from prime factors, because retrieval opens every lesson.",
+          "modelling": "Teacher models Recurring decimal notation; Approximate and locate irrationals, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Recurring decimal notation; Approximate and locate irrationals, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Recurring decimal notation; Approximate and locate irrationals with Exponent notation as repeated factors; Product, quotient and power-of-a-power laws; Terminating decimals from prime factors so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Exponent notation as repeated factors; Product, quotient and power-of-a-power laws; Terminating decimals from prime factors."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Read part-part and part-whole ratios.",
+            "prompt": "A worked example for: Recurring decimal notation.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -661,10 +739,10 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.read-part-part-and-part-whole"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.represent-recurring-decimals"
           },
           {
-            "prompt": "A worked example for: Share a quantity in a given ratio.",
+            "prompt": "A worked example for: Approximate and locate irrationals.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -675,19 +753,19 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.approximate-locate-irrationals"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Read part-part and part-whole ratios in one sentence.",
-          "Name the error a learner makes when they confuse Read part-part and part-whole ratios with a nearby idea."
+          "Without looking back, state Recurring decimal notation in one sentence.",
+          "Name the error a learner makes when they confuse Recurring decimal notation with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Read part-part and part-whole ratios have to hold before the next component?"
+          "Why does Recurring decimal notation have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.year-7.mathematics.read-part-part-and-part-whole.01",
-          "item:au.year-7.mathematics.share-in-a-ratio.01"
+          "item:au.year-8.mathematics.represent-recurring-decimals.01",
+          "item:au.year-8.mathematics.approximate-locate-irrationals.01"
         ],
         "decisions": [
           {
@@ -741,29 +819,29 @@
         ]
       },
       {
-        "lessonId": "lesson:au.03-year-7-mathematics-model-practical-ratio-problems",
+        "lessonId": "lesson:au.03-year-8-mathematics-zero-exponent-law",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Model practical ratio problems",
-        "objective": "Learners can formulate a real context (mixtures, lengths, money) as a ratio, choose a representation (parts, fractions or rates), solve and justify the choice in the situation.",
+        "title": "Zero-exponent law",
+        "objective": "Learners can justify and use n^0 = 1 for nonzero n by relating a quotient of identical powers to subtraction of exponents.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.model-practical-ratio-problems"
+          "kc:au.year-8.mathematics.zero-exponent-law"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.add-fractions-same-whole",
-          "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-          "kc:au.year-7.mathematics.share-in-a-ratio"
+          "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
+          "kc:au.year-8.mathematics.represent-recurring-decimals",
+          "kc:au.year-8.mathematics.approximate-locate-irrationals"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Add like-denominator fractions; Read part-part and part-whole ratios; Share a quantity in a given ratio, because retrieval opens every lesson.",
-          "modelling": "Teacher models Model practical ratio problems, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Model practical ratio problems, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Model practical ratio problems with Add like-denominator fractions; Read part-part and part-whole ratios; Share a quantity in a given ratio so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Add like-denominator fractions; Read part-part and part-whole ratios; Share a quantity in a given ratio."
+          "review": "Low-stakes retrieval on Exponent notation as repeated factors; Recurring decimal notation; Approximate and locate irrationals, because retrieval opens every lesson.",
+          "modelling": "Teacher models Zero-exponent law, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Zero-exponent law, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Zero-exponent law with Exponent notation as repeated factors; Recurring decimal notation; Approximate and locate irrationals so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Exponent notation as repeated factors; Recurring decimal notation; Approximate and locate irrationals."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Model practical ratio problems.",
+            "prompt": "A worked example for: Zero-exponent law.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -774,18 +852,18 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.model-practical-ratio-problems"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.zero-exponent-law"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Model practical ratio problems in one sentence.",
-          "Name the error a learner makes when they confuse Model practical ratio problems with a nearby idea."
+          "Without looking back, state Zero-exponent law in one sentence.",
+          "Name the error a learner makes when they confuse Zero-exponent law with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Model practical ratio problems have to hold before the next component?"
+          "Why does Zero-exponent law have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.year-7.mathematics.model-practical-ratio-problems.01"
+          "item:au.year-8.mathematics.zero-exponent-law.01"
         ],
         "decisions": [
           {
@@ -841,24 +919,24 @@
     ],
     "masteryCriteria": [
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "rule": "Four of five items correct on Generate equivalent fractions across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.product-quotient-power-laws",
+        "rule": "Four of five items correct on Product, quotient and power-of-a-power laws across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.place-rationals-on-line",
-        "rule": "Four of five items correct on Place rationals on a number line across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.terminating-from-denominator-primes",
+        "rule": "Four of five items correct on Terminating decimals from prime factors across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-        "rule": "Four of five items correct on Read part-part and part-whole ratios across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.represent-recurring-decimals",
+        "rule": "Four of five items correct on Recurring decimal notation across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio",
-        "rule": "Four of five items correct on Share a quantity in a given ratio across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.approximate-locate-irrationals",
+        "rule": "Four of five items correct on Approximate and locate irrationals across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.model-practical-ratio-problems",
-        "rule": "Four of five items correct on Model practical ratio problems across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.zero-exponent-law",
+        "rule": "Four of five items correct on Zero-exponent law across two separate days."
       }
     ],
     "decisions": [
@@ -891,38 +969,38 @@
   "items": [
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.generate-equivalent-fractions.01",
+      "itemId": "item:au.year-8.mathematics.product-quotient-power-laws.01",
       "purpose": "formative",
-      "stem": "Write a fraction equivalent to 6/9 that is in simplest form.",
+      "stem": "Simplify 5^4 × 5^3, writing the result as a single power of 5.",
       "options": [
         {
           "optionId": "A",
-          "text": "2/3",
+          "text": "5^7",
           "correct": true,
-          "rationale": "Divide numerator and denominator by their common factor 3."
+          "rationale": "The product-of-powers law adds the exponents when the bases are the same: 4 + 3 = 7."
         },
         {
           "optionId": "B",
-          "text": "15/12",
+          "text": "5^{12}",
           "correct": false,
-          "rationale": "Adds 9 to the numerator and 3 to the denominator instead of scaling both parts by the same factor.",
-          "misconceptionId": "mc:au.year-7.mathematics.add-across-numerators-and-denominators"
+          "rationale": "Multiplies the exponents instead of adding them when multiplying powers of the same base.",
+          "misconceptionId": "mc:au.year-8.mathematics.multiply-exponents-on-product"
         },
         {
           "optionId": "C",
-          "text": "9/12",
+          "text": "25^7",
           "correct": false,
-          "rationale": "Adds 3 to both numerator and denominator rather than multiplying or dividing both by the same non-zero integer.",
-          "misconceptionId": "mc:au.year-7.mathematics.add-across-numerators-and-denominators"
+          "rationale": "Treats the product as if the bases were different and combines them while adding exponents.",
+          "misconceptionId": "mc:au.year-8.mathematics.add-exponents-different-bases"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "6 and 9 share a common factor of 3, so 6/9 = 2/3.",
+      "keyRationale": "Same base: add the exponents to obtain 5^7.",
       "standardIds": [
-        "std:acara.v9.ac9m7n04"
+        "std:acara.v9.ac9m8n02"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.generate-equivalent-fractions"
+        "kc:au.year-8.mathematics.product-quotient-power-laws"
       ],
       "difficulty": {
         "band": "apply",
@@ -934,196 +1012,180 @@
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.place-rationals-on-line.01",
+      "itemId": "item:au.year-8.mathematics.zero-exponent-law.01",
       "purpose": "formative",
-      "stem": "On a number line marked from −2 to 3, where does −1 1/2 sit?",
+      "stem": "What is the value of 8^0?",
       "options": [
         {
           "optionId": "A",
-          "text": "Halfway between −2 and −1",
+          "text": "1",
           "correct": true,
-          "rationale": "−1 1/2 is the midpoint of −2 and −1."
+          "rationale": "Any non-zero number to the power 0 equals 1, which follows from 8^n ÷ 8^n = 8^{n-n} = 8^0 = 1."
         },
         {
           "optionId": "B",
-          "text": "Halfway between −1 and 0",
+          "text": "0",
           "correct": false,
-          "rationale": "Confuses −1 1/2 with −1/2."
+          "rationale": "Assumes a number to the power zero is zero rather than one.",
+          "misconceptionId": "mc:au.year-8.mathematics.zero-power-is-zero"
         },
         {
           "optionId": "C",
-          "text": "At 1.5",
+          "text": "8",
           "correct": false,
-          "rationale": "Drops the negative sign and places the mixed number on the positive side."
-        },
-        {
-          "optionId": "D",
-          "text": "At −0.5",
-          "correct": false,
-          "rationale": "Treats the mixed numeral as a unit fraction with the wrong sign."
+          "rationale": "Leaves the base unchanged instead of applying the zero-exponent law.",
+          "misconceptionId": "mc:au.year-8.mathematics.zero-power-is-zero"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "−1 1/2 = −1.5, which is the midpoint of −2 and −1.",
+      "keyRationale": "n^0 = 1 for nonzero n, justified by subtracting equal exponents in a quotient of identical powers.",
       "standardIds": [
-        "std:acara.v9.ac9m7n04"
+        "std:acara.v9.ac9m8n02"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.place-rationals-on-line"
+        "kc:au.year-8.mathematics.zero-exponent-law"
       ],
       "difficulty": {
         "band": "recall",
+        "estimate": 1,
+        "calibrated": false,
+        "difStatus": "not_yet_measured"
+      },
+      "evidence": []
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "itemId": "item:au.year-8.mathematics.terminating-from-denominator-primes.01",
+      "purpose": "formative",
+      "stem": "The fraction 7/40 is in lowest terms. Does it have a terminating decimal expansion?",
+      "options": [
+        {
+          "optionId": "A",
+          "text": "Yes, because 40 = 2^3 × 5 and the only primes in the denominator are 2 and 5.",
+          "correct": true,
+          "rationale": "A lowest-terms fraction terminates if and only if the denominator’s prime factors are only 2 and/or 5."
+        },
+        {
+          "optionId": "B",
+          "text": "Yes, because a calculator shows 0.175, which looks short.",
+          "correct": false,
+          "rationale": "Judges termination from a short calculator display rather than the denominator’s primes.",
+          "misconceptionId": "mc:au.year-8.mathematics.terminating-if-looks-short"
+        },
+        {
+          "optionId": "C",
+          "text": "No, because 40 is larger than 10 so the decimal cannot terminate.",
+          "correct": false,
+          "rationale": "Uses size of the denominator instead of its prime factors.",
+          "misconceptionId": "mc:au.year-8.mathematics.terminating-if-looks-short"
+        }
+      ],
+      "correctOptionId": "A",
+      "keyRationale": "Denominator 40 factors as 2^3 × 5, so the decimal terminates.",
+      "standardIds": [
+        "std:acara.v9.ac9m8n03"
+      ],
+      "knowledgeComponentIds": [
+        "kc:au.year-8.mathematics.terminating-from-denominator-primes"
+      ],
+      "difficulty": {
+        "band": "analyze",
+        "estimate": 3,
+        "calibrated": false,
+        "difStatus": "not_yet_measured"
+      },
+      "evidence": []
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "itemId": "item:au.year-8.mathematics.represent-recurring-decimals.01",
+      "purpose": "formative",
+      "stem": "Which notation correctly represents the recurring decimal equal to 1/3?",
+      "options": [
+        {
+          "optionId": "A",
+          "text": "0.\\overline{3}",
+          "correct": true,
+          "rationale": "1/3 = 0.333… which is written with a bar over the repeating digit 3."
+        },
+        {
+          "optionId": "B",
+          "text": "0.3, which is irrational because it does not stop",
+          "correct": false,
+          "rationale": "Treats a recurring decimal as irrational simply because it does not terminate.",
+          "misconceptionId": "mc:au.year-8.mathematics.all-nonterminating-are-irrational"
+        },
+        {
+          "optionId": "C",
+          "text": "0.33 with no repeat mark, because only two 3s appear",
+          "correct": false,
+          "rationale": "Confuses a truncated display with the infinite recurring expansion.",
+          "misconceptionId": "mc:au.year-8.mathematics.all-nonterminating-are-irrational"
+        }
+      ],
+      "correctOptionId": "A",
+      "keyRationale": "1/3 is the recurring decimal 0.333…, written 0.\\overline{3}.",
+      "standardIds": [
+        "std:acara.v9.ac9m8n03"
+      ],
+      "knowledgeComponentIds": [
+        "kc:au.year-8.mathematics.represent-recurring-decimals"
+      ],
+      "difficulty": {
+        "band": "apply",
         "estimate": 2,
         "calibrated": false,
         "difStatus": "not_yet_measured"
       },
-      "evidence": [],
-      "rejection": {
-        "checkId": "check:item.distractor-misconception",
-        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.place-rationals-on-line.01/B, item:au.year-7.mathematics.place-rationals-on-line.01/C, item:au.year-7.mathematics.place-rationals-on-line.01/D. Rejected rather than repaired."
-      }
-    },
-    {
-      "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.read-part-part-and-part-whole.01",
-      "purpose": "formative",
-      "stem": "A class has red and blue counters in the ratio 2:3. What fraction of all the counters is red?",
-      "options": [
-        {
-          "optionId": "A",
-          "text": "2/5",
-          "correct": true,
-          "rationale": "There are 2 red parts out of 2 + 3 = 5 parts in total."
-        },
-        {
-          "optionId": "B",
-          "text": "2/3",
-          "correct": false,
-          "rationale": "Reads the ratio 2:3 as the single fraction 2/3 of the whole instead of 2 parts out of 5.",
-          "misconceptionId": "mc:au.year-7.mathematics.treat-ratio-as-single-fraction-of-whole"
-        },
-        {
-          "optionId": "C",
-          "text": "3/2",
-          "correct": false,
-          "rationale": "Inverts the ratio and still treats it as a single fraction of the whole.",
-          "misconceptionId": "mc:au.year-7.mathematics.treat-ratio-as-single-fraction-of-whole"
-        }
-      ],
-      "correctOptionId": "A",
-      "keyRationale": "Part-whole reading of 2:3 uses 2 + 3 = 5 equal parts, so red is 2/5.",
-      "standardIds": [
-        "std:acara.v9.ac9m7n08"
-      ],
-      "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.read-part-part-and-part-whole"
-      ],
-      "difficulty": {
-        "band": "apply",
-        "estimate": 3,
-        "calibrated": false,
-        "difStatus": "not_yet_measured"
-      },
       "evidence": []
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.share-in-a-ratio.01",
+      "itemId": "item:au.year-8.mathematics.approximate-locate-irrationals.01",
       "purpose": "formative",
-      "stem": "Share $40 in the ratio 3:5. How much is the larger share?",
+      "stem": "On a number line, between which two consecutive integers does √10 lie?",
       "options": [
         {
           "optionId": "A",
-          "text": "$25",
+          "text": "Between 3 and 4",
           "correct": true,
-          "rationale": "3 + 5 = 8 parts; $40 ÷ 8 = $5 per part; 5 × $5 = $25."
+          "rationale": "3^2 = 9 and 4^2 = 16, so √10 is a little more than 3 and less than 4."
         },
         {
           "optionId": "B",
-          "text": "$37",
+          "text": "Exactly at 22/7",
           "correct": false,
-          "rationale": "Subtracts the smaller ratio number from the total ($40 − 3) instead of splitting into 8 equal parts.",
-          "misconceptionId": "mc:au.year-7.mathematics.share-by-subtracting-ratio-numbers"
+          "rationale": "Confuses √10 with π and treats 22/7 as an exact location.",
+          "misconceptionId": "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
         },
         {
           "optionId": "C",
-          "text": "$35",
+          "text": "Between 2 and 3",
           "correct": false,
-          "rationale": "Subtracts the larger ratio number from the total ($40 − 5) instead of finding the value of one part.",
-          "misconceptionId": "mc:au.year-7.mathematics.share-by-subtracting-ratio-numbers"
+          "rationale": "Uses 2^2 = 4 instead of the squares that bound 10.",
+          "misconceptionId": "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "Eight equal parts of $5 give shares of $15 and $25, which add to $40.",
+      "keyRationale": "√10 is irrational and sits between 3 and 4 because 9 < 10 < 16.",
       "standardIds": [
-        "std:acara.v9.ac9m7n08"
+        "std:acara.v9.ac9m8n01"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.share-in-a-ratio"
-      ],
-      "difficulty": {
-        "band": "apply",
-        "estimate": 3,
-        "calibrated": false,
-        "difStatus": "not_yet_measured"
-      },
-      "evidence": []
-    },
-    {
-      "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.model-practical-ratio-problems.01",
-      "purpose": "formative",
-      "stem": "Cordial concentrate and water are mixed in the ratio 1:4. How much concentrate is needed to make 250 mL of drink?",
-      "options": [
-        {
-          "optionId": "A",
-          "text": "50 mL",
-          "correct": true,
-          "rationale": "1 + 4 = 5 parts; 250 mL ÷ 5 = 50 mL per part, so 1 part of concentrate is 50 mL."
-        },
-        {
-          "optionId": "B",
-          "text": "62.5 mL",
-          "correct": false,
-          "rationale": "Divides 250 by 4 and ignores that the concentrate is one of five equal parts."
-        },
-        {
-          "optionId": "C",
-          "text": "200 mL",
-          "correct": false,
-          "rationale": "Takes four-fifths of the drink as concentrate instead of one-fifth."
-        },
-        {
-          "optionId": "D",
-          "text": "1 mL",
-          "correct": false,
-          "rationale": "Treats the first number in the ratio as a raw millilitre amount."
-        }
-      ],
-      "correctOptionId": "A",
-      "keyRationale": "The mixture has 5 equal parts totalling 250 mL, so one part of concentrate is 50 mL.",
-      "standardIds": [
-        "std:acara.v9.ac9m7m06"
-      ],
-      "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.model-practical-ratio-problems"
+        "kc:au.year-8.mathematics.approximate-locate-irrationals"
       ],
       "difficulty": {
         "band": "analyze",
-        "estimate": 4,
+        "estimate": 3,
         "calibrated": false,
         "difStatus": "not_yet_measured"
       },
-      "evidence": [],
-      "rejection": {
-        "checkId": "check:item.distractor-misconception",
-        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D. Rejected rather than repaired."
-      }
+      "evidence": []
     }
   ],
   "gateReport": {
     "schemaVersion": "0.1.0",
-    "verdict": "YELLOW",
+    "verdict": "BLUE",
     "permission": "prototype",
     "checks": [
       {
@@ -1203,9 +1265,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "6 knowledge components, 6 edges, no cycles.",
+        "detail": "7 knowledge components, 6 edges, no cycles.",
         "counts": {
-          "nodes": 6,
+          "nodes": 7,
           "edges": 6,
           "cycles": 0
         }
@@ -1242,7 +1304,7 @@
         "status": "pass",
         "detail": "Every knowledge component is either connected or explicitly flagged as an entry point.",
         "counts": {
-          "nodes": 6,
+          "nodes": 7,
           "orphans": 0
         }
       },
@@ -1252,9 +1314,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "3 misconceptions declared and all links resolve.",
+        "detail": "8 misconceptions declared and all links resolve.",
         "counts": {
-          "declared": 3,
+          "declared": 8,
           "unresolved": 0
         }
       },
@@ -1275,9 +1337,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "6 knowledge components scheduled across 3 lessons.",
+        "detail": "7 knowledge components scheduled across 3 lessons.",
         "counts": {
-          "scheduled": 6,
+          "scheduled": 7,
           "unscheduled": 0
         }
       },
@@ -1321,11 +1383,11 @@
         "label": "Every incorrect option names a known misconception",
         "kind": "deterministic",
         "blocking": true,
-        "status": "fail",
-        "detail": "6 distractors have no known misconception: item:au.year-7.mathematics.place-rationals-on-line.01/B, item:au.year-7.mathematics.place-rationals-on-line.01/C, item:au.year-7.mathematics.place-rationals-on-line.01/D, item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D.",
+        "status": "pass",
+        "detail": "10 distractors, all traced to a declared misconception.",
         "counts": {
-          "options": 12,
-          "unmapped": 6
+          "options": 10,
+          "unmapped": 0
         }
       },
       {
@@ -1356,11 +1418,11 @@
         "kind": "deterministic",
         "blocking": false,
         "status": "pass",
-        "detail": "Measured demand bands: apply 3, recall 1, analyze 1. Language models skew toward lower-order demand, so this is counted rather than trusted.",
+        "detail": "Measured demand bands: apply 2, recall 1, analyze 2. Language models skew toward lower-order demand, so this is counted rather than trusted.",
         "counts": {
-          "apply": 3,
+          "apply": 2,
           "recall": 1,
-          "analyze": 1
+          "analyze": 2
         }
       },
       {
@@ -1431,18 +1493,16 @@
       "expert accept rate"
     ],
     "needsHumanReview": [
-      "item:au.year-7.mathematics.place-rationals-on-line.01",
-      "item:au.year-7.mathematics.model-practical-ratio-problems.01",
-      "std:acara.v9.ac9m7n04",
-      "std:acara.v9.ac9m7n08",
-      "std:acara.v9.ac9m7m06"
+      "std:acara.v9.ac9m8n01",
+      "std:acara.v9.ac9m8n02",
+      "std:acara.v9.ac9m8n03"
     ],
     "summary": "Prototype bundle compiled from 3 Australian Curriculum, Assessment and Reporting Authority content descriptions, each traced to a content-hashed snapshot. Structure, coverage and item rules check out. Nothing here has earned a claim about learning, difficulty or fairness."
   },
   "runManifest": {
     "schemaVersion": "0.1.0",
-    "runId": "run:demo.au.y7.ratios.0001",
-    "requestId": "req:demo.au.y7.ratios",
+    "runId": "run:transfer.au.y8.math.0001",
+    "requestId": "req:transfer.au.y8.math",
     "startedAt": "2026-08-15T14:00:00.000Z",
     "finishedAt": "2026-08-15T14:00:07.250Z",
     "compilerVersion": "primer-compiler-0.1.1",
@@ -1453,18 +1513,18 @@
         "model": "grok-4.6",
         "promptVersion": "curriculum-mapper/2026-08-15.1",
         "abstained": false,
-        "latencyMs": 22626,
-        "inputTokens": 1828,
-        "outputTokens": 1408
+        "latencyMs": 22416,
+        "inputTokens": 1898,
+        "outputTokens": 1420
       },
       {
         "agentId": "agent:item-writer",
         "model": "grok-4.6",
         "promptVersion": "item-writer/2026-08-15.1",
         "abstained": false,
-        "latencyMs": 18295,
-        "inputTokens": 1398,
-        "outputTokens": 1686
+        "latencyMs": 17587,
+        "inputTokens": 1456,
+        "outputTokens": 1634
       },
       {
         "agentId": "learning-science-critic",
@@ -1484,20 +1544,7 @@
       "37aec6929270a0d2826685bd6195b1d829bc0f5fa4aac75138a7334846b38594",
       "3c0f2ec761a79e218fa60f263f74cf5e08a2014d326991594d61efd9e1ff1312"
     ],
-    "revisions": [
-      {
-        "agentId": "item-writer",
-        "attempt": 1,
-        "kept": false,
-        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.place-rationals-on-line.01/B, item:au.year-7.mathematics.place-rationals-on-line.01/C, item:au.year-7.mathematics.place-rationals-on-line.01/D. Rejected rather than repaired."
-      },
-      {
-        "agentId": "item-writer",
-        "attempt": 1,
-        "kept": false,
-        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D. Rejected rather than repaired."
-      }
-    ],
+    "revisions": [],
     "replayable": false
   },
   "approvedByHuman": false
