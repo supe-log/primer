@@ -99,7 +99,12 @@ export function validateCoverage(
   const mappedStandards = new Set(
     graph.knowledgeComponents.flatMap((kc) => kc.standardIds),
   );
-  const assessedStandards = new Set(items.flatMap((item) => item.standardIds));
+  // Only items that survived validation count. A rejected item is not going to be
+  // practised, so a standard whose only item was rejected is unassessed — counting
+  // it would let a bundle claim full coverage while shipping nothing to practise,
+  // which is the exact dishonesty the gate exists to catch.
+  const surviving = items.filter((item) => !item.rejection);
+  const assessedStandards = new Set(surviving.flatMap((item) => item.standardIds));
   const unmapped = request.standardIds.filter((id) => !mappedStandards.has(id));
   const unassessed = request.standardIds.filter((id) => !assessedStandards.has(id));
   const ok = unmapped.length === 0 && unassessed.length === 0;
@@ -116,6 +121,7 @@ export function validateCoverage(
       requested: request.standardIds.length,
       mapped: request.standardIds.length - unmapped.length,
       assessed: request.standardIds.length - unassessed.length,
+      itemsRejected: items.length - surviving.length,
     },
   };
 }
