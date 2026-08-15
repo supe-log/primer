@@ -268,12 +268,34 @@ resolves even when its tail is ambiguous.
 
 `npm run reliability` passes a run when it returns a schema-valid bundle *or* a schema-valid refusal. A Year 7 compile
 that ships zero items and rejects its only one is schema-valid, so it counts. The score was 10 of 10 in the same session
-where one observed live Year 7 compile shipped no items at all.
+where a live Year 7 compile shipped nothing.
+
+Five sampled live Year 7 compiles, same request each time:
+
+| run | components | written | discarded | shipped | rejected | coverage | verdict |
+|---:|---:|---:|---:|---:|---:|---|---|
+| 1 | 7 | 6 | 0 | 5 | 1 | pass | YELLOW |
+| 2 | 6 | 5 | 0 | 5 | 0 | pass | BLUE |
+| 3 | 7 | 6 | 0 | 3 | 3 | pass | YELLOW |
+| 4 | 6 | 2 | 3 | 0 | 2 | **fail** | YELLOW |
+| 5 | 7 | 6 | 0 | 3 | 3 | pass | YELLOW |
+
+So four of five satisfied standards coverage and one shipped no items at all, plus a sixth zero-item run observed in the
+backtest itself. Shipped counts range from 0 to 5 for the same request. The gates behave correctly throughout — run 4
+failed coverage rather than pretending, which is the system working — but "10 of 10 reliable" and "the demo will show
+items" are different claims, and only the first is currently measured.
+
+Two things are worth separating. Rejections are the gates doing their job and should stay visible. Discards are items
+the writer produced and the compiler dropped before validation, and run 4 lost three that way. The discard counter does
+not record *why*, so attributing run 4 needs instrumentation that does not exist yet: the candidates are a component
+reference that resolves to nothing, an option count outside three or four, and a payload that fails `QuestionItem`.
 
 The frozen fixtures are guarded properly — `tests/demoFixtures.test.ts` requires the Year 8 card's coverage check to
-pass, and it caught and blocked a one-item Year 8 fixture during this pass. The live path has no equivalent floor, and
-the item writer's per-component count is not reliably honoured even when stated as arithmetic. Recorded here rather than
-fixed, because a stop condition on item count is pipeline work and this pass was scoped to tests and fixes.
+pass, and it caught and blocked a one-item Year 8 fixture during this pass. The live path has no equivalent floor.
+Recorded here rather than fixed, because a stop condition on item count is pipeline work and this pass was scoped to
+tests and fixes. The cheapest next step is breaking the discard counter out by reason, which turns the next occurrence
+from a guess into a reading.
+
 ## 2026-08-15 13:06: Vercel serves the Vite build and one Express function
 
 The demo URL is a Vite static output plus `api/index.ts` wrapping the same Express routes as local `npm start`. All `/api/*` traffic hits one isolate so compile, SSE, graph and export share the process-local run store. `maxDuration` is 300 seconds because a live grok compile can exceed the hobby default. `XAI_API_KEY` stays a Vercel env var, never a file in the repo.
