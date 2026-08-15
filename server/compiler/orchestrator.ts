@@ -597,10 +597,13 @@ export function runCompile(
   ];
 
   const rejectedItems = items.filter((item) => item.rejection);
+  const fetchedCurriculum = sourceManifest.sources.some((source) => source.fetched);
   const gateReport = buildGateReport({
     checks,
     missingEvidence: [
-      "Fetched and content-hashed curriculum content descriptions with their official codes",
+      ...(fetchedCurriculum
+        ? []
+        : ["Fetched and content-hashed curriculum content descriptions with their official codes"]),
       "A learning-science critic run against a configured model client",
       "Expert review verdicts on the item bank",
       "Pilot response data for item calibration and differential item functioning",
@@ -615,8 +618,9 @@ export function runCompile(
       ...rejectedItems.map((item) => item.itemId),
       ...graph.standards.map((standard) => standard.standardId),
     ],
-    summary:
-      "Prototype bundle built from sample standards. Structure, coverage and item rules check out. Nothing here has earned a claim about learning, difficulty or fairness.",
+    summary: fetchedCurriculum
+      ? "Draft bundle compiled from hashed official snapshots. Structure, coverage and item rules check out. Nothing here has earned a claim about learning, difficulty or fairness."
+      : "Prototype bundle built from sample standards. Structure, coverage and item rules check out. Nothing here has earned a claim about learning, difficulty or fairness.",
   });
 
   sink.emit({
