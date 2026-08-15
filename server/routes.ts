@@ -2,6 +2,8 @@ import type { Express, Request, Response } from "express";
 import type { Server } from "node:http";
 import { CompilationRequest, SCHEMA_VERSION } from "@contracts";
 import { createCompiler, COMPILER_VERSION } from "./compiler";
+import { buildGraphView } from "./compiler/export/graphView";
+import { buildPublicExport } from "./compiler/export/publicBundle";
 import { demoRequest } from "./compiler/fixtureStore";
 
 /**
@@ -13,6 +15,8 @@ import { demoRequest } from "./compiler/fixtureStore";
  *   POST /api/compile                 validate a request and run one compile
  *   GET  /api/runs/:runId/events      the run's event list as JSON
  *   GET  /api/runs/:runId/stream      the same events as server-sent events
+ *   GET  /api/runs/:runId/export      cite-only-safe public bundle
+ *   GET  /api/runs/:runId/graph       nodes and edges for the UI
  */
 export async function registerRoutes(httpServer: Server, app: Express): Promise<Server> {
   const compiler = createCompiler();
@@ -53,6 +57,26 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
       return;
     }
     res.json(events);
+  });
+
+  app.get("/api/runs/:runId/export", (req: Request, res: Response) => {
+    const runId = String(req.params.runId);
+    const result = compiler.result(runId);
+    if (!result) {
+      res.status(404).json({ message: `no export recorded for run ${runId}` });
+      return;
+    }
+    res.json(buildPublicExport(result));
+  });
+
+  app.get("/api/runs/:runId/graph", (req: Request, res: Response) => {
+    const runId = String(req.params.runId);
+    const result = compiler.result(runId);
+    if (!result?.graph) {
+      res.status(404).json({ message: `no graph recorded for run ${runId}` });
+      return;
+    }
+    res.json(buildGraphView(result.runId, result.graph));
   });
 
   // True server-sent events over an already completed run. The compiler records the

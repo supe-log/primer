@@ -75,6 +75,16 @@ describe("licence gate", () => {
     expect(redistributable).toBeDefined();
   });
 
+  it("renders attribution text verbatim on every citation", () => {
+    const exported = exportSourceCitations(manifest);
+    expect(exported.length).toBe(manifest.sources.length);
+    for (const citation of exported) {
+      const source = manifest.sources.find((entry) => entry.sourceId === citation.sourceId);
+      expect(citation.attributionText).toBe(source?.licence.attributionText);
+      expect(citation.attributionText.length).toBeGreaterThan(0);
+    }
+  });
+
   it("strips cite-only snapshot text if it leaks into an export payload", () => {
     const body = "PROTECTED IES INTERLEAVING PASSAGE THAT MUST NOT LEAVE THE BOX";
     const leaked = {
