@@ -4,6 +4,7 @@ import type {
   Lesson,
   QuestionItem,
   StandardNode,
+  WorkedExample,
 } from "@contracts";
 
 export interface CourseItemView {
@@ -27,6 +28,21 @@ export interface CourseWorkspace {
   shippedCount: number;
   rejectedCount: number;
 }
+
+export type LessonBeat =
+  | { kind: "warmup"; title: string; coach: string; prompts: string[] }
+  | { kind: "model"; title: string; coach: string; example?: WorkedExample }
+  | { kind: "guided"; title: string; coach: string; item: CourseItemView }
+  | { kind: "practice"; title: string; coach: string; item: CourseItemView; remaining: number }
+  | { kind: "wrap"; title: string; coach: string; prompts: string[] };
+
+export const BEAT_LABEL: Record<LessonBeat["kind"], string> = {
+  warmup: "Warm up",
+  model: "See an example",
+  guided: "Try together",
+  practice: "Your turn",
+  wrap: "Finish",
+};
 
 export function canOpenCourse(result: CompilationResult | null | undefined): boolean {
   return Boolean(
@@ -111,6 +127,66 @@ export function gradeOption(
     keyRationale: item.keyRationale || key?.rationale || "",
     misconceptionId: selected?.correct ? undefined : selected?.misconceptionId,
   };
+}
+
+export function friendlyLessonTitle(lesson: CourseLessonView): string {
+  return lesson.components[0]?.label ?? lesson.lesson.title.split(" and ")[0] ?? lesson.lesson.title;
+}
+
+/**
+ * One-screen-at-a-time path for a lesson. Order is the explicit-instruction
+ * arc: retrieve, model, guided item, independent items, close. Empty beats
+ * are dropped rather than filled with invented content.
+ */
+export function lessonBeats(lesson: CourseLessonView): LessonBeat[] {
+  const beats: LessonBeat[] = [];
+  const prompts = lesson.lesson.retrievalPrompts;
+  if (prompts.length > 0 || lesson.lesson.arc.review) {
+    beats.push({
+      kind: "warmup",
+      title: "Warm up",
+      coach: lesson.lesson.arc.review,
+      prompts,
+    });
+  }
+
+  const example = lesson.lesson.workedExamples[0];
+  if (example || lesson.lesson.arc.modelling) {
+    beats.push({
+      kind: "model",
+      title: "See an example",
+      coach: lesson.lesson.arc.modelling,
+      example,
+    });
+  }
+
+  const [guided, ...independent] = lesson.items;
+  if (guided) {
+    beats.push({
+      kind: "guided",
+      title: "Try together",
+      coach: lesson.lesson.arc.guidedPractice,
+      item: guided,
+    });
+  }
+  independent.forEach((item, index) => {
+    beats.push({
+      kind: "practice",
+      title: "Your turn",
+      coach: lesson.lesson.arc.independentPractice,
+      item,
+      remaining: independent.length - index - 1,
+    });
+  });
+
+  beats.push({
+    kind: "wrap",
+    title: "Finish",
+    coach: lesson.lesson.arc.closingReview,
+    prompts: lesson.lesson.deepExplanatoryQuestions,
+  });
+
+  return beats;
 }
 
 function toItemView(

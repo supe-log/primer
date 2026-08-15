@@ -80,6 +80,35 @@
   }
 }
 
+/* Learner device: always a warm light classroom, even when the compiler is dark. */
+.learner-device {
+  --background: 38 48% 96%;
+  --surface: 40 55% 99%;
+  --surface-alt: 36 42% 93%;
+  --border: 32 22% 78%;
+  --foreground: 28 22% 16%;
+  --muted-foreground: 28 12% 36%;
+  --primary: 168 55% 28%;
+  --primary-foreground: 40 55% 99%;
+  --success: 118 42% 28%;
+  --warning: 28 72% 31%;
+  --error: 8 62% 38%;
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+}
+
+@layer components {
+  .learner-btn {
+    @apply min-h-12 w-full rounded-2xl bg-primary px-4 py-3 text-base font-semibold text-primary-foreground
+      disabled:opacity-50;
+  }
+
+  .learner-btn-quiet {
+    @apply min-h-11 rounded-2xl border border-border bg-surface px-4 py-2.5 text-sm font-medium
+      disabled:opacity-50;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
