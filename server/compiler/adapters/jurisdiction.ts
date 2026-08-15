@@ -33,6 +33,12 @@ export interface JurisdictionAdapter {
    * has no fetched curriculum yet, and the compiler must not invent one.
    */
   readonly catalogueSourceId?: string;
+  /**
+   * Per-stage snapshots, keyed by the jurisdiction's own stage label. A curriculum
+   * is published per level, so this is the normal case and `catalogueSourceId` is
+   * the fallback for an adapter that fetched only one.
+   */
+  readonly catalogueSourceIdByStage?: Readonly<Record<string, string>>;
   resolveStage(localLabel: string): Stage | undefined;
   blueprintAvailable(request: CompilationRequest): boolean;
 }
@@ -60,16 +66,42 @@ export const auAcaraAdapter: JurisdictionAdapter = {
   // decision, so the manifest holds both licence postures the gate has to enforce.
   snapshotSourceIds: [
     "src:acara.v9.mathematics.year-7",
+    "src:acara.v9.mathematics.year-8",
     "src:acara.v9.terms",
     "src:ies.interleaving-rct",
     "src:ies.organizing-instruction",
     "src:rosenshine.principles",
   ],
   catalogueSourceId: "src:acara.v9.mathematics.year-7",
+  // Two fetched levels. Year 6 resolves as a stage so it can be pulled in as a
+  // below-stage prerequisite, but it has no snapshot, so a request *for* Year 6
+  // refuses rather than compiling against a curriculum nobody fetched.
+  catalogueSourceIdByStage: {
+    "Year 7": "src:acara.v9.mathematics.year-7",
+    "Year 8": "src:acara.v9.mathematics.year-8",
+  },
   resolveStage: (localLabel) => AU_STAGES[localLabel],
   // No blueprint has been fetched for any Australian stage yet, so exam emulation refuses.
   blueprintAvailable: () => false,
 };
+
+/**
+ * The snapshot to read standards from for one request. Per-stage first, then the
+ * adapter default. Undefined means this adapter has no fetched curriculum for that
+ * stage, and the compiler refuses rather than compiling against nothing.
+ */
+export function catalogueSourceIdFor(
+  adapter: JurisdictionAdapter,
+  localLabel: string,
+): string | undefined {
+  // When an adapter declares per-stage snapshots, that map is exhaustive. Falling
+  // back to the default would compile a Year 6 request against the Year 7
+  // curriculum, which is a wrong answer dressed as a working one.
+  if (adapter.catalogueSourceIdByStage) {
+    return adapter.catalogueSourceIdByStage[localLabel];
+  }
+  return adapter.catalogueSourceId;
+}
 
 /**
  * Fixture adapter for a precomputed transfer case. Engineer 1 registers one of
@@ -101,8 +133,70 @@ export function createFixtureAdapter(config: {
   };
 }
 
+/**
+ * Transfer cases: jurisdictions whose stage ladder is registered and whose
+ * curriculum has not been fetched.
+ *
+ * These exist to make a point that is easy to state and hard to fake. A different
+ * stage ladder costs an adapter, not a schema change: Texas counts in grades, India
+ * counts in a stage-and-class hybrid, and neither lines up with Year 7. The schema
+ * does not care what a stage is called.
+ *
+ * What they deliberately do not do is compile. Each one refuses with a named
+ * missing-evidence list and a collection plan, because the honest output for a
+ * curriculum nobody has fetched is a refusal, not a bundle that looks the same as
+ * the Australian one and is made up. A jurisdiction is "supported" when it has its
+ * own hashed snapshot, its own verified licence and its own gate report.
+ */
+const US_TX_STAGES: Record<string, Stage> = {
+  "Grade 4": { localLabel: "Grade 4", ageBand: [9, 10], ordinal: 5 },
+  "Grade 5": { localLabel: "Grade 5", ageBand: [10, 11], ordinal: 6 },
+  "Grade 6": { localLabel: "Grade 6", ageBand: [11, 12], ordinal: 7 },
+};
+
+const IN_NCERT_STAGES: Record<string, Stage> = {
+  "Preparatory Stage, Class 3": {
+    localLabel: "Preparatory Stage, Class 3",
+    ageBand: [8, 9],
+    ordinal: 4,
+  },
+  "Middle Stage, Class 6": { localLabel: "Middle Stage, Class 6", ageBand: [11, 12], ordinal: 7 },
+  "Middle Stage, Class 7": { localLabel: "Middle Stage, Class 7", ageBand: [12, 13], ordinal: 8 },
+};
+
+export const usTexasAdapter: JurisdictionAdapter = {
+  jurisdictionId: "us-tx",
+  authorityName: "Texas Education Agency",
+  curriculumSourceId: "teks.rla",
+  legalStatus:
+    "TEKS are published in the Texas Administrative Code. Redistribution terms are not verified here, and released STAAR items carry separate conditions, so the posture is cite and link until a human checks it.",
+  subjects: ["Reading Language Arts"],
+  snapshotSourceIds: ["src:acara.v9.terms"],
+  // No fetched TEKS snapshot. The compiler refuses rather than inventing standards.
+  catalogueSourceIdByStage: {},
+  // Texas counts in grades, and a grade integer does not survive a border.
+  resolveStage: (localLabel) => US_TX_STAGES[localLabel],
+  blueprintAvailable: () => false,
+};
+
+export const inNcertAdapter: JurisdictionAdapter = {
+  jurisdictionId: "in",
+  authorityName: "National Council of Educational Research and Training",
+  curriculumSourceId: "ncert.ncf",
+  legalStatus:
+    "NCERT learning outcomes are published for public use, but redistribution terms are unresolved. An unknown licence caps a run at prototype and blocks redistribution.",
+  subjects: ["Mathematics"],
+  snapshotSourceIds: ["src:acara.v9.terms"],
+  catalogueSourceIdByStage: {},
+  // A different ladder shape entirely: a named stage over several classes.
+  resolveStage: (localLabel) => IN_NCERT_STAGES[localLabel],
+  blueprintAvailable: () => false,
+};
+
 const REGISTRY = new Map<string, JurisdictionAdapter>([
   [auAcaraAdapter.jurisdictionId, auAcaraAdapter],
+  [usTexasAdapter.jurisdictionId, usTexasAdapter],
+  [inNcertAdapter.jurisdictionId, inNcertAdapter],
 ]);
 
 export function registerAdapter(adapter: JurisdictionAdapter): void {

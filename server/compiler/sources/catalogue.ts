@@ -105,6 +105,54 @@ export function buildSourceManifest(sourceIds: readonly string[]): SourceManifes
 }
 
 /**
+ * Whether an adapter can actually compile the standards a request asks for.
+ *
+ * An adapter that resolves a stage ladder but has no fetched curriculum behind it is
+ * a registered jurisdiction, not a supported one. Without this check the pipeline
+ * would fall through to a generic map and emit invented standards under an official
+ * jurisdiction's name, which is precisely the fake bundle this system exists to
+ * refuse. Support requires that jurisdiction's own snapshot and its own gate report.
+ */
+export interface CurriculumReadiness {
+  ok: boolean;
+  /** Requested ids with no fetched standard behind them. */
+  unresolved: string[];
+  reason: string;
+}
+
+export function curriculumReadiness(input: {
+  catalogueSourceId?: string;
+  authorityName: string;
+  standardIds: readonly string[];
+}): CurriculumReadiness {
+  if (!input.catalogueSourceId) {
+    return {
+      ok: false,
+      unresolved: [...input.standardIds],
+      reason: `No curriculum snapshot has been fetched for ${input.authorityName}. The adapter resolves the stage ladder, which is not the same as supporting the jurisdiction.`,
+    };
+  }
+  const catalogue = catalogueFromSnapshot(input.catalogueSourceId);
+  if (!catalogue) {
+    return {
+      ok: false,
+      unresolved: [...input.standardIds],
+      reason: `Snapshot ${input.catalogueSourceId} is registered but carries no content descriptions.`,
+    };
+  }
+  const known = new Set(catalogue.standards.map((standard) => standard.standardId));
+  const unresolved = input.standardIds.filter((id) => !known.has(id));
+  return {
+    ok: unresolved.length === 0,
+    unresolved,
+    reason:
+      unresolved.length === 0
+        ? `${input.standardIds.length} requested standards all resolve in the fetched snapshot.`
+        : `${unresolved.length} requested standards have no fetched content description: ${unresolved.join(", ")}.`,
+  };
+}
+
+/**
  * Every snapshot the compiler holds. Used for a run that never resolved an adapter:
  * the manifest then describes what was available rather than what was read, which is
  * the honest record for a refusal. Observing is always allowed; compiling is not.
