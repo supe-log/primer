@@ -1,0 +1,41 @@
+snapshots/ies-interleaving-rct.json
+  s_207d06870c4a11::t_e0a83e445a3041 7
+server/compiler/adapters/jurisdiction.ts
+  s_207d06870c4a11::t_e0a83e445a3041 65-66
+server/compiler/sources/snapshotStore.ts
+  s_207d06870c4a11::t_1836d61dbf463e 97-107
+  s_207d06870c4a11::t_e0a83e445a3041 6-7,61-62
+tests/snapshotStore.test.ts
+  s_207d06870c4a11::t_e9bc1c5f7fc9d3 1-119
+snapshots/ies-organizing-instruction.json
+  s_207d06870c4a11::t_e0a83e445a3041 1-22
+tests/modelStages.test.ts
+  s_207d06870c4a11::t_7df416ae1e1b0b 1-486
+server/compiler/sources/acara.ts
+  s_207d06870c4a11::t_a25876170c99d1 57-70
+  s_207d06870c4a11::t_5b1a12862f731f 56
+snapshots/acara-v9-terms.json
+  s_207d06870c4a11::t_e0a83e445a3041 7
+snapshots/acara-v9-mathematics-year-7.json
+  s_207d06870c4a11::t_e0a83e445a3041 7
+snapshots/rosenshine-principles.json
+  s_207d06870c4a11::t_e0a83e445a3041 1-22
+script/snapshot.ts
+  s_207d06870c4a11::t_9ebfa87d423cb0 2-4,13,32-33,107-150,207-234
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "0fd12d6466838054d3aa5daa8a2ccca4c56e367c",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
