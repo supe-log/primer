@@ -43,24 +43,25 @@ Public, no sign-in. The Vercel project `primer-compiler` is linked to this repos
 branch, so every push to `main` redeploys. The client is a Vite static build and `/api/*` is one Express function, so
 compile, stream, graph and export share the in-memory run store within an isolate.
 
-**The deployment runs without `XAI_API_KEY` on purpose.** A public URL means anyone can trigger a compile, and a keyed
-deployment would spend real tokens per visitor. Without the key `MockModelClient` abstains, the gate records the
-abstention rather than a pass, and the deterministic path still returns a complete bundle in milliseconds.
+**`XAI_API_KEY` is set, so the live URL runs the real model path.** Pressing Compile calls `grok-4.6` for the curriculum
+mapper and the item writer, which takes roughly 30 to 50 seconds and produces real mathematics rather than the
+deterministic bank's placeholders. Two things follow from that:
 
-What that changes, and what it does not:
+- **Compiles cost tokens, and the URL is public.** There is no rate limit in front of `/api/compile`. If that becomes a
+  problem, remove the environment variable and redeploy: the compiler falls back to `MockModelClient`, the gate records
+  an abstention rather than a pass, and the deterministic path still returns a complete bundle in milliseconds. Nothing
+  else changes and no caller is touched.
+- **Model output varies.** Item counts are not fixed run to run, which is why the item writer takes a bounded
+  gap-filling pass when a knowledge component ends the first pass with no surviving item. Two passes maximum, then the
+  gate reports what it got.
 
-| | Live URL, no key | Local with `XAI_API_KEY` |
-|---|---|---|
-| Standards, codes, wording | fetched, hashed, verbatim | same |
-| Graph, sequence, gate report, provenance | real | same |
-| Refusals and collection plans | real | same |
-| Practice item stems | deterministic placeholders | real mathematics from `grok-4.6` |
+What is real either way, keyed or not: the standards and their codes and wording, the hashed snapshots behind them, the
+graph, the sequence, every gate check, every refusal and its collection plan. Only the practice item stems differ.
 
-So the compiler's discipline is fully visible on the live URL and its item quality is not. The **D frozen** and
-**Year 8** cards on the transfer strip were compiled with the key and are bundled into the client, so they show real
-generated items without a model call. Open one of those to see what the item writer actually produces.
+The **D frozen** and **Year 8** cards on the transfer strip are bundled into the client, so they render real item-writer
+output instantly without spending a call. They are the fastest way to see what the writer produces.
 
-To run the keyed path yourself:
+To run the keyed path locally:
 
 ```bash
 cp .env.example .env     # then set XAI_API_KEY
