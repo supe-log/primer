@@ -1,0 +1,35 @@
+client/src/pages/Compile.tsx
+  s_4fb493c9762eef::t_895767fad0bca1 121
+tests/demoView.test.ts
+  s_4fb493c9762eef::t_6013880d04d6a8 9
+  s_4fb493c9762eef::t_6750ed96365460 16-23
+tests/compiler.test.ts
+  s_4fb493c9762eef::t_80fd65843aae8c 19-20
+docs/DECISIONS.md
+  s_4fb493c9762eef::t_eea47d7a2dcc70 185-190
+client/src/components/IntakeForm.tsx
+  s_4fb493c9762eef::t_aee69900143a1d 13
+  s_4fb493c9762eef::t_7d8e952af88d2e 178-179
+  s_4fb493c9762eef::t_126e978c0de789 14-25
+server/index.ts
+  s_4fb493c9762eef::t_5b4604c8eb54c0 50-54
+server/compiler/orchestrator.ts
+  s_4fb493c9762eef::t_431e388358052f 600,604-606
+  s_4fb493c9762eef::t_048a1292780f07 621-623
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "eb2c37601fc2b0b124703d6167683e418c8de749",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
