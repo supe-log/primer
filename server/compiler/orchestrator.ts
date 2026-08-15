@@ -11,7 +11,9 @@ import {
 } from "@contracts";
 import { resolveAdapter } from "./adapters/jurisdiction";
 import { buildGateReport } from "./evidenceGate";
+import { evaluateLicenceGate } from "./licence/gate";
 import { MockModelClient, type ModelClient } from "./model/modelClient";
+import { buildFallbackBundle } from "./stages/fallbackBundle";
 import { sampleResult } from "./fixtureStore";
 import {
   validateCoursePlan,
@@ -32,7 +34,7 @@ import {
  * artifact contracts, so the client never changes.
  */
 
-export const COMPILER_VERSION = "primer-compiler-scaffold-0.1.0";
+export const COMPILER_VERSION = "primer-compiler-0.1.1";
 
 export interface OrchestratorDeps {
   modelClient: ModelClient;
@@ -242,7 +244,7 @@ export function runCompile(
     message: `Resolved ${stage.localLabel} to internal ordinal ${stage.ordinal}, ages ${stage.ageBand[0]} to ${stage.ageBand[1]}, ${request.locale.bcp47}, ${request.locale.script} script.`,
   });
 
-  const sourceChecks = validateSources(sourceManifest);
+  const sourceChecks = [...validateSources(sourceManifest), ...evaluateLicenceGate(sourceManifest)];
   for (const check of sourceChecks) {
     sink.emit({
       agentId: "agent:licence-gate",
@@ -308,22 +310,69 @@ export function runCompile(
     };
   }
 
-  // Deterministic replay of the sample artifacts. Engineer 1 swaps these three
-  // lines for real agent stages, one stage at a time, behind the same contracts.
-  const graph = sampleResult.graph!;
-  const coursePlan = sampleResult.coursePlan!;
-  const items = sampleResult.items;
+  // Deterministic construction path. The model client can replace the mapper and
+  // item writer later; this fallback is what MockModelClient and the stage path use.
+  const bundle = buildFallbackBundle({ request, adapter, sourceManifest });
+
+  if (bundle.refusal || !bundle.graph || !bundle.coursePlan) {
+    sink.emit({
+      agentId: "agent:graph-auditor",
+      phase: "run_refused",
+      message:
+        bundle.refusal?.missingEvidence[0] ??
+        "Graph unsound after two repair passes. Nothing is sequenced.",
+    });
+    return {
+      result: refuse({
+        runId,
+        request,
+        sourceManifest,
+        checks: [privacyCheck, ...sourceChecks],
+        summary: "Refused. The prerequisite graph was still unsound after two repair passes.",
+        runManifest: buildRunManifest({
+          runId,
+          request,
+          modelClient: deps.modelClient,
+          now: deps.now,
+          startedAt,
+          sourceManifest,
+          abstainedRoles: ["curriculum-mapper"],
+          revisions: bundle.revisions,
+        }),
+        refusal: bundle.refusal ?? {
+          code: "graph_unsound",
+          requested: `${request.subject} for ${request.stage.localLabel}`,
+          missingEvidence: ["A sound prerequisite graph"],
+          collectionPlan: ["Repair the mapping by hand and re-run."],
+        },
+      }),
+      events,
+    };
+  }
+
+  const graph = bundle.graph;
+  const coursePlan = bundle.coursePlan;
+  const items = bundle.items;
 
   sink.emit({
     agentId: "agent:curriculum-mapper",
     phase: "agent_succeeded",
-    message: `Emitted ${graph.knowledgeComponents.length} knowledge components and ${graph.prerequisiteEdges.length} prerequisite edges from the sample source.`,
+    message: `Emitted ${graph.knowledgeComponents.length} knowledge components and ${graph.prerequisiteEdges.length} prerequisite edges from the deterministic fallback map.`,
     counts: {
       nodes: graph.knowledgeComponents.length,
       edges: graph.prerequisiteEdges.length,
       belowStage: graph.knowledgeComponents.filter((kc) => kc.prerequisiteOnly).length,
     },
   });
+
+  for (const revision of bundle.revisions) {
+    sink.emit({
+      agentId: "agent:graph-auditor",
+      phase: revision.kept ? "check_passed" : "revision_started",
+      message: revision.reason,
+      attempt: revision.attempt,
+    });
+  }
 
   const graphChecks = validateGraph(graph);
   for (const check of graphChecks) {
@@ -473,12 +522,15 @@ export function runCompile(
       startedAt,
       sourceManifest,
       abstainedRoles: ["learning-science-critic"],
-      revisions: rejectedItems.map((item) => ({
-        agentId: "item-writer",
-        attempt: 1,
-        kept: false,
-        reason: item.rejection?.reason ?? "rejected by a deterministic validator",
-      })),
+      revisions: [
+        ...bundle.revisions,
+        ...rejectedItems.map((item) => ({
+          agentId: "item-writer",
+          attempt: 1,
+          kept: false,
+          reason: item.rejection?.reason ?? "rejected by a deterministic validator",
+        })),
+      ],
     }),
     approvedByHuman: false,
   });
