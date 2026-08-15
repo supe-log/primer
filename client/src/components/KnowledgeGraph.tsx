@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import type { GraphView } from "@/lib/views";
 import { inspectNode, layoutGraph, NODE_HEIGHT, NODE_WIDTH } from "@/lib/graphLayout";
@@ -16,14 +16,20 @@ function truncate(label: string, max = 28): string {
 export function KnowledgeGraph({
   graph,
   runId,
+  fromFixture = false,
 }: {
   graph: GraphView | null;
   runId?: string;
+  fromFixture?: boolean;
 }) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const layout = useMemo(() => (graph ? layoutGraph(graph) : null), [graph]);
   const inspection = graph && selectedId ? inspectNode(graph, selectedId) : undefined;
   const byId = useMemo(() => new Map(layout?.nodes.map((node) => [node.id, node]) ?? []), [layout]);
+
+  useEffect(() => {
+    setSelectedId(null);
+  }, [graph]);
 
   return (
     <Panel
@@ -31,15 +37,19 @@ export function KnowledgeGraph({
       subtitle={
         graph
           ? `${graph.stats.nodes} nodes · ${graph.stats.edges} edges · ${graph.stats.belowStage} below stage. Click a node to read the standard.`
-          : runId
-            ? "This run has no graph. A refused compile does not invent nodes."
-            : "Compile a course to load the graph from the run."
+          : fromFixture
+            ? "Frozen transfer cases are not in the run store. Compile live to inspect nodes."
+            : runId
+              ? "This run has no graph. A refused compile does not invent nodes."
+              : "Compile a course to load the graph from the run."
       }
       testId="panel-graph"
     >
       {!graph || !layout ? (
         <p className="text-sm text-muted-foreground">
-          The graph route reads a persisted compile. Nothing is drawn until a run exists.
+          {fromFixture
+            ? "The transfer strip swaps artifacts only. /graph is empty until a live compile is persisted."
+            : "The graph route reads a persisted compile. Nothing is drawn until a run exists."}
         </p>
       ) : (
         <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
