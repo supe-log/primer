@@ -13,6 +13,7 @@ import {
   stripCiteOnlyBodies,
   type PublicSourceCitation,
 } from "../licence/gate";
+import { manifestForExport } from "./usedSources";
 
 /**
  * Public export presentation. This is what may leave the box.
@@ -142,8 +143,9 @@ export function buildPublicExport(
   result: CompilationResult,
   options: PublicExportOptions = {},
 ): PublicExportBundle {
-  const protectedBodies = citeOnlyBodies(result.sourceManifest, options.protectedBodies ?? {});
-  const citations = exportSourceCitations(result.sourceManifest, options.protectedBodies ?? {});
+  const manifest = manifestForExport(result);
+  const protectedBodies = citeOnlyBodies(manifest, options.protectedBodies ?? {});
+  const citations = exportSourceCitations(manifest, options.protectedBodies ?? {});
   const draft: PublicExportBundle = {
     schemaVersion: "0.1.0",
     runId: result.runId,
@@ -161,10 +163,10 @@ export function buildPublicExport(
     },
     refusal: result.refusal,
     licence: {
-      redistributableSourceIds: result.sourceManifest.sources
+      redistributableSourceIds: manifest.sources
         .filter(mayRedistributeSource)
         .map((source) => source.sourceId),
-      citeOnlySourceIds: result.sourceManifest.sources
+      citeOnlySourceIds: manifest.sources
         .filter((source) => !mayRedistributeSource(source))
         .map((source) => source.sourceId),
       strippedSourceIds: [],
