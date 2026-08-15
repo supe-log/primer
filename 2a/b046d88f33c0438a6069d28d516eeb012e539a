@@ -1,0 +1,44 @@
+client/src/lib/views.ts
+  s_1f0657a29a1656::t_0aea04475c296c 1-124
+client/src/lib/api.ts
+  s_1f0657a29a1656::t_a7eb800f5b6230 35-44
+  s_1f0657a29a1656::t_11d1dde58b20f8 9
+client/src/lib/exportView.ts
+  s_1f0657a29a1656::t_0784f8e55848ed 1-30
+tests/demoView.test.ts
+  s_1f0657a29a1656::t_fb64622547cf2e 1-68
+docs/DECISIONS.md
+  s_1f0657a29a1656::t_4cd1bda0a57cd3 110-115
+client/src/lib/graphLayout.ts
+  s_1f0657a29a1656::t_6b9c531268d15d 1-123
+tests/runRoutes.test.ts
+  s_1f0657a29a1656::t_2e4814358e08ca 1-142
+client/src/pages/Compile.tsx
+  s_1f0657a29a1656::t_f93586e80bdb5d 9-10,15-16
+  s_1f0657a29a1656::t_5cd203729d3c69 171-196,199
+  s_1f0657a29a1656::t_878573ed7cf2e2 197-198
+  s_1f0657a29a1656::t_c2c7043b2faedb 49-58,64-65,71,85-95,99
+  s_1f0657a29a1656::t_5a5156f6e67c37 26-28
+  s_1f0657a29a1656::t_2fc2ff77425bec 96-98
+  s_1f0657a29a1656::t_7fa26d1bca502b 100
+client/src/components/KnowledgeGraph.tsx
+  s_1f0657a29a1656::t_72ea70ccbdf67a 1-182
+client/src/components/ExportPanel.tsx
+  s_1f0657a29a1656::t_e31bfa13be05e0 1-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "2ab046d88f33c0438a6069d28d516eeb012e539a",
+  "prompts": {},
+  "sessions": {
+    "s_1f0657a29a1656": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1bc07c4a-4b56-46e4-958e-a8f46c0dfc28",
+        "model": "cursor-grok-4.6-high-fast"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
