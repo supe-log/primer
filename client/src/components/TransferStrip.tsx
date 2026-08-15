@@ -24,7 +24,7 @@ export function TransferStrip({
           Same engine, one schema. Click a ready card to swap artifacts without compiling.
         </p>
       </div>
-      <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+      <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
         {cases.map((entry) => {
           const active = selected === entry.id;
           return (

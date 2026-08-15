@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { CompilationRequest, type CompilationRequest as CompilationRequestType } from "@contracts";
+import {
+  defaultStandardIdsForStage,
+  standardsForStage,
+  YEAR_6_UNFETCHED,
+  YEAR_7_STANDARDS,
+} from "../lib/stageCatalogue";
 import { LicenceBadge, Panel } from "./primitives";
 
 /**
@@ -10,20 +16,8 @@ import { LicenceBadge, Panel } from "./primitives";
  * There is no student personal information field here and there must never be one.
  */
 
-export const STANDARD_OPTIONS = [
-  {
-    id: "std:acara.v9.ac9m7n04",
-    label: "AC9M7N04 — equivalent representations of rational numbers",
-  },
-  {
-    id: "std:acara.v9.ac9m7n08",
-    label: "AC9M7N08 — recognise, represent and solve problems involving ratios",
-  },
-  {
-    id: "std:acara.v9.ac9m7m06",
-    label: "AC9M7M06 — mathematical modelling with ratios",
-  },
-];
+/** @deprecated Use standardsForStage. Kept so existing demo tests keep a stable import. */
+export const STANDARD_OPTIONS = YEAR_7_STANDARDS;
 
 export function IntakeForm({
   initial,
@@ -37,6 +31,7 @@ export function IntakeForm({
   const [stageLabel, setStageLabel] = useState(initial.stage.localLabel);
   const [subject, setSubject] = useState(initial.subject);
   const [standardIds, setStandardIds] = useState<string[]>(initial.standardIds);
+  const stageStandards = standardsForStage(stageLabel);
   const [goal, setGoal] = useState(initial.goal);
   const [priorKnowledge, setPriorKnowledge] = useState(
     initial.learnerContext.priorKnowledgeNotes,
@@ -109,7 +104,12 @@ export function IntakeForm({
             id="stage"
             className="field mt-1.5"
             value={stageLabel}
-            onChange={(event) => setStageLabel(event.target.value)}
+            onChange={(event) => {
+              const next = event.target.value;
+              setStageLabel(next);
+              const fetched = defaultStandardIdsForStage(next);
+              setStandardIds(fetched.length > 0 ? fetched : [YEAR_6_UNFETCHED.id]);
+            }}
             data-testid="select-stage"
           >
             {Object.keys(stages).map((label) => (
@@ -152,12 +152,13 @@ export function IntakeForm({
         <fieldset className="sm:col-span-2">
           <legend className="label">Standards from the snapshot</legend>
           <div className="mt-2 space-y-2">
-            {STANDARD_OPTIONS.map((option) => (
+            {stageStandards.map((option) => (
               <label key={option.id} className="flex items-start gap-2 text-sm">
                 <input
                   type="checkbox"
                   className="mt-1 accent-primary"
                   checked={standardIds.includes(option.id)}
+                  disabled={!option.fetched}
                   onChange={(event) =>
                     setStandardIds((current) =>
                       event.target.checked
@@ -175,8 +176,9 @@ export function IntakeForm({
             ))}
           </div>
           <p className="mt-2 text-xs text-muted-foreground">
-            Official ACARA V9 Year 7 codes from the hashed snapshot. The compiler reads them; it
-            does not author them.
+            {stageLabel === "Year 6"
+              ? "Year 6 has no hashed snapshot. The compiler will refuse rather than invent content descriptions."
+              : `Official ACARA V9 ${stageLabel} codes from the hashed snapshot. The compiler reads them; it does not author them.`}
           </p>
         </fieldset>
 
