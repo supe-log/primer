@@ -11,6 +11,7 @@ import { mapCurriculumFallback } from "./fallbackMap";
 import { auditGraphWithRepair, type GraphRevision } from "./graphAuditor";
 import { planSequence } from "./sequencePlanner";
 import { writeFallbackItems } from "./fallbackItems";
+import { attachWorkedExamples } from "./workedExamples";
 
 /**
  * Deterministic construction path. Used when the model client abstains, which is
@@ -52,7 +53,9 @@ export function buildFallbackBundle(input: {
 
   return {
     graph: audited.graph,
-    coursePlan,
+    // Same rule on the deterministic path: derive the example from the items, or
+    // ship the lesson without one.
+    coursePlan: attachWorkedExamples({ coursePlan, items, graph: audited.graph }),
     items,
     revisions: audited.revisions,
   };
