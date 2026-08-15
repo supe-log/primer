@@ -13,6 +13,9 @@ import {
   type LessonBeat,
 } from "@/lib/courseWorkspace";
 import { BEAT_TILE, KENNEY } from "@/lib/learnerArt";
+import { PixelBuddy, PixelBurst, PixelStar, PixelSun } from "@/components/learnerPixels";
+
+const LESSON_FACE = [KENNEY.yellow, KENNEY.blue, KENNEY.green] as const;
 
 /**
  * Kid-facing course in a phone-sized frame. One beat at a time, in the
@@ -64,42 +67,62 @@ function HomeScreen({
   onOpen: (index: number) => void;
 }) {
   return (
-    <div className="flex flex-1 flex-col p-5">
-      <p className="text-xs font-semibold uppercase tracking-wide text-primary">Today</p>
-      <h2 className="mt-1 text-2xl font-bold leading-tight">Let’s practise</h2>
-      <p className="mt-2 text-sm text-muted-foreground">
-        {course.stage} {course.subject}. One short lesson at a time.
+    <div className="flex flex-1 flex-col">
+      <div className="relative flex items-end justify-between px-4 pb-2 pt-4">
+        <PixelSun size={36} className="absolute right-4 top-3" />
+        <div className="flex items-end gap-3">
+          <PixelBuddy size={72} className="pixel-bob" />
+          <div>
+            <p className="learner-pixel text-sm font-bold text-primary">Hi — I’m Pip</p>
+            <h2 className="learner-pixel mt-0.5 text-2xl font-bold leading-none">Let’s play</h2>
+          </div>
+        </div>
+      </div>
+      <p className="px-5 text-sm text-muted-foreground">
+        {course.stage} {course.subject}. Pick a short lesson.
       </p>
-      <ol className="mt-5 flex-1 space-y-3">
+      <ol className="mt-4 flex-1 space-y-3 px-4">
         {course.lessons.map((entry) => (
           <li key={entry.lesson.lessonId}>
             <button
               type="button"
               onClick={() => onOpen(entry.index)}
-              className="px-slice px-card w-full px-4 py-3 text-left"
+              className="px-slice px-card flex w-full items-center gap-3 px-3 py-3 text-left"
               data-testid={`button-lesson-${entry.index}`}
             >
-              <span className="text-xs font-semibold text-primary">
-                Lesson {entry.index + 1}
+              <span className="relative inline-flex h-12 w-12 shrink-0 items-center justify-center">
+                <img
+                  src={LESSON_FACE[entry.index % LESSON_FACE.length]}
+                  alt=""
+                  className="absolute inset-0 h-12 w-12"
+                  style={{ imageRendering: "pixelated" }}
+                />
+                <span className="learner-pixel relative text-lg font-bold">{entry.index + 1}</span>
               </span>
-              <span className="mt-0.5 block text-base font-semibold">
-                {friendlyLessonTitle(entry)}
+              <span className="min-w-0 flex-1">
+                <span className="learner-pixel block text-xs font-bold text-primary">
+                  Lesson {entry.index + 1}
+                </span>
+                <span className="mt-0.5 block text-base font-semibold leading-snug">
+                  {friendlyLessonTitle(entry)}
+                </span>
+                <span className="mt-1 block text-xs text-muted-foreground">
+                  {entry.items.length === 0
+                    ? "A walk-through"
+                    : entry.items.length === 1
+                      ? "1 puzzle"
+                      : `${entry.items.length} puzzles`}
+                </span>
               </span>
-              <span className="mt-1 block text-xs text-muted-foreground">
-                {entry.items.length === 0
-                  ? "Walk-through only"
-                  : entry.items.length === 1
-                    ? "1 practice question"
-                    : `${entry.items.length} practice questions`}
-              </span>
+              <span className="learner-pixel shrink-0 text-sm font-bold text-primary">GO</span>
             </button>
           </li>
         ))}
       </ol>
-      <p className="mt-4 text-center text-[11px] text-muted-foreground">
+      <p className="mt-3 px-4 text-center text-[11px] text-muted-foreground">
         From the Australian Curriculum · draft
       </p>
-      <p className="mt-1 text-center text-[10px] text-muted-foreground">
+      <p className="mb-3 mt-1 text-center text-[10px] text-muted-foreground">
         UI tiles: Kenney.nl · CC0
       </p>
     </div>
@@ -127,30 +150,30 @@ function LessonApp({
 
   return (
     <div className="flex min-h-[38rem] flex-1 flex-col">
-      <header className="flex items-center justify-between gap-2 px-4 pb-2 pt-4">
+      <header className="flex items-center justify-between gap-2 px-4 pb-2 pt-3">
         <button type="button" className="learner-btn-quiet px-3" onClick={onHome}>
-          Lessons
+          Map
         </button>
         <p className="min-w-0 truncate text-xs font-medium text-muted-foreground">
           {friendlyLessonTitle(lesson)}
         </p>
-        <span className="text-xs text-muted-foreground">
+        <span className="learner-pixel text-xs">
           {beatIndex + 1}/{beats.length}
         </span>
       </header>
-      <ol className="flex items-center gap-1 px-4" aria-label="Lesson steps">
+      <ol className="flex items-center gap-1.5 px-4" aria-label="Lesson steps">
         {beats.map((entry, index) => (
           <li key={`${entry.kind}-${index}`} className="flex-1">
             <img
               src={index <= beatIndex ? BEAT_TILE[entry.kind] : KENNEY.grey}
               alt=""
-              className="h-3 w-full"
+              className="h-4 w-full"
               style={{ imageRendering: "pixelated" }}
             />
           </li>
         ))}
       </ol>
-      <p className="px-4 pt-2 text-xs font-semibold uppercase tracking-wide text-primary">
+      <p className="learner-pixel px-4 pt-2 text-sm font-bold text-primary">
         {beat ? BEAT_LABEL[beat.kind] : ""}
       </p>
       <div className="flex-1 overflow-y-auto px-4 pb-3 pt-1">
@@ -169,7 +192,7 @@ function LessonApp({
           }}
           data-testid={atEnd ? "button-lesson-home" : "button-lesson-next"}
         >
-          {atEnd ? "Back to lessons" : "Next"}
+          {atEnd ? "Pick another" : "Let’s go"}
         </button>
         <p className="mt-2 text-center text-[11px] text-muted-foreground">
           {course.stage} · practice only · not a test score
@@ -186,7 +209,7 @@ function BeatBody({ beat }: { beat: LessonBeat }) {
   if (beat.kind === "warmup") {
     return (
       <div>
-        <h3 className="text-xl font-bold leading-tight">Get your brain ready</h3>
+        <h3 className="learner-pixel text-2xl font-bold leading-tight">Wake up your brain</h3>
         <p className="mt-2 text-sm leading-relaxed">{beat.coach}</p>
         {beat.prompts.length > 0 ? (
           <ul className="mt-4 space-y-3">
@@ -210,7 +233,7 @@ function BeatBody({ beat }: { beat: LessonBeat }) {
   if (beat.kind === "model") {
     return (
       <div>
-        <h3 className="text-xl font-bold leading-tight">Watch how this one works</h3>
+        <h3 className="learner-pixel text-2xl font-bold leading-tight">Watch this one</h3>
         <p className="mt-2 text-sm leading-relaxed">{beat.coach}</p>
         {beat.example ? <WorkedExampleCard example={beat.example} /> : null}
       </div>
@@ -220,7 +243,7 @@ function BeatBody({ beat }: { beat: LessonBeat }) {
   if (beat.kind === "guided") {
     return (
       <div>
-        <h3 className="text-xl font-bold leading-tight">Try this with a hint nearby</h3>
+        <h3 className="learner-pixel text-2xl font-bold leading-tight">Try it with me</h3>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{beat.coach}</p>
         <PracticeItem entry={beat.item} />
       </div>
@@ -230,7 +253,7 @@ function BeatBody({ beat }: { beat: LessonBeat }) {
   if (beat.kind === "practice") {
     return (
       <div>
-        <h3 className="text-xl font-bold leading-tight">Your turn</h3>
+        <h3 className="learner-pixel text-2xl font-bold leading-tight">Your turn</h3>
         <p className="mt-2 text-sm text-muted-foreground">
           {beat.remaining === 0
             ? "Last question in this lesson."
@@ -243,8 +266,12 @@ function BeatBody({ beat }: { beat: LessonBeat }) {
 
   return (
     <div>
-      <h3 className="text-xl font-bold leading-tight">Nice work for today</h3>
-      <p className="mt-2 text-sm leading-relaxed">{beat.coach}</p>
+      <div className="flex items-center gap-3">
+        <PixelBuddy size={56} className="pixel-bob" />
+        <h3 className="learner-pixel text-2xl font-bold leading-tight">You finished this one</h3>
+      </div>
+      <PixelBurst />
+      <p className="mt-1 text-sm leading-relaxed">{beat.coach}</p>
       {beat.prompts.length > 0 ? (
         <ul className="mt-4 space-y-3">
           {beat.prompts.map((prompt) => (
@@ -378,7 +405,13 @@ function PracticeItem({ entry }: { entry: CourseItemView }) {
           data-testid={`practice-feedback-${item.itemId}`}
         >
           <p className="font-semibold">
-            {grade.correct ? "Yes — that’s the one." : `Not that one. The matching answer is ${grade.keyId}.`}
+            {grade.correct ? (
+              <span className="inline-flex items-center gap-2">
+                <PixelStar size={20} /> Yes — that’s the one.
+              </span>
+            ) : (
+              `Not that one. The matching answer is ${grade.keyId}.`
+            )}
           </p>
           <p className="mt-1 text-muted-foreground">{grade.keyRationale}</p>
           {!grade.correct && grade.selectedRationale ? (
