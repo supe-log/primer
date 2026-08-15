@@ -27,6 +27,7 @@ client/src/components/CoursePlayer.tsx
   s_4fb493c9762eef::t_8ba000e1b3e71b 216-217
 docs/DECISIONS.md
   s_4fb493c9762eef::t_246e766527d57e 344,355-358
+  s_4fb493c9762eef::t_da6092468027ad 354
 ---
 {
   "schema_version": "authorship/3.0.0",
