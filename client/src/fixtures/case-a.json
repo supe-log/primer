@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "0.1.0",
+  "runId": "run:transfer.ustx.g5.rla.0001",
+  "status": "refused",
+  "request": {
+    "schemaVersion": "0.1.0",
+    "requestId": "req:transfer.ustx.g5.rla",
+    "jurisdictionId": "us-tx",
+    "curriculumSourceId": "teks.rla",
+    "stage": {
+      "localLabel": "Grade 5",
+      "ageBand": [
+        10,
+        11
+      ],
+      "ordinal": 6
+    },
+    "subject": "Reading Language Arts",
+    "standardIds": [
+      "std:teks.rla.g5.requested"
+    ],
+    "locale": {
+      "bcp47": "en-US",
+      "script": "Latn",
+      "numeralSystem": "latn",
+      "direction": "ltr",
+      "resourceTier": "high"
+    },
+    "goal": "Build a Grade 5 writing unit aligned to the state assessment.",
+    "learnerContext": {
+      "priorKnowledgeNotes": "Class can write a paragraph with a clear topic sentence but rarely develops evidence.",
+      "dailyMinutes": 30,
+      "accessibilityNeeds": [
+        "read-aloud option"
+      ]
+    },
+    "assessmentTarget": "unit_test",
+    "lessonCount": 3
+  },
+  "sourceManifest": {
+    "schemaVersion": "0.1.0",
+    "sources": [
+      {
+        "sourceId": "src:acara.v9.terms",
+        "title": "Australian Curriculum: copyright and terms of use (text extraction)",
+        "publisher": "Australian Curriculum, Assessment and Reporting Authority",
+        "url": "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "1ea90d8866de8755ef8208e3febe42624a0d9769a2c2b81a3e97347c24b4c720",
+        "fetched": true,
+        "licence": {
+          "licenceId": "cc-by-4.0",
+          "posture": "redistributable",
+          "mayQuote": true,
+          "mayRedistribute": true,
+          "attributionText": "Australian Curriculum, Assessment and Reporting Authority (ACARA), Australian Curriculum Version 9.0, licensed CC BY 4.0.",
+          "excludedMaterial": [
+            "ACARA logos and other trade marks",
+            "website design and layout",
+            "third-party material identified as such",
+            "National Literacy and Numeracy Learning Progressions"
+          ]
+        }
+      }
+    ]
+  },
+  "items": [],
+  "gateReport": {
+    "schemaVersion": "0.1.0",
+    "verdict": "AMBER",
+    "permission": "investigate",
+    "checks": [
+      {
+        "checkId": "check:privacy.no-student-pii",
+        "label": "No student personal information anywhere in the run",
+        "kind": "deterministic",
+        "blocking": true,
+        "status": "pass",
+        "detail": "23 fields scanned, no student-identifying field present.",
+        "counts": {
+          "fieldsScanned": 23,
+          "violations": 0
+        }
+      },
+      {
+        "checkId": "check:source.licence-known",
+        "label": "Every source carries a licence record",
+        "kind": "deterministic",
+        "blocking": true,
+        "status": "pass",
+        "detail": "1 sources, every one with a licence posture. Cite-only source text is never reproduced in an export.",
+        "counts": {
+          "sources": 1,
+          "unknownLicence": 0
+        }
+      },
+      {
+        "checkId": "check:source.snapshot-fetched",
+        "label": "Sources were fetched and content-hashed",
+        "kind": "deterministic",
+        "blocking": false,
+        "status": "pass",
+        "detail": "1 sources fetched and hashed.",
+        "counts": {
+          "sources": 1,
+          "fetched": 1
+        }
+      },
+      {
+        "checkId": "check:source.cite-only-no-redistribute",
+        "label": "Cite-only sources cannot be redistributed",
+        "kind": "deterministic",
+        "blocking": true,
+        "status": "pass",
+        "detail": "0 cite-only sources. Redistribution is blocked in code; an export may carry a citation and a link only.",
+        "counts": {
+          "citeOnly": 0,
+          "leaking": 0,
+          "blocked": 0
+        }
+      },
+      {
+        "checkId": "check:source.unknown-blocks-redistribution",
+        "label": "Unknown licences cap the run and block redistribution",
+        "kind": "deterministic",
+        "blocking": true,
+        "status": "pass",
+        "detail": "No source has an unknown licence.",
+        "counts": {
+          "unknown": 0
+        }
+      },
+      {
+        "checkId": "check:source.standards-fetched",
+        "label": "Requested standards resolve to a fetched content description",
+        "kind": "deterministic",
+        "blocking": true,
+        "status": "fail",
+        "detail": "No curriculum snapshot has been fetched for Texas Education Agency. The adapter resolves the stage ladder, which is not the same as supporting the jurisdiction.",
+        "counts": {
+          "requested": 1,
+          "unresolved": 1
+        }
+      }
+    ],
+    "missingEvidence": [
+      "A fetched, content-hashed curriculum snapshot for Texas Education Agency",
+      "Content descriptions for: std:teks.rla.g5.requested",
+      "A verified licence for that source, since TEKS are published in the Texas Administrative Code. Redistribution terms are not verified here, and released STAAR items carry separate conditions, so the posture is cite and link until a human checks it."
+    ],
+    "unmeasured": [
+      "blueprint conformance",
+      "item difficulty calibration",
+      "learner outcomes"
+    ],
+    "needsHumanReview": [],
+    "summary": "Refused. The stage resolves, but no fetched curriculum stands behind the requested standards, and a bundle built on invented standards would be worse than no bundle."
+  },
+  "runManifest": {
+    "schemaVersion": "0.1.0",
+    "runId": "run:transfer.ustx.g5.rla.0001",
+    "requestId": "req:transfer.ustx.g5.rla",
+    "startedAt": "2026-08-15T14:00:00.000Z",
+    "finishedAt": "2026-08-15T14:00:02.250Z",
+    "compilerVersion": "primer-compiler-0.1.1",
+    "modelClient": "mock",
+    "modelCalls": [],
+    "sourceDigests": [
+      "1ea90d8866de8755ef8208e3febe42624a0d9769a2c2b81a3e97347c24b4c720"
+    ],
+    "revisions": [],
+    "replayable": true
+  },
+  "refusal": {
+    "code": "unresolved_adapter",
+    "requested": "Reading Language Arts for Grade 5 in Texas Education Agency",
+    "missingEvidence": [
+      "A fetched, content-hashed curriculum snapshot for Texas Education Agency",
+      "Content descriptions for: std:teks.rla.g5.requested",
+      "A verified licence for that source, since TEKS are published in the Texas Administrative Code. Redistribution terms are not verified here, and released STAAR items carry separate conditions, so the posture is cite and link until a human checks it."
+    ],
+    "collectionPlan": [
+      "Add a fetcher for Texas Education Agency in server/compiler/sources and register it in script/snapshot.ts.",
+      "Run npm run snapshot to fetch, hash and commit the curriculum bytes.",
+      "Verify the licence posture before compiling: an unknown licence caps the run at prototype and blocks redistribution.",
+      "Point the adapter's catalogueSourceId at the new snapshot and re-run."
+    ]
+  },
+  "approvedByHuman": false
+}

@@ -597,13 +597,19 @@ export function runCompile(
   ];
 
   const rejectedItems = items.filter((item) => item.rejection);
-  const fetchedCurriculum = sourceManifest.sources.some((source) => source.fetched);
+  // What is still missing is computed, not asserted. The fetch line belongs here
+  // only while something is unfetched; leaving it in after the snapshot store made
+  // it true would understate the run in exactly the way the gate exists to prevent.
+  const unfetched = sourceManifest.sources.filter((source) => !source.fetched);
+
   const gateReport = buildGateReport({
     checks,
     missingEvidence: [
-      ...(fetchedCurriculum
-        ? []
-        : ["Fetched and content-hashed curriculum content descriptions with their official codes"]),
+      ...(unfetched.length > 0
+        ? [
+            `Fetched and content-hashed sources for: ${unfetched.map((source) => source.sourceId).join(", ")}`,
+          ]
+        : []),
       "A learning-science critic run against a configured model client",
       "Expert review verdicts on the item bank",
       "Pilot response data for item calibration and differential item functioning",
@@ -618,9 +624,10 @@ export function runCompile(
       ...rejectedItems.map((item) => item.itemId),
       ...graph.standards.map((standard) => standard.standardId),
     ],
-    summary: fetchedCurriculum
-      ? "Draft bundle compiled from hashed official snapshots. Structure, coverage and item rules check out. Nothing here has earned a claim about learning, difficulty or fairness."
-      : "Prototype bundle built from sample standards. Structure, coverage and item rules check out. Nothing here has earned a claim about learning, difficulty or fairness.",
+    // Names what was actually compiled and from where. The second half never
+    // changes: describing the provenance accurately is not the same as claiming the
+    // bundle works, and this run has earned the first and not the second.
+    summary: `Prototype bundle compiled from ${graph.standards.length} ${adapter.authorityName} content descriptions, each traced to a content-hashed snapshot. Structure, coverage and item rules check out. Nothing here has earned a claim about learning, difficulty or fairness.`,
   });
 
   sink.emit({

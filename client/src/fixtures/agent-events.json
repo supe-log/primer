@@ -3,154 +3,406 @@
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 0,
-    "at": "2026-08-15T14:00:00Z",
+    "at": "2026-08-15T14:00:00.250Z",
     "agentId": "agent:orchestrator",
     "phase": "run_started",
-    "message": "Compiling Year 7 Mathematics, Australian Curriculum V9 sample, 3 standards, 3 lessons.",
-    "counts": { "standards": 3, "lessons": 3 },
+    "message": "Compiling Mathematics, Year 7, 3 standards, 3 lessons.",
+    "counts": {
+      "standards": 3,
+      "lessons": 3
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 1,
-    "at": "2026-08-15T14:00:00Z",
-    "agentId": "agent:locale-resolver",
-    "phase": "agent_succeeded",
-    "message": "Resolved Year 7 to internal ordinal 8, ages 12 to 13, en-AU, Latin script, metric units.",
-    "counts": {},
+    "at": "2026-08-15T14:00:00.500Z",
+    "agentId": "agent:privacy-scan",
+    "phase": "check_passed",
+    "message": "23 fields scanned, no student-identifying field present.",
+    "counts": {
+      "fieldsScanned": 23,
+      "violations": 0
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 2,
-    "at": "2026-08-15T14:00:00Z",
-    "agentId": "agent:provenance-snapshotter",
+    "at": "2026-08-15T14:00:00.750Z",
+    "agentId": "agent:locale-resolver",
     "phase": "agent_succeeded",
-    "message": "Recorded 4 sources with licence postures. No source was fetched in this prototype run.",
-    "counts": { "sources": 4, "fetched": 0 },
+    "message": "Resolved Year 7 to internal ordinal 8, ages 12 to 13, en-AU, Latn script.",
+    "counts": {},
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 3,
-    "at": "2026-08-15T14:00:01Z",
+    "at": "2026-08-15T14:00:01.000Z",
     "agentId": "agent:licence-gate",
     "phase": "check_passed",
-    "message": "ACARA sample material is redistributable under CC BY 4.0. Three cite-only sources are quotable but never reproduced.",
-    "counts": { "redistributable": 1, "citeOnly": 3, "unknown": 0 },
+    "message": "6 sources, every one with a licence posture. Cite-only source text is never reproduced in an export.",
+    "counts": {
+      "sources": 6,
+      "unknownLicence": 0
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 4,
-    "at": "2026-08-15T14:00:01Z",
-    "agentId": "agent:curriculum-mapper",
-    "phase": "agent_started",
-    "message": "Decomposing 3 standards into knowledge components.",
-    "counts": {},
+    "at": "2026-08-15T14:00:01.250Z",
+    "agentId": "agent:licence-gate",
+    "phase": "check_passed",
+    "message": "6 sources fetched and hashed.",
+    "counts": {
+      "sources": 6,
+      "fetched": 6
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 5,
-    "at": "2026-08-15T14:00:01Z",
-    "agentId": "agent:curriculum-mapper",
-    "phase": "agent_succeeded",
-    "message": "Emitted 5 knowledge components and 5 prerequisite edges, including one pulled in below stage from the learner context.",
-    "counts": { "nodes": 5, "edges": 5, "belowStage": 1 },
+    "at": "2026-08-15T14:00:01.500Z",
+    "agentId": "agent:licence-gate",
+    "phase": "check_passed",
+    "message": "3 cite-only sources. Redistribution is blocked in code; an export may carry a citation and a link only.",
+    "counts": {
+      "citeOnly": 3,
+      "leaking": 0,
+      "blocked": 3
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 6,
-    "at": "2026-08-15T14:00:01Z",
-    "agentId": "agent:graph-auditor",
+    "at": "2026-08-15T14:00:01.750Z",
+    "agentId": "agent:licence-gate",
     "phase": "check_passed",
-    "message": "Graph is acyclic, no orphans, every edge justified.",
-    "counts": { "cycles": 0, "orphans": 0, "unjustifiedEdges": 0 },
+    "message": "No source has an unknown licence.",
+    "counts": {
+      "unknown": 0
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 7,
-    "at": "2026-08-15T14:00:02Z",
-    "agentId": "agent:sequence-planner",
+    "at": "2026-08-15T14:00:02.000Z",
+    "agentId": "agent:curriculum-mapper",
     "phase": "agent_succeeded",
-    "message": "Topological order fixed, two spaced re-exposures scheduled, two interleaved practice sets built.",
-    "counts": { "lessons": 3, "spacedReexposures": 2, "interleavedSets": 2 },
+    "message": "Mapped 6 knowledge components and 6 prerequisite edges from 3 fetched content descriptions.",
+    "counts": {
+      "nodes": 6,
+      "edges": 6,
+      "misconceptions": 3,
+      "belowStage": 1,
+      "spansMatched": 5,
+      "droppedInventedCodes": 0,
+      "droppedDanglingEdges": 0
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 8,
-    "at": "2026-08-15T14:00:02Z",
-    "agentId": "agent:lesson-architect",
+    "at": "2026-08-15T14:00:02.250Z",
+    "agentId": "agent:item-writer",
     "phase": "agent_succeeded",
-    "message": "Three lessons on the review, model, guided, independent, review arc with a four in five guided-practice target.",
-    "counts": { "lessons": 3, "workedExamples": 3 },
+    "message": "Wrote 5 items across 5 knowledge components. 2 rejected by a deterministic validator, 0 discarded before validation.",
+    "counts": {
+      "written": 5,
+      "rejected": 2,
+      "shipped": 3,
+      "discarded": 0,
+      "distractors": 12
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 9,
-    "at": "2026-08-15T14:00:02Z",
-    "agentId": "agent:item-writer",
+    "at": "2026-08-15T14:00:02.500Z",
+    "agentId": "agent:curriculum-mapper",
     "phase": "agent_succeeded",
-    "message": "Generated 5 items with per-distractor misconceptions.",
-    "counts": { "generated": 5 },
+    "message": "Graph accepted: 6 knowledge components and 6 prerequisite edges, every standard read from the hashed snapshot.",
+    "counts": {
+      "nodes": 6,
+      "edges": 6,
+      "belowStage": 1
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 10,
-    "at": "2026-08-15T14:00:02Z",
-    "agentId": "agent:assessment-validator",
-    "phase": "check_failed",
-    "message": "item:au.y7.math.0005 has two defensible keys. Rejected rather than repaired.",
-    "counts": { "inspected": 5, "rejected": 1 },
+    "at": "2026-08-15T14:00:02.750Z",
+    "agentId": "agent:graph-auditor",
+    "phase": "check_passed",
+    "message": "6 knowledge components, 6 edges, no cycles.",
+    "counts": {
+      "nodes": 6,
+      "edges": 6,
+      "cycles": 0
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 11,
-    "at": "2026-08-15T14:00:03Z",
-    "agentId": "agent:learning-science-critic",
-    "phase": "agent_abstained",
-    "message": "No model client configured, so the critic abstained. The gate records null, not a pass.",
-    "counts": {},
+    "at": "2026-08-15T14:00:03.000Z",
+    "agentId": "agent:graph-auditor",
+    "phase": "check_passed",
+    "message": "All edge endpoints resolve into the graph.",
+    "counts": {
+      "edges": 6,
+      "dangling": 0
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 12,
-    "at": "2026-08-15T14:00:03Z",
-    "agentId": "agent:release-gate",
-    "phase": "gate_evaluated",
-    "message": "Verdict YELLOW at permission tier prototype. Four items ship, one is marked rejected, four evidence items are missing.",
-    "counts": { "shipped": 4, "rejected": 1, "missingEvidence": 4 },
+    "at": "2026-08-15T14:00:03.250Z",
+    "agentId": "agent:graph-auditor",
+    "phase": "check_passed",
+    "message": "6 of 6 edges carry a justification.",
+    "counts": {
+      "edges": 6,
+      "unjustified": 0
+    },
     "attempt": 1
   },
   {
     "schemaVersion": "0.1.0",
     "runId": "run:demo.au.y7.ratios.0001",
     "seq": 13,
-    "at": "2026-08-15T14:00:03Z",
+    "at": "2026-08-15T14:00:03.500Z",
+    "agentId": "agent:graph-auditor",
+    "phase": "check_passed",
+    "message": "Every knowledge component is either connected or explicitly flagged as an entry point.",
+    "counts": {
+      "nodes": 6,
+      "orphans": 0
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 14,
+    "at": "2026-08-15T14:00:03.750Z",
+    "agentId": "agent:graph-auditor",
+    "phase": "check_passed",
+    "message": "3 misconceptions declared and all links resolve.",
+    "counts": {
+      "declared": 3,
+      "unresolved": 0
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 15,
+    "at": "2026-08-15T14:00:04.000Z",
+    "agentId": "agent:sequence-planner",
+    "phase": "check_passed",
+    "message": "Every prerequisite appears before the component that needs it.",
+    "counts": {
+      "edges": 6
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 16,
+    "at": "2026-08-15T14:00:04.250Z",
+    "agentId": "agent:sequence-planner",
+    "phase": "check_passed",
+    "message": "6 knowledge components scheduled across 3 lessons.",
+    "counts": {
+      "scheduled": 6,
+      "unscheduled": 0
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 17,
+    "at": "2026-08-15T14:00:04.500Z",
+    "agentId": "agent:sequence-planner",
+    "phase": "check_passed",
+    "message": "3 lessons, each with review, modelling, guided practice, independent practice and closing review.",
+    "counts": {
+      "lessons": 3
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 18,
+    "at": "2026-08-15T14:00:04.750Z",
+    "agentId": "agent:sequence-planner",
+    "phase": "check_passed",
+    "message": "13 sequencing decisions recorded with a lever, a reason and an evidence level. Low-evidence levers are never applied as hard constraints.",
+    "counts": {
+      "planDecisions": 3,
+      "lessonDecisions": 10
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 19,
+    "at": "2026-08-15T14:00:05.000Z",
+    "agentId": "agent:assessment-validator",
+    "phase": "check_passed",
+    "message": "5 items inspected, each with exactly one key that matches correctOptionId.",
+    "counts": {
+      "inspected": 5,
+      "rejected": 0
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 20,
+    "at": "2026-08-15T14:00:05.250Z",
+    "agentId": "agent:assessment-validator",
+    "phase": "check_failed",
+    "message": "6 distractors have no known misconception: item:au.year-7.mathematics.place-rationals-on-line.01/B, item:au.year-7.mathematics.place-rationals-on-line.01/C, item:au.year-7.mathematics.place-rationals-on-line.01/D, item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D.",
+    "counts": {
+      "options": 12,
+      "unmapped": 6
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 21,
+    "at": "2026-08-15T14:00:05.500Z",
+    "agentId": "agent:assessment-validator",
+    "phase": "check_passed",
+    "message": "No all-of-the-above, none-of-the-above or combined options found.",
+    "counts": {
+      "flagged": 0
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 22,
+    "at": "2026-08-15T14:00:05.750Z",
+    "agentId": "agent:assessment-validator",
+    "phase": "check_passed",
+    "message": "All item tags resolve.",
+    "counts": {
+      "unresolved": 0
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 23,
+    "at": "2026-08-15T14:00:06.000Z",
+    "agentId": "agent:assessment-validator",
+    "phase": "check_passed",
+    "message": "Measured demand bands: apply 3, recall 1, analyze 1. Language models skew toward lower-order demand, so this is counted rather than trusted.",
+    "counts": {
+      "apply": 3,
+      "recall": 1,
+      "analyze": 1
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 24,
+    "at": "2026-08-15T14:00:06.250Z",
+    "agentId": "agent:assessment-validator",
+    "phase": "check_passed",
+    "message": "5 of 5 items are uncalibrated and say so. Differential item functioning is recorded as not yet measured.",
+    "counts": {
+      "uncalibrated": 5,
+      "calibrated": 0
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 25,
+    "at": "2026-08-15T14:00:06.500Z",
+    "agentId": "agent:standards-auditor",
+    "phase": "check_passed",
+    "message": "3 of 3 requested standards are mapped and assessed. Coverage is computed from the artifacts, not asserted.",
+    "counts": {
+      "requested": 3,
+      "mapped": 3,
+      "assessed": 3
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 26,
+    "at": "2026-08-15T14:00:06.750Z",
+    "agentId": "agent:learning-science-critic",
+    "phase": "agent_abstained",
+    "message": "Critic did not return a usable verdict, so it abstained.",
+    "counts": {},
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 27,
+    "at": "2026-08-15T14:00:07.000Z",
+    "agentId": "agent:release-gate",
+    "phase": "gate_evaluated",
+    "message": "Verdict YELLOW at permission tier prototype. 3 items ship, 2 rejected, 6 evidence items missing.",
+    "counts": {
+      "shipped": 3,
+      "rejected": 2,
+      "missingEvidence": 6
+    },
+    "attempt": 1
+  },
+  {
+    "schemaVersion": "0.1.0",
+    "runId": "run:demo.au.y7.ratios.0001",
+    "seq": 28,
+    "at": "2026-08-15T14:00:07.500Z",
     "agentId": "agent:orchestrator",
     "phase": "run_completed",
     "message": "Draft bundle ready for human review. Nothing publishes without an explicit human approval outside this code.",
-    "counts": { "durationMs": 3000 },
+    "counts": {},
     "attempt": 1
   }
 ]
