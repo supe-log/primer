@@ -15,6 +15,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "reliability": "tsx script/reliability.ts",
+    "backtest": "tsx script/backtest.ts",
     "verify": "npm run check && npm run test && npm run build"
   },
   "dependencies": {

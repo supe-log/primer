@@ -41,24 +41,59 @@
     "schemaVersion": "0.1.0",
     "sources": [
       {
-        "sourceId": "src:acara.v9.terms",
-        "title": "Australian Curriculum: copyright and terms of use (text extraction)",
-        "publisher": "Australian Curriculum, Assessment and Reporting Authority",
-        "url": "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+        "sourceId": "src:ies.interleaving-rct",
+        "title": "An Efficacy Study of Interleaved Mathematics Practice, award R305A160263 (text extraction)",
+        "publisher": "Institute of Education Sciences, U.S. Department of Education",
+        "url": "https://ies.ed.gov/use-work/awards/efficacy-study-interleaved-mathematics-practice",
         "retrievedAt": "2026-08-15T17:10:41.994Z",
-        "contentSha256": "1ea90d8866de8755ef8208e3febe42624a0d9769a2c2b81a3e97347c24b4c720",
+        "contentSha256": "206281b327bc3fdb0bbaba51805da6abbb0324e434beb3b9542a4e4d01a0d199",
         "fetched": true,
         "licence": {
-          "licenceId": "cc-by-4.0",
-          "posture": "redistributable",
+          "licenceId": "us-gov-work-not-verified",
+          "posture": "cite_only",
           "mayQuote": true,
-          "mayRedistribute": true,
-          "attributionText": "Australian Curriculum, Assessment and Reporting Authority (ACARA), Australian Curriculum Version 9.0, licensed CC BY 4.0.",
+          "mayRedistribute": false,
+          "attributionText": "Institute of Education Sciences, U.S. Department of Education. Redistribution rights not verified for this page.",
           "excludedMaterial": [
-            "ACARA logos and other trade marks",
-            "website design and layout",
-            "third-party material identified as such",
-            "National Literacy and Numeracy Learning Progressions"
+            "full text of the funded study and any publisher-held manuscript"
+          ]
+        }
+      },
+      {
+        "sourceId": "src:ies.organizing-instruction",
+        "title": "Organizing Instruction and Study to Improve Student Learning, IES practice guide (PDF text layer)",
+        "publisher": "Institute of Education Sciences, U.S. Department of Education",
+        "url": "https://files.eric.ed.gov/fulltext/ED498555.pdf",
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "37aec6929270a0d2826685bd6195b1d829bc0f5fa4aac75138a7334846b38594",
+        "fetched": true,
+        "licence": {
+          "licenceId": "us-gov-work-not-verified",
+          "posture": "cite_only",
+          "mayQuote": true,
+          "mayRedistribute": false,
+          "attributionText": "Institute of Education Sciences, U.S. Department of Education. Redistribution rights not verified for this page.",
+          "excludedMaterial": [
+            "full text of the funded study and any publisher-held manuscript"
+          ]
+        }
+      },
+      {
+        "sourceId": "src:rosenshine.principles",
+        "title": "Principles of Instruction, Barak Rosenshine, American Educator Spring 2012 (PDF text layer)",
+        "publisher": "American Federation of Teachers",
+        "url": "https://www.aft.org/sites/default/files/Rosenshine.pdf",
+        "retrievedAt": "2026-08-15T17:10:41.994Z",
+        "contentSha256": "3c0f2ec761a79e218fa60f263f74cf5e08a2014d326991594d61efd9e1ff1312",
+        "fetched": true,
+        "licence": {
+          "licenceId": "aft-american-educator-not-verified",
+          "posture": "cite_only",
+          "mayQuote": true,
+          "mayRedistribute": false,
+          "attributionText": "Barak Rosenshine, Principles of Instruction, American Educator, American Federation of Teachers, Spring 2012. Redistribution rights not verified.",
+          "excludedMaterial": [
+            "the full article text and any figures"
           ]
         }
       }
@@ -88,9 +123,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "1 sources, every one with a licence posture. Cite-only source text is never reproduced in an export.",
+        "detail": "3 sources, every one with a licence posture. Cite-only source text is never reproduced in an export.",
         "counts": {
-          "sources": 1,
+          "sources": 3,
           "unknownLicence": 0
         }
       },
@@ -100,10 +135,10 @@
         "kind": "deterministic",
         "blocking": false,
         "status": "pass",
-        "detail": "1 sources fetched and hashed.",
+        "detail": "3 sources fetched and hashed.",
         "counts": {
-          "sources": 1,
-          "fetched": 1
+          "sources": 3,
+          "fetched": 3
         }
       },
       {
@@ -112,11 +147,11 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "0 cite-only sources. Redistribution is blocked in code; an export may carry a citation and a link only.",
+        "detail": "3 cite-only sources. Redistribution is blocked in code; an export may carry a citation and a link only.",
         "counts": {
-          "citeOnly": 0,
+          "citeOnly": 3,
           "leaking": 0,
-          "blocked": 0
+          "blocked": 3
         }
       },
       {
@@ -166,7 +201,9 @@
     "modelClient": "mock",
     "modelCalls": [],
     "sourceDigests": [
-      "1ea90d8866de8755ef8208e3febe42624a0d9769a2c2b81a3e97347c24b4c720"
+      "206281b327bc3fdb0bbaba51805da6abbb0324e434beb3b9542a4e4d01a0d199",
+      "37aec6929270a0d2826685bd6195b1d829bc0f5fa4aac75138a7334846b38594",
+      "3c0f2ec761a79e218fa60f263f74cf5e08a2014d326991594d61efd9e1ff1312"
     ],
     "revisions": [],
     "replayable": true
