@@ -215,9 +215,9 @@
     ],
     "knowledgeComponents": [
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.add-fractions-same-whole",
-        "label": "Add like-denominator fractions",
-        "description": "Add or subtract two proper fractions that share a denominator by combining numerators only, keeping the common whole.",
+        "knowledgeComponentId": "kc:au.year-7.mathematics.equivalent-fractions-multiples",
+        "label": "Equivalent fractions via multiples",
+        "description": "Generate and recognise equivalent fractions using common multiples and diagrams or a fraction wall.",
         "standardIds": [],
         "stage": {
           "localLabel": "Year 7",
@@ -230,7 +230,7 @@
         "prerequisiteOnly": true,
         "atomicEntry": true,
         "misconceptionIds": [
-          "mc:au.year-7.mathematics.add-across-numerators-and-denominators"
+          "mc:au.year-7.mathematics.add-num-and-den"
         ],
         "evidence": [],
         "confidence": {
@@ -247,9 +247,9 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "label": "Generate equivalent fractions",
-        "description": "Produce equivalent fractions by multiplying or dividing numerator and denominator by the same non-zero integer, including writing a fraction in simplest form.",
+        "knowledgeComponentId": "kc:au.year-7.mathematics.simplest-form-common-divisors",
+        "label": "Simplest form with common divisors",
+        "description": "Express a fraction in simplest form by dividing numerator and denominator by a common divisor.",
         "standardIds": [
           "std:acara.v9.ac9m7n04"
         ],
@@ -264,7 +264,7 @@
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-7.mathematics.add-across-numerators-and-denominators"
+          "mc:au.year-7.mathematics.add-num-and-den"
         ],
         "evidence": [
           {
@@ -288,9 +288,9 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.place-rationals-on-line",
-        "label": "Place rationals on a number line",
-        "description": "Locate positive and negative fractions, mixed numerals and their equivalent decimals or percentages on intervals of the number line that need not be symmetric about zero.",
+        "knowledgeComponentId": "kc:au.year-7.mathematics.fraction-decimal-percent-equivalence",
+        "label": "Fraction–decimal–percent links",
+        "description": "Move among fraction, decimal and percentage representations of the same rational number and justify the equivalence.",
         "standardIds": [
           "std:acara.v9.ac9m7n04"
         ],
@@ -327,9 +327,48 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-        "label": "Read part-part and part-whole ratios",
-        "description": "Interpret a ratio a:b as both a comparison of two parts and as a:b of a whole with a+b parts, using diagrams or materials.",
+        "knowledgeComponentId": "kc:au.year-7.mathematics.rationals-on-number-line",
+        "label": "Rationals on a number line",
+        "description": "Place positive and negative fractions and mixed numerals on number-line intervals, including those not symmetric about zero.",
+        "standardIds": [
+          "std:acara.v9.ac9m7n04"
+        ],
+        "stage": {
+          "localLabel": "Year 7",
+          "ageBand": [
+            12,
+            13
+          ],
+          "ordinal": 8
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-7",
+            "quotedSpan": "find equivalent representations of rational numbers and represent rational numbers on a number line",
+            "locator": "AC9M7N04",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "1 of 1 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.ratio-as-part-part-whole",
+        "label": "Ratio as part–part and part–whole",
+        "description": "Represent a ratio with materials or diagrams and interpret it as both a part–part comparison and a part–whole fraction of the total parts.",
         "standardIds": [
           "std:acara.v9.ac9m7n08"
         ],
@@ -344,7 +383,7 @@
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-7.mathematics.treat-ratio-as-single-fraction-of-whole"
+          "mc:au.year-7.mathematics.ratio-as-two-independent-numbers"
         ],
         "evidence": [
           {
@@ -368,9 +407,9 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio",
-        "label": "Share a quantity in a given ratio",
-        "description": "Partition a given quantity into a stated ratio by finding the value of one part and multiplying, then checking that the parts recombine to the original whole.",
+        "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-given-ratio",
+        "label": "Share a quantity in a ratio",
+        "description": "Partition a given quantity into a stated ratio by finding the value of one part and scaling.",
         "standardIds": [
           "std:acara.v9.ac9m7n08"
         ],
@@ -385,7 +424,7 @@
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-7.mathematics.share-by-subtracting-ratio-numbers"
+          "mc:au.year-7.mathematics.share-by-the-ratio-numbers-only"
         ],
         "evidence": [
           {
@@ -411,7 +450,7 @@
       {
         "knowledgeComponentId": "kc:au.year-7.mathematics.model-practical-ratio-problems",
         "label": "Model practical ratio problems",
-        "description": "Formulate a real context (mixtures, lengths, money) as a ratio, choose a representation (parts, fractions or rates), solve and justify the choice in the situation.",
+        "description": "Formulate a practical situation (mix, recipe, length or mass) as a ratio, choose a representation, solve, and justify the choice in context.",
         "standardIds": [
           "std:acara.v9.ac9m7m06"
         ],
@@ -425,7 +464,9 @@
         },
         "prerequisiteOnly": false,
         "atomicEntry": false,
-        "misconceptionIds": [],
+        "misconceptionIds": [
+          "mc:au.year-7.mathematics.ignore-units-in-ratio-mix"
+        ],
         "evidence": [
           {
             "sourceId": "src:acara.v9.mathematics.year-7",
@@ -450,66 +491,80 @@
     ],
     "prerequisiteEdges": [
       {
-        "from": "kc:au.year-7.mathematics.add-fractions-same-whole",
-        "to": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "justification": "Students who still add numerators and denominators cannot yet treat a fraction as a single quantity that must be scaled by the same factor on both parts.",
+        "from": "kc:au.year-7.mathematics.equivalent-fractions-multiples",
+        "to": "kc:au.year-7.mathematics.simplest-form-common-divisors",
+        "justification": "Simplifying is the reverse of generating equivalents, so learners must already see that multiplying or dividing both parts keeps the same amount.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "to": "kc:au.year-7.mathematics.place-rationals-on-line",
-        "justification": "Placing equivalent forms (fraction, decimal, mixed number) at the same point requires recognising they name the same rational.",
+        "from": "kc:au.year-7.mathematics.simplest-form-common-divisors",
+        "to": "kc:au.year-7.mathematics.fraction-decimal-percent-equivalence",
+        "justification": "Percent and hundredths forms are recognised as the same rational only after the fraction can be written with a convenient denominator.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "to": "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-        "justification": "Turning a:b into the fractions a/(a+b) and b/(a+b) uses exactly the equivalence move of writing each part over the new whole.",
+        "from": "kc:au.year-7.mathematics.equivalent-fractions-multiples",
+        "to": "kc:au.year-7.mathematics.rationals-on-number-line",
+        "justification": "Placing a fraction on an unmarked interval requires seeing it as equal to another fraction whose denominator matches the chosen scale.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-        "to": "kc:au.year-7.mathematics.share-in-a-ratio",
-        "justification": "Finding the size of one share first requires knowing that the whole has been split into a+b equal parts.",
+        "from": "kc:au.year-7.mathematics.equivalent-fractions-multiples",
+        "to": "kc:au.year-7.mathematics.ratio-as-part-part-whole",
+        "justification": "A ratio written as a fraction of the total parts is meaningful only if equivalent fractions of that whole are already understood.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.share-in-a-ratio",
+        "from": "kc:au.year-7.mathematics.ratio-as-part-part-whole",
+        "to": "kc:au.year-7.mathematics.share-in-a-given-ratio",
+        "justification": "Sharing requires treating the ratio numbers as parts of a common whole whose size is first found from the total.",
+        "evidence": []
+      },
+      {
+        "from": "kc:au.year-7.mathematics.fraction-decimal-percent-equivalence",
         "to": "kc:au.year-7.mathematics.model-practical-ratio-problems",
-        "justification": "Applied modelling asks students to share or scale real quantities once they can already partition an abstract whole in a given ratio.",
+        "justification": "Applied mixes often switch among 1:4, 1/5 and 0.2, so those representations must already be interchangeable.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-7.mathematics.place-rationals-on-line",
+        "from": "kc:au.year-7.mathematics.share-in-a-given-ratio",
         "to": "kc:au.year-7.mathematics.model-practical-ratio-problems",
-        "justification": "Interpreting mixture strengths or scaled lengths as positions or percentages on a continuum uses the number-line representation of the same rationals.",
+        "justification": "Modelling a recipe or mix is the same partition skill applied to a messy real quantity rather than a tidy whole-number total.",
         "evidence": []
       }
     ],
     "misconceptions": [
       {
-        "misconceptionId": "mc:au.year-7.mathematics.add-across-numerators-and-denominators",
-        "label": "Adds across both parts",
-        "description": "Writes a/b + c/d as (a+c)/(b+d) instead of finding a common denominator or scaling both parts of one fraction.",
+        "misconceptionId": "mc:au.year-7.mathematics.add-num-and-den",
+        "label": "Adds numerators and denominators",
+        "description": "Creates a new fraction by adding the two numerators and adding the two denominators instead of using a common multiple or divisor.",
         "knowledgeComponentIds": [
-          "kc:au.year-7.mathematics.add-fractions-same-whole",
-          "kc:au.year-7.mathematics.generate-equivalent-fractions"
+          "kc:au.year-7.mathematics.equivalent-fractions-multiples",
+          "kc:au.year-7.mathematics.simplest-form-common-divisors"
         ]
       },
       {
-        "misconceptionId": "mc:au.year-7.mathematics.treat-ratio-as-single-fraction-of-whole",
-        "label": "Reads a:b as a/b of the whole",
-        "description": "Treats the ratio 2:3 as meaning two-thirds of the whole rather than two parts out of five.",
+        "misconceptionId": "mc:au.year-7.mathematics.ratio-as-two-independent-numbers",
+        "label": "Treats ratio parts as unrelated",
+        "description": "Reads 2:3 as two separate counts with no shared whole, so cannot form the fraction 2/5 or 3/5 of the total.",
         "knowledgeComponentIds": [
-          "kc:au.year-7.mathematics.read-part-part-and-part-whole"
+          "kc:au.year-7.mathematics.ratio-as-part-part-whole"
         ]
       },
       {
-        "misconceptionId": "mc:au.year-7.mathematics.share-by-subtracting-ratio-numbers",
-        "label": "Subtracts the ratio numbers from the total",
-        "description": "Given $20 in the ratio 2:3, awards $18 and $17 (or similar) by subtracting 2 and 3 from 20 instead of splitting into five equal parts.",
+        "misconceptionId": "mc:au.year-7.mathematics.share-by-the-ratio-numbers-only",
+        "label": "Splits using the written numbers only",
+        "description": "Gives $2 and $3 when asked to share $20 in the ratio 2:3, ignoring that the parts must first be scaled to the actual total.",
         "knowledgeComponentIds": [
-          "kc:au.year-7.mathematics.share-in-a-ratio"
+          "kc:au.year-7.mathematics.share-in-a-given-ratio"
+        ]
+      },
+      {
+        "misconceptionId": "mc:au.year-7.mathematics.ignore-units-in-ratio-mix",
+        "label": "Drops units when mixing",
+        "description": "Applies the ratio numbers to a quantity without converting or checking that both parts use the same unit of measure.",
+        "knowledgeComponentIds": [
+          "kc:au.year-7.mathematics.model-practical-ratio-problems"
         ]
       }
     ]
@@ -518,11 +573,12 @@
     "schemaVersion": "0.1.0",
     "title": "Mathematics: Prepare for a unit test on ratios and rates in three weeks.",
     "knowledgeComponentOrder": [
-      "kc:au.year-7.mathematics.add-fractions-same-whole",
-      "kc:au.year-7.mathematics.generate-equivalent-fractions",
-      "kc:au.year-7.mathematics.place-rationals-on-line",
-      "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-      "kc:au.year-7.mathematics.share-in-a-ratio",
+      "kc:au.year-7.mathematics.equivalent-fractions-multiples",
+      "kc:au.year-7.mathematics.ratio-as-part-part-whole",
+      "kc:au.year-7.mathematics.rationals-on-number-line",
+      "kc:au.year-7.mathematics.share-in-a-given-ratio",
+      "kc:au.year-7.mathematics.simplest-form-common-divisors",
+      "kc:au.year-7.mathematics.fraction-decimal-percent-equivalence",
       "kc:au.year-7.mathematics.model-practical-ratio-problems"
     ],
     "units": [
@@ -531,36 +587,36 @@
         "title": "Year 7 Mathematics",
         "goal": "Prepare for a unit test on ratios and rates in three weeks.",
         "lessonIds": [
-          "lesson:au.01-year-7-mathematics-generate-equivalent-fractions",
-          "lesson:au.02-year-7-mathematics-read-part-part-and-part-whole",
-          "lesson:au.03-year-7-mathematics-model-practical-ratio-problems"
+          "lesson:au.01-year-7-mathematics-ratio-as-part-part-whole",
+          "lesson:au.02-year-7-mathematics-share-in-a-given-ratio",
+          "lesson:au.03-year-7-mathematics-fraction-decimal-percent-equivalence"
         ]
       }
     ],
     "lessons": [
       {
-        "lessonId": "lesson:au.01-year-7-mathematics-generate-equivalent-fractions",
+        "lessonId": "lesson:au.01-year-7-mathematics-ratio-as-part-part-whole",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Generate equivalent fractions and Place rationals on a number line",
-        "objective": "Learners can produce equivalent fractions by multiplying or dividing numerator and denominator by the same non-zero integer, including writing a fraction in simplest form.",
+        "title": "Ratio as part–part and part–whole and Rationals on a number line",
+        "objective": "Learners can represent a ratio with materials or diagrams and interpret it as both a part–part comparison and a part–whole fraction of the total parts.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.generate-equivalent-fractions",
-          "kc:au.year-7.mathematics.place-rationals-on-line"
+          "kc:au.year-7.mathematics.ratio-as-part-part-whole",
+          "kc:au.year-7.mathematics.rationals-on-number-line"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.add-fractions-same-whole"
+          "kc:au.year-7.mathematics.equivalent-fractions-multiples"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Add like-denominator fractions, because retrieval opens every lesson.",
-          "modelling": "Teacher models Generate equivalent fractions; Place rationals on a number line, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Generate equivalent fractions; Place rationals on a number line, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Generate equivalent fractions; Place rationals on a number line with Add like-denominator fractions so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Add like-denominator fractions."
+          "review": "Low-stakes retrieval on Equivalent fractions via multiples, because retrieval opens every lesson.",
+          "modelling": "Teacher models Ratio as part–part and part–whole; Rationals on a number line, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Ratio as part–part and part–whole; Rationals on a number line, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Ratio as part–part and part–whole; Rationals on a number line with Equivalent fractions via multiples so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Equivalent fractions via multiples."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Generate equivalent fractions.",
+            "prompt": "A worked example for: Ratio as part–part and part–whole.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -571,10 +627,10 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.generate-equivalent-fractions"
+            "knowledgeComponentId": "kc:au.year-7.mathematics.ratio-as-part-part-whole"
           },
           {
-            "prompt": "A worked example for: Place rationals on a number line.",
+            "prompt": "A worked example for: Rationals on a number line.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -585,19 +641,19 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.place-rationals-on-line"
+            "knowledgeComponentId": "kc:au.year-7.mathematics.rationals-on-number-line"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Generate equivalent fractions in one sentence.",
-          "Name the error a learner makes when they confuse Generate equivalent fractions with a nearby idea."
+          "Without looking back, state Ratio as part–part and part–whole in one sentence.",
+          "Name the error a learner makes when they confuse Ratio as part–part and part–whole with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Generate equivalent fractions have to hold before the next component?"
+          "Why does Ratio as part–part and part–whole have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.year-7.mathematics.generate-equivalent-fractions.01",
-          "item:au.year-7.mathematics.place-rationals-on-line.01"
+          "item:au.year-7.mathematics.ratio-as-part-part-whole.01",
+          "item:au.year-7.mathematics.rationals-on-number-line.01"
         ],
         "decisions": [
           {
@@ -627,30 +683,30 @@
         ]
       },
       {
-        "lessonId": "lesson:au.02-year-7-mathematics-read-part-part-and-part-whole",
+        "lessonId": "lesson:au.02-year-7-mathematics-share-in-a-given-ratio",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Read part-part and part-whole ratios and Share a quantity in a given ratio",
-        "objective": "Learners can interpret a ratio a:b as both a comparison of two parts and as a:b of a whole with a+b parts, using diagrams or materials.",
+        "title": "Share a quantity in a ratio and Simplest form with common divisors",
+        "objective": "Learners can partition a given quantity into a stated ratio by finding the value of one part and scaling.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-          "kc:au.year-7.mathematics.share-in-a-ratio"
+          "kc:au.year-7.mathematics.share-in-a-given-ratio",
+          "kc:au.year-7.mathematics.simplest-form-common-divisors"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.add-fractions-same-whole",
-          "kc:au.year-7.mathematics.generate-equivalent-fractions",
-          "kc:au.year-7.mathematics.place-rationals-on-line"
+          "kc:au.year-7.mathematics.equivalent-fractions-multiples",
+          "kc:au.year-7.mathematics.ratio-as-part-part-whole",
+          "kc:au.year-7.mathematics.rationals-on-number-line"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Add like-denominator fractions; Generate equivalent fractions; Place rationals on a number line, because retrieval opens every lesson.",
-          "modelling": "Teacher models Read part-part and part-whole ratios; Share a quantity in a given ratio, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Read part-part and part-whole ratios; Share a quantity in a given ratio, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Read part-part and part-whole ratios; Share a quantity in a given ratio with Add like-denominator fractions; Generate equivalent fractions; Place rationals on a number line so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Add like-denominator fractions; Generate equivalent fractions; Place rationals on a number line."
+          "review": "Low-stakes retrieval on Equivalent fractions via multiples; Ratio as part–part and part–whole; Rationals on a number line, because retrieval opens every lesson.",
+          "modelling": "Teacher models Share a quantity in a ratio; Simplest form with common divisors, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Share a quantity in a ratio; Simplest form with common divisors, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Share a quantity in a ratio; Simplest form with common divisors with Equivalent fractions via multiples; Ratio as part–part and part–whole; Rationals on a number line so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Equivalent fractions via multiples; Ratio as part–part and part–whole; Rationals on a number line."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Read part-part and part-whole ratios.",
+            "prompt": "A worked example for: Share a quantity in a ratio.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -661,10 +717,10 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.read-part-part-and-part-whole"
+            "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-given-ratio"
           },
           {
-            "prompt": "A worked example for: Share a quantity in a given ratio.",
+            "prompt": "A worked example for: Simplest form with common divisors.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -675,19 +731,19 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio"
+            "knowledgeComponentId": "kc:au.year-7.mathematics.simplest-form-common-divisors"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Read part-part and part-whole ratios in one sentence.",
-          "Name the error a learner makes when they confuse Read part-part and part-whole ratios with a nearby idea."
+          "Without looking back, state Share a quantity in a ratio in one sentence.",
+          "Name the error a learner makes when they confuse Share a quantity in a ratio with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Read part-part and part-whole ratios have to hold before the next component?"
+          "Why does Share a quantity in a ratio have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.year-7.mathematics.read-part-part-and-part-whole.01",
-          "item:au.year-7.mathematics.share-in-a-ratio.01"
+          "item:au.year-7.mathematics.share-in-a-given-ratio.01",
+          "item:au.year-7.mathematics.simplest-form-common-divisors.01"
         ],
         "decisions": [
           {
@@ -741,27 +797,42 @@
         ]
       },
       {
-        "lessonId": "lesson:au.03-year-7-mathematics-model-practical-ratio-problems",
+        "lessonId": "lesson:au.03-year-7-mathematics-fraction-decimal-percent-equivalence",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Model practical ratio problems",
-        "objective": "Learners can formulate a real context (mixtures, lengths, money) as a ratio, choose a representation (parts, fractions or rates), solve and justify the choice in the situation.",
+        "title": "Fraction–decimal–percent links and Model practical ratio problems",
+        "objective": "Learners can move among fraction, decimal and percentage representations of the same rational number and justify the equivalence.",
         "introducesKnowledgeComponentIds": [
+          "kc:au.year-7.mathematics.fraction-decimal-percent-equivalence",
           "kc:au.year-7.mathematics.model-practical-ratio-problems"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-7.mathematics.add-fractions-same-whole",
-          "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-          "kc:au.year-7.mathematics.share-in-a-ratio"
+          "kc:au.year-7.mathematics.equivalent-fractions-multiples",
+          "kc:au.year-7.mathematics.share-in-a-given-ratio",
+          "kc:au.year-7.mathematics.simplest-form-common-divisors"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Add like-denominator fractions; Read part-part and part-whole ratios; Share a quantity in a given ratio, because retrieval opens every lesson.",
-          "modelling": "Teacher models Model practical ratio problems, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Model practical ratio problems, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Model practical ratio problems with Add like-denominator fractions; Read part-part and part-whole ratios; Share a quantity in a given ratio so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Add like-denominator fractions; Read part-part and part-whole ratios; Share a quantity in a given ratio."
+          "review": "Low-stakes retrieval on Equivalent fractions via multiples; Share a quantity in a ratio; Simplest form with common divisors, because retrieval opens every lesson.",
+          "modelling": "Teacher models Fraction–decimal–percent links; Model practical ratio problems, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Fraction–decimal–percent links; Model practical ratio problems, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Fraction–decimal–percent links; Model practical ratio problems with Equivalent fractions via multiples; Share a quantity in a ratio; Simplest form with common divisors so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Equivalent fractions via multiples; Share a quantity in a ratio; Simplest form with common divisors."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
+          {
+            "prompt": "A worked example for: Fraction–decimal–percent links.",
+            "steps": [
+              "Name the quantities and the comparison the question asks for.",
+              "Write the representation the knowledge component requires.",
+              "Compute the result and state the units.",
+              "Check the result against the comparison."
+            ],
+            "fadedSteps": [
+              2,
+              3
+            ],
+            "knowledgeComponentId": "kc:au.year-7.mathematics.fraction-decimal-percent-equivalence"
+          },
           {
             "prompt": "A worked example for: Model practical ratio problems.",
             "steps": [
@@ -778,13 +849,14 @@
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Model practical ratio problems in one sentence.",
-          "Name the error a learner makes when they confuse Model practical ratio problems with a nearby idea."
+          "Without looking back, state Fraction–decimal–percent links in one sentence.",
+          "Name the error a learner makes when they confuse Fraction–decimal–percent links with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Model practical ratio problems have to hold before the next component?"
+          "Why does Fraction–decimal–percent links have to hold before the next component?"
         ],
         "itemIds": [
+          "item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01",
           "item:au.year-7.mathematics.model-practical-ratio-problems.01"
         ],
         "decisions": [
@@ -841,20 +913,24 @@
     ],
     "masteryCriteria": [
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.generate-equivalent-fractions",
-        "rule": "Four of five items correct on Generate equivalent fractions across two separate days."
+        "knowledgeComponentId": "kc:au.year-7.mathematics.ratio-as-part-part-whole",
+        "rule": "Four of five items correct on Ratio as part–part and part–whole across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.place-rationals-on-line",
-        "rule": "Four of five items correct on Place rationals on a number line across two separate days."
+        "knowledgeComponentId": "kc:au.year-7.mathematics.rationals-on-number-line",
+        "rule": "Four of five items correct on Rationals on a number line across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.read-part-part-and-part-whole",
-        "rule": "Four of five items correct on Read part-part and part-whole ratios across two separate days."
+        "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-given-ratio",
+        "rule": "Four of five items correct on Share a quantity in a ratio across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-7.mathematics.share-in-a-ratio",
-        "rule": "Four of five items correct on Share a quantity in a given ratio across two separate days."
+        "knowledgeComponentId": "kc:au.year-7.mathematics.simplest-form-common-divisors",
+        "rule": "Four of five items correct on Simplest form with common divisors across two separate days."
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-7.mathematics.fraction-decimal-percent-equivalence",
+        "rule": "Four of five items correct on Fraction–decimal–percent links across two separate days."
       },
       {
         "knowledgeComponentId": "kc:au.year-7.mathematics.model-practical-ratio-problems",
@@ -891,38 +967,38 @@
   "items": [
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.generate-equivalent-fractions.01",
+      "itemId": "item:au.year-7.mathematics.simplest-form-common-divisors.01",
       "purpose": "formative",
-      "stem": "Write a fraction equivalent to 6/9 that is in simplest form.",
+      "stem": "Write the fraction 18/24 in simplest form.",
       "options": [
         {
           "optionId": "A",
-          "text": "2/3",
+          "text": "3/4",
           "correct": true,
-          "rationale": "Divide numerator and denominator by their common factor 3."
+          "rationale": "18 and 24 share a common divisor of 6, and 18÷6=3 while 24÷6=4."
         },
         {
           "optionId": "B",
-          "text": "15/12",
+          "text": "42/48",
           "correct": false,
-          "rationale": "Adds 9 to the numerator and 3 to the denominator instead of scaling both parts by the same factor.",
-          "misconceptionId": "mc:au.year-7.mathematics.add-across-numerators-and-denominators"
+          "rationale": "Adds 18+24 to make a new numerator and 24+24 to make a new denominator instead of dividing by a common divisor.",
+          "misconceptionId": "mc:au.year-7.mathematics.add-num-and-den"
         },
         {
           "optionId": "C",
-          "text": "9/12",
+          "text": "42/24",
           "correct": false,
-          "rationale": "Adds 3 to both numerator and denominator rather than multiplying or dividing both by the same non-zero integer.",
-          "misconceptionId": "mc:au.year-7.mathematics.add-across-numerators-and-denominators"
+          "rationale": "Adds the numerator and denominator to replace the numerator, leaving the original denominator.",
+          "misconceptionId": "mc:au.year-7.mathematics.add-num-and-den"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "6 and 9 share a common factor of 3, so 6/9 = 2/3.",
+      "keyRationale": "Divide both 18 and 24 by their common divisor 6 to obtain 3/4.",
       "standardIds": [
         "std:acara.v9.ac9m7n04"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.generate-equivalent-fractions"
+        "kc:au.year-7.mathematics.simplest-form-common-divisors"
       ],
       "difficulty": {
         "band": "apply",
@@ -934,93 +1010,132 @@
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.place-rationals-on-line.01",
+      "itemId": "item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01",
       "purpose": "formative",
-      "stem": "On a number line marked from −2 to 3, where does −1 1/2 sit?",
+      "stem": "What percentage is equivalent to the fraction 3/5?",
       "options": [
         {
           "optionId": "A",
-          "text": "Halfway between −2 and −1",
+          "text": "60%",
           "correct": true,
-          "rationale": "−1 1/2 is the midpoint of −2 and −1."
+          "rationale": "3÷5=0.6 and 0.6×100=60, so 3/5=60%."
         },
         {
           "optionId": "B",
-          "text": "Halfway between −1 and 0",
+          "text": "35%",
           "correct": false,
-          "rationale": "Confuses −1 1/2 with −1/2."
+          "rationale": "Writes the digits of the numerator and denominator side by side as a percentage."
         },
         {
           "optionId": "C",
-          "text": "At 1.5",
+          "text": "15%",
           "correct": false,
-          "rationale": "Drops the negative sign and places the mixed number on the positive side."
-        },
-        {
-          "optionId": "D",
-          "text": "At −0.5",
-          "correct": false,
-          "rationale": "Treats the mixed numeral as a unit fraction with the wrong sign."
+          "rationale": "Multiplies 3 by 5 and treats the product as a percentage."
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "−1 1/2 = −1.5, which is the midpoint of −2 and −1.",
+      "keyRationale": "3/5=0.6=60%.",
       "standardIds": [
         "std:acara.v9.ac9m7n04"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.place-rationals-on-line"
+        "kc:au.year-7.mathematics.fraction-decimal-percent-equivalence"
       ],
       "difficulty": {
         "band": "recall",
-        "estimate": 2,
+        "estimate": 1,
         "calibrated": false,
         "difStatus": "not_yet_measured"
       },
       "evidence": [],
       "rejection": {
         "checkId": "check:item.distractor-misconception",
-        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.place-rationals-on-line.01/B, item:au.year-7.mathematics.place-rationals-on-line.01/C, item:au.year-7.mathematics.place-rationals-on-line.01/D. Rejected rather than repaired."
+        "reason": "Every incorrect option names a known misconception: 2 distractors have no known misconception: item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01/B, item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01/C. Rejected rather than repaired."
       }
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.read-part-part-and-part-whole.01",
+      "itemId": "item:au.year-7.mathematics.rationals-on-number-line.01",
       "purpose": "formative",
-      "stem": "A class has red and blue counters in the ratio 2:3. What fraction of all the counters is red?",
+      "stem": "On a number line marked from −2 to 3, which value sits exactly halfway between 0 and −1?",
+      "options": [
+        {
+          "optionId": "A",
+          "text": "−1/2",
+          "correct": true,
+          "rationale": "The midpoint of 0 and −1 is −0.5, which is −1/2."
+        },
+        {
+          "optionId": "B",
+          "text": "1/2",
+          "correct": false,
+          "rationale": "Uses the positive halfway mark instead of the negative side."
+        },
+        {
+          "optionId": "C",
+          "text": "−1 1/2",
+          "correct": false,
+          "rationale": "Goes one and a half units left of zero rather than half a unit."
+        }
+      ],
+      "correctOptionId": "A",
+      "keyRationale": "Halfway from 0 to −1 is −1/2.",
+      "standardIds": [
+        "std:acara.v9.ac9m7n04"
+      ],
+      "knowledgeComponentIds": [
+        "kc:au.year-7.mathematics.rationals-on-number-line"
+      ],
+      "difficulty": {
+        "band": "analyze",
+        "estimate": 3,
+        "calibrated": false,
+        "difStatus": "not_yet_measured"
+      },
+      "evidence": [],
+      "rejection": {
+        "checkId": "check:item.distractor-misconception",
+        "reason": "Every incorrect option names a known misconception: 2 distractors have no known misconception: item:au.year-7.mathematics.rationals-on-number-line.01/B, item:au.year-7.mathematics.rationals-on-number-line.01/C. Rejected rather than repaired."
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "itemId": "item:au.year-7.mathematics.ratio-as-part-part-whole.01",
+      "purpose": "formative",
+      "stem": "A bag has red and blue counters in the ratio 2:3. What fraction of all the counters is red?",
       "options": [
         {
           "optionId": "A",
           "text": "2/5",
           "correct": true,
-          "rationale": "There are 2 red parts out of 2 + 3 = 5 parts in total."
+          "rationale": "2 red parts plus 3 blue parts make 5 equal parts in total, so red is 2/5 of the whole."
         },
         {
           "optionId": "B",
           "text": "2/3",
           "correct": false,
-          "rationale": "Reads the ratio 2:3 as the single fraction 2/3 of the whole instead of 2 parts out of 5.",
-          "misconceptionId": "mc:au.year-7.mathematics.treat-ratio-as-single-fraction-of-whole"
+          "rationale": "Treats the two ratio numbers as unrelated and writes red over blue with no shared whole.",
+          "misconceptionId": "mc:au.year-7.mathematics.ratio-as-two-independent-numbers"
         },
         {
           "optionId": "C",
           "text": "3/2",
           "correct": false,
-          "rationale": "Inverts the ratio and still treats it as a single fraction of the whole.",
-          "misconceptionId": "mc:au.year-7.mathematics.treat-ratio-as-single-fraction-of-whole"
+          "rationale": "Reads the parts as two separate counts and inverts them without forming a total.",
+          "misconceptionId": "mc:au.year-7.mathematics.ratio-as-two-independent-numbers"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "Part-whole reading of 2:3 uses 2 + 3 = 5 equal parts, so red is 2/5.",
+      "keyRationale": "The whole is 2+3=5 parts, so red is 2/5.",
       "standardIds": [
         "std:acara.v9.ac9m7n08"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.read-part-part-and-part-whole"
+        "kc:au.year-7.mathematics.ratio-as-part-part-whole"
       ],
       "difficulty": {
         "band": "apply",
-        "estimate": 3,
+        "estimate": 2,
         "calibrated": false,
         "difStatus": "not_yet_measured"
       },
@@ -1028,38 +1143,38 @@
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-7.mathematics.share-in-a-ratio.01",
+      "itemId": "item:au.year-7.mathematics.share-in-a-given-ratio.01",
       "purpose": "formative",
-      "stem": "Share $40 in the ratio 3:5. How much is the larger share?",
+      "stem": "Share $40 in the ratio 2:3. How much does the first share receive?",
       "options": [
         {
           "optionId": "A",
-          "text": "$25",
+          "text": "$16",
           "correct": true,
-          "rationale": "3 + 5 = 8 parts; $40 ÷ 8 = $5 per part; 5 × $5 = $25."
+          "rationale": "2+3=5 parts; each part is $40÷5=$8; first share is 2×$8=$16."
         },
         {
           "optionId": "B",
-          "text": "$37",
+          "text": "$2",
           "correct": false,
-          "rationale": "Subtracts the smaller ratio number from the total ($40 − 3) instead of splitting into 8 equal parts.",
-          "misconceptionId": "mc:au.year-7.mathematics.share-by-subtracting-ratio-numbers"
+          "rationale": "Gives the written ratio numbers as the dollar amounts and ignores scaling to $40.",
+          "misconceptionId": "mc:au.year-7.mathematics.share-by-the-ratio-numbers-only"
         },
         {
           "optionId": "C",
-          "text": "$35",
+          "text": "$3",
           "correct": false,
-          "rationale": "Subtracts the larger ratio number from the total ($40 − 5) instead of finding the value of one part.",
-          "misconceptionId": "mc:au.year-7.mathematics.share-by-subtracting-ratio-numbers"
+          "rationale": "Assigns the second ratio number as a dollar amount without finding the value of one part.",
+          "misconceptionId": "mc:au.year-7.mathematics.share-by-the-ratio-numbers-only"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "Eight equal parts of $5 give shares of $15 and $25, which add to $40.",
+      "keyRationale": "Five equal parts of $8 give a first share of $16.",
       "standardIds": [
         "std:acara.v9.ac9m7n08"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-7.mathematics.share-in-a-ratio"
+        "kc:au.year-7.mathematics.share-in-a-given-ratio"
       ],
       "difficulty": {
         "band": "apply",
@@ -1073,35 +1188,31 @@
       "schemaVersion": "0.1.0",
       "itemId": "item:au.year-7.mathematics.model-practical-ratio-problems.01",
       "purpose": "formative",
-      "stem": "Cordial concentrate and water are mixed in the ratio 1:4. How much concentrate is needed to make 250 mL of drink?",
+      "stem": "A cordial mix uses 200 mL of syrup to 1 L of water. How many millilitres of water are needed for 100 mL of syrup?",
       "options": [
         {
           "optionId": "A",
-          "text": "50 mL",
+          "text": "500 mL",
           "correct": true,
-          "rationale": "1 + 4 = 5 parts; 250 mL ÷ 5 = 50 mL per part, so 1 part of concentrate is 50 mL."
+          "rationale": "1 L=1000 mL, so the ratio is 200:1000=1:5. Half the syrup needs half the water, 500 mL."
         },
         {
           "optionId": "B",
-          "text": "62.5 mL",
+          "text": "50 mL",
           "correct": false,
-          "rationale": "Divides 250 by 4 and ignores that the concentrate is one of five equal parts."
+          "rationale": "Uses the ratio numbers 200 and 1 without converting litres to millilitres.",
+          "misconceptionId": "mc:au.year-7.mathematics.ignore-units-in-ratio-mix"
         },
         {
           "optionId": "C",
-          "text": "200 mL",
+          "text": "2 mL",
           "correct": false,
-          "rationale": "Takes four-fifths of the drink as concentrate instead of one-fifth."
-        },
-        {
-          "optionId": "D",
-          "text": "1 mL",
-          "correct": false,
-          "rationale": "Treats the first number in the ratio as a raw millilitre amount."
+          "rationale": "Applies 200:1 directly to 100 mL and drops the unit conversion.",
+          "misconceptionId": "mc:au.year-7.mathematics.ignore-units-in-ratio-mix"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "The mixture has 5 equal parts totalling 250 mL, so one part of concentrate is 50 mL.",
+      "keyRationale": "Convert 1 L to 1000 mL so both parts use millilitres, then scale 200:1000 to 100:500.",
       "standardIds": [
         "std:acara.v9.ac9m7m06"
       ],
@@ -1114,11 +1225,7 @@
         "calibrated": false,
         "difStatus": "not_yet_measured"
       },
-      "evidence": [],
-      "rejection": {
-        "checkId": "check:item.distractor-misconception",
-        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D. Rejected rather than repaired."
-      }
+      "evidence": []
     }
   ],
   "gateReport": {
@@ -1203,10 +1310,10 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "6 knowledge components, 6 edges, no cycles.",
+        "detail": "7 knowledge components, 7 edges, no cycles.",
         "counts": {
-          "nodes": 6,
-          "edges": 6,
+          "nodes": 7,
+          "edges": 7,
           "cycles": 0
         }
       },
@@ -1218,7 +1325,7 @@
         "status": "pass",
         "detail": "All edge endpoints resolve into the graph.",
         "counts": {
-          "edges": 6,
+          "edges": 7,
           "dangling": 0
         }
       },
@@ -1228,9 +1335,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "6 of 6 edges carry a justification.",
+        "detail": "7 of 7 edges carry a justification.",
         "counts": {
-          "edges": 6,
+          "edges": 7,
           "unjustified": 0
         }
       },
@@ -1242,7 +1349,7 @@
         "status": "pass",
         "detail": "Every knowledge component is either connected or explicitly flagged as an entry point.",
         "counts": {
-          "nodes": 6,
+          "nodes": 7,
           "orphans": 0
         }
       },
@@ -1252,9 +1359,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "3 misconceptions declared and all links resolve.",
+        "detail": "4 misconceptions declared and all links resolve.",
         "counts": {
-          "declared": 3,
+          "declared": 4,
           "unresolved": 0
         }
       },
@@ -1266,7 +1373,7 @@
         "status": "pass",
         "detail": "Every prerequisite appears before the component that needs it.",
         "counts": {
-          "edges": 6
+          "edges": 7
         }
       },
       {
@@ -1275,9 +1382,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "6 knowledge components scheduled across 3 lessons.",
+        "detail": "7 knowledge components scheduled across 3 lessons.",
         "counts": {
-          "scheduled": 6,
+          "scheduled": 7,
           "unscheduled": 0
         }
       },
@@ -1310,9 +1417,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "5 items inspected, each with exactly one key that matches correctOptionId.",
+        "detail": "6 items inspected, each with exactly one key that matches correctOptionId.",
         "counts": {
-          "inspected": 5,
+          "inspected": 6,
           "rejected": 0
         }
       },
@@ -1322,10 +1429,10 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "fail",
-        "detail": "6 distractors have no known misconception: item:au.year-7.mathematics.place-rationals-on-line.01/B, item:au.year-7.mathematics.place-rationals-on-line.01/C, item:au.year-7.mathematics.place-rationals-on-line.01/D, item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D.",
+        "detail": "4 distractors have no known misconception: item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01/B, item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01/C, item:au.year-7.mathematics.rationals-on-number-line.01/B, item:au.year-7.mathematics.rationals-on-number-line.01/C.",
         "counts": {
           "options": 12,
-          "unmapped": 6
+          "unmapped": 4
         }
       },
       {
@@ -1356,11 +1463,11 @@
         "kind": "deterministic",
         "blocking": false,
         "status": "pass",
-        "detail": "Measured demand bands: apply 3, recall 1, analyze 1. Language models skew toward lower-order demand, so this is counted rather than trusted.",
+        "detail": "Measured demand bands: apply 3, recall 1, analyze 2. Language models skew toward lower-order demand, so this is counted rather than trusted.",
         "counts": {
           "apply": 3,
           "recall": 1,
-          "analyze": 1
+          "analyze": 2
         }
       },
       {
@@ -1369,9 +1476,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "5 of 5 items are uncalibrated and say so. Differential item functioning is recorded as not yet measured.",
+        "detail": "6 of 6 items are uncalibrated and say so. Differential item functioning is recorded as not yet measured.",
         "counts": {
-          "uncalibrated": 5,
+          "uncalibrated": 6,
           "calibrated": 0
         }
       },
@@ -1431,8 +1538,8 @@
       "expert accept rate"
     ],
     "needsHumanReview": [
-      "item:au.year-7.mathematics.place-rationals-on-line.01",
-      "item:au.year-7.mathematics.model-practical-ratio-problems.01",
+      "item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01",
+      "item:au.year-7.mathematics.rationals-on-number-line.01",
       "std:acara.v9.ac9m7n04",
       "std:acara.v9.ac9m7n08",
       "std:acara.v9.ac9m7m06"
@@ -1453,18 +1560,18 @@
         "model": "grok-4.6",
         "promptVersion": "curriculum-mapper/2026-08-15.1",
         "abstained": false,
-        "latencyMs": 22626,
+        "latencyMs": 20401,
         "inputTokens": 1828,
-        "outputTokens": 1408
+        "outputTokens": 1576
       },
       {
         "agentId": "agent:item-writer",
         "model": "grok-4.6",
         "promptVersion": "item-writer/2026-08-15.1",
         "abstained": false,
-        "latencyMs": 18295,
-        "inputTokens": 1398,
-        "outputTokens": 1686
+        "latencyMs": 36977,
+        "inputTokens": 1458,
+        "outputTokens": 1467
       },
       {
         "agentId": "learning-science-critic",
@@ -1489,13 +1596,13 @@
         "agentId": "item-writer",
         "attempt": 1,
         "kept": false,
-        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.place-rationals-on-line.01/B, item:au.year-7.mathematics.place-rationals-on-line.01/C, item:au.year-7.mathematics.place-rationals-on-line.01/D. Rejected rather than repaired."
+        "reason": "Every incorrect option names a known misconception: 2 distractors have no known misconception: item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01/B, item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01/C. Rejected rather than repaired."
       },
       {
         "agentId": "item-writer",
         "attempt": 1,
         "kept": false,
-        "reason": "Every incorrect option names a known misconception: 3 distractors have no known misconception: item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D. Rejected rather than repaired."
+        "reason": "Every incorrect option names a known misconception: 2 distractors have no known misconception: item:au.year-7.mathematics.rationals-on-number-line.01/B, item:au.year-7.mathematics.rationals-on-number-line.01/C. Rejected rather than repaired."
       }
     ],
     "replayable": false

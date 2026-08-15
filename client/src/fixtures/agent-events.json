@@ -101,13 +101,13 @@
     "at": "2026-08-15T14:00:02.000Z",
     "agentId": "agent:curriculum-mapper",
     "phase": "agent_succeeded",
-    "message": "Mapped 6 knowledge components and 6 prerequisite edges from 3 fetched content descriptions.",
+    "message": "Mapped 7 knowledge components and 7 prerequisite edges from 3 fetched content descriptions.",
     "counts": {
-      "nodes": 6,
-      "edges": 6,
-      "misconceptions": 3,
+      "nodes": 7,
+      "edges": 7,
+      "misconceptions": 4,
       "belowStage": 1,
-      "spansMatched": 5,
+      "spansMatched": 6,
       "droppedInventedCodes": 0,
       "droppedDanglingEdges": 0
     },
@@ -120,11 +120,11 @@
     "at": "2026-08-15T14:00:02.250Z",
     "agentId": "agent:item-writer",
     "phase": "agent_succeeded",
-    "message": "Wrote 5 items across 5 knowledge components. 2 rejected by a deterministic validator, 0 discarded before validation.",
+    "message": "Wrote 6 items across 6 knowledge components. 2 rejected by a deterministic validator, 0 discarded before validation.",
     "counts": {
-      "written": 5,
+      "written": 6,
       "rejected": 2,
-      "shipped": 3,
+      "shipped": 4,
       "discarded": 0,
       "distractors": 12
     },
@@ -137,10 +137,10 @@
     "at": "2026-08-15T14:00:02.500Z",
     "agentId": "agent:curriculum-mapper",
     "phase": "agent_succeeded",
-    "message": "Graph accepted: 6 knowledge components and 6 prerequisite edges, every standard read from the hashed snapshot.",
+    "message": "Graph accepted: 7 knowledge components and 7 prerequisite edges, every standard read from the hashed snapshot.",
     "counts": {
-      "nodes": 6,
-      "edges": 6,
+      "nodes": 7,
+      "edges": 7,
       "belowStage": 1
     },
     "attempt": 1
@@ -152,10 +152,10 @@
     "at": "2026-08-15T14:00:02.750Z",
     "agentId": "agent:graph-auditor",
     "phase": "check_passed",
-    "message": "6 knowledge components, 6 edges, no cycles.",
+    "message": "7 knowledge components, 7 edges, no cycles.",
     "counts": {
-      "nodes": 6,
-      "edges": 6,
+      "nodes": 7,
+      "edges": 7,
       "cycles": 0
     },
     "attempt": 1
@@ -169,7 +169,7 @@
     "phase": "check_passed",
     "message": "All edge endpoints resolve into the graph.",
     "counts": {
-      "edges": 6,
+      "edges": 7,
       "dangling": 0
     },
     "attempt": 1
@@ -181,9 +181,9 @@
     "at": "2026-08-15T14:00:03.250Z",
     "agentId": "agent:graph-auditor",
     "phase": "check_passed",
-    "message": "6 of 6 edges carry a justification.",
+    "message": "7 of 7 edges carry a justification.",
     "counts": {
-      "edges": 6,
+      "edges": 7,
       "unjustified": 0
     },
     "attempt": 1
@@ -197,7 +197,7 @@
     "phase": "check_passed",
     "message": "Every knowledge component is either connected or explicitly flagged as an entry point.",
     "counts": {
-      "nodes": 6,
+      "nodes": 7,
       "orphans": 0
     },
     "attempt": 1
@@ -209,9 +209,9 @@
     "at": "2026-08-15T14:00:03.750Z",
     "agentId": "agent:graph-auditor",
     "phase": "check_passed",
-    "message": "3 misconceptions declared and all links resolve.",
+    "message": "4 misconceptions declared and all links resolve.",
     "counts": {
-      "declared": 3,
+      "declared": 4,
       "unresolved": 0
     },
     "attempt": 1
@@ -225,7 +225,7 @@
     "phase": "check_passed",
     "message": "Every prerequisite appears before the component that needs it.",
     "counts": {
-      "edges": 6
+      "edges": 7
     },
     "attempt": 1
   },
@@ -236,9 +236,9 @@
     "at": "2026-08-15T14:00:04.250Z",
     "agentId": "agent:sequence-planner",
     "phase": "check_passed",
-    "message": "6 knowledge components scheduled across 3 lessons.",
+    "message": "7 knowledge components scheduled across 3 lessons.",
     "counts": {
-      "scheduled": 6,
+      "scheduled": 7,
       "unscheduled": 0
     },
     "attempt": 1
@@ -277,9 +277,9 @@
     "at": "2026-08-15T14:00:05.000Z",
     "agentId": "agent:assessment-validator",
     "phase": "check_passed",
-    "message": "5 items inspected, each with exactly one key that matches correctOptionId.",
+    "message": "6 items inspected, each with exactly one key that matches correctOptionId.",
     "counts": {
-      "inspected": 5,
+      "inspected": 6,
       "rejected": 0
     },
     "attempt": 1
@@ -291,10 +291,10 @@
     "at": "2026-08-15T14:00:05.250Z",
     "agentId": "agent:assessment-validator",
     "phase": "check_failed",
-    "message": "6 distractors have no known misconception: item:au.year-7.mathematics.place-rationals-on-line.01/B, item:au.year-7.mathematics.place-rationals-on-line.01/C, item:au.year-7.mathematics.place-rationals-on-line.01/D, item:au.year-7.mathematics.model-practical-ratio-problems.01/B, item:au.year-7.mathematics.model-practical-ratio-problems.01/C, item:au.year-7.mathematics.model-practical-ratio-problems.01/D.",
+    "message": "4 distractors have no known misconception: item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01/B, item:au.year-7.mathematics.fraction-decimal-percent-equivalence.01/C, item:au.year-7.mathematics.rationals-on-number-line.01/B, item:au.year-7.mathematics.rationals-on-number-line.01/C.",
     "counts": {
       "options": 12,
-      "unmapped": 6
+      "unmapped": 4
     },
     "attempt": 1
   },
@@ -331,11 +331,11 @@
     "at": "2026-08-15T14:00:06.000Z",
     "agentId": "agent:assessment-validator",
     "phase": "check_passed",
-    "message": "Measured demand bands: apply 3, recall 1, analyze 1. Language models skew toward lower-order demand, so this is counted rather than trusted.",
+    "message": "Measured demand bands: apply 3, recall 1, analyze 2. Language models skew toward lower-order demand, so this is counted rather than trusted.",
     "counts": {
       "apply": 3,
       "recall": 1,
-      "analyze": 1
+      "analyze": 2
     },
     "attempt": 1
   },
@@ -346,9 +346,9 @@
     "at": "2026-08-15T14:00:06.250Z",
     "agentId": "agent:assessment-validator",
     "phase": "check_passed",
-    "message": "5 of 5 items are uncalibrated and say so. Differential item functioning is recorded as not yet measured.",
+    "message": "6 of 6 items are uncalibrated and say so. Differential item functioning is recorded as not yet measured.",
     "counts": {
-      "uncalibrated": 5,
+      "uncalibrated": 6,
       "calibrated": 0
     },
     "attempt": 1
@@ -386,9 +386,9 @@
     "at": "2026-08-15T14:00:07.000Z",
     "agentId": "agent:release-gate",
     "phase": "gate_evaluated",
-    "message": "Verdict YELLOW at permission tier prototype. 3 items ship, 2 rejected, 6 evidence items missing.",
+    "message": "Verdict YELLOW at permission tier prototype. 4 items ship, 2 rejected, 6 evidence items missing.",
     "counts": {
-      "shipped": 3,
+      "shipped": 4,
       "rejected": 2,
       "missingEvidence": 6
     },

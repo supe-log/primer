@@ -180,6 +180,55 @@ function optionIds(count: number): string[] {
 }
 
 /**
+ * Resolves a reference the model wrote back to a declared id.
+ *
+ * Models shorten long prefixed ids: asked to echo
+ * `kc:au.year-7.mathematics.unit-rate` they return `unit-rate`. Discarding those
+ * items threw away four of six on a real run and then failed standards coverage,
+ * so a reference is matched on the full id or on a shortened form of it.
+ *
+ * Precedence and ambiguity:
+ *  - An exact id always resolves, even when its trailing slug is ambiguous.
+ *  - A shortened form resolves only when exactly one id claims it. Two components
+ *    ending `.unit-rate` make the bare `unit-rate` ambiguous, and an ambiguous
+ *    reference resolves to undefined rather than to whichever id was seen first.
+ *    Guessing between two components would silently mis-tag an item, which is worse
+ *    than discarding it, because a mis-tagged item still counts toward coverage.
+ *  - An unknown reference resolves to undefined.
+ *
+ * This is a lookup, not a leniency. The reference still has to name something the
+ * caller declared; anything else is left for the validators to reject.
+ */
+export function buildReferenceResolver(
+  ids: readonly string[],
+): (reference: string) => string | undefined {
+  const exact = new Set(ids);
+  const claims = new Map<string, Set<string>>();
+
+  for (const id of ids) {
+    const withoutPrefix = id.slice(id.indexOf(":") + 1);
+    const tail = withoutPrefix.slice(withoutPrefix.lastIndexOf(".") + 1);
+    for (const key of [withoutPrefix, tail]) {
+      if (key.length === 0 || exact.has(key)) continue;
+      const claimants = claims.get(key) ?? new Set<string>();
+      claimants.add(id);
+      claims.set(key, claimants);
+    }
+  }
+
+  const unambiguous = new Map<string, string>();
+  for (const [key, claimants] of claims) {
+    if (claimants.size === 1) unambiguous.set(key, [...claimants][0]!);
+  }
+
+  return (reference) => {
+    const key = reference.trim();
+    if (exact.has(key)) return key;
+    return unambiguous.get(key);
+  };
+}
+
+/**
  * Runs the item writer and then attacks its own output with the deterministic item
  * validators. Returns an abstention rather than throwing, so the caller falls
  * through to the deterministic bank.
@@ -207,25 +256,12 @@ export async function writeItemsWithModel(input: {
    * graph declares; anything else resolves to undefined and the item is discarded or
    * the distractor left unlinked for the validator to reject.
    */
-  function resolver(ids: readonly string[]): (reference: string) => string | undefined {
-    const index = new Map<string, string>();
-    for (const id of ids) {
-      index.set(id, id);
-      const slug = id.slice(id.indexOf(":") + 1);
-      const tail = slug.slice(slug.lastIndexOf(".") + 1);
-      // Only claim a bare slug when it is unambiguous across the graph.
-      for (const key of [slug, tail]) {
-        if (index.has(key) && index.get(key) !== id) continue;
-        index.set(key, id);
-      }
-    }
-    return (reference) => index.get(reference.trim());
-  }
-
-  const resolveComponent = resolver(
+  const resolveComponent = buildReferenceResolver(
     graph.knowledgeComponents.map((kc) => kc.knowledgeComponentId),
   );
-  const resolveMisconception = resolver(graph.misconceptions.map((m) => m.misconceptionId));
+  const resolveMisconception = buildReferenceResolver(
+    graph.misconceptions.map((m) => m.misconceptionId),
+  );
 
   const abstained = (reason: string): ItemWriterOutcome => ({
     items: [],

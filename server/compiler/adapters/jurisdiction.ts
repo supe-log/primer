@@ -104,6 +104,23 @@ export function catalogueSourceIdFor(
 }
 
 /**
+ * Sources that belong to no jurisdiction: the pedagogical evidence the sequence
+ * planner cites whatever curriculum is being compiled.
+ *
+ * An adapter with no curriculum snapshot still needs a manifest, because the
+ * contract requires at least one source on every result including a refusal. These
+ * are the honest answer to "what did this run have available", and crucially they
+ * are not another country's curriculum. A refused Texas run that listed the
+ * Australian Curriculum licence page made the citations panel read as though Texas
+ * had been compiled from ACARA.
+ */
+export const JURISDICTION_NEUTRAL_SOURCE_IDS: readonly string[] = [
+  "src:ies.interleaving-rct",
+  "src:ies.organizing-instruction",
+  "src:rosenshine.principles",
+];
+
+/**
  * Fixture adapter for a precomputed transfer case. Engineer 1 registers one of
  * these per frozen case. It resolves stages by echoing whatever label the fixture
  * used, which is exactly the point: the schema does not care what a stage is called.
@@ -124,9 +141,10 @@ export function createFixtureAdapter(config: {
     curriculumSourceId: config.curriculumSourceId,
     legalStatus: config.legalStatus,
     subjects: config.subjects,
-    // A fixture adapter with no snapshot of its own still records the licence it was
-    // read under. It never borrows another jurisdiction's curriculum snapshot.
-    snapshotSourceIds: config.snapshotSourceIds ?? ["src:acara.v9.terms"],
+    // A fixture adapter with no curriculum snapshot of its own falls back to the
+    // jurisdiction-neutral pedagogy sources, never to another jurisdiction's
+    // curriculum or licence page.
+    snapshotSourceIds: config.snapshotSourceIds ?? JURISDICTION_NEUTRAL_SOURCE_IDS,
     catalogueSourceId: config.catalogueSourceId,
     resolveStage: (localLabel) => config.stages[localLabel],
     blueprintAvailable: () => false,
@@ -171,7 +189,7 @@ export const usTexasAdapter: JurisdictionAdapter = {
   legalStatus:
     "TEKS are published in the Texas Administrative Code. Redistribution terms are not verified here, and released STAAR items carry separate conditions, so the posture is cite and link until a human checks it.",
   subjects: ["Reading Language Arts"],
-  snapshotSourceIds: ["src:acara.v9.terms"],
+  snapshotSourceIds: JURISDICTION_NEUTRAL_SOURCE_IDS,
   // No fetched TEKS snapshot. The compiler refuses rather than inventing standards.
   catalogueSourceIdByStage: {},
   // Texas counts in grades, and a grade integer does not survive a border.
@@ -186,7 +204,7 @@ export const inNcertAdapter: JurisdictionAdapter = {
   legalStatus:
     "NCERT learning outcomes are published for public use, but redistribution terms are unresolved. An unknown licence caps a run at prototype and blocks redistribution.",
   subjects: ["Mathematics"],
-  snapshotSourceIds: ["src:acara.v9.terms"],
+  snapshotSourceIds: JURISDICTION_NEUTRAL_SOURCE_IDS,
   catalogueSourceIdByStage: {},
   // A different ladder shape entirely: a named stage over several classes.
   resolveStage: (localLabel) => IN_NCERT_STAGES[localLabel],

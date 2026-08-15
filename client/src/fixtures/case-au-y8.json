@@ -214,9 +214,9 @@
     ],
     "knowledgeComponents": [
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.integer-ops-with-negatives",
-        "label": "Integer operations with negatives",
-        "description": "Compute sums, differences, products and quotients of integers that include negatives, and interpret the sign of a result.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.operate-with-integers",
+        "label": "Operate with integers",
+        "description": "Add, subtract, multiply and divide directed integers and interpret the sign of a result in a simple calculation.",
         "standardIds": [],
         "stage": {
           "localLabel": "Year 8",
@@ -229,7 +229,7 @@
         "prerequisiteOnly": true,
         "atomicEntry": true,
         "misconceptionIds": [
-          "mc:au.year-8.mathematics.minus-means-subtract-always"
+          "mc:au.year-8.mathematics.sign-error-on-subtraction"
         ],
         "evidence": [],
         "confidence": {
@@ -246,9 +246,9 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
-        "label": "Exponent notation as repeated factors",
-        "description": "Rewrite a positive integer power in expanded product form and vice versa, including identifying the base and the exponent.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.interpret-exponent-notation",
+        "label": "Interpret exponent notation",
+        "description": "Read a^n for positive integer n as n factors of a and write the matching expanded product.",
         "standardIds": [],
         "stage": {
           "localLabel": "Year 8",
@@ -261,7 +261,7 @@
         "prerequisiteOnly": true,
         "atomicEntry": true,
         "misconceptionIds": [
-          "mc:au.year-8.mathematics.exponent-as-multiply-by-index"
+          "mc:au.year-8.mathematics.treat-exponent-as-multiplier"
         ],
         "evidence": [],
         "confidence": {
@@ -278,9 +278,9 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.product-quotient-power-laws",
-        "label": "Product, quotient and power-of-a-power laws",
-        "description": "Apply the product-of-powers, quotient-of-powers and power-of-a-power laws to expressions with the same base and positive integer exponents.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.apply-same-base-exponent-laws",
+        "label": "Apply same-base exponent laws",
+        "description": "Use product-of-powers, quotient-of-powers and power-of-a-power with identical numerical bases and positive integer exponents.",
         "standardIds": [
           "std:acara.v9.ac9m8n02"
         ],
@@ -320,9 +320,9 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.zero-exponent-law",
-        "label": "Zero-exponent law",
-        "description": "Justify and use n^0 = 1 for nonzero n by relating a quotient of identical powers to subtraction of exponents.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.establish-zero-exponent",
+        "label": "Establish the zero exponent",
+        "description": "Use a quotient of equal powers to justify that a non-zero number to the power zero equals 1 and apply that result.",
         "standardIds": [
           "std:acara.v9.ac9m8n02"
         ],
@@ -337,7 +337,7 @@
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-8.mathematics.zero-power-is-zero"
+          "mc:au.year-8.mathematics.zero-power-equals-zero"
         ],
         "evidence": [
           {
@@ -361,9 +361,9 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.terminating-from-denominator-primes",
-        "label": "Terminating decimals from prime factors",
-        "description": "Decide whether a fraction in lowest terms has a terminating decimal expansion by inspecting the prime factors of its denominator.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.classify-terminating-recurring",
+        "label": "Classify terminating and recurring decimals",
+        "description": "Decide from a fraction’s denominator (prime factors) whether its decimal terminates or recurs and write the matching notation.",
         "standardIds": [
           "std:acara.v9.ac9m8n03"
         ],
@@ -378,7 +378,7 @@
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-8.mathematics.terminating-if-looks-short"
+          "mc:au.year-8.mathematics.recurring-means-irrational"
         ],
         "evidence": [
           {
@@ -402,50 +402,9 @@
         }
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.represent-recurring-decimals",
-        "label": "Recurring decimal notation",
-        "description": "Write a recurring decimal using bar or dotted notation and match it to the corresponding rational number.",
-        "standardIds": [
-          "std:acara.v9.ac9m8n03"
-        ],
-        "stage": {
-          "localLabel": "Year 8",
-          "ageBand": [
-            13,
-            14
-          ],
-          "ordinal": 9
-        },
-        "prerequisiteOnly": false,
-        "atomicEntry": false,
-        "misconceptionIds": [
-          "mc:au.year-8.mathematics.all-nonterminating-are-irrational"
-        ],
-        "evidence": [
-          {
-            "sourceId": "src:acara.v9.mathematics.year-8",
-            "quotedSpan": "recognise terminating and recurring decimals, using digital tools as appropriate",
-            "locator": "AC9M8N03",
-            "retrievalLanguage": "en"
-          }
-        ],
-        "confidence": {
-          "value": 0.75,
-          "basis": [
-            "model mapping via grok-4.6",
-            "1 of 1 evidence spans matched the snapshot"
-          ],
-          "unmeasured": [
-            "expert_review",
-            "pilot_data",
-            "item_difficulty"
-          ]
-        }
-      },
-      {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.approximate-locate-irrationals",
-        "label": "Approximate and locate irrationals",
-        "description": "Recognise square roots of non-squares and π as irrational, give decimal bounds, and place them approximately on a number line in applied contexts.",
+        "knowledgeComponentId": "kc:au.year-8.mathematics.recognise-locate-irrationals",
+        "label": "Recognise and locate irrationals",
+        "description": "Identify square roots and π as irrational and place them approximately on a number line between neighbouring decimals.",
         "standardIds": [
           "std:acara.v9.ac9m8n01"
         ],
@@ -460,7 +419,8 @@
         "prerequisiteOnly": false,
         "atomicEntry": false,
         "misconceptionIds": [
-          "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
+          "mc:au.year-8.mathematics.pi-is-exactly-22-over-7",
+          "mc:au.year-8.mathematics.recurring-means-irrational"
         ],
         "evidence": [
           {
@@ -482,110 +442,158 @@
             "item_difficulty"
           ]
         }
+      },
+      {
+        "knowledgeComponentId": "kc:au.year-8.mathematics.link-equivalent-number-forms",
+        "label": "Link equivalent number forms",
+        "description": "Move among expanded products, exponent notation, terminating/recurring decimals and irrational approximations in applied length or area contexts.",
+        "standardIds": [
+          "std:acara.v9.ac9m8n01",
+          "std:acara.v9.ac9m8n02",
+          "std:acara.v9.ac9m8n03"
+        ],
+        "stage": {
+          "localLabel": "Year 8",
+          "ageBand": [
+            13,
+            14
+          ],
+          "ordinal": 9
+        },
+        "prerequisiteOnly": false,
+        "atomicEntry": false,
+        "misconceptionIds": [
+          "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
+        ],
+        "evidence": [
+          {
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "recognise irrational numbers in applied contexts, including square roots and \\(π\\)",
+            "locator": "AC9M8N01",
+            "retrievalLanguage": "en"
+          },
+          {
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "establish and apply the exponent laws with positive integer exponents and the zero-exponent, using exponent notation with numbers",
+            "locator": "AC9M8N02",
+            "retrievalLanguage": "en"
+          },
+          {
+            "sourceId": "src:acara.v9.mathematics.year-8",
+            "quotedSpan": "recognise terminating and recurring decimals, using digital tools as appropriate",
+            "locator": "AC9M8N03",
+            "retrievalLanguage": "en"
+          }
+        ],
+        "confidence": {
+          "value": 0.75,
+          "basis": [
+            "model mapping via grok-4.6",
+            "3 of 3 evidence spans matched the snapshot"
+          ],
+          "unmeasured": [
+            "expert_review",
+            "pilot_data",
+            "item_difficulty"
+          ]
+        }
       }
     ],
     "prerequisiteEdges": [
       {
-        "from": "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
-        "to": "kc:au.year-8.mathematics.product-quotient-power-laws",
-        "justification": "The laws are justified by counting repeated factors, which requires fluent translation between exponent and expanded form.",
+        "from": "kc:au.year-8.mathematics.interpret-exponent-notation",
+        "to": "kc:au.year-8.mathematics.apply-same-base-exponent-laws",
+        "justification": "The product, quotient and power rules are derived by counting repeated factors, which requires reading exponent notation as repeated multiplication.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-8.mathematics.product-quotient-power-laws",
-        "to": "kc:au.year-8.mathematics.zero-exponent-law",
-        "justification": "The identity n^0 = 1 is obtained by applying the quotient law to identical powers, so those laws must already be available.",
+        "from": "kc:au.year-8.mathematics.apply-same-base-exponent-laws",
+        "to": "kc:au.year-8.mathematics.establish-zero-exponent",
+        "justification": "The identity a^0=1 is obtained by applying the quotient-of-powers rule to a^n/a^n, so that rule must already be available.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-8.mathematics.integer-ops-with-negatives",
-        "to": "kc:au.year-8.mathematics.product-quotient-power-laws",
-        "justification": "Evaluating numerical examples of the laws after combining exponents requires reliable signed arithmetic.",
+        "from": "kc:au.year-8.mathematics.operate-with-integers",
+        "to": "kc:au.year-8.mathematics.classify-terminating-recurring",
+        "justification": "Prime-factor tests on denominators and place-value remainders use integer division and remainders the learner must already compute reliably.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-8.mathematics.terminating-from-denominator-primes",
-        "to": "kc:au.year-8.mathematics.represent-recurring-decimals",
-        "justification": "Learners first need the criterion that distinguishes terminating expansions before they can consistently notate the complementary recurring cases.",
+        "from": "kc:au.year-8.mathematics.classify-terminating-recurring",
+        "to": "kc:au.year-8.mathematics.recognise-locate-irrationals",
+        "justification": "Learners first need a working distinction between terminating, recurring and non-repeating expansions before they can treat √n and π as a different class.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-8.mathematics.represent-recurring-decimals",
-        "to": "kc:au.year-8.mathematics.approximate-locate-irrationals",
-        "justification": "Irrationals are recognised as neither terminating nor recurring, so those decimal types must already be distinguished.",
+        "from": "kc:au.year-8.mathematics.establish-zero-exponent",
+        "to": "kc:au.year-8.mathematics.link-equivalent-number-forms",
+        "justification": "Switching among power, decimal and radical forms in scale-factor calculations uses the full set of exponent laws including the zero case.",
         "evidence": []
       },
       {
-        "from": "kc:au.year-8.mathematics.integer-ops-with-negatives",
-        "to": "kc:au.year-8.mathematics.approximate-locate-irrationals",
-        "justification": "Placing bounds such as 3.141 < π < 3.142 and comparing square-root estimates uses ordered comparison of signed decimals.",
+        "from": "kc:au.year-8.mathematics.recognise-locate-irrationals",
+        "to": "kc:au.year-8.mathematics.link-equivalent-number-forms",
+        "justification": "Choosing an appropriate representation for a hypotenuse or circumference requires already knowing that the exact value is irrational and only approximately decimal.",
         "evidence": []
       }
     ],
     "misconceptions": [
       {
-        "misconceptionId": "mc:au.year-8.mathematics.minus-means-subtract-always",
-        "label": "Minus always subtracts",
-        "description": "Treats every minus sign as a binary subtraction and therefore miscomputes products or sums involving negative integers.",
+        "misconceptionId": "mc:au.year-8.mathematics.sign-error-on-subtraction",
+        "label": "Sign error on subtraction",
+        "description": "Replaces a−(−b) with a−b or treats −a−b as −(a−b) when simplifying integer expressions.",
         "knowledgeComponentIds": [
-          "kc:au.year-8.mathematics.integer-ops-with-negatives"
+          "kc:au.year-8.mathematics.operate-with-integers"
         ]
       },
       {
-        "misconceptionId": "mc:au.year-8.mathematics.exponent-as-multiply-by-index",
-        "label": "Exponent means multiply by the index",
-        "description": "Evaluates a^n as a × n instead of n factors of a.",
+        "misconceptionId": "mc:au.year-8.mathematics.treat-exponent-as-multiplier",
+        "label": "Treats exponent as multiplier",
+        "description": "Computes 2^3 as 2×3=6 instead of three factors of 2.",
         "knowledgeComponentIds": [
-          "kc:au.year-8.mathematics.exponent-as-repeated-multiplication"
+          "kc:au.year-8.mathematics.interpret-exponent-notation"
         ]
       },
       {
         "misconceptionId": "mc:au.year-8.mathematics.add-exponents-different-bases",
-        "label": "Add exponents across different bases",
-        "description": "Writes a^m × b^n = (ab)^{m+n} or similar, combining exponents when bases differ.",
+        "label": "Adds exponents on different bases",
+        "description": "Writes 2^3×5^2 as 10^5 (or 2^5) by adding exponents even though the bases differ.",
         "knowledgeComponentIds": [
-          "kc:au.year-8.mathematics.product-quotient-power-laws"
+          "kc:au.year-8.mathematics.apply-same-base-exponent-laws"
         ]
       },
       {
         "misconceptionId": "mc:au.year-8.mathematics.multiply-exponents-on-product",
-        "label": "Multiply exponents when multiplying powers",
-        "description": "Applies a^m × a^n = a^{mn} instead of adding the exponents.",
+        "label": "Multiplies exponents on a product",
+        "description": "Replaces (2×3)^4 with 2^4×3 or with 2×3^4 instead of 2^4×3^4.",
         "knowledgeComponentIds": [
-          "kc:au.year-8.mathematics.product-quotient-power-laws"
+          "kc:au.year-8.mathematics.apply-same-base-exponent-laws"
         ]
       },
       {
-        "misconceptionId": "mc:au.year-8.mathematics.zero-power-is-zero",
-        "label": "Any number to the power zero is zero",
-        "description": "States n^0 = 0 for nonzero n.",
+        "misconceptionId": "mc:au.year-8.mathematics.zero-power-equals-zero",
+        "label": "Zero power equals zero",
+        "description": "States that any non-zero a^0 equals 0 rather than 1.",
         "knowledgeComponentIds": [
-          "kc:au.year-8.mathematics.zero-exponent-law"
+          "kc:au.year-8.mathematics.establish-zero-exponent"
         ]
       },
       {
-        "misconceptionId": "mc:au.year-8.mathematics.terminating-if-looks-short",
-        "label": "Short-looking decimals terminate",
-        "description": "Judges termination from how many digits appear on a calculator rather than from the denominator’s primes.",
+        "misconceptionId": "mc:au.year-8.mathematics.recurring-means-irrational",
+        "label": "Treats recurring as irrational",
+        "description": "Classifies 0.333… or 1/3 as irrational because the decimal does not terminate.",
         "knowledgeComponentIds": [
-          "kc:au.year-8.mathematics.terminating-from-denominator-primes"
-        ]
-      },
-      {
-        "misconceptionId": "mc:au.year-8.mathematics.all-nonterminating-are-irrational",
-        "label": "Every non-terminating decimal is irrational",
-        "description": "Classifies recurring decimals such as 0.333… as irrational because they do not stop.",
-        "knowledgeComponentIds": [
-          "kc:au.year-8.mathematics.represent-recurring-decimals",
-          "kc:au.year-8.mathematics.approximate-locate-irrationals"
+          "kc:au.year-8.mathematics.classify-terminating-recurring",
+          "kc:au.year-8.mathematics.recognise-locate-irrationals"
         ]
       },
       {
         "misconceptionId": "mc:au.year-8.mathematics.pi-is-exactly-22-over-7",
-        "label": "π equals 22/7 exactly",
-        "description": "Treats the familiar fraction 22/7 as the exact value of π rather than an approximation.",
+        "label": "Treats π as exactly 22/7",
+        "description": "Replaces π with 22/7 in every calculation and treats the fraction as the exact value.",
         "knowledgeComponentIds": [
-          "kc:au.year-8.mathematics.approximate-locate-irrationals"
+          "kc:au.year-8.mathematics.recognise-locate-irrationals",
+          "kc:au.year-8.mathematics.link-equivalent-number-forms"
         ]
       }
     ]
@@ -594,13 +602,13 @@
     "schemaVersion": "0.1.0",
     "title": "Mathematics: Prepare a Year 8 unit on integers, exponents and equivalent representations.",
     "knowledgeComponentOrder": [
-      "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
-      "kc:au.year-8.mathematics.integer-ops-with-negatives",
-      "kc:au.year-8.mathematics.product-quotient-power-laws",
-      "kc:au.year-8.mathematics.terminating-from-denominator-primes",
-      "kc:au.year-8.mathematics.represent-recurring-decimals",
-      "kc:au.year-8.mathematics.approximate-locate-irrationals",
-      "kc:au.year-8.mathematics.zero-exponent-law"
+      "kc:au.year-8.mathematics.interpret-exponent-notation",
+      "kc:au.year-8.mathematics.apply-same-base-exponent-laws",
+      "kc:au.year-8.mathematics.establish-zero-exponent",
+      "kc:au.year-8.mathematics.operate-with-integers",
+      "kc:au.year-8.mathematics.classify-terminating-recurring",
+      "kc:au.year-8.mathematics.recognise-locate-irrationals",
+      "kc:au.year-8.mathematics.link-equivalent-number-forms"
     ],
     "units": [
       {
@@ -608,37 +616,37 @@
         "title": "Year 8 Mathematics",
         "goal": "Prepare a Year 8 unit on integers, exponents and equivalent representations.",
         "lessonIds": [
-          "lesson:au.01-year-8-mathematics-product-quotient-power-laws",
-          "lesson:au.02-year-8-mathematics-represent-recurring-decimals",
-          "lesson:au.03-year-8-mathematics-zero-exponent-law"
+          "lesson:au.01-year-8-mathematics-apply-same-base-exponent-laws",
+          "lesson:au.02-year-8-mathematics-classify-terminating-recurring",
+          "lesson:au.03-year-8-mathematics-link-equivalent-number-forms"
         ]
       }
     ],
     "lessons": [
       {
-        "lessonId": "lesson:au.01-year-8-mathematics-product-quotient-power-laws",
+        "lessonId": "lesson:au.01-year-8-mathematics-apply-same-base-exponent-laws",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Product, quotient and power-of-a-power laws and Terminating decimals from prime factors",
-        "objective": "Learners can apply the product-of-powers, quotient-of-powers and power-of-a-power laws to expressions with the same base and positive integer exponents.",
+        "title": "Apply same-base exponent laws and Establish the zero exponent",
+        "objective": "Learners can use product-of-powers, quotient-of-powers and power-of-a-power with identical numerical bases and positive integer exponents.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.year-8.mathematics.product-quotient-power-laws",
-          "kc:au.year-8.mathematics.terminating-from-denominator-primes"
+          "kc:au.year-8.mathematics.apply-same-base-exponent-laws",
+          "kc:au.year-8.mathematics.establish-zero-exponent"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
-          "kc:au.year-8.mathematics.integer-ops-with-negatives"
+          "kc:au.year-8.mathematics.interpret-exponent-notation",
+          "kc:au.year-8.mathematics.operate-with-integers"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Exponent notation as repeated factors; Integer operations with negatives, because retrieval opens every lesson.",
-          "modelling": "Teacher models Product, quotient and power-of-a-power laws; Terminating decimals from prime factors, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Product, quotient and power-of-a-power laws; Terminating decimals from prime factors, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Product, quotient and power-of-a-power laws; Terminating decimals from prime factors with Exponent notation as repeated factors; Integer operations with negatives so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Exponent notation as repeated factors; Integer operations with negatives."
+          "review": "Low-stakes retrieval on Interpret exponent notation; Operate with integers, because retrieval opens every lesson.",
+          "modelling": "Teacher models Apply same-base exponent laws; Establish the zero exponent, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Apply same-base exponent laws; Establish the zero exponent, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Apply same-base exponent laws; Establish the zero exponent with Interpret exponent notation; Operate with integers so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Interpret exponent notation; Operate with integers."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Product, quotient and power-of-a-power laws.",
+            "prompt": "A worked example for: Apply same-base exponent laws.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -649,10 +657,10 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-8.mathematics.product-quotient-power-laws"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.apply-same-base-exponent-laws"
           },
           {
-            "prompt": "A worked example for: Terminating decimals from prime factors.",
+            "prompt": "A worked example for: Establish the zero exponent.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -663,19 +671,19 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-8.mathematics.terminating-from-denominator-primes"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.establish-zero-exponent"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Product, quotient and power-of-a-power laws in one sentence.",
-          "Name the error a learner makes when they confuse Product, quotient and power-of-a-power laws with a nearby idea."
+          "Without looking back, state Apply same-base exponent laws in one sentence.",
+          "Name the error a learner makes when they confuse Apply same-base exponent laws with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Product, quotient and power-of-a-power laws have to hold before the next component?"
+          "Why does Apply same-base exponent laws have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.year-8.mathematics.product-quotient-power-laws.01",
-          "item:au.year-8.mathematics.terminating-from-denominator-primes.01"
+          "item:au.year-8.mathematics.apply-same-base-exponent-laws.01",
+          "item:au.year-8.mathematics.establish-zero-exponent.01"
         ],
         "decisions": [
           {
@@ -705,30 +713,30 @@
         ]
       },
       {
-        "lessonId": "lesson:au.02-year-8-mathematics-represent-recurring-decimals",
+        "lessonId": "lesson:au.02-year-8-mathematics-classify-terminating-recurring",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Recurring decimal notation and Approximate and locate irrationals",
-        "objective": "Learners can write a recurring decimal using bar or dotted notation and match it to the corresponding rational number.",
+        "title": "Classify terminating and recurring decimals and Recognise and locate irrationals",
+        "objective": "Learners can decide from a fraction’s denominator (prime factors) whether its decimal terminates or recurs and write the matching notation.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.year-8.mathematics.represent-recurring-decimals",
-          "kc:au.year-8.mathematics.approximate-locate-irrationals"
+          "kc:au.year-8.mathematics.classify-terminating-recurring",
+          "kc:au.year-8.mathematics.recognise-locate-irrationals"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
-          "kc:au.year-8.mathematics.product-quotient-power-laws",
-          "kc:au.year-8.mathematics.terminating-from-denominator-primes"
+          "kc:au.year-8.mathematics.interpret-exponent-notation",
+          "kc:au.year-8.mathematics.apply-same-base-exponent-laws",
+          "kc:au.year-8.mathematics.establish-zero-exponent"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Exponent notation as repeated factors; Product, quotient and power-of-a-power laws; Terminating decimals from prime factors, because retrieval opens every lesson.",
-          "modelling": "Teacher models Recurring decimal notation; Approximate and locate irrationals, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Recurring decimal notation; Approximate and locate irrationals, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Recurring decimal notation; Approximate and locate irrationals with Exponent notation as repeated factors; Product, quotient and power-of-a-power laws; Terminating decimals from prime factors so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Exponent notation as repeated factors; Product, quotient and power-of-a-power laws; Terminating decimals from prime factors."
+          "review": "Low-stakes retrieval on Interpret exponent notation; Apply same-base exponent laws; Establish the zero exponent, because retrieval opens every lesson.",
+          "modelling": "Teacher models Classify terminating and recurring decimals; Recognise and locate irrationals, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Classify terminating and recurring decimals; Recognise and locate irrationals, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Classify terminating and recurring decimals; Recognise and locate irrationals with Interpret exponent notation; Apply same-base exponent laws; Establish the zero exponent so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Interpret exponent notation; Apply same-base exponent laws; Establish the zero exponent."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Recurring decimal notation.",
+            "prompt": "A worked example for: Classify terminating and recurring decimals.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -739,10 +747,10 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-8.mathematics.represent-recurring-decimals"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.classify-terminating-recurring"
           },
           {
-            "prompt": "A worked example for: Approximate and locate irrationals.",
+            "prompt": "A worked example for: Recognise and locate irrationals.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -753,19 +761,19 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-8.mathematics.approximate-locate-irrationals"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.recognise-locate-irrationals"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Recurring decimal notation in one sentence.",
-          "Name the error a learner makes when they confuse Recurring decimal notation with a nearby idea."
+          "Without looking back, state Classify terminating and recurring decimals in one sentence.",
+          "Name the error a learner makes when they confuse Classify terminating and recurring decimals with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Recurring decimal notation have to hold before the next component?"
+          "Why does Classify terminating and recurring decimals have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.year-8.mathematics.represent-recurring-decimals.01",
-          "item:au.year-8.mathematics.approximate-locate-irrationals.01"
+          "item:au.year-8.mathematics.classify-terminating-recurring.01",
+          "item:au.year-8.mathematics.recognise-locate-irrationals.01"
         ],
         "decisions": [
           {
@@ -819,29 +827,29 @@
         ]
       },
       {
-        "lessonId": "lesson:au.03-year-8-mathematics-zero-exponent-law",
+        "lessonId": "lesson:au.03-year-8-mathematics-link-equivalent-number-forms",
         "unitId": "unit:au.mathematics.compiled",
-        "title": "Zero-exponent law",
-        "objective": "Learners can justify and use n^0 = 1 for nonzero n by relating a quotient of identical powers to subtraction of exponents.",
+        "title": "Link equivalent number forms",
+        "objective": "Learners can move among expanded products, exponent notation, terminating/recurring decimals and irrational approximations in applied length or area contexts.",
         "introducesKnowledgeComponentIds": [
-          "kc:au.year-8.mathematics.zero-exponent-law"
+          "kc:au.year-8.mathematics.link-equivalent-number-forms"
         ],
         "reviewsKnowledgeComponentIds": [
-          "kc:au.year-8.mathematics.exponent-as-repeated-multiplication",
-          "kc:au.year-8.mathematics.represent-recurring-decimals",
-          "kc:au.year-8.mathematics.approximate-locate-irrationals"
+          "kc:au.year-8.mathematics.interpret-exponent-notation",
+          "kc:au.year-8.mathematics.classify-terminating-recurring",
+          "kc:au.year-8.mathematics.recognise-locate-irrationals"
         ],
         "arc": {
-          "review": "Low-stakes retrieval on Exponent notation as repeated factors; Recurring decimal notation; Approximate and locate irrationals, because retrieval opens every lesson.",
-          "modelling": "Teacher models Zero-exponent law, saying the units and the comparison aloud.",
-          "guidedPractice": "Guided items on Zero-exponent law, aiming for about four in five correct before release.",
-          "independentPractice": "Interleaved practice mixing Zero-exponent law with Exponent notation as repeated factors; Recurring decimal notation; Approximate and locate irrationals so the learner chooses the move.",
-          "closingReview": "One retrieval prompt from today and one from Exponent notation as repeated factors; Recurring decimal notation; Approximate and locate irrationals."
+          "review": "Low-stakes retrieval on Interpret exponent notation; Classify terminating and recurring decimals; Recognise and locate irrationals, because retrieval opens every lesson.",
+          "modelling": "Teacher models Link equivalent number forms, saying the units and the comparison aloud.",
+          "guidedPractice": "Guided items on Link equivalent number forms, aiming for about four in five correct before release.",
+          "independentPractice": "Interleaved practice mixing Link equivalent number forms with Interpret exponent notation; Classify terminating and recurring decimals; Recognise and locate irrationals so the learner chooses the move.",
+          "closingReview": "One retrieval prompt from today and one from Interpret exponent notation; Classify terminating and recurring decimals; Recognise and locate irrationals."
         },
         "guidedPracticeSuccessTarget": 0.8,
         "workedExamples": [
           {
-            "prompt": "A worked example for: Zero-exponent law.",
+            "prompt": "A worked example for: Link equivalent number forms.",
             "steps": [
               "Name the quantities and the comparison the question asks for.",
               "Write the representation the knowledge component requires.",
@@ -852,18 +860,18 @@
               2,
               3
             ],
-            "knowledgeComponentId": "kc:au.year-8.mathematics.zero-exponent-law"
+            "knowledgeComponentId": "kc:au.year-8.mathematics.link-equivalent-number-forms"
           }
         ],
         "retrievalPrompts": [
-          "Without looking back, state Zero-exponent law in one sentence.",
-          "Name the error a learner makes when they confuse Zero-exponent law with a nearby idea."
+          "Without looking back, state Link equivalent number forms in one sentence.",
+          "Name the error a learner makes when they confuse Link equivalent number forms with a nearby idea."
         ],
         "deepExplanatoryQuestions": [
-          "Why does Zero-exponent law have to hold before the next component?"
+          "Why does Link equivalent number forms have to hold before the next component?"
         ],
         "itemIds": [
-          "item:au.year-8.mathematics.zero-exponent-law.01"
+          "item:au.year-8.mathematics.link-equivalent-number-forms.01"
         ],
         "decisions": [
           {
@@ -919,24 +927,24 @@
     ],
     "masteryCriteria": [
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.product-quotient-power-laws",
-        "rule": "Four of five items correct on Product, quotient and power-of-a-power laws across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.apply-same-base-exponent-laws",
+        "rule": "Four of five items correct on Apply same-base exponent laws across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.terminating-from-denominator-primes",
-        "rule": "Four of five items correct on Terminating decimals from prime factors across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.establish-zero-exponent",
+        "rule": "Four of five items correct on Establish the zero exponent across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.represent-recurring-decimals",
-        "rule": "Four of five items correct on Recurring decimal notation across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.classify-terminating-recurring",
+        "rule": "Four of five items correct on Classify terminating and recurring decimals across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.approximate-locate-irrationals",
-        "rule": "Four of five items correct on Approximate and locate irrationals across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.recognise-locate-irrationals",
+        "rule": "Four of five items correct on Recognise and locate irrationals across two separate days."
       },
       {
-        "knowledgeComponentId": "kc:au.year-8.mathematics.zero-exponent-law",
-        "rule": "Four of five items correct on Zero-exponent law across two separate days."
+        "knowledgeComponentId": "kc:au.year-8.mathematics.link-equivalent-number-forms",
+        "rule": "Four of five items correct on Link equivalent number forms across two separate days."
       }
     ],
     "decisions": [
@@ -969,38 +977,38 @@
   "items": [
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-8.mathematics.product-quotient-power-laws.01",
+      "itemId": "item:au.year-8.mathematics.apply-same-base-exponent-laws.01",
       "purpose": "formative",
-      "stem": "Simplify 5^4 × 5^3, writing the result as a single power of 5.",
+      "stem": "Simplify 3^4 × 3^2 using a single power of 3.",
       "options": [
         {
           "optionId": "A",
-          "text": "5^7",
+          "text": "3^6",
           "correct": true,
-          "rationale": "The product-of-powers law adds the exponents when the bases are the same: 4 + 3 = 7."
+          "rationale": "Same base: add the exponents, 4 + 2 = 6."
         },
         {
           "optionId": "B",
-          "text": "5^{12}",
+          "text": "3^8",
           "correct": false,
-          "rationale": "Multiplies the exponents instead of adding them when multiplying powers of the same base.",
+          "rationale": "Multiplies the exponents instead of adding them for a product of powers.",
           "misconceptionId": "mc:au.year-8.mathematics.multiply-exponents-on-product"
         },
         {
           "optionId": "C",
-          "text": "25^7",
+          "text": "9^6",
           "correct": false,
-          "rationale": "Treats the product as if the bases were different and combines them while adding exponents.",
+          "rationale": "Treats the product as if the bases were different and combines them incorrectly.",
           "misconceptionId": "mc:au.year-8.mathematics.add-exponents-different-bases"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "Same base: add the exponents to obtain 5^7.",
+      "keyRationale": "For identical bases, the product-of-powers law gives 3^{4+2} = 3^6.",
       "standardIds": [
         "std:acara.v9.ac9m8n02"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-8.mathematics.product-quotient-power-laws"
+        "kc:au.year-8.mathematics.apply-same-base-exponent-laws"
       ],
       "difficulty": {
         "band": "apply",
@@ -1012,127 +1020,41 @@
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-8.mathematics.zero-exponent-law.01",
+      "itemId": "item:au.year-8.mathematics.establish-zero-exponent.01",
       "purpose": "formative",
-      "stem": "What is the value of 8^0?",
+      "stem": "What is the value of 5^0?",
       "options": [
         {
           "optionId": "A",
           "text": "1",
           "correct": true,
-          "rationale": "Any non-zero number to the power 0 equals 1, which follows from 8^n ÷ 8^n = 8^{n-n} = 8^0 = 1."
+          "rationale": "A non-zero number to the power zero equals 1, as shown by 5^n ÷ 5^n = 5^0 = 1."
         },
         {
           "optionId": "B",
           "text": "0",
           "correct": false,
-          "rationale": "Assumes a number to the power zero is zero rather than one.",
-          "misconceptionId": "mc:au.year-8.mathematics.zero-power-is-zero"
+          "rationale": "Treats any number to the power zero as zero.",
+          "misconceptionId": "mc:au.year-8.mathematics.zero-power-equals-zero"
         },
         {
           "optionId": "C",
-          "text": "8",
+          "text": "5",
           "correct": false,
-          "rationale": "Leaves the base unchanged instead of applying the zero-exponent law.",
-          "misconceptionId": "mc:au.year-8.mathematics.zero-power-is-zero"
+          "rationale": "Leaves the base unchanged instead of applying the zero-exponent result.",
+          "misconceptionId": "mc:au.year-8.mathematics.zero-power-equals-zero"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "n^0 = 1 for nonzero n, justified by subtracting equal exponents in a quotient of identical powers.",
+      "keyRationale": "Equal powers in a quotient cancel to give a^0 = 1 for a ≠ 0.",
       "standardIds": [
         "std:acara.v9.ac9m8n02"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-8.mathematics.zero-exponent-law"
+        "kc:au.year-8.mathematics.establish-zero-exponent"
       ],
       "difficulty": {
         "band": "recall",
-        "estimate": 1,
-        "calibrated": false,
-        "difStatus": "not_yet_measured"
-      },
-      "evidence": []
-    },
-    {
-      "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-8.mathematics.terminating-from-denominator-primes.01",
-      "purpose": "formative",
-      "stem": "The fraction 7/40 is in lowest terms. Does it have a terminating decimal expansion?",
-      "options": [
-        {
-          "optionId": "A",
-          "text": "Yes, because 40 = 2^3 × 5 and the only primes in the denominator are 2 and 5.",
-          "correct": true,
-          "rationale": "A lowest-terms fraction terminates if and only if the denominator’s prime factors are only 2 and/or 5."
-        },
-        {
-          "optionId": "B",
-          "text": "Yes, because a calculator shows 0.175, which looks short.",
-          "correct": false,
-          "rationale": "Judges termination from a short calculator display rather than the denominator’s primes.",
-          "misconceptionId": "mc:au.year-8.mathematics.terminating-if-looks-short"
-        },
-        {
-          "optionId": "C",
-          "text": "No, because 40 is larger than 10 so the decimal cannot terminate.",
-          "correct": false,
-          "rationale": "Uses size of the denominator instead of its prime factors.",
-          "misconceptionId": "mc:au.year-8.mathematics.terminating-if-looks-short"
-        }
-      ],
-      "correctOptionId": "A",
-      "keyRationale": "Denominator 40 factors as 2^3 × 5, so the decimal terminates.",
-      "standardIds": [
-        "std:acara.v9.ac9m8n03"
-      ],
-      "knowledgeComponentIds": [
-        "kc:au.year-8.mathematics.terminating-from-denominator-primes"
-      ],
-      "difficulty": {
-        "band": "analyze",
-        "estimate": 3,
-        "calibrated": false,
-        "difStatus": "not_yet_measured"
-      },
-      "evidence": []
-    },
-    {
-      "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-8.mathematics.represent-recurring-decimals.01",
-      "purpose": "formative",
-      "stem": "Which notation correctly represents the recurring decimal equal to 1/3?",
-      "options": [
-        {
-          "optionId": "A",
-          "text": "0.\\overline{3}",
-          "correct": true,
-          "rationale": "1/3 = 0.333… which is written with a bar over the repeating digit 3."
-        },
-        {
-          "optionId": "B",
-          "text": "0.3, which is irrational because it does not stop",
-          "correct": false,
-          "rationale": "Treats a recurring decimal as irrational simply because it does not terminate.",
-          "misconceptionId": "mc:au.year-8.mathematics.all-nonterminating-are-irrational"
-        },
-        {
-          "optionId": "C",
-          "text": "0.33 with no repeat mark, because only two 3s appear",
-          "correct": false,
-          "rationale": "Confuses a truncated display with the infinite recurring expansion.",
-          "misconceptionId": "mc:au.year-8.mathematics.all-nonterminating-are-irrational"
-        }
-      ],
-      "correctOptionId": "A",
-      "keyRationale": "1/3 is the recurring decimal 0.333…, written 0.\\overline{3}.",
-      "standardIds": [
-        "std:acara.v9.ac9m8n03"
-      ],
-      "knowledgeComponentIds": [
-        "kc:au.year-8.mathematics.represent-recurring-decimals"
-      ],
-      "difficulty": {
-        "band": "apply",
         "estimate": 2,
         "calibrated": false,
         "difStatus": "not_yet_measured"
@@ -1141,42 +1063,130 @@
     },
     {
       "schemaVersion": "0.1.0",
-      "itemId": "item:au.year-8.mathematics.approximate-locate-irrationals.01",
+      "itemId": "item:au.year-8.mathematics.classify-terminating-recurring.01",
       "purpose": "formative",
-      "stem": "On a number line, between which two consecutive integers does √10 lie?",
+      "stem": "Does the decimal for 7/20 terminate or recur?",
       "options": [
         {
           "optionId": "A",
-          "text": "Between 3 and 4",
+          "text": "It terminates (0.35).",
           "correct": true,
-          "rationale": "3^2 = 9 and 4^2 = 16, so √10 is a little more than 3 and less than 4."
+          "rationale": "20 = 2^2 × 5, so the decimal terminates."
+        },
+        {
+          "optionId": "B",
+          "text": "It recurs and is therefore irrational.",
+          "correct": false,
+          "rationale": "Treats a non-terminating look as irrational even though 7/20 is rational and actually terminates.",
+          "misconceptionId": "mc:au.year-8.mathematics.recurring-means-irrational"
+        },
+        {
+          "optionId": "C",
+          "text": "It recurs (0.35 repeating).",
+          "correct": false,
+          "rationale": "Misreads the prime factors of 20 and expects a repeating block.",
+          "misconceptionId": "mc:au.year-8.mathematics.recurring-means-irrational"
+        }
+      ],
+      "correctOptionId": "A",
+      "keyRationale": "A fraction in lowest terms terminates iff the denominator’s primes are only 2 and/or 5.",
+      "standardIds": [
+        "std:acara.v9.ac9m8n03"
+      ],
+      "knowledgeComponentIds": [
+        "kc:au.year-8.mathematics.classify-terminating-recurring"
+      ],
+      "difficulty": {
+        "band": "analyze",
+        "estimate": 3,
+        "calibrated": false,
+        "difStatus": "not_yet_measured"
+      },
+      "evidence": []
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "itemId": "item:au.year-8.mathematics.recognise-locate-irrationals.01",
+      "purpose": "formative",
+      "stem": "Between which two neighbouring tenths does √2 lie on a number line?",
+      "options": [
+        {
+          "optionId": "A",
+          "text": "Between 1.4 and 1.5",
+          "correct": true,
+          "rationale": "1.4^2 = 1.96 and 1.5^2 = 2.25, so √2 is between 1.4 and 1.5."
         },
         {
           "optionId": "B",
           "text": "Exactly at 22/7",
           "correct": false,
-          "rationale": "Confuses √10 with π and treats 22/7 as an exact location.",
+          "rationale": "Confuses √2 with π and treats 22/7 as an exact location.",
           "misconceptionId": "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
         },
         {
           "optionId": "C",
-          "text": "Between 2 and 3",
+          "text": "It cannot be placed because recurring decimals are irrational.",
           "correct": false,
-          "rationale": "Uses 2^2 = 4 instead of the squares that bound 10.",
-          "misconceptionId": "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
+          "rationale": "Mixes recurring rationals with irrationals and refuses to locate √2.",
+          "misconceptionId": "mc:au.year-8.mathematics.recurring-means-irrational"
         }
       ],
       "correctOptionId": "A",
-      "keyRationale": "√10 is irrational and sits between 3 and 4 because 9 < 10 < 16.",
+      "keyRationale": "Square both neighbouring tenths to sandwich 2 and hence locate √2.",
       "standardIds": [
         "std:acara.v9.ac9m8n01"
       ],
       "knowledgeComponentIds": [
-        "kc:au.year-8.mathematics.approximate-locate-irrationals"
+        "kc:au.year-8.mathematics.recognise-locate-irrationals"
       ],
       "difficulty": {
-        "band": "analyze",
+        "band": "apply",
         "estimate": 3,
+        "calibrated": false,
+        "difStatus": "not_yet_measured"
+      },
+      "evidence": []
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "itemId": "item:au.year-8.mathematics.link-equivalent-number-forms.01",
+      "purpose": "formative",
+      "stem": "A square tile has side length 2^3 cm. What is its area in square centimetres, written as a single ordinary number?",
+      "options": [
+        {
+          "optionId": "A",
+          "text": "64",
+          "correct": true,
+          "rationale": "Side 8 cm, area 8 × 8 = 64 cm²."
+        },
+        {
+          "optionId": "B",
+          "text": "22/7",
+          "correct": false,
+          "rationale": "Replaces the length with π ≈ 22/7 instead of evaluating the power.",
+          "misconceptionId": "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
+        },
+        {
+          "optionId": "C",
+          "text": "16",
+          "correct": false,
+          "rationale": "Computes 2 × 8 or 2^4 instead of (2^3)^2.",
+          "misconceptionId": "mc:au.year-8.mathematics.pi-is-exactly-22-over-7"
+        }
+      ],
+      "correctOptionId": "A",
+      "keyRationale": "2^3 = 8 and area is 8² = 64.",
+      "standardIds": [
+        "std:acara.v9.ac9m8n01",
+        "std:acara.v9.ac9m8n02",
+        "std:acara.v9.ac9m8n03"
+      ],
+      "knowledgeComponentIds": [
+        "kc:au.year-8.mathematics.link-equivalent-number-forms"
+      ],
+      "difficulty": {
+        "band": "apply",
+        "estimate": 2,
         "calibrated": false,
         "difStatus": "not_yet_measured"
       },
@@ -1314,9 +1324,9 @@
         "kind": "deterministic",
         "blocking": true,
         "status": "pass",
-        "detail": "8 misconceptions declared and all links resolve.",
+        "detail": "7 misconceptions declared and all links resolve.",
         "counts": {
-          "declared": 8,
+          "declared": 7,
           "unresolved": 0
         }
       },
@@ -1418,11 +1428,11 @@
         "kind": "deterministic",
         "blocking": false,
         "status": "pass",
-        "detail": "Measured demand bands: apply 2, recall 1, analyze 2. Language models skew toward lower-order demand, so this is counted rather than trusted.",
+        "detail": "Measured demand bands: apply 3, recall 1, analyze 1. Language models skew toward lower-order demand, so this is counted rather than trusted.",
         "counts": {
-          "apply": 2,
+          "apply": 3,
           "recall": 1,
-          "analyze": 2
+          "analyze": 1
         }
       },
       {
@@ -1513,18 +1523,18 @@
         "model": "grok-4.6",
         "promptVersion": "curriculum-mapper/2026-08-15.1",
         "abstained": false,
-        "latencyMs": 22416,
+        "latencyMs": 26501,
         "inputTokens": 1898,
-        "outputTokens": 1420
+        "outputTokens": 1434
       },
       {
         "agentId": "agent:item-writer",
         "model": "grok-4.6",
         "promptVersion": "item-writer/2026-08-15.1",
         "abstained": false,
-        "latencyMs": 17587,
-        "inputTokens": 1456,
-        "outputTokens": 1634
+        "latencyMs": 18932,
+        "inputTokens": 1522,
+        "outputTokens": 1566
       },
       {
         "agentId": "learning-science-critic",
