@@ -1,0 +1,26 @@
+client/src/main.tsx
+  s_4fb493c9762eef::t_28c78eac11479a 5-6
+client/src/index.css
+  s_4fb493c9762eef::t_2a52bfbf4cfb8a 40
+client/src/pages/Compile.tsx
+  s_4fb493c9762eef::t_6d51353a8d86ed 23-24
+  s_4fb493c9762eef::t_53824359a84358 198
+client/index.html
+  s_4fb493c9762eef::t_33c0b3929d2ced 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "a0ad24c2186220b1ab621ecc7bfb81dd7ef0c8fa",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
