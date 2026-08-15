@@ -93,7 +93,67 @@
   --success: 142 48% 28%;
   --warning: 42 80% 38%;
   --error: 8 62% 38%;
+  --pixel: "Pixelify Sans", "Satoshi", ui-sans-serif, system-ui, sans-serif;
   color: hsl(var(--foreground));
+}
+
+.learner-pixel {
+  font-family: var(--pixel);
+  letter-spacing: 0.04em;
+}
+
+.pixel-bob {
+  animation: pixel-bob 1.6s steps(2, end) infinite;
+}
+
+.pixel-burst {
+  position: relative;
+  height: 4.5rem;
+}
+
+.pixel-burst-star {
+  position: absolute;
+  image-rendering: pixelated;
+}
+
+.pixel-burst-star.a {
+  left: 18%;
+  top: 0.4rem;
+  animation: pixel-pop 1.2s steps(3, end) infinite;
+}
+
+.pixel-burst-star.b {
+  left: 44%;
+  top: 0;
+  animation: pixel-pop 1.2s steps(3, end) 0.2s infinite;
+}
+
+.pixel-burst-star.c {
+  left: 68%;
+  top: 0.6rem;
+  animation: pixel-pop 1.2s steps(3, end) 0.4s infinite;
+}
+
+@keyframes pixel-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pixel-pop {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-8px) scale(1.1);
+    opacity: 0.85;
+  }
 }
 
 .px-slice {
