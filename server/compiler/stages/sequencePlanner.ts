@@ -135,17 +135,12 @@ export function planSequence(input: {
       reviewsKnowledgeComponentIds: uniqueReviewed.map((kc) => kc.knowledgeComponentId),
       arc: lessonArc(group.length > 0 ? group : [lead], uniqueReviewed),
       guidedPracticeSuccessTarget: 0.8,
-      workedExamples: (group.length > 0 ? group : [lead]).map((kc) => ({
-        prompt: `A worked example for: ${kc.label}.`,
-        steps: [
-          "Name the quantities and the comparison the question asks for.",
-          "Write the representation the knowledge component requires.",
-          "Compute the result and state the units.",
-          "Check the result against the comparison.",
-        ],
-        fadedSteps: [2, 3],
-        knowledgeComponentId: kc.knowledgeComponentId,
-      })),
+      // Left empty here on purpose. A worked example has to share the shape of the
+      // practice, and items do not exist yet at sequencing time. attachWorkedExamples
+      // fills these in once they do, from the items' own numbers, and leaves a lesson
+      // with none when nothing derivable is there. The four generic sentences that
+      // used to sit here were identical for every component in every course.
+      workedExamples: [],
       retrievalPrompts: [
         `Without looking back, state ${lead.label} in one sentence.`,
         `Name the error a learner makes when they confuse ${lead.label} with a nearby idea.`,
