@@ -6,6 +6,7 @@ import {
   type CompilationResult as CompilationResultType,
 } from "@contracts";
 import { apiRequest, API_BASE } from "./queryClient";
+import { GraphView, PublicExportBundle, type GraphView as GraphViewType, type PublicExportBundle as PublicExportBundleType } from "./views";
 
 /**
  * Client side of the compiler seam. Every response is parsed against the shared
@@ -29,6 +30,16 @@ export async function fetchDemoRequest(): Promise<CompilationRequestType> {
 export async function fetchEvents(runId: string): Promise<AgentEventType[]> {
   const response = await apiRequest("GET", `/api/runs/${encodeURIComponent(runId)}/events`);
   return AgentEvent.array().parse(await response.json());
+}
+
+export async function fetchGraph(runId: string): Promise<GraphViewType> {
+  const response = await apiRequest("GET", `/api/runs/${encodeURIComponent(runId)}/graph`);
+  return GraphView.parse(await response.json());
+}
+
+export async function fetchExport(runId: string): Promise<PublicExportBundleType> {
+  const response = await apiRequest("GET", `/api/runs/${encodeURIComponent(runId)}/export`);
+  return PublicExportBundle.parse(await response.json());
 }
 
 /**
