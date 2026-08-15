@@ -16,7 +16,8 @@
     "test:watch": "vitest",
     "reliability": "tsx script/reliability.ts",
     "backtest": "tsx script/backtest.ts",
-    "verify": "npm run check && npm run test && npm run build"
+    "verify": "npm run check && npm run test && npm run build",
+    "build:vercel": "npx vite build && tsx script/vercelApi.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.60.5",
