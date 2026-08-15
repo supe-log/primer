@@ -3,7 +3,9 @@ import { CompilationResult } from "@contracts";
 import {
   buildCourseWorkspace,
   canOpenCourse,
+  friendlyLessonTitle,
   gradeOption,
+  lessonBeats,
 } from "../client/src/lib/courseWorkspace";
 import { defaultStandardIdsForStage, standardsForStage } from "../client/src/lib/stageCatalogue";
 import draftJson from "../client/src/fixtures/compilation-result.json";
@@ -65,6 +67,30 @@ describe("course workspace", () => {
     );
     expect(codes.length).toBeGreaterThan(0);
     expect(codes.every((code) => code.startsWith("AC9M8"))).toBe(true);
+  });
+
+  it("walks a lesson in explicit-instruction order", () => {
+    const course = buildCourseWorkspace(draft)!;
+    const withItems = course.lessons.find((lesson) => lesson.items.length > 0)!;
+    const beats = lessonBeats(withItems);
+    expect(beats[0]?.kind).toBe("warmup");
+    expect(beats.some((beat) => beat.kind === "model")).toBe(true);
+    expect(beats.some((beat) => beat.kind === "guided")).toBe(true);
+    expect(beats.at(-1)?.kind).toBe("wrap");
+    expect(friendlyLessonTitle(withItems).length).toBeGreaterThan(0);
+    expect(friendlyLessonTitle(withItems)).not.toContain("SAMPLE");
+  });
+
+  it("skips practice beats when a lesson has no shipped items", () => {
+    const course = buildCourseWorkspace(draft)!;
+    const empty = course.lessons.find((lesson) => lesson.items.length === 0);
+    if (!empty) {
+      return;
+    }
+    const kinds = lessonBeats(empty).map((beat) => beat.kind);
+    expect(kinds).not.toContain("guided");
+    expect(kinds).not.toContain("practice");
+    expect(kinds.at(-1)).toBe("wrap");
   });
 
   it("hides the key until gradeOption is called", () => {
