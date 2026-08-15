@@ -13,6 +13,7 @@ import { writeItemsWithModel } from "./itemWriter";
 import { auditGraphWithRepair } from "./graphAuditor";
 import { planSequence } from "./sequencePlanner";
 import { writeFallbackItems } from "./fallbackItems";
+import { attachWorkedExamples } from "./workedExamples";
 
 /**
  * Composes the real agent stages with the deterministic ones.
@@ -183,9 +184,13 @@ export async function buildModelBundle(input: {
     }
   }
 
+  // Worked examples derive from the items the lessons ended up with, so this runs
+  // last, after item ids are on the lessons.
+  const planWithExamples = attachWorkedExamples({ coursePlan, items, graph: auditedGraph });
+
   return {
     graph: auditedGraph,
-    coursePlan,
+    coursePlan: planWithExamples,
     items,
     revisions: audited.revisions,
     modelCalls,
