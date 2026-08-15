@@ -355,3 +355,9 @@ Rejected: letting the model set `mayRedistribute`. Unknown or unmatched licence 
 Pixelify Sans stays off questions, answers, powers, and buttons. Exponents render as superscripts. Button labels are near-black on the Kenney tiles. Pixel type was a costume; Year 7–8 have to read 3⁴.
 
 Rejected: keeping pixel type on the math for brand consistency.
+
+## 2026-08-15 19:15: Vercel rewrites /play to the SPA
+
+`/play` is a client path. The Vite output is one `index.html`, so Vercel 404s unless a rewrite sends `/play` there. API stays on `/api/:path*`. Hash `#play` still works as a fallback.
+
+Rejected: adding a second HTML entry. One student bundle, one rewrite.
