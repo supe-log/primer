@@ -23,6 +23,16 @@ export interface JurisdictionAdapter {
   /** Legal status of the published source, quoted from the authority where known. */
   readonly legalStatus: string;
   readonly subjects: readonly string[];
+  /**
+   * Snapshot ids this adapter reads, in manifest order. Every id must exist in the
+   * snapshot store, so an adapter can never cite a source the run did not read.
+   */
+  readonly snapshotSourceIds: readonly string[];
+  /**
+   * The snapshot holding this jurisdiction's standards. Undefined means the adapter
+   * has no fetched curriculum yet, and the compiler must not invent one.
+   */
+  readonly catalogueSourceId?: string;
   resolveStage(localLabel: string): Stage | undefined;
   blueprintAvailable(request: CompilationRequest): boolean;
 }
@@ -45,6 +55,15 @@ export const auAcaraAdapter: JurisdictionAdapter = {
   legalStatus:
     "Curriculum material licensed CC BY 4.0 with named exclusions. Logos, trade marks, site design, third-party material and the National Literacy Learning Progressions are excluded.",
   subjects: ["Mathematics"],
+  // Year 7 Mathematics is the fetched level. The terms page carries the licence
+  // itself, and the IES study is the cite-only evidence behind the interleaving
+  // decision, so the manifest holds both licence postures the gate has to enforce.
+  snapshotSourceIds: [
+    "src:acara.v9.mathematics.year-7",
+    "src:acara.v9.terms",
+    "src:ies.interleaving-rct",
+  ],
+  catalogueSourceId: "src:acara.v9.mathematics.year-7",
   resolveStage: (localLabel) => AU_STAGES[localLabel],
   // No blueprint has been fetched for any Australian stage yet, so exam emulation refuses.
   blueprintAvailable: () => false,
@@ -62,6 +81,8 @@ export function createFixtureAdapter(config: {
   legalStatus: string;
   subjects: readonly string[];
   stages: Record<string, Stage>;
+  snapshotSourceIds?: readonly string[];
+  catalogueSourceId?: string;
 }): JurisdictionAdapter {
   return {
     jurisdictionId: config.jurisdictionId,
@@ -69,6 +90,10 @@ export function createFixtureAdapter(config: {
     curriculumSourceId: config.curriculumSourceId,
     legalStatus: config.legalStatus,
     subjects: config.subjects,
+    // A fixture adapter with no snapshot of its own still records the licence it was
+    // read under. It never borrows another jurisdiction's curriculum snapshot.
+    snapshotSourceIds: config.snapshotSourceIds ?? ["src:acara.v9.terms"],
+    catalogueSourceId: config.catalogueSourceId,
     resolveStage: (localLabel) => config.stages[localLabel],
     blueprintAvailable: () => false,
   };

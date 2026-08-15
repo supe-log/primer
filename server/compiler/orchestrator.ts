@@ -14,7 +14,7 @@ import { buildGateReport } from "./evidenceGate";
 import { evaluateLicenceGate } from "./licence/gate";
 import { MockModelClient, type ModelClient } from "./model/modelClient";
 import { buildFallbackBundle } from "./stages/fallbackBundle";
-import { sampleResult } from "./fixtureStore";
+import { allSnapshotsManifest, buildSourceManifest } from "./sources/catalogue";
 import {
   validateCoursePlan,
   validateCoverage,
@@ -157,6 +157,17 @@ export interface RunRecord {
  * can store both atomically. Pure with respect to its inputs: the same request and
  * the same deps produce the same bytes.
  */
+/**
+ * The run's source manifest, built from hashed snapshots rather than from a fixture.
+ * A request whose jurisdiction has no adapter still gets a manifest — of everything
+ * the compiler holds — because a refusal is a record of what was available, and
+ * observing is always allowed even when compiling is not.
+ */
+function manifestForRequest(request: CompilationRequest): SourceManifest {
+  const adapter = resolveAdapter(request.jurisdictionId);
+  return adapter ? buildSourceManifest(adapter.snapshotSourceIds) : allSnapshotsManifest();
+}
+
 export function runCompile(
   request: CompilationRequest,
   deps: OrchestratorDeps,
@@ -166,7 +177,7 @@ export function runCompile(
   const events: AgentEvent[] = [];
   const sink = createEventSink(runId, deps.now, events);
   const startedAt = deps.now().toISOString();
-  const sourceManifest = sampleResult.sourceManifest;
+  const sourceManifest = manifestForRequest(request);
 
   sink.emit({
     agentId: "agent:orchestrator",
