@@ -230,7 +230,14 @@ function ProvenanceNode({
             {evidence ? (
               <dl className="space-y-1.5">
                 <Row term="source" value={evidence.sourceId} />
-                <Row term="span" value={`“${evidence.quotedSpan}”`} />
+                <Row
+                  term="span"
+                  value={
+                    source && source.licence.posture !== "redistributable"
+                      ? "Cite-only source. Span held internally, not shown."
+                      : `“${evidence.quotedSpan}”`
+                  }
+                />
                 {evidence.locator ? <Row term="locator" value={evidence.locator} /> : null}
                 {source ? (
                   <>
