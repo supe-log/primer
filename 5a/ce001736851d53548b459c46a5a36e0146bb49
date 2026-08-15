@@ -1,0 +1,42 @@
+client/src/components/CoursePlayer.tsx
+  s_4fb493c9762eef::t_6c1ed118291709 196
+  s_4fb493c9762eef::t_5c310eb1b3dd88 15
+  s_4fb493c9762eef::t_ce79885bea7d77 336-340
+  s_4fb493c9762eef::t_bcb9518dbdcb45 79
+  s_4fb493c9762eef::t_ceceda1864e301 42-43
+  s_4fb493c9762eef::t_e0f8fa3be932ad 253
+  s_4fb493c9762eef::t_e778d160537706 177-179
+  s_4fb493c9762eef::t_c45e8c747c1b2c 102-104
+  s_4fb493c9762eef::t_4d5cd16a1a4a9b 273
+  s_4fb493c9762eef::t_1e61322f05e410 372-375
+  s_4fb493c9762eef::t_8b7154ada771c7 141,144-148
+docs/DECISIONS.md
+  s_4fb493c9762eef::t_0a5533c2bf8ce7 306-316
+client/src/index.css
+  s_4fb493c9762eef::t_22deeff6aaccac 117-126
+  s_4fb493c9762eef::t_490e1800050e2c 83,85-94,97-116,127-161,166,171
+client/src/lib/learnerArt.ts
+  s_4fb493c9762eef::t_58e64070d45044 1-29
+client/public/kenney/pixel-ui/SOURCE.txt
+  s_4fb493c9762eef::t_0651c4c885ad99 1-7
+tests/learnerArt.test.ts
+  s_4fb493c9762eef::t_719dc1610615d9 1-32
+client/public/kenney/pixel-ui/LICENSE.txt
+  s_4fb493c9762eef::t_d1cd93ec2262bc 1-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "5ace001736851d53548b459c46a5a36e0146bb49",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
