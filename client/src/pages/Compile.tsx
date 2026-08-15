@@ -6,13 +6,16 @@ import {
   type CompilationRequest,
   type CompilationResult,
 } from "@contracts";
-import { compile, fetchDemoRequest, streamEvents } from "@/lib/api";
+import { compile, fetchDemoRequest, fetchExport, fetchGraph, streamEvents } from "@/lib/api";
 import { transferCases, type TransferCaseId } from "@/lib/cases";
+import type { GraphView, PublicExportBundle } from "@/lib/views";
 import { IntakeForm } from "@/components/IntakeForm";
 import { PipelineStatus } from "@/components/PipelineStatus";
 import { ArtifactSummary } from "@/components/ArtifactSummary";
 import { GateVerdictPanel } from "@/components/GateVerdictPanel";
 import { TransferStrip } from "@/components/TransferStrip";
+import { KnowledgeGraph } from "@/components/KnowledgeGraph";
+import { ExportPanel } from "@/components/ExportPanel";
 import { Logo } from "@/components/primitives";
 
 /**
@@ -24,6 +27,9 @@ export default function Compile() {
   const [liveResult, setLiveResult] = useState<CompilationResult | null>(null);
   const [liveEvents, setLiveEvents] = useState<AgentEvent[]>([]);
   const [result, setResult] = useState<CompilationResult | null>(null);
+  const [graph, setGraph] = useState<GraphView | null>(null);
+  const [exported, setExported] = useState<PublicExportBundle | null>(null);
+  const [loadId, setLoadId] = useState("");
   const [events, setEvents] = useState<AgentEvent[]>([]);
   const [selectedCase, setSelectedCase] = useState<TransferCaseId | null>(null);
   const [streaming, setStreaming] = useState(false);
@@ -49,12 +55,24 @@ export default function Compile() {
     return () => unsubscribe.current?.();
   }, []);
 
+  async function loadPresentation(runId: string) {
+    const [nextGraph, nextExport] = await Promise.all([
+      fetchGraph(runId).catch(() => null),
+      fetchExport(runId).catch(() => null),
+    ]);
+    setGraph(nextGraph);
+    setExported(nextExport);
+    setLoadId(runId);
+  }
+
   async function run(request: CompilationRequest) {
     setPending(true);
     setError(null);
     setEvents([]);
     setResult(null);
     setSelectedCase("d-live");
+    setGraph(null);
+    setExported(null);
     unsubscribe.current?.();
 
     try {
@@ -62,6 +80,7 @@ export default function Compile() {
       setLiveResult(compiled);
       setResult(compiled);
       setLiveEvents([]);
+      await loadPresentation(compiled.runId);
       setStreaming(true);
       unsubscribe.current = streamEvents(
         compiled.runId,
@@ -87,6 +106,7 @@ export default function Compile() {
       setResult(liveResult);
       setEvents(liveEvents);
       setStreaming(false);
+      void loadPresentation(liveResult.runId);
       return;
     }
 
@@ -100,6 +120,26 @@ export default function Compile() {
       setEvents(entry.events);
     }
     setStreaming(false);
+    // Frozen fixtures are not in the server run store. Clear rather than invent a graph.
+    setGraph(null);
+    setExported(null);
+    setLoadId(entry.result.runId);
+  }
+
+  async function loadExisting() {
+    const runId = loadId.trim();
+    if (!runId) return;
+    setPending(true);
+    setError(null);
+    try {
+      await loadPresentation(runId);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : String(cause));
+      setGraph(null);
+      setExported(null);
+    } finally {
+      setPending(false);
+    }
   }
 
   const header = useMemo(
@@ -196,6 +236,35 @@ export default function Compile() {
             </div>
           ) : null}
         </div>
+      </div>
+
+      <div className="mt-6 space-y-6">
+        <div className="card flex flex-wrap items-end gap-3 p-4">
+          <div className="min-w-0 flex-1 sm:min-w-[16rem]">
+            <label className="label" htmlFor="run-id">
+              Persisted run
+            </label>
+            <input
+              id="run-id"
+              className="field mt-1.5"
+              value={loadId}
+              onChange={(event) => setLoadId(event.target.value)}
+              placeholder="run:…"
+              data-testid="input-run-id"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => void loadExisting()}
+            disabled={pending || loadId.trim().length === 0}
+            className="rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-surface-alt disabled:opacity-60"
+            data-testid="button-load-run"
+          >
+            Load graph and export
+          </button>
+        </div>
+        <KnowledgeGraph graph={graph} runId={result?.runId ?? (loadId || undefined)} />
+        <ExportPanel exported={exported} runId={result?.runId ?? (loadId || undefined)} />
       </div>
     </main>
   );
