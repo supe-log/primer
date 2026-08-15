@@ -1,0 +1,48 @@
+client/src/components/IntakeForm.tsx
+  s_4fb493c9762eef::t_e7d675859adf0a 155,161,179-181
+  s_4fb493c9762eef::t_eb57ebe8c56102 34
+  s_4fb493c9762eef::t_c11013583de2ec 3-7,19-20
+  s_4fb493c9762eef::t_c9ce11bab31a33 8
+  s_4fb493c9762eef::t_2f5b8c582b970f 107-112
+client/src/pages/Compile.tsx
+  s_4fb493c9762eef::t_bb17133d2ea335 19,21
+  s_4fb493c9762eef::t_9c8a78445d3780 249-259
+  s_4fb493c9762eef::t_ce0fc442ea27ae 115
+  s_4fb493c9762eef::t_3c87267f6ec73d 128
+  s_4fb493c9762eef::t_8a2a48bdd82469 215
+  s_4fb493c9762eef::t_b5a94ca0ccc96c 88
+  s_4fb493c9762eef::t_3247cfc15d71de 166-201
+  s_4fb493c9762eef::t_e37f63951b00ce 294
+  s_4fb493c9762eef::t_d9f47f0c4d822d 42
+tests/demoView.test.ts
+  s_4fb493c9762eef::t_1caee7d2bf5a95 10
+  s_4fb493c9762eef::t_2a90263abe5999 21
+client/src/components/CoursePlayer.tsx
+  s_4fb493c9762eef::t_09f1e0be95329c 71
+  s_4fb493c9762eef::t_8ceb7cfb4b274d 1-70,72-305
+client/src/components/TransferStrip.tsx
+  s_4fb493c9762eef::t_265d7175b1cb7b 27
+client/src/lib/stageCatalogue.ts
+  s_4fb493c9762eef::t_8f64bd210387b2 1-66
+client/src/lib/courseWorkspace.ts
+  s_4fb493c9762eef::t_1ec5cdee067d3e 65
+  s_4fb493c9762eef::t_bc1b58e1494766 1-64,66-130
+tests/courseWorkspace.test.ts
+  s_4fb493c9762eef::t_dc85168d581f16 1-78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "37acd50b40d62868cb1aeacfa9b31be16ac2b16c",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
