@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Primer Compiler art direction: warm paper surfaces, ink-dark text,
+  one teal accent, semantic status colors only where status is the message.
+  No decorative illustration anywhere in this app.
+*/
+
+:root {
+  --background: 44 32% 95%;
+  --surface: 44 40% 97%;
+  --surface-alt: 42 26% 91%;
+  --border: 40 18% 81%;
+  --foreground: 40 12% 13%;
+  --muted-foreground: 40 8% 38%;
+  --primary: 184 72% 24%;
+  --primary-foreground: 44 40% 97%;
+  --success: 100 48% 28%;
+  --warning: 28 72% 31%;
+  --error: 344 60% 38%;
+
+  --font-sans: "Satoshi", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+.dark {
+  --background: 40 10% 9%;
+  --surface: 40 9% 12%;
+  --surface-alt: 40 8% 16%;
+  --border: 40 7% 24%;
+  --foreground: 44 14% 87%;
+  --muted-foreground: 42 7% 61%;
+  --primary: 184 38% 55%;
+  --primary-foreground: 40 12% 10%;
+  --success: 100 40% 58%;
+  --warning: 28 58% 58%;
+  --error: 344 58% 68%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv11", "ss01";
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+    --tw-ring-offset-color: hsl(var(--background));
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg border border-border bg-surface;
+  }
+
+  .label {
+    @apply block text-xs font-medium uppercase tracking-wide text-muted-foreground;
+  }
+
+  .field {
+    @apply w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground
+      placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-sm border border-border bg-surface-alt
+      px-2 py-0.5 font-mono text-xs text-muted-foreground;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
