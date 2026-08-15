@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import type { AgentEvent } from "@contracts";
+import { stageTone, type StageTone } from "@/lib/pipelineTone";
 import { Panel } from "./primitives";
 
 /**
@@ -19,32 +20,6 @@ const PHASE_TONE: Record<AgentEvent["phase"], string> = {
   run_completed: "text-primary",
   run_refused: "text-error",
 };
-
-type StageTone = "idle" | "live" | "pass" | "fail" | "abstain";
-
-function stageTone(events: AgentEvent[], streaming: boolean, isLast: boolean): StageTone {
-  if (events.some((event) => event.phase === "check_failed" || event.phase === "run_refused")) {
-    return "fail";
-  }
-  if (events.some((event) => event.phase === "agent_abstained")) {
-    return "abstain";
-  }
-  if (
-    events.some(
-      (event) =>
-        event.phase === "check_passed" ||
-        event.phase === "agent_succeeded" ||
-        event.phase === "gate_evaluated" ||
-        event.phase === "run_completed",
-    )
-  ) {
-    return "pass";
-  }
-  if (streaming && isLast) {
-    return "live";
-  }
-  return "idle";
-}
 
 const TONE_STYLES: Record<StageTone, string> = {
   idle: "border-border text-muted-foreground",

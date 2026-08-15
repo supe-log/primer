@@ -553,7 +553,9 @@ export function runCompile(
     },
   });
 
-  const status = gateReport.verdict === "YELLOW" ? "draft" : "published";
+  // The compiler never publishes. BLUE/GREEN still come back as a draft pending
+  // explicit human approval outside this process.
+  const status = "draft";
 
   const result = CompilationResult.parse({
     schemaVersion: "0.1.0",
