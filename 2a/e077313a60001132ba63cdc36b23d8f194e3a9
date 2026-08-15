@@ -1,0 +1,32 @@
+docs/DECISIONS.md
+  s_4fb493c9762eef::t_a92c984ef49b5e 191-196
+server/compiler/export/publicBundle.ts
+  s_4fb493c9762eef::t_79b346a71c5684 16
+  s_4fb493c9762eef::t_c12dc9a238cb60 146-148,166,169
+server/compiler/export/usedSources.ts
+  s_4fb493c9762eef::t_376dd1ebf7abf7 1-42
+client/src/components/ArtifactSummary.tsx
+  s_4fb493c9762eef::t_e096b0af655115 107
+  s_4fb493c9762eef::t_7d67f7ae760997 34
+  s_4fb493c9762eef::t_8b76f24cab7eb4 9
+client/src/lib/sourceRefs.ts
+  s_4fb493c9762eef::t_812d135ccda836 1-22
+tests/publicExport.test.ts
+  s_4fb493c9762eef::t_18199b3c09c4ee 84-95
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "2ae077313a60001132ba63cdc36b23d8f194e3a9",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
