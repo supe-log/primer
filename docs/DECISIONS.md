@@ -131,6 +131,7 @@ Rejected: wiring XaiModelClient or waiting for official AC9 re-keying before the
 `engineer-2/interface` now includes Engineer 1's clickable graph and cite-only export panel. Transfer strip, coverage, refusal, and fixture fallback stay. Frozen transfer cards do not invent a graph: they clear `/graph` and `/export` because those runs are not in the server store.
 
 Rejected: dropping the graph panel to avoid touching Engineer 1's client files. Both demo beats need to ship.
+
 ## 2026-08-15 12:05: Standards are read from a hashed snapshot, never authored by anything
 
 The mapper is a model call, and the model is never asked what the curriculum says. It is asked how the curriculum
@@ -175,3 +176,9 @@ Span matching also had to learn one thing: a snapshot whose bytes are JSON holds
 description containing LaTeX appeared as `\\(` and a real citation was reported unsupported. The matcher now retries in
 the snapshot's own encoding, which widens a match by exactly one re-encoding of the same characters and never by fuzzy
 matching. All 30 Year 7 content descriptions span-match.
+
+## 2026-08-15 12:20: Merge-bugfixes after Engineer 2 landed
+
+The compiler never sets status to published. Frozen transfer cards no longer write a fixture run id into the load box. Pipeline stage colour treats a later success as a pass so a mapper that abstains then falls back does not stay amber. Provenance hover hides cite-only spans.
+
+Rejected: waiting for cubic/greptile comments. Neither tool is reviewing this repo yet.

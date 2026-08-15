@@ -32,6 +32,7 @@ export default function Compile() {
   const [loadId, setLoadId] = useState("");
   const [events, setEvents] = useState<AgentEvent[]>([]);
   const [selectedCase, setSelectedCase] = useState<TransferCaseId | null>(null);
+  const [fromFixture, setFromFixture] = useState(false);
   const [streaming, setStreaming] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -62,6 +63,7 @@ export default function Compile() {
     ]);
     setGraph(nextGraph);
     setExported(nextExport);
+    setFromFixture(false);
     setLoadId(runId);
   }
 
@@ -120,10 +122,11 @@ export default function Compile() {
       setEvents(entry.events);
     }
     setStreaming(false);
-    // Frozen fixtures are not in the server run store. Clear rather than invent a graph.
+    // Frozen fixtures are not in the server run store. Clear rather than invent a graph
+    // or point Load at a run id the store has never seen.
     setGraph(null);
     setExported(null);
-    setLoadId(entry.result.runId);
+    setFromFixture(true);
   }
 
   async function loadExisting() {
@@ -263,8 +266,16 @@ export default function Compile() {
             Load graph and export
           </button>
         </div>
-        <KnowledgeGraph graph={graph} runId={result?.runId ?? (loadId || undefined)} />
-        <ExportPanel exported={exported} runId={result?.runId ?? (loadId || undefined)} />
+        <KnowledgeGraph
+          graph={graph}
+          runId={fromFixture ? undefined : result?.runId ?? (loadId || undefined)}
+          fromFixture={fromFixture}
+        />
+        <ExportPanel
+          exported={exported}
+          runId={fromFixture ? undefined : result?.runId ?? (loadId || undefined)}
+          fromFixture={fromFixture}
+        />
       </div>
     </main>
   );
