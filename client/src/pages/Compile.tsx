@@ -7,11 +7,13 @@ import {
   type CompilationResult,
 } from "@contracts";
 import { compile, fetchDemoRequest, fetchExport, fetchGraph, streamEvents } from "@/lib/api";
+import { transferCases, type TransferCaseId } from "@/lib/cases";
 import type { GraphView, PublicExportBundle } from "@/lib/views";
 import { IntakeForm } from "@/components/IntakeForm";
 import { PipelineStatus } from "@/components/PipelineStatus";
 import { ArtifactSummary } from "@/components/ArtifactSummary";
 import { GateVerdictPanel } from "@/components/GateVerdictPanel";
+import { TransferStrip } from "@/components/TransferStrip";
 import { KnowledgeGraph } from "@/components/KnowledgeGraph";
 import { ExportPanel } from "@/components/ExportPanel";
 import { Logo } from "@/components/primitives";
@@ -22,14 +24,18 @@ import { Logo } from "@/components/primitives";
  */
 export default function Compile() {
   const [initialRequest, setInitialRequest] = useState<CompilationRequest | null>(null);
+  const [liveResult, setLiveResult] = useState<CompilationResult | null>(null);
+  const [liveEvents, setLiveEvents] = useState<AgentEvent[]>([]);
   const [result, setResult] = useState<CompilationResult | null>(null);
   const [graph, setGraph] = useState<GraphView | null>(null);
   const [exported, setExported] = useState<PublicExportBundle | null>(null);
   const [loadId, setLoadId] = useState("");
   const [events, setEvents] = useState<AgentEvent[]>([]);
+  const [selectedCase, setSelectedCase] = useState<TransferCaseId | null>(null);
   const [streaming, setStreaming] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [usedFixtureFallback, setUsedFixtureFallback] = useState(false);
   const [dark, setDark] = useState(
     () => typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches,
   );
@@ -41,7 +47,10 @@ export default function Compile() {
 
   useEffect(() => {
     fetchDemoRequest()
-      .then(setInitialRequest)
+      .then(({ request, fromFixture }) => {
+        setInitialRequest(request);
+        setUsedFixtureFallback(fromFixture);
+      })
       .catch((cause: Error) => setError(cause.message));
     return () => unsubscribe.current?.();
   }, []);
@@ -49,7 +58,7 @@ export default function Compile() {
   async function loadPresentation(runId: string) {
     const [nextGraph, nextExport] = await Promise.all([
       fetchGraph(runId).catch(() => null),
-      fetchExport(runId),
+      fetchExport(runId).catch(() => null),
     ]);
     setGraph(nextGraph);
     setExported(nextExport);
@@ -61,18 +70,24 @@ export default function Compile() {
     setError(null);
     setEvents([]);
     setResult(null);
+    setSelectedCase("d-live");
     setGraph(null);
     setExported(null);
     unsubscribe.current?.();
 
     try {
       const compiled = await compile(request);
+      setLiveResult(compiled);
       setResult(compiled);
+      setLiveEvents([]);
       await loadPresentation(compiled.runId);
       setStreaming(true);
       unsubscribe.current = streamEvents(
         compiled.runId,
-        (event) => setEvents((current) => [...current, event]),
+        (event) => {
+          setEvents((current) => [...current, event]);
+          setLiveEvents((current) => [...current, event]);
+        },
         () => setStreaming(false),
       );
     } catch (cause) {
@@ -80,6 +95,35 @@ export default function Compile() {
     } finally {
       setPending(false);
     }
+  }
+
+  function selectCase(id: TransferCaseId) {
+    if (id === "d-live") {
+      if (!liveResult) {
+        return;
+      }
+      setSelectedCase(id);
+      setResult(liveResult);
+      setEvents(liveEvents);
+      setStreaming(false);
+      void loadPresentation(liveResult.runId);
+      return;
+    }
+
+    const entry = transferCases(Boolean(liveResult)).find((item) => item.id === id);
+    if (!entry?.ready || !entry.result) {
+      return;
+    }
+    setSelectedCase(id);
+    setResult(entry.result);
+    if (entry.events) {
+      setEvents(entry.events);
+    }
+    setStreaming(false);
+    // Frozen fixtures are not in the server run store. Clear rather than invent a graph.
+    setGraph(null);
+    setExported(null);
+    setLoadId(entry.result.runId);
   }
 
   async function loadExisting() {
@@ -100,10 +144,10 @@ export default function Compile() {
 
   const header = useMemo(
     () => (
-      <header className="mb-8 flex flex-wrap items-start justify-between gap-4">
-        <div className="flex items-start gap-3">
-          <Logo className="mt-1 h-7 w-7 text-primary" />
-          <div>
+      <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
+        <div className="flex min-w-0 items-start gap-3">
+          <Logo className="mt-1 h-7 w-7 shrink-0 text-primary" />
+          <div className="min-w-0">
             <h1 className="text-xl font-bold tracking-tight">Primer Compiler</h1>
             <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
               Turns an official curriculum into a sequenced course and a standards-tagged item bank,
@@ -111,7 +155,7 @@ export default function Compile() {
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <span className="chip">contracts {SCHEMA_VERSION}</span>
           <button
             type="button"
@@ -129,8 +173,20 @@ export default function Compile() {
   );
 
   return (
-    <main className="mx-auto max-w-6xl px-5 py-10">
+    <main className="mx-auto max-w-6xl overflow-x-hidden px-4 py-8 sm:px-5 sm:py-10">
       {header}
+
+      <TransferStrip
+        selected={selectedCase}
+        hasLiveResult={Boolean(liveResult)}
+        onSelect={selectCase}
+      />
+
+      {usedFixtureFallback ? (
+        <p className="mb-6 text-xs text-muted-foreground" data-testid="text-fixture-fallback">
+          Compiler API unreachable. Form and transfer cards are rendering from frozen fixtures.
+        </p>
+      ) : null}
 
       {error ? (
         <p
@@ -141,37 +197,50 @@ export default function Compile() {
         </p>
       ) : null}
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <div className="space-y-6">
+      {result?.status === "refused" ? (
+        <div className="mb-6">
+          <GateVerdictPanel result={result} />
+        </div>
+      ) : null}
+
+      <div className="grid min-w-0 gap-6 lg:grid-cols-2">
+        <div className="min-w-0 space-y-6">
           {initialRequest ? (
             <IntakeForm initial={initialRequest} pending={pending} onSubmit={run} />
           ) : (
-            <div className="card h-64 animate-pulse" aria-hidden="true" />
+            <div className="card h-64 animate-pulse" aria-hidden="true" data-testid="state-loading-form" />
           )}
           <PipelineStatus events={events} streaming={streaming} />
         </div>
 
-        <div className="space-y-6">
-          {result ? <GateVerdictPanel result={result} /> : null}
-          {result ? <ArtifactSummary result={result} /> : null}
-          {result ? null : (
-            <div className="card p-5 text-sm text-muted-foreground">
+        <div className="min-w-0 space-y-6">
+          {result && result.status !== "refused" ? <GateVerdictPanel result={result} /> : null}
+          {result && result.status !== "refused" ? <ArtifactSummary result={result} /> : null}
+          {result?.status === "refused" ? <ArtifactSummary result={result} /> : null}
+          {result || pending ? null : (
+            <div className="card p-5 text-sm text-muted-foreground" data-testid="state-empty">
               <p>
-                Nothing compiled yet. The scaffold runs the deterministic half of the pipeline for
-                real: adapters, validators, gate arithmetic and the refusal path. Generated content
-                is replayed from a frozen prototype sample until the model client is wired.
+                Nothing compiled yet. Submit the prefilled form for a live draft, or open D frozen
+                or Refusal on the transfer strip to render without the compiler.
               </p>
               <p className="mt-3">
-                Set assessment target to official exam emulation to see the refusal path.
+                The output is not a worksheet. It is a compiled artifact bundle with provenance and
+                a gate verdict.
               </p>
             </div>
           )}
+          {pending ? (
+            <div className="card p-5 text-sm text-muted-foreground" data-testid="state-loading-compile">
+              Compiling. The pipeline panel fills from the event stream. Artifacts arrive when the
+              run finishes.
+            </div>
+          ) : null}
         </div>
       </div>
 
       <div className="mt-6 space-y-6">
         <div className="card flex flex-wrap items-end gap-3 p-4">
-          <div className="min-w-[16rem] flex-1">
+          <div className="min-w-0 flex-1 sm:min-w-[16rem]">
             <label className="label" htmlFor="run-id">
               Persisted run
             </label>

@@ -7,15 +7,16 @@ import { CheckStatus, Panel, VerdictBadge } from "./primitives";
  */
 export function GateVerdictPanel({ result }: { result: CompilationResult }) {
   const { gateReport, refusal, status } = result;
+  const refused = status === "refused" && refusal;
 
   return (
     <Panel
-      title="Gate"
+      title={refused ? "Refused" : "Gate"}
       subtitle={gateReport.summary}
       testId="panel-gate"
       action={<VerdictBadge verdict={gateReport.verdict} />}
     >
-      <p className="text-sm">
+      <p className={refused ? "text-base" : "text-sm"}>
         Status <span className="font-mono">{status}</span> at permission tier{" "}
         <span className="font-mono" data-testid="text-permission">
           {gateReport.permission}
@@ -25,25 +26,34 @@ export function GateVerdictPanel({ result }: { result: CompilationResult }) {
 
       {refusal ? (
         <div
-          className="mt-4 rounded-md border border-error/40 bg-error/10 p-4"
+          className="mt-5 rounded-md border border-error/40 bg-error/10 p-5"
           data-testid="panel-refusal"
         >
-          <h3 className="text-sm font-semibold text-error">
-            Refused: {refusal.code.replace(/_/g, " ")}
+          <p className="font-mono text-xs uppercase tracking-wide text-error">
+            {refusal.code.replace(/_/g, " ")}
+          </p>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight text-error">
+            The compiler refused before it generated items.
           </h3>
-          <p className="mt-1 text-sm">{refusal.requested}</p>
-          <h4 className="label mt-3">Missing evidence</h4>
-          <ul className="mt-1.5 list-disc space-y-1 pl-5 text-sm">
-            {refusal.missingEvidence.map((entry) => (
-              <li key={entry}>{entry}</li>
-            ))}
-          </ul>
-          <h4 className="label mt-3">Collection plan</h4>
-          <ol className="mt-1.5 list-decimal space-y-1 pl-5 text-sm">
-            {refusal.collectionPlan.map((entry) => (
-              <li key={entry}>{entry}</li>
-            ))}
-          </ol>
+          <p className="mt-2 text-base leading-relaxed">{refusal.requested}</p>
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            <div>
+              <h4 className="label">Missing evidence</h4>
+              <ul className="mt-2 list-disc space-y-2 pl-5 text-sm leading-relaxed">
+                {refusal.missingEvidence.map((entry) => (
+                  <li key={entry}>{entry}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="label">Collection plan</h4>
+              <ol className="mt-2 list-decimal space-y-2 pl-5 text-sm leading-relaxed">
+                {refusal.collectionPlan.map((entry) => (
+                  <li key={entry}>{entry}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
         </div>
       ) : null}
 
@@ -65,7 +75,7 @@ export function GateVerdictPanel({ result }: { result: CompilationResult }) {
                   <CheckStatus status={check.status} />
                 </span>
               </div>
-              <p className="mt-1 text-sm text-muted-foreground">{check.detail}</p>
+              <p className="mt-1 break-words text-sm text-muted-foreground">{check.detail}</p>
             </li>
           ))}
         </ul>
