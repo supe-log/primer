@@ -16,6 +16,8 @@ import type { GateCheck, GateReport, GateVerdict, PermissionTier } from "@contra
 
 const SOURCE_CHECK_IDS = new Set([
   "check:source.licence-known",
+  "check:source.cite-only-no-redistribute",
+  "check:source.unknown-blocks-redistribution",
   "check:blueprint.present",
   "check:request.schema-valid",
 ]);
