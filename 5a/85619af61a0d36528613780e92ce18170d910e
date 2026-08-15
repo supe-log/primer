@@ -1,0 +1,72 @@
+tests/sequencePlanner.test.ts
+  s_50bf323b796fde::t_28f7d30fb0a4c3 1-64
+tests/acaraParse.test.ts
+  s_50bf323b796fde::t_f2898ea97b6633 50
+  s_50bf323b796fde::t_75bb4b887e4c89 1-49,51-66
+tests/licenceGate.test.ts
+  s_50bf323b796fde::t_7322805c72e1cc 1-91
+package.json
+  s_207d06870c4a11::t_969958c577bf6e 11
+  s_50bf323b796fde::t_56309209f2c88d 16
+server/compiler/stages/fallbackItems.ts
+  s_50bf323b796fde::t_d13d018bc28483 1-191
+tests/graphAuditor.test.ts
+  s_50bf323b796fde::t_6439d140501ca5 1-92
+server/compiler/stages/fallbackBundle.ts
+  s_50bf323b796fde::t_53a05a5f086e86 1-59
+script/reliability.ts
+  s_50bf323b796fde::t_743d53a02f1d36 1
+  s_50bf323b796fde::t_e719c7f5407a67 2-38,40-52
+  s_50bf323b796fde::t_7ac11d9ed81bd9 39
+docs/DECISIONS.md
+  s_50bf323b796fde::t_d0627658c4bf47 96-101
+tests/compiler.test.ts
+  s_50bf323b796fde::t_38d42dbb7e440d 85-89
+server/compiler/evidenceGate.ts
+  s_50bf323b796fde::t_48c9e870e7fd1c 19-20
+server/compiler/licence/gate.ts
+  s_50bf323b796fde::t_6e6b8f046c0aac 1-149
+server/compiler/sources/acara.ts
+  s_207d06870c4a11::t_d04d54ec0edc25 41-56
+  s_207d06870c4a11::t_3b7b2345a0675e 1-40,57-228
+server/compiler/stages/graphAuditor.ts
+  s_50bf323b796fde::t_9a21b452b43613 1-173
+server/compiler/orchestrator.ts
+  s_50bf323b796fde::t_6418ebed4c018d 14,16
+  s_50bf323b796fde::t_c66d2632743cb0 247
+  s_50bf323b796fde::t_ed03786ead5722 37
+  s_50bf323b796fde::t_de39c6fada2908 313-355,360,368-375
+  s_50bf323b796fde::t_578638132bfe42 525-533
+  s_50bf323b796fde::t_6877546c9ae027 376
+server/compiler/stages/sequencePlanner.ts
+  s_50bf323b796fde::t_e7ab620bc91b3a 1-33,38,44,46-204
+  s_50bf323b796fde::t_e684ac8eefda68 34-37,39-43,45
+server/compiler/stages/fallbackMap.ts
+  s_50bf323b796fde::t_36835192a610db 1-292
+fixtures/fallback/best-run.json
+  s_50bf323b796fde::t_45b276dac54f14 1-1386
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "5a85619af61a0d36528613780e92ce18170d910e",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    },
+    "s_50bf323b796fde": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "b791bb5d-c558-4da0-90f5-143d9466251c",
+        "model": "cursor-grok-4.6-high-fast"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
