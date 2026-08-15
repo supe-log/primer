@@ -49,7 +49,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply overflow-x-hidden bg-background text-foreground font-sans;
     font-feature-settings: "cv11", "ss01";
     font-variant-numeric: tabular-nums lining-nums;
   }
@@ -75,8 +75,8 @@
   }
 
   .chip {
-    @apply inline-flex items-center gap-1 rounded-sm border border-border bg-surface-alt
-      px-2 py-0.5 font-mono text-xs text-muted-foreground;
+    @apply inline-flex max-w-full items-center gap-1 whitespace-normal break-words
+      rounded-sm border border-border bg-surface-alt px-2 py-0.5 font-mono text-xs text-muted-foreground;
   }
 }
 

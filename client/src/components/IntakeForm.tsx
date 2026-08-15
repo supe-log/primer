@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CompilationRequest, type CompilationRequest as CompilationRequestType } from "@contracts";
-import { Panel } from "./primitives";
+import { LicenceBadge, Panel } from "./primitives";
 
 /**
  * The intake form. Deliberately plain controlled inputs: Engineer 2 can replace the
@@ -72,9 +72,12 @@ export function IntakeForm({
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="label" htmlFor="jurisdiction">
-            Jurisdiction
-          </label>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <label className="label" htmlFor="jurisdiction">
+              Jurisdiction
+            </label>
+            <LicenceBadge posture="redistributable" licenceId="cc-by-4.0" />
+          </div>
           <input
             id="jurisdiction"
             className="field mt-1.5"
@@ -82,9 +85,10 @@ export function IntakeForm({
             readOnly
             data-testid="input-jurisdiction"
           />
-          <p className="mt-1.5 text-xs text-muted-foreground">
-            Curriculum material licensed CC BY 4.0, with logos, site design, third-party material
-            and the National Literacy Learning Progressions excluded.
+          <p className="mt-1.5 break-words text-xs text-muted-foreground">
+            Australian Curriculum, Assessment and Reporting Authority (ACARA), licensed CC BY 4.0.
+            Logos, site design, third-party material and the National Literacy Learning Progressions
+            are excluded.
           </p>
         </div>
 
