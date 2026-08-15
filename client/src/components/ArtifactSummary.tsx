@@ -6,6 +6,7 @@ import type {
   SourceSnapshot,
 } from "@contracts";
 import { computeCoverage } from "@/lib/coverage";
+import { citedSources } from "@/lib/sourceRefs";
 import { Chip, LicenceBadge, Panel } from "./primitives";
 
 /**
@@ -30,6 +31,7 @@ export function ArtifactSummary({ result }: { result: CompilationResult }) {
 
   const shipped = items.filter((item) => !item.rejection);
   const rejected = items.filter((item) => item.rejection);
+  const visibleSources = citedSources(result);
   const sourcesById = new Map(sourceManifest.sources.map((source) => [source.sourceId, source]));
   const featured = graph.knowledgeComponents.find((node) => node.evidence.length > 0)
     ?? graph.knowledgeComponents[0];
@@ -102,7 +104,7 @@ export function ArtifactSummary({ result }: { result: CompilationResult }) {
         <div>
           <h3 className="label">Sources and licences</h3>
           <ul className="mt-2 space-y-2 text-sm">
-            {sourceManifest.sources.map((source) => (
+            {visibleSources.map((source) => (
               <li
                 key={source.sourceId}
                 className="flex flex-wrap items-baseline gap-2"
