@@ -25,7 +25,7 @@ import type { ModelClient, ModelRequest, ModelResponse } from "./modelClient";
 
 export const XAI_MODEL = "grok-4.6";
 const XAI_ENDPOINT = "https://api.x.ai/v1/chat/completions";
-const DEFAULT_TIMEOUT_MS = 90_000;
+const DEFAULT_TIMEOUT_MS = 240_000;
 
 export interface XaiClientOptions {
   apiKey: string;
@@ -58,8 +58,19 @@ export interface StructuredSchema {
   schema: Record<string, unknown>;
 }
 
+/**
+ * How hard the model should think before answering. These stages are structured
+ * decomposition and item writing, not open-ended reasoning puzzles, and the
+ * difference between efforts here is minutes of wall clock against a demo that has
+ * to finish in front of an audience. The caller chooses per role.
+ */
+export type ReasoningEffort = "low" | "high";
+
 /** A ModelRequest that also carries the schema to constrain generation with. */
-export type StructuredModelRequest<T> = ModelRequest<T> & { schema?: StructuredSchema };
+export type StructuredModelRequest<T> = ModelRequest<T> & {
+  schema?: StructuredSchema;
+  reasoningEffort?: ReasoningEffort;
+};
 
 function errorText(payload: XaiCompletion): string | undefined {
   if (typeof payload.error === "string") return payload.error;
@@ -94,6 +105,9 @@ export class XaiModelClient implements ModelClient {
         model: this.model,
         messages: [{ role: "user", content: request.prompt }],
       };
+      if (request.reasoningEffort) {
+        body.reasoning_effort = request.reasoningEffort;
+      }
       if (request.schema) {
         body.response_format = {
           type: "json_schema",
