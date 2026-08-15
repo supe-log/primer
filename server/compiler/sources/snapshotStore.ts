@@ -3,6 +3,8 @@ import { SourceSnapshot, type SourceSnapshot as SourceSnapshotType } from "@cont
 import acaraMathematicsY7 from "../../../snapshots/acara-v9-mathematics-year-7.json";
 import acaraTerms from "../../../snapshots/acara-v9-terms.json";
 import iesInterleaving from "../../../snapshots/ies-interleaving-rct.json";
+import iesOrganizing from "../../../snapshots/ies-organizing-instruction.json";
+import rosenshine from "../../../snapshots/rosenshine-principles.json";
 
 /**
  * The snapshot store: fetched bytes plus their provenance record.
@@ -56,6 +58,8 @@ const STORE: readonly StoredSnapshot[] = [
   loadStored(acaraMathematicsY7, "acara-v9-mathematics-year-7"),
   loadStored(acaraTerms, "acara-v9-terms"),
   loadStored(iesInterleaving, "ies-interleaving-rct"),
+  loadStored(iesOrganizing, "ies-organizing-instruction"),
+  loadStored(rosenshine, "rosenshine-principles"),
 ];
 
 export function allSnapshots(): readonly StoredSnapshot[] {
@@ -90,5 +94,15 @@ export function normalizeForSpanMatch(text: string): string {
 export function spanMatches(body: string, quotedSpan: string): boolean {
   const span = normalizeForSpanMatch(quotedSpan);
   if (span.length === 0) return false;
-  return normalizeForSpanMatch(body).includes(span);
+
+  const haystack = normalizeForSpanMatch(body);
+  if (haystack.includes(span)) return true;
+
+  // A snapshot whose bytes are JSON holds its text escaped: a content description
+  // containing LaTeX, a quote or a backslash appears as \\( rather than \(. The span
+  // was parsed out of that JSON, so comparing it raw is comparing across an encoding
+  // boundary. Retry in the snapshot's own encoding. This widens what counts as a
+  // match by exactly one re-encoding of the same characters, never by fuzzy matching.
+  const escaped = JSON.stringify(span).slice(1, -1);
+  return escaped !== span && haystack.includes(escaped);
 }

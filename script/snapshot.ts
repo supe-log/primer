@@ -1,5 +1,7 @@
 import { createHash } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
+import { execFile as execFileCallback } from "node:child_process";
+import { mkdir, rm, writeFile } from "node:fs/promises";
+import { promisify } from "node:util";
 import path from "node:path";
 import type { SourceLicence } from "@contracts";
 import {
@@ -8,6 +10,7 @@ import {
   contentDescriptions,
   fetchAcaraSubject,
   IES_LICENCE,
+  ROSENSHINE_LICENCE,
   parseAcaraRecords,
 } from "../server/compiler/sources/acara";
 
@@ -25,6 +28,8 @@ import {
  * content descriptions that were never fetched, which is the one thing this whole
  * system exists to prevent.
  */
+
+const execFile = promisify(execFileCallback);
 
 const SNAPSHOT_DIR = path.resolve(import.meta.dirname, "..", "snapshots");
 
@@ -99,6 +104,50 @@ async function fetchExtractedText(url: string): Promise<string> {
   return extractText(await response.text());
 }
 
+/**
+ * Text layer of a PDF, via poppler's `pdftotext`.
+ *
+ * The pedagogical evidence behind a sequencing decision lives in PDFs, and a
+ * citation that cannot be span-matched is not a citation. Extraction happens here,
+ * once, at snapshot time — never during a compile — so the digest covers the text
+ * the compiler actually reads and no runtime depends on a system binary.
+ *
+ * Fails loudly when poppler is absent. Silently skipping would leave the sequencing
+ * decisions citing sources that are not in the manifest, which is exactly the
+ * unsupported-claim failure the span validator exists to catch.
+ */
+async function fetchPdfText(url: string): Promise<string> {
+  const response = await fetch(url, { headers: { accept: "application/pdf" } });
+  if (!response.ok) {
+    throw new Error(`fetch failed with HTTP ${response.status} for ${url}`);
+  }
+  const bytes = Buffer.from(await response.arrayBuffer());
+  const temporary = path.join(SNAPSHOT_DIR, `.pending-${createHash("sha1").update(url).digest("hex").slice(0, 12)}.pdf`);
+  await writeFile(temporary, bytes);
+  try {
+    const { stdout } = await execFile("pdftotext", ["-q", temporary, "-"], {
+      maxBuffer: 64 * 1024 * 1024,
+      encoding: "utf8",
+    });
+    const text = `${stdout.replace(/\s+/g, " ").trim()}\n`;
+    if (text.length < 200) {
+      throw new Error(`pdftotext produced almost no text for ${url}; the PDF may be image-only`);
+    }
+    return text;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (message.includes("ENOENT")) {
+      throw new Error(
+        `pdftotext is not installed, so ${url} cannot be snapshotted. Install poppler ` +
+          `(brew install poppler) and re-run. Snapshots are committed, so this is a one-time need.`,
+      );
+    }
+    throw error;
+  } finally {
+    await rm(temporary, { force: true });
+  }
+}
+
 async function main(): Promise<void> {
   await mkdir(SNAPSHOT_DIR, { recursive: true });
   const retrievedAt = new Date().toISOString();
@@ -152,6 +201,34 @@ async function main(): Promise<void> {
     url: iesUrl,
     bytes: await fetchExtractedText(iesUrl),
     licence: IES_LICENCE,
+    retrievedAt,
+  });
+
+  // The two practice-guide PDFs the sequence planner cites. Both are cite-only, so
+  // the bundle carries the citation, the link and the attribution and never the text.
+  console.log("IES practice guide, organizing instruction and study…");
+  const organizingUrl = "https://files.eric.ed.gov/fulltext/ED498555.pdf";
+  await writeSnapshot({
+    slug: "ies-organizing-instruction",
+    sourceId: "src:ies.organizing-instruction",
+    title: "Organizing Instruction and Study to Improve Student Learning, IES practice guide (PDF text layer)",
+    publisher: "Institute of Education Sciences, U.S. Department of Education",
+    url: organizingUrl,
+    bytes: await fetchPdfText(organizingUrl),
+    licence: IES_LICENCE,
+    retrievedAt,
+  });
+
+  console.log("Rosenshine, Principles of Instruction…");
+  const rosenshineUrl = "https://www.aft.org/sites/default/files/Rosenshine.pdf";
+  await writeSnapshot({
+    slug: "rosenshine-principles",
+    sourceId: "src:rosenshine.principles",
+    title: "Principles of Instruction, Barak Rosenshine, American Educator Spring 2012 (PDF text layer)",
+    publisher: "American Federation of Teachers",
+    url: rosenshineUrl,
+    bytes: await fetchPdfText(rosenshineUrl),
+    licence: ROSENSHINE_LICENCE,
     retrievedAt,
   });
 

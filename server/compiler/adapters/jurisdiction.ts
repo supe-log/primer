@@ -62,6 +62,8 @@ export const auAcaraAdapter: JurisdictionAdapter = {
     "src:acara.v9.mathematics.year-7",
     "src:acara.v9.terms",
     "src:ies.interleaving-rct",
+    "src:ies.organizing-instruction",
+    "src:rosenshine.principles",
   ],
   catalogueSourceId: "src:acara.v9.mathematics.year-7",
   resolveStage: (localLabel) => AU_STAGES[localLabel],
