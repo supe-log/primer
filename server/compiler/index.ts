@@ -1,6 +1,14 @@
 import type { AgentEvent, CompilationRequest, CompilationResult } from "@contracts";
+import { resolveAdapter, type JurisdictionAdapter } from "./adapters/jurisdiction";
 import { MockModelClient, type ModelClient } from "./model/modelClient";
+import { modelClientFromEnv } from "./model/xaiModelClient";
 import { defaultDeps, runCompile, COMPILER_VERSION } from "./orchestrator";
+import { buildSourceManifest } from "./sources/catalogue";
+import { buildModelBundle, type ModelBundle } from "./stages/modelBundle";
+
+function manifestFor(adapter: JurisdictionAdapter) {
+  return buildSourceManifest(adapter.snapshotSourceIds);
+}
 
 /**
  * The external compiler seam. Two operations, nothing else:
@@ -47,7 +55,10 @@ export interface CompilerOptions {
 export function createCompiler(options: CompilerOptions = {}): CompilerHandle {
   const base = defaultDeps();
   const deps = {
-    modelClient: options.modelClient ?? base.modelClient,
+    // Explicit option first, then the environment, then the mock. Passing a client
+    // in tests keeps them offline and deterministic; setting XAI_API_KEY switches
+    // the real stages on without any caller changing.
+    modelClient: options.modelClient ?? modelClientFromEnv() ?? base.modelClient,
     now: options.now ?? base.now,
   };
   const runs = new Map<string, AgentEvent[]>();
@@ -57,7 +68,11 @@ export function createCompiler(options: CompilerOptions = {}): CompilerHandle {
   return {
     async compile(request) {
       sequence += 1;
-      const record = runCompile(request, deps, sequence);
+      // The generative stages run here, ahead of the synchronous pipeline, so the
+      // orchestrator stays a pure function of its inputs and every artifact it
+      // receives — whoever produced it — goes through the same validators and gate.
+      const generated = await generateArtifacts(request, deps);
+      const record = runCompile(request, deps, sequence, generated);
       runs.set(record.result.runId, record.events);
       results.set(record.result.runId, record.result);
       return record.result;
@@ -69,6 +84,32 @@ export function createCompiler(options: CompilerOptions = {}): CompilerHandle {
       return results.get(runId);
     },
   };
+}
+
+/**
+ * Runs the model-backed stages for a request the compiler will accept. Returns
+ * undefined when there is nothing to generate — an unresolvable jurisdiction, or a
+ * request the compiler is going to refuse before generating anything — so a refusal
+ * never spends a token, which is the rule that makes the refusal path fast and the
+ * demo safe.
+ */
+async function generateArtifacts(
+  request: CompilationRequest,
+  deps: { modelClient: ModelClient },
+): Promise<ModelBundle | undefined> {
+  const adapter = resolveAdapter(request.jurisdictionId);
+  if (!adapter) return undefined;
+  if (!adapter.resolveStage(request.stage.localLabel)) return undefined;
+  if (request.assessmentTarget === "official_exam_emulation" && !adapter.blueprintAvailable(request)) {
+    return undefined;
+  }
+
+  return buildModelBundle({
+    request,
+    adapter,
+    sourceManifest: manifestFor(adapter),
+    modelClient: deps.modelClient,
+  });
 }
 
 export { MockModelClient, COMPILER_VERSION };
