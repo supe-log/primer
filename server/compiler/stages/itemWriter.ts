@@ -107,9 +107,16 @@ function buildPrompt(input: {
   request: CompilationRequest;
   graph: CurriculumGraph;
   itemsPerComponent: number;
+  /** Components this pass must cover. Defaults to every assessable component. */
+  only?: readonly string[];
+  /** Set on a second pass, so the model knows it is filling gaps rather than starting over. */
+  retry?: boolean;
 }): string {
   const { request, graph, itemsPerComponent } = input;
-  const assessable = graph.knowledgeComponents.filter((kc) => !kc.prerequisiteOnly);
+  const onlyIds = input.only ? new Set(input.only) : undefined;
+  const assessable = graph.knowledgeComponents
+    .filter((kc) => !kc.prerequisiteOnly)
+    .filter((kc) => !onlyIds || onlyIds.has(kc.knowledgeComponentId));
   const misconceptionsById = new Map(
     graph.misconceptions.map((m) => [m.misconceptionId, m] as const),
   );
@@ -145,7 +152,9 @@ function buildPrompt(input: {
     // The count is stated as an arithmetic requirement rather than left implied.
     // Asking for "one per component" and listing the components got a single item
     // back for a seven-component graph, which then failed standards coverage.
-    `Write exactly ${assessable.length * itemsPerComponent} items: ${itemsPerComponent} for each of the ${assessable.length} knowledge components listed below, in this order. Every component must receive its own item, and no component may be skipped.`,
+    input.retry
+      ? `A previous pass left these ${assessable.length} knowledge components without a usable item. Write exactly ${assessable.length * itemsPerComponent} items, ${itemsPerComponent} for each component listed below. Do not write items for anything else.`
+      : `Write exactly ${assessable.length * itemsPerComponent} items: ${itemsPerComponent} for each of the ${assessable.length} knowledge components listed below, in this order. Every component must receive its own item, and no component may be skipped.`,
     componentBlock,
     ``,
     `Rules, all of which a deterministic validator checks after you:`,
@@ -171,7 +180,8 @@ export interface ItemWriterOutcome {
   items: QuestionItemType[];
   abstained: boolean;
   reason: string;
-  call: ModelCallRecord;
+  /** Every call this stage made, in order. A gap-filling second pass adds one. */
+  calls: ModelCallRecord[];
   counts: Record<string, number>;
 }
 
@@ -263,143 +273,218 @@ export async function writeItemsWithModel(input: {
     graph.misconceptions.map((m) => m.misconceptionId),
   );
 
+  const calls: ModelCallRecord[] = [];
+  const discards = { unknownComponent: 0, badOptionCount: 0, failedContract: 0 };
+  const perComponent = new Map<string, number>();
+  const items: QuestionItemType[] = [];
+
   const abstained = (reason: string): ItemWriterOutcome => ({
     items: [],
     abstained: true,
     reason,
     counts: {},
-    call: {
+    calls: calls.length > 0
+      ? calls
+      : [
+          {
+            agentId: "agent:item-writer",
+            model: modelName,
+            promptVersion: ITEM_WRITER_PROMPT_VERSION,
+            abstained: true,
+            latencyMs: 0,
+            inputTokens: 0,
+            outputTokens: 0,
+          },
+        ],
+  });
+
+  /** Assessable components that do not yet hold an item which survived validation. */
+  function uncoveredComponents(current: QuestionItemType[]): string[] {
+    const shipped = new Set(
+      current
+        .filter((item) => !item.rejection)
+        .flatMap((item) => item.knowledgeComponentIds),
+    );
+    return graph.knowledgeComponents
+      .filter((kc) => !kc.prerequisiteOnly)
+      .map((kc) => kc.knowledgeComponentId)
+      .filter((id) => !shipped.has(id));
+  }
+
+  /**
+   * One pass over the writer. Appends whatever survives to `items` and records the
+   * call. Returns how many proposals the model made, so the caller can tell an empty
+   * response from a fully discarded one.
+   */
+  async function runPass(only?: readonly string[]): Promise<number | undefined> {
+    const modelRequest: StructuredModelRequest<ItemProposal> = {
+      role: "item_writer",
+      promptVersion: ITEM_WRITER_PROMPT_VERSION,
+      prompt: buildPrompt({ request, graph, itemsPerComponent, only, retry: only !== undefined }),
+      schema: ITEM_SCHEMA,
+      // Decomposition, not deep reasoning. Low effort answers in seconds rather than
+      // minutes, and a stage that times out helps nobody.
+      reasoningEffort: "low",
+      parse: (raw) => {
+        const value = raw as ItemProposal;
+        if (!Array.isArray(value?.items) || value.items.length === 0) {
+          throw new Error("no items returned");
+        }
+        return value;
+      },
+    };
+
+    const response = await modelClient.complete(modelRequest);
+    if (!response.ok) {
+      calls.push({
+        agentId: "agent:item-writer",
+        model: modelName,
+        promptVersion: ITEM_WRITER_PROMPT_VERSION,
+        abstained: true,
+        latencyMs: 0,
+        inputTokens: 0,
+        outputTokens: 0,
+      });
+      return undefined;
+    }
+
+    calls.push({
       agentId: "agent:item-writer",
       model: modelName,
       promptVersion: ITEM_WRITER_PROMPT_VERSION,
-      abstained: true,
-      latencyMs: 0,
-      inputTokens: 0,
-      outputTokens: 0,
-    },
-  });
+      abstained: false,
+      latencyMs: response.latencyMs,
+      inputTokens: response.inputTokens,
+      outputTokens: response.outputTokens,
+    });
 
-  const modelRequest: StructuredModelRequest<ItemProposal> = {
-    role: "item_writer",
-    promptVersion: ITEM_WRITER_PROMPT_VERSION,
-    prompt: buildPrompt({ request, graph, itemsPerComponent }),
-    schema: ITEM_SCHEMA,
-    // Decomposition, not deep reasoning. Low effort answers in seconds rather than
-    // minutes, and a stage that times out helps nobody.
-    reasoningEffort: "low",
-    parse: (raw) => {
-      const value = raw as ItemProposal;
-      if (!Array.isArray(value?.items) || value.items.length === 0) {
-        throw new Error("no items returned");
+    for (const proposed of response.value.items) {
+      const kcId = resolveComponent(proposed.knowledgeComponentId);
+      if (!kcId) {
+        discards.unknownComponent += 1;
+        continue;
       }
-      return value;
-    },
-  };
+      // A gap-filling pass may only write for the components it was asked about.
+      if (only && !only.includes(kcId)) {
+        discards.unknownComponent += 1;
+        continue;
+      }
+      if (proposed.options.length < 3 || proposed.options.length > 4) {
+        discards.badOptionCount += 1;
+        continue;
+      }
 
-  const response = await modelClient.complete(modelRequest);
-  if (!response.ok) {
+      const index = (perComponent.get(kcId) ?? 0) + 1;
+      perComponent.set(kcId, index);
+      const component = graph.knowledgeComponents.find((kc) => kc.knowledgeComponentId === kcId)!;
+      const ids = optionIds(proposed.options.length);
+
+      const options = proposed.options.map((option, position) => ({
+        optionId: ids[position]!,
+        text: option.text,
+        correct: option.correct,
+        rationale: option.rationale,
+        // An incorrect option keeps its misconception only if the graph declares it.
+        // A distractor pointing at an undeclared misconception fails the validator,
+        // which is the correct outcome: the link is the artifact, not the label.
+        misconceptionId: option.correct
+          ? undefined
+          : resolveMisconception(option.misconceptionSlug),
+      }));
+
+      // correctOptionId is recomputed from the options rather than trusted. When the
+      // model marks two keys, this records the first and the validator catches the
+      // disagreement, which is exactly the rejection the demo shows.
+      const key = options.find((option) => option.correct);
+
+      const candidate = {
+        schemaVersion: "0.1.0",
+        itemId: `item:${kcId.replace(/^kc:/, "")}.${String(index).padStart(2, "0")}`,
+        purpose:
+          request.assessmentTarget === "official_exam_emulation" ? "test_emulation" : "formative",
+        stem: proposed.stem,
+        options,
+        correctOptionId: key?.optionId ?? "A",
+        keyRationale: proposed.keyRationale,
+        standardIds:
+          component.standardIds.length > 0 ? component.standardIds : request.standardIds.slice(0, 1),
+        knowledgeComponentIds: [kcId],
+        difficulty: {
+          band: proposed.demandBand,
+          estimate: Math.min(5, Math.max(1, Math.round(proposed.difficultyEstimate))),
+          // Never negotiable. No response data exists, so nothing here is calibrated
+          // and differential item functioning has not been measured.
+          calibrated: false,
+          difStatus: "not_yet_measured" as const,
+        },
+        evidence: [],
+      };
+
+      const parsed = QuestionItem.safeParse(candidate);
+      if (!parsed.success) {
+        discards.failedContract += 1;
+        continue;
+      }
+      items.push(parsed.data);
+    }
+
+    return response.value.items.length;
+  }
+
+  const proposedFirst = await runPass();
+  if (proposedFirst === undefined) {
     return abstained(
-      `Item writer abstained: ${response.reason}. The deterministic bank runs instead.`,
+      `Item writer abstained on its first pass. The deterministic bank runs instead.`,
     );
   }
 
-  const call: ModelCallRecord = {
-    agentId: "agent:item-writer",
-    model: modelName,
-    promptVersion: ITEM_WRITER_PROMPT_VERSION,
-    abstained: false,
-    latencyMs: response.latencyMs,
-    inputTokens: response.inputTokens,
-    outputTokens: response.outputTokens,
-  };
-
-  let unparsable = 0;
-  const perComponent = new Map<string, number>();
-  const items: QuestionItemType[] = [];
-
-  for (const proposed of response.value.items) {
-    const kcId = resolveComponent(proposed.knowledgeComponentId);
-    if (!kcId) {
-      unparsable += 1;
-      continue;
-    }
-    if (proposed.options.length < 3 || proposed.options.length > 4) {
-      unparsable += 1;
-      continue;
-    }
-
-    const index = (perComponent.get(kcId) ?? 0) + 1;
-    perComponent.set(kcId, index);
-    const component = graph.knowledgeComponents.find((kc) => kc.knowledgeComponentId === kcId)!;
-    const ids = optionIds(proposed.options.length);
-
-    const options = proposed.options.map((option, position) => ({
-      optionId: ids[position]!,
-      text: option.text,
-      correct: option.correct,
-      rationale: option.rationale,
-      // An incorrect option keeps its misconception only if the graph declares it.
-      // A distractor pointing at an undeclared misconception fails the validator,
-      // which is the correct outcome: the link is the artifact, not the label.
-      misconceptionId: option.correct
-        ? undefined
-        : resolveMisconception(option.misconceptionSlug),
-    }));
-
-    // correctOptionId is recomputed from the options rather than trusted. When the
-    // model marks two keys, this records the first and the validator catches the
-    // disagreement, which is exactly the rejection the demo shows.
-    const key = options.find((option) => option.correct);
-
-    const candidate = {
-      schemaVersion: "0.1.0",
-      itemId: `item:${kcId.replace(/^kc:/, "")}.${String(index).padStart(2, "0")}`,
-      purpose: request.assessmentTarget === "official_exam_emulation" ? "test_emulation" : "formative",
-      stem: proposed.stem,
-      options,
-      correctOptionId: key?.optionId ?? "A",
-      keyRationale: proposed.keyRationale,
-      standardIds:
-        component.standardIds.length > 0 ? component.standardIds : request.standardIds.slice(0, 1),
-      knowledgeComponentIds: [kcId],
-      difficulty: {
-        band: proposed.demandBand,
-        estimate: Math.min(5, Math.max(1, Math.round(proposed.difficultyEstimate))),
-        // Never negotiable. No response data exists, so nothing here is calibrated
-        // and differential item functioning has not been measured.
-        calibrated: false,
-        difStatus: "not_yet_measured" as const,
-      },
-      evidence: [],
-    };
-
-    const parsed = QuestionItem.safeParse(candidate);
-    if (!parsed.success) {
-      unparsable += 1;
-      continue;
-    }
-    items.push(parsed.data);
+  // Bounded at two passes, the same cap every loop in this pipeline uses. The floor
+  // is standards coverage: an assessable component with no surviving item means a
+  // requested standard goes unassessed, which fails the coverage check and produces
+  // a draft with nothing to practise. One targeted retry, then live with the result.
+  let gapFilled = 0;
+  let missing = uncoveredComponents(stampRejections(items, graph));
+  if (missing.length > 0) {
+    const before = items.length;
+    await runPass(missing);
+    gapFilled = items.length - before;
+    missing = uncoveredComponents(stampRejections(items, graph));
   }
 
   if (items.length === 0) {
     return abstained(
-      `Item writer returned ${response.value.items.length} items and none satisfied the item contract. The deterministic bank runs instead.`,
+      `Item writer proposed ${proposedFirst} items across two passes and none satisfied the item contract. The deterministic bank runs instead.`,
     );
   }
 
   const stamped = stampRejections(items, graph);
   const rejected = stamped.filter((item) => item.rejection).length;
+  const discarded =
+    discards.unknownComponent + discards.badOptionCount + discards.failedContract;
 
   return {
     items: stamped,
     abstained: false,
-    reason: `Wrote ${stamped.length} items across ${perComponent.size} knowledge components. ${rejected} rejected by a deterministic validator, ${unparsable} discarded before validation.`,
-    call,
+    reason:
+      `Wrote ${stamped.length} items across ${perComponent.size} knowledge components in ${calls.length} pass${calls.length === 1 ? "" : "es"}. ` +
+      `${rejected} rejected by a deterministic validator, ${discarded} discarded before validation` +
+      (gapFilled > 0 ? `, ${gapFilled} added by a gap-filling pass` : "") +
+      (missing.length > 0
+        ? `. ${missing.length} components still have no usable item after two passes.`
+        : "."),
+    calls,
     counts: {
       written: stamped.length,
       rejected,
       shipped: stamped.length - rejected,
-      discarded: unparsable,
+      discarded,
+      // Broken out so the next bad run is a reading rather than a guess.
+      discardedUnknownComponent: discards.unknownComponent,
+      discardedBadOptionCount: discards.badOptionCount,
+      discardedFailedContract: discards.failedContract,
+      passes: calls.length,
+      gapFilled,
+      componentsWithoutItem: missing.length,
       distractors: stamped.reduce(
         (total, item) => total + item.options.filter((option) => !option.correct).length,
         0,
