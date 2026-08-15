@@ -1,0 +1,40 @@
+server/index.ts
+  s_207d06870c4a11::t_15ad577737e8ed 50-54
+server/compiler/export/usedSources.ts
+  s_207d06870c4a11::t_15ad577737e8ed 1-42
+tests/demoView.test.ts
+  s_207d06870c4a11::t_15ad577737e8ed 9,16-22
+  s_207d06870c4a11::t_0e6545b902b442 23
+server/compiler/export/publicBundle.ts
+  s_207d06870c4a11::t_15ad577737e8ed 16,146-148,166,169
+client/src/components/ArtifactSummary.tsx
+  s_207d06870c4a11::t_15ad577737e8ed 9,34,107
+client/src/lib/sourceRefs.ts
+  s_207d06870c4a11::t_15ad577737e8ed 1-22
+client/src/components/IntakeForm.tsx
+  s_207d06870c4a11::t_15ad577737e8ed 13-25,178-179
+tests/compiler.test.ts
+  s_207d06870c4a11::t_15ad577737e8ed 19-20
+docs/DECISIONS.md
+  s_207d06870c4a11::t_15ad577737e8ed 225-235
+tests/publicExport.test.ts
+  s_207d06870c4a11::t_15ad577737e8ed 84-95
+client/src/pages/Compile.tsx
+  s_207d06870c4a11::t_15ad577737e8ed 121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "715f06c2b4a9d8d07337c12bd4dbbd3d53ff9304",
+  "prompts": {},
+  "sessions": {
+    "s_207d06870c4a11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1408cdf-2c1d-4311-bdd2-88251f559846",
+        "model": "claude-opus-5"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
