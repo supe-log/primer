@@ -1,0 +1,41 @@
+client/src/components/KnowledgeGraph.tsx
+  s_4fb493c9762eef::t_b2e55fc8683eb1 1
+  s_4fb493c9762eef::t_8e2fbc1428a7b8 19,23,30-33,40-44,50-52
+client/src/components/ArtifactSummary.tsx
+  s_4fb493c9762eef::t_ea7b5bfe493ddb 233-240
+client/src/lib/pipelineTone.ts
+  s_4fb493c9762eef::t_6647b2ba96bc2b 1-36
+client/src/pages/Compile.tsx
+  s_4fb493c9762eef::t_ef1022ff4e8042 269-278
+  s_4fb493c9762eef::t_5b5ad7ec09d0db 66
+  s_4fb493c9762eef::t_d43f0d289f32f9 125-126,129
+  s_4fb493c9762eef::t_3b381906c59635 35
+client/src/components/PipelineStatus.tsx
+  s_4fb493c9762eef::t_dc6f244af66e93 3
+tests/compiler.test.ts
+  s_4fb493c9762eef::t_0156f8f1d10c2a 17
+docs/DECISIONS.md
+  s_4fb493c9762eef::t_c3c952d4f6285a 134-139
+client/src/components/ExportPanel.tsx
+  s_4fb493c9762eef::t_0dcdc145716b40 13,17,27-31
+tests/pipelineTone.test.ts
+  s_4fb493c9762eef::t_2a9c405adb6f3a 1-35
+server/compiler/orchestrator.ts
+  s_4fb493c9762eef::t_aa5515e4b27b6a 505-507
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "496549b4d1fa0958e725de7c58e9508d4cfebb1d",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
