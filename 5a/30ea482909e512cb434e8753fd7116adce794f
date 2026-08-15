@@ -1,0 +1,28 @@
+client/src/lib/courseWorkspace.ts
+  s_4fb493c9762eef::t_5747ec73df1c6c 132-191
+  s_4fb493c9762eef::t_0ea95f36636e9c 7
+  s_4fb493c9762eef::t_1c8049d31cbca4 32-46
+client/src/index.css
+  s_4fb493c9762eef::t_f58334fde1c24b 83-111
+client/src/components/CoursePlayer.tsx
+  s_4fb493c9762eef::t_9fbefe11f7c89d 5,7,9,12-13,17-19,23,26,33,36-52,54-56,58-103,105-115,117-128,130-131,133-155,158-166,168,170-173,178-201,203-211,213-221,223-235,237-256,263-264,266-283,285-294,311-315,319,329-333,347,356,361,365,370-371,379
+tests/courseWorkspace.test.ts
+  s_4fb493c9762eef::t_19ee7fd54e5c93 6,8
+  s_4fb493c9762eef::t_2b7ec95020edb0 72-95
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "5a30ea482909e512cb434e8753fd7116adce794f",
+  "prompts": {},
+  "sessions": {
+    "s_4fb493c9762eef": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2f854a71-4e12-438b-b562-72e40f17c8bc",
+        "model": "grok-4.6"
+      },
+      "human_author": "supe-log <logan.may@superbuilders.school>"
+    }
+  }
+}
